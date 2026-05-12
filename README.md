@@ -24,3 +24,4 @@ npm run preview
 - React + Vite frontend.
 - Cinematic desktop and mobile intro videos are stored locally in `public/videos`.
 - The current approved deployment is on Netlify.
+- Netlify auto-deploy test: connected to GitHub `main`.
