@@ -29,12 +29,8 @@ import freshOne from './assets/bakery-2/fresh-1.webp';
 import freshTwo from './assets/bakery-2/fresh-2.webp';
 import freshThree from './assets/bakery-2/fresh-3.webp';
 import freshFour from './assets/bakery-2/fresh-4.webp';
-import galleryOne from './assets/bakery-2/gallery-1.webp';
-import galleryTwo from './assets/bakery-2/gallery-2.webp';
-import galleryThree from './assets/bakery-2/gallery-3.webp';
-import galleryFour from './assets/bakery-2/gallery-4.webp';
-import galleryFive from './assets/bakery-2/gallery-5.webp';
-import gallerySix from './assets/bakery-2/gallery-6.webp';
+import aboutImage from './assets/bakery-2/gallery-3.webp';
+import visitImage from './assets/bakery-2/map-card.webp';
 
 const phoneHref = 'tel:0502696267';
 const whatsappHref =
@@ -60,13 +56,11 @@ const mobileIntroAsset = {
 };
 
 const scrollFrameCount = 150;
-const scrollHeroPills = ['מאפים', 'לחמים', 'עוגות', 'קפה', 'אירוח'];
 
 const navItems = [
   { label: 'דף הבית', href: '#home' },
   { label: 'מה תמצאו אצלנו', href: '#categories' },
   { label: 'קצת מהתנור', href: '#fresh' },
-  { label: 'רגעים', href: '#gallery' },
   { label: 'ביקור', href: '#visit' },
 ];
 
@@ -106,19 +100,10 @@ const categories = [
 ];
 
 const freshImages = [
-  { src: freshOne, label: 'אפייה במקום' },
-  { src: freshTwo, label: 'טעם, איכות וטריות' },
-  { src: freshThree, label: 'מאפייה וקונדיטוריה' },
-  { src: freshFour, label: 'מוזמנים לטעום את ההבדל' },
-];
-
-const galleryImages = [
-  { src: galleryOne, className: 'gallery-tall' },
-  { src: galleryTwo, className: 'gallery-wide' },
-  { src: galleryThree, className: 'gallery-tall' },
-  { src: galleryFour, className: 'gallery-wide' },
-  { src: galleryFive, className: 'gallery-tall' },
-  { src: gallerySix, className: 'gallery-wide' },
+  { src: freshOne, label: 'קרואסוני חמאה ושוקולד' },
+  { src: freshTwo, label: 'לחמי דגנים ולחמי מחמצת' },
+  { src: freshThree, label: 'מאפים מלוחים ושומשום' },
+  { src: freshFour, label: 'עוגות פס וקינוחים' },
 ];
 
 const benefits = [
@@ -284,24 +269,7 @@ function easeOutCubic(value: number) {
   return 1 - Math.pow(1 - clamp(value), 3);
 }
 
-function fadeWindow(progress: number, start: number, peakStart: number, peakEnd: number, end: number) {
-  if (progress <= start || progress >= end) {
-    return 0;
-  }
-
-  if (progress >= peakStart && progress <= peakEnd) {
-    return 1;
-  }
-
-  if (progress < peakStart) {
-    return easeOutCubic((progress - start) / (peakStart - start));
-  }
-
-  return 1 - easeOutCubic((progress - peakEnd) / (end - peakEnd));
-}
-
 function setIntroProgressVars(section: HTMLElement, progress: number) {
-  const pills = fadeWindow(progress, 0.62, 0.69, 0.82, 0.92);
   const bridge = easeOutCubic((progress - 0.86) / 0.14);
   const reveal = easeOutCubic((progress - 0.92) / 0.08);
   const mediaScale = 1 + easeOutCubic((progress - 0.82) / 0.18) * 0.032;
@@ -311,8 +279,6 @@ function setIntroProgressVars(section: HTMLElement, progress: number) {
   section.style.setProperty('--intro-brand-y', '18px');
   section.style.setProperty('--intro-line', '0');
   section.style.setProperty('--intro-line-y', '20px');
-  section.style.setProperty('--intro-pills', pills.toFixed(4));
-  section.style.setProperty('--intro-pills-y', `${((1 - pills) * 22).toFixed(2)}px`);
   section.style.setProperty('--intro-bridge', bridge.toFixed(4));
   section.style.setProperty('--intro-reveal', reveal.toFixed(4));
   section.style.setProperty('--intro-bridge-y', `${((1 - bridge) * 40).toFixed(2)}svh`);
@@ -661,12 +627,6 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
           דלגו לאתר
         </a>
 
-        <div className="cinematic-intro__pills" aria-hidden="true">
-          {scrollHeroPills.map((pill) => (
-            <span key={pill}>{pill}</span>
-          ))}
-        </div>
-
         <div className="cinematic-intro__bridge" aria-hidden="true" />
       </div>
     </section>
@@ -684,6 +644,22 @@ function App() {
   const slowTransition = { duration: prefersReducedMotion ? 0 : 1.12, ease: 'easeOut' as const };
   const quickTransition = { duration: prefersReducedMotion ? 0 : 0.42, ease: 'easeOut' as const };
   const stickyCtaVisible = prefersReducedMotion || introPassed;
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [menuOpen]);
 
   return (
     <main className="site-shell" dir="rtl">
@@ -723,33 +699,56 @@ function App() {
               type="button"
               aria-label={menuOpen ? 'סגור תפריט' : 'פתח תפריט'}
               aria-expanded={menuOpen}
+              aria-controls="main-mobile-menu"
               onClick={() => setMenuOpen((open) => !open)}
             >
               {menuOpen ? <X size={22} /> : <List size={22} />}
+              <span className="menu-toggle__label">{menuOpen ? 'סגור' : 'תפריט'}</span>
             </button>
           </div>
         </motion.header>
 
         <AnimatePresence>
           {menuOpen && (
-            <motion.nav
-              className="mobile-menu"
-              initial="hidden"
-              animate="show"
-              exit="exit"
-              variants={mobileMenuVariants}
-            >
-              {navItems.map((item) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  variants={mobileMenuItemVariants}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </motion.nav>
+            <>
+              <motion.button
+                className="mobile-menu-backdrop"
+                type="button"
+                aria-label="סגור תפריט"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                onClick={() => setMenuOpen(false)}
+              />
+              <motion.nav
+                id="main-mobile-menu"
+                className="mobile-menu"
+                aria-label="תפריט ניווט"
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                variants={mobileMenuVariants}
+              >
+                <div className="mobile-menu__head">
+                  <span>תפריט</span>
+                  <button type="button" aria-label="סגור תפריט" onClick={() => setMenuOpen(false)}>
+                    <X size={20} weight="bold" />
+                  </button>
+                </div>
+                {navItems.map((item) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    variants={mobileMenuItemVariants}
+                    onClick={() => setMenuOpen(false)}
+                    className={activeSection === item.href ? 'is-active' : undefined}
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+              </motion.nav>
+            </>
           )}
         </AnimatePresence>
 
@@ -899,7 +898,7 @@ function App() {
             variants={reveal}
             transition={transition}
           >
-            <span className="section-mark">אפייה במקום</span>
+            <span className="section-mark">קרואסונים, מאפים ולחמים</span>
             <h2>קצת מהתנור שלנו</h2>
           </motion.div>
 
@@ -934,40 +933,6 @@ function App() {
           ))}
         </motion.section>
 
-        <section id="gallery" className="section gallery-section">
-          <motion.div
-            className="section-heading gallery-heading"
-            initial={initial}
-            whileInView="show"
-            viewport={{ once: true, amount: 0.35 }}
-            variants={reveal}
-            transition={transition}
-          >
-            <span className="section-mark">מוזמנים לטעום את ההבדל</span>
-            <h2>רגעים מהמאפייה</h2>
-            <p>המאפים, הלחמים, הקפה והמתוקים שמרכיבים את החוויה של מאפיית יחד.</p>
-          </motion.div>
-
-          <motion.div
-            className="gallery-masonry"
-            initial={initial}
-            whileInView="show"
-            viewport={{ once: true, amount: 0.16 }}
-            variants={stagger}
-          >
-            {galleryImages.map((item, index) => (
-              <motion.figure
-                key={item.src}
-                className={`gallery-card ${item.className}`}
-                variants={imageReveal}
-                transition={{ ...slowTransition, delay: index * 0.02 }}
-              >
-                <img src={item.src} alt="רגע מהמאפייה" loading="lazy" />
-              </motion.figure>
-            ))}
-          </motion.div>
-        </section>
-
         <section className="section about-section">
           <motion.div
             className="about-copy"
@@ -993,7 +958,7 @@ function App() {
             variants={imageReveal}
             transition={slowTransition}
           >
-            <img src={freshTwo} alt="לחמים ומאפים במאפיית יחד" loading="lazy" />
+            <img src={aboutImage} alt="עוגות וקינוחים במאפיית יחד" loading="lazy" />
           </motion.div>
         </section>
 
@@ -1006,7 +971,7 @@ function App() {
             variants={imageReveal}
             transition={slowTransition}
           >
-            <img src={freshOne} alt="מאפים טריים במאפייה" loading="lazy" />
+            <img src={visitImage} alt="מיקום מאפיית יחד בכפר סבא" loading="lazy" />
           </motion.div>
 
           <motion.div
@@ -1016,13 +981,13 @@ function App() {
             viewport={{ once: true, amount: 0.3 }}
             variants={stagger}
           >
-            <motion.span className="visit-icon" variants={reveal} transition={transition}>
+            <motion.span className="visit-icon" variants={buttonReveal} transition={transition}>
               <Grains size={30} weight="duotone" />
             </motion.span>
-            <motion.h2 variants={reveal} transition={transition}>
+            <motion.h2 variants={buttonReveal} transition={transition}>
               בואו לבקר במאפייה
             </motion.h2>
-            <motion.p variants={reveal} transition={transition}>
+            <motion.p variants={buttonReveal} transition={transition}>
               מחכים לכם במאפיית יחד, היוצרים 3, כפר סבא.
             </motion.p>
 
