@@ -416,7 +416,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       const sourceWidth = frameSet === 'mobile' ? 720 : 1280;
       const sourceHeight = frameSet === 'mobile' ? 1280 : 720;
       const nativeScaleCap = Math.min(sourceWidth / Math.max(1, rect.width), sourceHeight / Math.max(1, rect.height));
-      const dprCap = media.matches ? Math.min(1.45, nativeScaleCap) : Math.min(1, nativeScaleCap);
+      const dprCap = Math.min(1, nativeScaleCap);
       const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
       const width = Math.max(1, Math.round(rect.width * dpr));
       const height = Math.max(1, Math.round(rect.height * dpr));
@@ -487,20 +487,14 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     };
 
     const drawFrame = (frame: number, blendFrames: boolean) => {
-      const lower = Math.floor(clamp(frame, 0, scrollFrameCount - 1));
-      const upper = Math.min(scrollFrameCount - 1, lower + 1);
-      const blend = clamp(frame - lower);
-      const lowerImage = images[lower];
-      const upperImage = images[upper];
-
-      loadFrame(lower);
-      loadFrame(upper);
-
       if (!blendFrames) {
         const selected = Math.round(clamp(frame, 0, scrollFrameCount - 1));
         const selectedImage = images[selected];
 
         loadFrame(selected);
+        loadFrame(selected + 1, 'low');
+        loadFrame(selected + 2, 'low');
+        loadFrame(selected - 1, 'low');
 
         if (selectedImage) {
           ctx.globalAlpha = 1;
@@ -508,7 +502,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
           return true;
         }
 
-        const fallback = lowerImage || upperImage || images.find(Boolean);
+        const fallback = images.find(Boolean);
 
         if (fallback && lastDrawnFrame < 0) {
           ctx.globalAlpha = 1;
@@ -517,6 +511,15 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
         return false;
       }
+
+      const lower = Math.floor(clamp(frame, 0, scrollFrameCount - 1));
+      const upper = Math.min(scrollFrameCount - 1, lower + 1);
+      const blend = clamp(frame - lower);
+      const lowerImage = images[lower];
+      const upperImage = images[upper];
+
+      loadFrame(lower);
+      loadFrame(upper);
 
       if (lowerImage && upperImage) {
         ctx.globalAlpha = 1;
@@ -543,7 +546,21 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
       let nextIndex = 1;
       let activeLoads = 0;
-      const maxConcurrentLoads = media.matches ? 5 : 8;
+      const maxConcurrentLoads = media.matches ? 2 : 8;
+
+      const schedulePump = () => {
+        if (!media.matches) {
+          pump();
+          return;
+        }
+
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(() => pump(), { timeout: 260 });
+          return;
+        }
+
+        globalThis.setTimeout(pump, 48);
+      };
 
       const pump = () => {
         if (cancelled) {
@@ -559,29 +576,29 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
           image.onload = () => {
             storeDecodedFrame(frameIndex, image, () => {
               activeLoads -= 1;
-              pump();
+              schedulePump();
             });
           };
           image.onerror = () => {
             activeLoads -= 1;
-            pump();
+            schedulePump();
           };
           image.fetchPriority = 'low';
           image.src = getScrollFrameSrc(frameSet, frameIndex);
         }
       };
 
-      pump();
+      schedulePump();
     };
 
     const tick = () => {
       const progress = targetProgress;
       const frameProgress = isMobile ? clamp((progress - 0.045) / 0.78) : clamp(progress / 0.88);
       const passed = progress >= 0.98;
-      const baseLerp = isMobile ? 0.11 : 0.07;
+      const baseLerp = isMobile ? 0.12 : 0.07;
 
       targetFrame = frameProgress * (scrollFrameCount - 1);
-      const edgeBoost = targetFrame < 3 || targetFrame > scrollFrameCount - 4 ? 0.14 : baseLerp;
+      const edgeBoost = targetFrame < 3 || targetFrame > scrollFrameCount - 4 ? 0.15 : baseLerp;
       smoothedFrame += (targetFrame - smoothedFrame) * edgeBoost;
       updateIntroProgressVars(progress);
       markPassed(passed);

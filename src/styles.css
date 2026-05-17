@@ -1099,6 +1099,11 @@ img {
       linear-gradient(180deg, rgba(31, 11, 4, 0.08), rgba(31, 11, 4, 0.16) 48%, rgba(31, 11, 4, 0.52));
   }
 
+  .cinematic-intro__texture {
+    opacity: 0.12;
+    mix-blend-mode: normal;
+  }
+
   .cinematic-intro__brand {
     top: clamp(62px, 10svh, 88px);
     width: min(350px, calc(100% - 34px));
