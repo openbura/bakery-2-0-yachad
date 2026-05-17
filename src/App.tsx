@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { AnimatePresence, motion, type Variants, useReducedMotion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   CaretDown,
   Clock,
@@ -58,6 +56,8 @@ const mobileIntroAsset = {
   video: introMobileVideo,
   poster: introMobilePoster,
 };
+
+const scrollHeroPills = ['מאפים', 'לחמים', 'עוגות', 'קפה', 'אירוח'];
 
 const navItems = [
   { label: 'דף הבית', href: '#home' },
@@ -273,46 +273,57 @@ type CinematicIntroProps = {
   onIntroPassedChange: (passed: boolean) => void;
 };
 
+function clamp(value: number, min = 0, max = 1) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function easeOutCubic(value: number) {
+  return 1 - Math.pow(1 - clamp(value), 3);
+}
+
+function fadeWindow(progress: number, start: number, peakStart: number, peakEnd: number, end: number) {
+  if (progress <= start || progress >= end) {
+    return 0;
+  }
+
+  if (progress >= peakStart && progress <= peakEnd) {
+    return 1;
+  }
+
+  if (progress < peakStart) {
+    return easeOutCubic((progress - start) / (peakStart - start));
+  }
+
+  return 1 - easeOutCubic((progress - peakEnd) / (end - peakEnd));
+}
+
+function setIntroProgressVars(section: HTMLElement, progress: number) {
+  const pills = fadeWindow(progress, 0.62, 0.69, 0.82, 0.92);
+  const bridge = easeOutCubic((progress - 0.86) / 0.14);
+  const reveal = easeOutCubic((progress - 0.92) / 0.08);
+  const mediaScale = 1 + easeOutCubic((progress - 0.82) / 0.18) * 0.032;
+
+  section.style.setProperty('--intro-progress', progress.toFixed(4));
+  section.style.setProperty('--intro-brand', '0');
+  section.style.setProperty('--intro-brand-y', '18px');
+  section.style.setProperty('--intro-line', '0');
+  section.style.setProperty('--intro-line-y', '20px');
+  section.style.setProperty('--intro-pills', pills.toFixed(4));
+  section.style.setProperty('--intro-pills-y', `${((1 - pills) * 22).toFixed(2)}px`);
+  section.style.setProperty('--intro-bridge', bridge.toFixed(4));
+  section.style.setProperty('--intro-reveal', reveal.toFixed(4));
+  section.style.setProperty('--intro-bridge-y', `${((1 - bridge) * 40).toFixed(2)}svh`);
+  section.style.setProperty('--intro-bridge-clip', `${(18 * (1 - reveal)).toFixed(2)}%`);
+  section.style.setProperty('--intro-media-scale', mediaScale.toFixed(4));
+}
+
 function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroProps) {
   const introAsset = useIntroAsset();
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const brandRef = useRef<HTMLDivElement | null>(null);
-  const actionsRef = useRef<HTMLDivElement | null>(null);
   const passedRef = useRef(false);
-  const desktopCompletedRef = useRef(false);
-  const mobileEndedRef = useRef(false);
-  const [mobileEnded, setMobileEnded] = useState(false);
   const [videoFrameSource, setVideoFrameSource] = useState<string | null>(null);
-  const isDesktopIntroAsset = introAsset.video === introDesktopVideo;
   const videoHasFrame = videoFrameSource === introAsset.video;
-
-  const finishDesktopIntro = useCallback(() => {
-    if (!isDesktopIntroAsset || desktopCompletedRef.current) {
-      return;
-    }
-
-    desktopCompletedRef.current = true;
-    passedRef.current = true;
-    videoRef.current?.pause();
-    const section = sectionRef.current;
-
-    if (section) {
-      gsap.to(section, {
-        autoAlpha: 0,
-        scale: 1.012,
-        filter: 'blur(7px)',
-        duration: 0.72,
-        ease: 'power2.inOut',
-        overwrite: 'auto',
-        onComplete: () => {
-          section.style.pointerEvents = 'none';
-        },
-      });
-    }
-
-    onIntroPassedChange(true);
-  }, [isDesktopIntroAsset, onIntroPassedChange]);
 
   useEffect(() => {
     const markPassed = (passed: boolean) => {
@@ -324,8 +335,8 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
     if (reducedMotion) {
       const section = sectionRef.current;
-      if (section && introAsset.video === introDesktopVideo) {
-        gsap.set(section, { autoAlpha: 0, pointerEvents: 'none' });
+      if (section) {
+        setIntroProgressVars(section, 1);
       }
       markPassed(true);
       return;
@@ -333,238 +344,145 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
     const section = sectionRef.current;
     const video = videoRef.current;
-    const brand = brandRef.current;
-    const actions = actionsRef.current;
 
-    if (!section || !video || !brand || !actions) {
+    if (!section || !video) {
       markPassed(true);
       return;
     }
 
-    gsap.registerPlugin(ScrollTrigger);
+    const media = window.matchMedia('(max-width: 820px)');
+    let rafId = 0;
+    let metadataReady = false;
+    let duration = 0;
+    let targetTime = 0;
+    let smoothedTime = 0;
+    let lastWrittenTime = -1;
 
-    const mm = gsap.matchMedia();
+    const syncMetadata = () => {
+      metadataReady = Number.isFinite(video.duration) && video.duration > 0;
+      duration = metadataReady ? video.duration : 0;
+      targetTime = 0;
+      smoothedTime = 0;
+      lastWrittenTime = -1;
+      video.pause();
+      video.autoplay = false;
+      video.loop = false;
+      video.muted = true;
+      video.playsInline = true;
 
-    mm.add(
-      {
-        isDesktop: '(min-width: 821px)',
-        isMobile: '(max-width: 820px)',
-        reduceMotion: '(prefers-reduced-motion: reduce)',
-      },
-      (context) => {
-        const { isDesktop, isMobile, reduceMotion } = context.conditions as {
-          isDesktop: boolean;
-          isMobile: boolean;
-          reduceMotion: boolean;
-        };
-
-        if (reduceMotion) {
-          markPassed(true);
-          return;
-        }
-
-        video.muted = true;
-        video.playsInline = true;
-
-        if (isDesktop) {
-          let fallbackTimer = 0;
-          let actionsVisible = false;
-
-          const revealActions = () => {
-            if (actionsVisible) {
-              return;
-            }
-
-            actionsVisible = true;
-            gsap.to(actions, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.72,
-              ease: 'power3.out',
-              overwrite: 'auto',
-            });
-          };
-
-          const handleDesktopProgress = () => {
-            const progress =
-              Number.isFinite(video.duration) && video.duration > 0 ? video.currentTime / video.duration : 0;
-
-            if (progress >= 0.68) {
-              revealActions();
-            }
-          };
-
-          const handleDesktopEnded = () => {
-            revealActions();
-            fallbackTimer = window.setTimeout(finishDesktopIntro, 360);
-          };
-
-          const handleDesktopWheel = (event: globalThis.WheelEvent) => {
-            if (desktopCompletedRef.current || Math.abs(event.deltaY) < 18) {
-              return;
-            }
-
-            event.preventDefault();
-            finishDesktopIntro();
-            window.requestAnimationFrame(() => {
-              document.querySelector('#home')?.scrollIntoView({ block: 'start' });
-            });
-          };
-
-          const createTrigger = () => {
-            if (desktopCompletedRef.current) {
-              return;
-            }
-
-            desktopCompletedRef.current = false;
-            passedRef.current = false;
-            video.pause();
-            video.currentTime = 0;
-            video.playbackRate = 1;
-            gsap.set(section, {
-              autoAlpha: 1,
-              scale: 1,
-              filter: 'blur(0px)',
-              pointerEvents: 'auto',
-            });
-            gsap.set(brand, { autoAlpha: 0, y: 0, scale: 1 });
-            gsap.set(actions, { autoAlpha: 0, y: 16 });
-
-            video.play().catch(() => {
-              revealActions();
-              fallbackTimer = window.setTimeout(finishDesktopIntro, 1600);
-            });
-          };
-
-          if (video.readyState >= 1) {
-            createTrigger();
-          } else {
-            video.addEventListener('loadedmetadata', createTrigger, { once: true });
-            video.load();
-          }
-
-          video.addEventListener('timeupdate', handleDesktopProgress);
-          video.addEventListener('ended', handleDesktopEnded);
-          section.addEventListener('wheel', handleDesktopWheel, { passive: false });
-
-          return () => {
-            window.clearTimeout(fallbackTimer);
-            video.removeEventListener('loadedmetadata', createTrigger);
-            video.removeEventListener('timeupdate', handleDesktopProgress);
-            video.removeEventListener('ended', handleDesktopEnded);
-            section.removeEventListener('wheel', handleDesktopWheel);
-            video.pause();
-          };
-        }
-
-        if (isMobile) {
-          gsap.set(brand, { autoAlpha: 0, y: 0, scale: 1 });
-          gsap.set(actions, { autoAlpha: 1, y: 0, scale: 1 });
-          setMobileEnded(false);
-          markPassed(false);
-
-          const mobileTrigger = ScrollTrigger.create({
-            trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            onLeave: () => markPassed(true),
-            onEnterBack: () => {
-              if (!mobileEndedRef.current) {
-                markPassed(false);
-              }
-            },
-          });
-
-          const onEnded = () => {
-            mobileEndedRef.current = true;
-            setMobileEnded(true);
-            markPassed(true);
-          };
-
+      if (metadataReady) {
+        try {
           video.currentTime = 0;
-          mobileEndedRef.current = false;
-          video.addEventListener('ended', onEnded);
-          video.play().catch(() => {
-            setMobileEnded(true);
-            markPassed(true);
-          });
-
-          return () => {
-            mobileTrigger.kill();
-            video.removeEventListener('ended', onEnded);
-            video.pause();
-          };
+        } catch {
+          // Some mobile browsers reject early seeks until the first frame is available.
         }
-      },
-    );
+      }
+    };
 
-    return () => mm.revert();
-  }, [finishDesktopIntro, introAsset.video, onIntroPassedChange, reducedMotion]);
+    const getProgress = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      const scrollableDistance = Math.max(1, section.offsetHeight - viewportHeight);
+
+      return clamp(-rect.top / scrollableDistance);
+    };
+
+    const tick = () => {
+      const progress = getProgress();
+      const isMobile = media.matches;
+      const videoProgress = isMobile ? clamp((progress - 0.025) / 0.835) : clamp(progress / 0.88);
+      const finalTime = Math.max(0, duration - 0.04);
+      const passed = section.getBoundingClientRect().bottom <= window.innerHeight * 0.78;
+
+      targetTime = metadataReady ? videoProgress * finalTime : 0;
+      smoothedTime += (targetTime - smoothedTime) * (isMobile ? 0.105 : 0.078);
+      setIntroProgressVars(section, progress);
+      markPassed(passed);
+
+      if (metadataReady && Math.abs(lastWrittenTime - smoothedTime) > (isMobile ? 0.012 : 0.018)) {
+        const nextTime = clamp(smoothedTime, 0, finalTime);
+
+        try {
+          video.currentTime = nextTime;
+          lastWrittenTime = nextTime;
+        } catch {
+          // Keep the RAF alive; the next metadata/seekable moment will recover.
+        }
+      }
+
+      rafId = window.requestAnimationFrame(tick);
+    };
+
+    video.pause();
+    video.removeAttribute('autoplay');
+    video.loop = false;
+    setIntroProgressVars(section, getProgress());
+
+    if (video.readyState >= 1) {
+      syncMetadata();
+    } else {
+      video.addEventListener('loadedmetadata', syncMetadata, { once: true });
+      video.load();
+    }
+
+    rafId = window.requestAnimationFrame(tick);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      video.removeEventListener('loadedmetadata', syncMetadata);
+      video.pause();
+    };
+  }, [introAsset.video, onIntroPassedChange, reducedMotion]);
 
   const handleSkip = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
-    if (isDesktopIntroAsset) {
-      finishDesktopIntro();
-    } else {
-      passedRef.current = true;
-      onIntroPassedChange(true);
+    const section = sectionRef.current;
+    if (section) {
+      setIntroProgressVars(section, 1);
     }
 
+    passedRef.current = true;
+    onIntroPassedChange(true);
     document.querySelector('#home')?.scrollIntoView({ block: 'start' });
   };
 
   return (
     <section ref={sectionRef} className="cinematic-intro" aria-label="פתיח קולנועי מאפיית יחד">
       <div className={`cinematic-intro__sticky ${videoHasFrame ? 'has-video-frame' : ''}`}>
-        <video
-          key={introAsset.video}
-          ref={videoRef}
-          className="cinematic-intro__video"
-          autoPlay={isDesktopIntroAsset}
-          muted
-          playsInline
-          preload={isDesktopIntroAsset ? 'auto' : 'metadata'}
-          poster={introAsset.poster}
-          src={introAsset.video}
-          aria-hidden="true"
-          onPlaying={() => setVideoFrameSource(introAsset.video)}
-        />
-        <picture className="cinematic-intro__poster" aria-hidden="true">
-          <source srcSet={introMobilePoster} media="(max-width: 820px)" />
-          <img src={introDesktopPoster} alt="" />
-        </picture>
+        <div className="cinematic-intro__media" aria-hidden="true">
+          <video
+            key={introAsset.video}
+            ref={videoRef}
+            className="cinematic-intro__video"
+            muted
+            playsInline
+            preload="auto"
+            poster={introAsset.poster}
+            src={introAsset.video}
+            aria-hidden="true"
+            onLoadedData={() => setVideoFrameSource(introAsset.video)}
+          />
+          <picture className="cinematic-intro__poster" aria-hidden="true">
+            <source srcSet={introMobilePoster} media="(max-width: 820px)" />
+            <img src={introDesktopPoster} alt="" />
+          </picture>
+        </div>
         <div className="cinematic-intro__shade" aria-hidden="true" />
+        <div className="cinematic-intro__texture" aria-hidden="true" />
+        <div className="cinematic-intro__warmth" aria-hidden="true" />
 
         <a className="cinematic-intro__skip" href="#home" onClick={handleSkip}>
           דלגו לאתר
         </a>
 
-        <div ref={brandRef} className="cinematic-intro__brand">
-          <img src={logoImage} alt="" />
-          <p>האחים אופים באהבה</p>
-          <h1>מאפיית יחד</h1>
+        <div className="cinematic-intro__pills" aria-hidden="true">
+          {scrollHeroPills.map((pill) => (
+            <span key={pill}>{pill}</span>
+          ))}
         </div>
 
-        <div ref={actionsRef} className="cinematic-intro__actions">
-          <a className="btn btn-primary" href={phoneHref}>
-            <PhoneCall size={20} weight="bold" />
-            התקשרו עכשיו
-          </a>
-          <a className="btn btn-soft" href={whatsappHref} target="_blank" rel="noreferrer">
-            <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
-            שלחו וואטסאפ
-          </a>
-          <a className="btn btn-ghost" href={mapsHref} target="_blank" rel="noreferrer">
-            <NavigationArrow size={20} weight="bold" />
-            נווטו למאפייה
-          </a>
-        </div>
-
-        <div className="cinematic-intro__cue" aria-hidden="true">
-          <span>{mobileEnded ? 'המשיכו לאתר' : 'גללו לפתיחה'}</span>
-          <CaretDown size={24} />
-        </div>
+        <div className="cinematic-intro__bridge" aria-hidden="true" />
       </div>
     </section>
   );
