@@ -119,7 +119,7 @@ img {
 }
 
 .cinematic-intro__media,
-.cinematic-intro__video,
+.cinematic-intro__canvas,
 .cinematic-intro__poster,
 .cinematic-intro__poster img,
 .cinematic-intro__shade,
@@ -140,10 +140,9 @@ img {
   will-change: transform;
 }
 
-.cinematic-intro__video {
+.cinematic-intro__canvas {
   z-index: 0;
-  object-fit: cover;
-  object-position: center;
+  display: block;
   background: var(--brown-900);
 }
 
@@ -1089,7 +1088,7 @@ img {
     min-height: 100svh;
   }
 
-  .cinematic-intro__video,
+  .cinematic-intro__canvas,
   .cinematic-intro__poster img {
     object-position: center;
   }
@@ -1483,7 +1482,7 @@ img {
     min-height: 70svh;
   }
 
-  .cinematic-intro__video {
+  .cinematic-intro__canvas {
     display: none;
   }
 

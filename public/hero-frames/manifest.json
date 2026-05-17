@@ -1,0 +1,14 @@
+{
+  "frameCount": 150,
+  "desktop": {
+    "width": 1280,
+    "height": 720,
+    "duration": 5.041667
+  },
+  "mobile": {
+    "width": 720,
+    "height": 1280,
+    "duration": 5.041667
+  },
+  "generatedAt": "2026-05-17T19:23:22.680Z"
+}

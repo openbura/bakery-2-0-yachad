@@ -50,13 +50,16 @@ const introMobilePoster = '/videos/yachad-intro-mobile-poster.webp';
 const desktopIntroAsset = {
   video: introDesktopVideo,
   poster: introDesktopPoster,
+  frameSet: 'desktop',
 };
 
 const mobileIntroAsset = {
   video: introMobileVideo,
   poster: introMobilePoster,
+  frameSet: 'mobile',
 };
 
+const scrollFrameCount = 150;
 const scrollHeroPills = ['מאפים', 'לחמים', 'עוגות', 'קפה', 'אירוח'];
 
 const navItems = [
@@ -317,13 +320,37 @@ function setIntroProgressVars(section: HTMLElement, progress: number) {
   section.style.setProperty('--intro-media-scale', mediaScale.toFixed(4));
 }
 
+function getScrollFrameSrc(frameSet: string, index: number) {
+  return `/hero-frames/${frameSet}/frame-${String(index).padStart(3, '0')}.webp`;
+}
+
+function drawCoverImage(ctx: CanvasRenderingContext2D, image: HTMLImageElement) {
+  const { width, height } = ctx.canvas;
+  const imageRatio = image.naturalWidth / image.naturalHeight;
+  const canvasRatio = width / height;
+  let sourceWidth = image.naturalWidth;
+  let sourceHeight = image.naturalHeight;
+  let sourceX = 0;
+  let sourceY = 0;
+
+  if (imageRatio > canvasRatio) {
+    sourceWidth = image.naturalHeight * canvasRatio;
+    sourceX = (image.naturalWidth - sourceWidth) / 2;
+  } else {
+    sourceHeight = image.naturalWidth / canvasRatio;
+    sourceY = (image.naturalHeight - sourceHeight) / 2;
+  }
+
+  ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, width, height);
+}
+
 function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroProps) {
   const introAsset = useIntroAsset();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const passedRef = useRef(false);
-  const [videoFrameSource, setVideoFrameSource] = useState<string | null>(null);
-  const videoHasFrame = videoFrameSource === introAsset.video;
+  const [canvasFrameSource, setCanvasFrameSource] = useState<string | null>(null);
+  const canvasHasFrame = canvasFrameSource === introAsset.frameSet;
 
   useEffect(() => {
     const markPassed = (passed: boolean) => {
@@ -343,96 +370,248 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     }
 
     const section = sectionRef.current;
-    const video = videoRef.current;
+    const canvas = canvasRef.current;
 
-    if (!section || !video) {
+    if (!section || !canvas) {
       markPassed(true);
       return;
     }
 
     const media = window.matchMedia('(max-width: 820px)');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const frameSet = introAsset.frameSet;
     let rafId = 0;
-    let metadataReady = false;
-    let duration = 0;
-    let targetTime = 0;
-    let smoothedTime = 0;
-    let lastWrittenTime = -1;
+    let cancelled = false;
+    let targetFrame = 0;
+    let smoothedFrame = 0;
+    let lastDrawnFrame = -1;
+    let lastProgressVars = -1;
+    let sectionTop = 0;
+    let scrollableDistance = 1;
+    let targetProgress = 0;
+    let isMobile = media.matches;
+    const images: Array<HTMLImageElement | undefined> = [];
+    const loadingFrames = new Set<number>();
 
-    const syncMetadata = () => {
-      metadataReady = Number.isFinite(video.duration) && video.duration > 0;
-      duration = metadataReady ? video.duration : 0;
-      targetTime = 0;
-      smoothedTime = 0;
-      lastWrittenTime = -1;
-      video.pause();
-      video.autoplay = false;
-      video.loop = false;
-      video.muted = true;
-      video.playsInline = true;
+    if (!ctx) {
+      markPassed(true);
+      return;
+    }
 
-      if (metadataReady) {
-        try {
-          video.currentTime = 0;
-        } catch {
-          // Some mobile browsers reject early seeks until the first frame is available.
-        }
+    const readScrollProgress = () => clamp((window.scrollY - sectionTop) / scrollableDistance);
+
+    const updateTargetProgress = () => {
+      targetProgress = readScrollProgress();
+    };
+
+    const updateIntroProgressVars = (progress: number) => {
+      if (Math.abs(progress - lastProgressVars) > 0.001 || progress === 0 || progress === 1) {
+        setIntroProgressVars(section, progress);
+        lastProgressVars = progress;
       }
     };
 
-    const getProgress = () => {
+    const resizeCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
+      const sourceWidth = frameSet === 'mobile' ? 720 : 1280;
+      const sourceHeight = frameSet === 'mobile' ? 1280 : 720;
+      const nativeScaleCap = Math.min(sourceWidth / Math.max(1, rect.width), sourceHeight / Math.max(1, rect.height));
+      const dprCap = media.matches ? Math.min(1.45, nativeScaleCap) : Math.min(1, nativeScaleCap);
+      const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
+      const width = Math.max(1, Math.round(rect.width * dpr));
+      const height = Math.max(1, Math.round(rect.height * dpr));
+
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+        lastDrawnFrame = -1;
+      }
+    };
+
+    const recalculateLayout = () => {
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-      const scrollableDistance = Math.max(1, section.offsetHeight - viewportHeight);
+      sectionTop = rect.top + window.scrollY;
+      scrollableDistance = Math.max(1, section.offsetHeight - viewportHeight);
+      isMobile = media.matches;
+      resizeCanvas();
+      updateTargetProgress();
+    };
 
-      return clamp(-rect.top / scrollableDistance);
+    const storeDecodedFrame = (index: number, image: HTMLImageElement, onReady?: () => void) => {
+      const finalize = () => {
+        if (cancelled) {
+          return;
+        }
+
+        images[index] = image;
+        onReady?.();
+      };
+
+      if (image.decode) {
+        void image.decode().catch(() => undefined).then(finalize);
+        return;
+      }
+
+      finalize();
+    };
+
+    const loadFrame = (index: number, priority: 'high' | 'low' = 'high') => {
+      const normalizedIndex = Math.round(clamp(index, 0, scrollFrameCount - 1));
+
+      if (images[normalizedIndex] || loadingFrames.has(normalizedIndex)) {
+        return;
+      }
+
+      loadingFrames.add(normalizedIndex);
+      const image = new Image();
+      image.decoding = 'async';
+      image.fetchPriority = priority;
+      image.onload = () => {
+        storeDecodedFrame(normalizedIndex, image, () => {
+          loadingFrames.delete(normalizedIndex);
+
+          if (normalizedIndex === 0) {
+            resizeCanvas();
+            drawFrame(0, false);
+            setCanvasFrameSource(frameSet);
+          }
+
+          if (Math.abs(normalizedIndex - targetFrame) <= 2) {
+            lastDrawnFrame = -1;
+          }
+        });
+      };
+      image.onerror = () => loadingFrames.delete(normalizedIndex);
+      image.src = getScrollFrameSrc(frameSet, normalizedIndex);
+    };
+
+    const drawFrame = (frame: number, blendFrames: boolean) => {
+      const lower = Math.floor(clamp(frame, 0, scrollFrameCount - 1));
+      const upper = Math.min(scrollFrameCount - 1, lower + 1);
+      const blend = clamp(frame - lower);
+      const lowerImage = images[lower];
+      const upperImage = images[upper];
+
+      loadFrame(lower);
+      loadFrame(upper);
+
+      if (!blendFrames) {
+        const selected = Math.round(clamp(frame, 0, scrollFrameCount - 1));
+        const selectedImage = images[selected];
+
+        loadFrame(selected);
+
+        if (selectedImage) {
+          ctx.globalAlpha = 1;
+          drawCoverImage(ctx, selectedImage);
+          return true;
+        }
+
+        const fallback = lowerImage || upperImage || images.find(Boolean);
+
+        if (fallback && lastDrawnFrame < 0) {
+          ctx.globalAlpha = 1;
+          drawCoverImage(ctx, fallback);
+        }
+
+        return false;
+      }
+
+      if (lowerImage && upperImage) {
+        ctx.globalAlpha = 1;
+        drawCoverImage(ctx, lowerImage);
+        ctx.globalAlpha = blend;
+        drawCoverImage(ctx, upperImage);
+        ctx.globalAlpha = 1;
+        return true;
+      }
+
+      const fallback = lowerImage || upperImage || images.find(Boolean);
+
+      if (fallback) {
+        ctx.globalAlpha = 1;
+        drawCoverImage(ctx, fallback);
+        return true;
+      }
+
+      return false;
+    };
+
+    const preloadFrames = () => {
+      loadFrame(0);
+
+      let nextIndex = 1;
+      let activeLoads = 0;
+      const maxConcurrentLoads = media.matches ? 5 : 8;
+
+      const pump = () => {
+        if (cancelled) {
+          return;
+        }
+
+        while (activeLoads < maxConcurrentLoads && nextIndex < scrollFrameCount) {
+          const frameIndex = nextIndex;
+          nextIndex += 1;
+          activeLoads += 1;
+          const image = new Image();
+          image.decoding = 'async';
+          image.onload = () => {
+            storeDecodedFrame(frameIndex, image, () => {
+              activeLoads -= 1;
+              pump();
+            });
+          };
+          image.onerror = () => {
+            activeLoads -= 1;
+            pump();
+          };
+          image.fetchPriority = 'low';
+          image.src = getScrollFrameSrc(frameSet, frameIndex);
+        }
+      };
+
+      pump();
     };
 
     const tick = () => {
-      const progress = getProgress();
-      const isMobile = media.matches;
-      const videoProgress = isMobile ? clamp((progress - 0.025) / 0.835) : clamp(progress / 0.88);
-      const finalTime = Math.max(0, duration - 0.04);
-      const passed = section.getBoundingClientRect().bottom <= window.innerHeight * 0.78;
+      const progress = targetProgress;
+      const frameProgress = isMobile ? clamp((progress - 0.045) / 0.78) : clamp(progress / 0.88);
+      const passed = progress >= 0.98;
+      const baseLerp = isMobile ? 0.11 : 0.07;
 
-      targetTime = metadataReady ? videoProgress * finalTime : 0;
-      smoothedTime += (targetTime - smoothedTime) * (isMobile ? 0.105 : 0.078);
-      setIntroProgressVars(section, progress);
+      targetFrame = frameProgress * (scrollFrameCount - 1);
+      const edgeBoost = targetFrame < 3 || targetFrame > scrollFrameCount - 4 ? 0.14 : baseLerp;
+      smoothedFrame += (targetFrame - smoothedFrame) * edgeBoost;
+      updateIntroProgressVars(progress);
       markPassed(passed);
 
-      if (metadataReady && Math.abs(lastWrittenTime - smoothedTime) > (isMobile ? 0.012 : 0.018)) {
-        const nextTime = clamp(smoothedTime, 0, finalTime);
+      const drawKey = Math.round(smoothedFrame);
+      const shouldDraw = Math.abs(lastDrawnFrame - drawKey) >= 1;
 
-        try {
-          video.currentTime = nextTime;
-          lastWrittenTime = nextTime;
-        } catch {
-          // Keep the RAF alive; the next metadata/seekable moment will recover.
-        }
+      if (shouldDraw && drawFrame(smoothedFrame, false)) {
+        lastDrawnFrame = drawKey;
       }
 
       rafId = window.requestAnimationFrame(tick);
     };
 
-    video.pause();
-    video.removeAttribute('autoplay');
-    video.loop = false;
-    setIntroProgressVars(section, getProgress());
-
-    if (video.readyState >= 1) {
-      syncMetadata();
-    } else {
-      video.addEventListener('loadedmetadata', syncMetadata, { once: true });
-      video.load();
-    }
-
+    recalculateLayout();
+    updateIntroProgressVars(targetProgress);
+    preloadFrames();
+    window.addEventListener('scroll', updateTargetProgress, { passive: true });
+    window.addEventListener('resize', recalculateLayout);
+    window.addEventListener('orientationchange', recalculateLayout);
     rafId = window.requestAnimationFrame(tick);
 
     return () => {
+      cancelled = true;
       window.cancelAnimationFrame(rafId);
-      video.removeEventListener('loadedmetadata', syncMetadata);
-      video.pause();
+      window.removeEventListener('scroll', updateTargetProgress);
+      window.removeEventListener('resize', recalculateLayout);
+      window.removeEventListener('orientationchange', recalculateLayout);
     };
-  }, [introAsset.video, onIntroPassedChange, reducedMotion]);
+  }, [introAsset.frameSet, onIntroPassedChange, reducedMotion]);
 
   const handleSkip = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -449,20 +628,9 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
   return (
     <section ref={sectionRef} className="cinematic-intro" aria-label="פתיח קולנועי מאפיית יחד">
-      <div className={`cinematic-intro__sticky ${videoHasFrame ? 'has-video-frame' : ''}`}>
+      <div className={`cinematic-intro__sticky ${canvasHasFrame ? 'has-video-frame' : ''}`}>
         <div className="cinematic-intro__media" aria-hidden="true">
-          <video
-            key={introAsset.video}
-            ref={videoRef}
-            className="cinematic-intro__video"
-            muted
-            playsInline
-            preload="auto"
-            poster={introAsset.poster}
-            src={introAsset.video}
-            aria-hidden="true"
-            onLoadedData={() => setVideoFrameSource(introAsset.video)}
-          />
+          <canvas ref={canvasRef} className="cinematic-intro__canvas" />
           <picture className="cinematic-intro__poster" aria-hidden="true">
             <source srcSet={introMobilePoster} media="(max-width: 820px)" />
             <img src={introDesktopPoster} alt="" />
