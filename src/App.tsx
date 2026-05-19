@@ -431,6 +431,9 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       loadingFrames.add(normalizedIndex);
       const image = new Image();
       image.decoding = 'async';
+      if (priority === 'high') {
+        image.loading = 'eager';
+      }
       image.fetchPriority = priority;
       image.onload = () => {
         storeDecodedFrame(normalizedIndex, image, () => {
@@ -449,6 +452,27 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       };
       image.onerror = () => loadingFrames.delete(normalizedIndex);
       image.src = getScrollFrameSrc(frameSet, normalizedIndex);
+    };
+
+    const preloadCriticalMobileFrames = () => {
+      if (!media.matches) {
+        return;
+      }
+
+      const anchorFrames = [0, 0.25, 0.5, 0.75, 1].map((progress) =>
+        Math.round(progress * (scrollFrameCount - 1)),
+      );
+      const warmFrames = new Set<number>();
+
+      anchorFrames.forEach((frameIndex) => {
+        [-1, 0, 1].forEach((offset) => {
+          warmFrames.add(Math.round(clamp(frameIndex + offset, 0, scrollFrameCount - 1)));
+        });
+      });
+
+      warmFrames.forEach((frameIndex) => {
+        loadFrame(frameIndex, anchorFrames.includes(frameIndex) ? 'high' : 'low');
+      });
     };
 
     const drawFrame = (frame: number, blendFrames: boolean) => {
@@ -508,6 +532,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
     const preloadFrames = () => {
       loadFrame(0);
+      preloadCriticalMobileFrames();
 
       let nextIndex = 1;
       let activeLoads = 0;
@@ -535,16 +560,24 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         while (activeLoads < maxConcurrentLoads && nextIndex < scrollFrameCount) {
           const frameIndex = nextIndex;
           nextIndex += 1;
+
+          if (images[frameIndex] || loadingFrames.has(frameIndex)) {
+            continue;
+          }
+
           activeLoads += 1;
+          loadingFrames.add(frameIndex);
           const image = new Image();
           image.decoding = 'async';
           image.onload = () => {
             storeDecodedFrame(frameIndex, image, () => {
+              loadingFrames.delete(frameIndex);
               activeLoads -= 1;
               schedulePump();
             });
           };
           image.onerror = () => {
+            loadingFrames.delete(frameIndex);
             activeLoads -= 1;
             schedulePump();
           };
