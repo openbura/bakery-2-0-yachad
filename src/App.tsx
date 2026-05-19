@@ -30,7 +30,6 @@ import freshTwo from './assets/bakery-2/fresh-2.webp';
 import freshThree from './assets/bakery-2/fresh-3.webp';
 import freshFour from './assets/bakery-2/fresh-4.webp';
 import aboutImage from './assets/bakery-2/gallery-3.webp';
-import visitImage from './assets/bakery-2/map-card.webp';
 
 const phoneHref = 'tel:0502696267';
 const whatsappHref =
@@ -61,7 +60,7 @@ const navItems = [
   { label: 'דף הבית', href: '#home' },
   { label: 'מה תמצאו אצלנו', href: '#categories' },
   { label: 'קצת מהתנור', href: '#fresh' },
-  { label: 'ביקור', href: '#visit' },
+  { label: 'צור קשר', href: '#visit' },
 ];
 
 const navHrefs = navItems.map((item) => item.href);
@@ -675,7 +674,6 @@ function App() {
           transition={quickTransition}
         >
           <a className="topbar-brand" href="#home" aria-label="מאפיית יחד">
-            <img src={logoImage} alt="" />
             <span>מאפיית יחד</span>
           </a>
 
@@ -776,15 +774,11 @@ function App() {
               האחים אופים באהבה
             </motion.p>
             <motion.h1 variants={heroTextReveal} transition={transition}>
-              מאפיית יחד
+              המאפייה של כפר סבא
             </motion.h1>
             <motion.h2 variants={heroTextReveal} transition={slowTransition}>
-              מאפים, לחמים, עוגות וקפה — נאפים במקום בכפר סבא
+              מאפים טריים, לחמים, עוגות וקפה טוב. כל בוקר מהתנור.
             </motion.h2>
-            <motion.p className="hero-copy" variants={heroTextReveal} transition={slowTransition}>
-              מאפייה וקונדיטוריה בהיוצרים 3, כפר סבא, עם מאפים טריים, לחמים, עוגות, עוגיות,
-              טוסטים, סלטים וקפה — באווירה מקומית, חמה ואיכותית.
-            </motion.p>
             <motion.div className="hero-actions" variants={buttonStagger}>
               <motion.a
                 className="btn btn-primary"
@@ -963,17 +957,6 @@ function App() {
         </section>
 
         <section id="visit" className="visit-section">
-          <motion.div
-            className="visit-visual"
-            initial={initial}
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={imageReveal}
-            transition={slowTransition}
-          >
-            <img src={visitImage} alt="מיקום מאפיית יחד בכפר סבא" loading="lazy" />
-          </motion.div>
-
           <motion.div
             className="visit-card"
             initial={initial}
