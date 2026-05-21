@@ -270,7 +270,7 @@ function easeOutCubic(value: number) {
 }
 
 function setIntroProgressVars(section: HTMLElement, progress: number) {
-  const mark = 1 - easeOutCubic((progress - 0.18) / 0.18);
+  const mark = 1 - easeOutCubic((progress - 0.02) / 0.14);
   const bridge = easeOutCubic((progress - 0.86) / 0.14);
   const reveal = easeOutCubic((progress - 0.92) / 0.08);
   const mediaScale = 1 + easeOutCubic((progress - 0.82) / 0.18) * 0.032;
@@ -647,9 +647,8 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       }
 
       requestFrame(0, 'critical');
-      [1, 2, 3, 4].forEach((frameIndex) => requestFrame(frameIndex, 'high'));
-      [0.33, 0.66, 1].forEach((progress) => {
-        requestFrame(Math.round(progress * (scrollFrameCount - 1)), 'idle');
+      [2, 4, 6, 8, 10, 12, 14].forEach((frameIndex, index) => {
+        requestFrame(frameIndex, index < 3 ? 'high' : 'low');
       });
     };
 
@@ -726,18 +725,23 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
     const tick = () => {
       const progress = targetProgress;
-      const frameProgress = isMobile ? clamp((progress - 0.045) / 0.78) : clamp(progress / 0.88);
+      const frameProgress = isMobile ? clamp(progress / 0.825) : clamp(progress / 0.88);
       const passed = progress >= 0.98;
-      const baseLerp = isMobile ? 0.12 : 0.07;
+      const baseLerp = isMobile ? 0.18 : 0.07;
 
       targetFrame = frameProgress * (scrollFrameCount - 1);
-      const edgeBoost = targetFrame < 3 || targetFrame > scrollFrameCount - 4 ? 0.15 : baseLerp;
+      const edgeBoost = targetFrame < 8 || targetFrame > scrollFrameCount - 4 ? 0.24 : baseLerp;
       smoothedFrame += (targetFrame - smoothedFrame) * edgeBoost;
+      if (isMobile) {
+        requestFrame(targetFrame, 'critical');
+        requestFrame(targetFrame + 2, 'high');
+        requestFrame(targetFrame - 2, 'high');
+      }
       updateIntroProgressVars(progress);
       markPassed(passed);
 
       const mobileFrameGap = Math.abs(targetFrame - smoothedFrame);
-      const renderFrame = isMobile && mobileFrameGap > 18 ? targetFrame : smoothedFrame;
+      const renderFrame = isMobile && (targetFrame < 14 || mobileFrameGap > 10) ? targetFrame : smoothedFrame;
       const drawKey = Math.round(renderFrame);
       const shouldDraw = Math.abs(lastDrawnFrame - drawKey) >= 1;
 
