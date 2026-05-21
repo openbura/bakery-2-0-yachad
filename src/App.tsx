@@ -64,6 +64,7 @@ const navItems = [
 ];
 
 const navHrefs = navItems.map((item) => item.href);
+type FramePriority = 'critical' | 'high' | 'low' | 'idle';
 
 const categories = [
   {
@@ -269,11 +270,13 @@ function easeOutCubic(value: number) {
 }
 
 function setIntroProgressVars(section: HTMLElement, progress: number) {
+  const mark = 1 - easeOutCubic((progress - 0.18) / 0.18);
   const bridge = easeOutCubic((progress - 0.86) / 0.14);
   const reveal = easeOutCubic((progress - 0.92) / 0.08);
   const mediaScale = 1 + easeOutCubic((progress - 0.82) / 0.18) * 0.032;
 
   section.style.setProperty('--intro-progress', progress.toFixed(4));
+  section.style.setProperty('--intro-mark', clamp(mark).toFixed(4));
   section.style.setProperty('--intro-brand', '0');
   section.style.setProperty('--intro-brand-y', '18px');
   section.style.setProperty('--intro-line', '0');
@@ -288,6 +291,13 @@ function setIntroProgressVars(section: HTMLElement, progress: number) {
 function getScrollFrameSrc(frameSet: string, index: number) {
   return `/hero-frames/${frameSet}/frame-${String(index).padStart(3, '0')}.webp`;
 }
+
+const framePriorityRank: Record<FramePriority, number> = {
+  critical: 0,
+  high: 1,
+  low: 2,
+  idle: 3,
+};
 
 function drawCoverImage(ctx: CanvasRenderingContext2D, image: HTMLImageElement) {
   const { width, height } = ctx.canvas;
@@ -357,6 +367,12 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     let isMobile = media.matches;
     const images: Array<HTMLImageElement | undefined> = [];
     const loadingFrames = new Set<number>();
+    const queuedFrames = new Map<number, { priority: FramePriority; order: number }>();
+    const mobileAnchorFrames = new Set([0, scrollFrameCount - 1]);
+    let queueOrder = 0;
+    let activeLoads = 0;
+    let pumpScheduled = false;
+    let urgentPumpScheduled = false;
 
     if (!ctx) {
       markPassed(true);
@@ -403,6 +419,66 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       updateTargetProgress();
     };
 
+    const getNearestLoadedFrame = (target: number) => {
+      let nearest: HTMLImageElement | undefined;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+
+      images.forEach((image, index) => {
+        if (!image) {
+          return;
+        }
+
+        const distance = Math.abs(index - target);
+        if (distance < nearestDistance) {
+          nearest = image;
+          nearestDistance = distance;
+        }
+      });
+
+      return nearest;
+    };
+
+    const normalizeFrameIndex = (index: number) => {
+      const roundedIndex = Math.round(clamp(index, 0, scrollFrameCount - 1));
+
+      if (!isMobile || roundedIndex === 0 || roundedIndex === scrollFrameCount - 1) {
+        return roundedIndex;
+      }
+
+      return Math.min(scrollFrameCount - 2, Math.max(0, Math.round(roundedIndex / 2) * 2));
+    };
+
+    const pruneMobileFrameCache = (centerFrame: number) => {
+      if (!isMobile) {
+        return;
+      }
+
+      const keepRadius = 12;
+      const center = Math.round(clamp(centerFrame, 0, scrollFrameCount - 1));
+
+      images.forEach((image, index) => {
+        if (!image || mobileAnchorFrames.has(index)) {
+          return;
+        }
+
+        if (Math.abs(index - center) > keepRadius) {
+          images[index] = undefined;
+        }
+      });
+
+      queuedFrames.forEach((item, index) => {
+        if (mobileAnchorFrames.has(index)) {
+          return;
+        }
+
+        const queueRadius = item.priority === 'critical' ? keepRadius + 2 : item.priority === 'high' ? keepRadius + 4 : keepRadius + 6;
+
+        if (Math.abs(index - center) > queueRadius) {
+          queuedFrames.delete(index);
+        }
+      });
+    };
+
     const storeDecodedFrame = (index: number, image: HTMLImageElement, onReady?: () => void) => {
       const finalize = () => {
         if (cancelled) {
@@ -421,37 +497,148 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       finalize();
     };
 
-    const loadFrame = (index: number, priority: 'high' | 'low' = 'high') => {
-      const normalizedIndex = Math.round(clamp(index, 0, scrollFrameCount - 1));
+    const finishLoad = (index: number, image?: HTMLImageElement, onReady?: () => void) => {
+      const completeLoad = () => {
+        loadingFrames.delete(index);
+        activeLoads = Math.max(0, activeLoads - 1);
+        schedulePump();
+      };
 
-      if (images[normalizedIndex] || loadingFrames.has(normalizedIndex)) {
+      if (!image) {
+        completeLoad();
         return;
       }
 
-      loadingFrames.add(normalizedIndex);
+      storeDecodedFrame(index, image, () => {
+        onReady?.();
+        completeLoad();
+      });
+    };
+
+    const startFrameLoad = (index: number, priority: FramePriority) => {
+      loadingFrames.add(index);
+      activeLoads += 1;
+
       const image = new Image();
       image.decoding = 'async';
-      if (priority === 'high') {
-        image.loading = 'eager';
-      }
-      image.fetchPriority = priority;
+      image.fetchPriority = priority === 'critical' ? 'high' : priority === 'high' ? 'high' : 'low';
+      image.loading = 'eager';
       image.onload = () => {
-        storeDecodedFrame(normalizedIndex, image, () => {
-          loadingFrames.delete(normalizedIndex);
-
-          if (normalizedIndex === 0) {
+        finishLoad(index, image, () => {
+          if (index === 0) {
             resizeCanvas();
             drawFrame(0, false);
             setCanvasFrameSource(frameSet);
           }
 
-          if (Math.abs(normalizedIndex - targetFrame) <= 2) {
+          if (Math.abs(index - targetFrame) <= 3) {
             lastDrawnFrame = -1;
           }
         });
       };
-      image.onerror = () => loadingFrames.delete(normalizedIndex);
-      image.src = getScrollFrameSrc(frameSet, normalizedIndex);
+      image.onerror = () => finishLoad(index);
+      image.src = getScrollFrameSrc(frameSet, index);
+    };
+
+    function pump() {
+      pumpScheduled = false;
+
+      if (cancelled) {
+        return;
+      }
+
+      const maxConcurrentLoads = isMobile ? 2 : 8;
+
+      while (activeLoads < maxConcurrentLoads && queuedFrames.size > 0) {
+        const next = [...queuedFrames.entries()].sort((a, b) => {
+          const [frameA, itemA] = a;
+          const [frameB, itemB] = b;
+          const priorityDelta = framePriorityRank[itemA.priority] - framePriorityRank[itemB.priority];
+
+          if (priorityDelta !== 0) {
+            return priorityDelta;
+          }
+
+          const distanceDelta = Math.abs(frameA - targetFrame) - Math.abs(frameB - targetFrame);
+
+          if (distanceDelta !== 0) {
+            return distanceDelta;
+          }
+
+          return itemA.order - itemB.order;
+        })[0];
+
+        if (!next) {
+          return;
+        }
+
+        const [frameIndex, item] = next;
+        queuedFrames.delete(frameIndex);
+
+        if (images[frameIndex] || loadingFrames.has(frameIndex)) {
+          continue;
+        }
+
+        startFrameLoad(frameIndex, item.priority);
+      }
+    }
+
+    function schedulePump(urgent = false) {
+      if (cancelled) {
+        return;
+      }
+
+      if (urgent) {
+        if (urgentPumpScheduled) {
+          return;
+        }
+
+        urgentPumpScheduled = true;
+        globalThis.setTimeout(() => {
+          urgentPumpScheduled = false;
+          pump();
+        }, 0);
+        return;
+      }
+
+      if (pumpScheduled) {
+        return;
+      }
+
+      pumpScheduled = true;
+      const run = () => pump();
+
+      if (!isMobile) {
+        globalThis.setTimeout(run, 0);
+        return;
+      }
+
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(run, { timeout: 220 });
+        return;
+      }
+
+      globalThis.setTimeout(run, 48);
+    }
+
+    const requestFrame = (index: number, priority: FramePriority = 'high') => {
+      const normalizedIndex = normalizeFrameIndex(index);
+
+      if (images[normalizedIndex] || loadingFrames.has(normalizedIndex)) {
+        return;
+      }
+
+      const existing = queuedFrames.get(normalizedIndex);
+      if (existing) {
+        if (framePriorityRank[priority] < framePriorityRank[existing.priority]) {
+          queuedFrames.set(normalizedIndex, { priority, order: existing.order });
+        }
+      } else {
+        queuedFrames.set(normalizedIndex, { priority, order: queueOrder });
+        queueOrder += 1;
+      }
+
+      schedulePump(priority === 'critical' || priority === 'high');
     };
 
     const preloadCriticalMobileFrames = () => {
@@ -459,31 +646,25 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         return;
       }
 
-      const anchorFrames = [0, 0.25, 0.5, 0.75, 1].map((progress) =>
-        Math.round(progress * (scrollFrameCount - 1)),
-      );
-      const warmFrames = new Set<number>();
-
-      anchorFrames.forEach((frameIndex) => {
-        [-1, 0, 1].forEach((offset) => {
-          warmFrames.add(Math.round(clamp(frameIndex + offset, 0, scrollFrameCount - 1)));
-        });
-      });
-
-      warmFrames.forEach((frameIndex) => {
-        loadFrame(frameIndex, anchorFrames.includes(frameIndex) ? 'high' : 'low');
+      requestFrame(0, 'critical');
+      [1, 2, 3, 4].forEach((frameIndex) => requestFrame(frameIndex, 'high'));
+      [0.33, 0.66, 1].forEach((progress) => {
+        requestFrame(Math.round(progress * (scrollFrameCount - 1)), 'idle');
       });
     };
 
     const drawFrame = (frame: number, blendFrames: boolean) => {
       if (!blendFrames) {
-        const selected = Math.round(clamp(frame, 0, scrollFrameCount - 1));
+        const selected = normalizeFrameIndex(frame);
         const selectedImage = images[selected];
 
-        loadFrame(selected);
-        loadFrame(selected + 1, 'low');
-        loadFrame(selected + 2, 'low');
-        loadFrame(selected - 1, 'low');
+        requestFrame(selected, 'critical');
+        requestFrame(selected + 1, 'high');
+        requestFrame(selected - 1, 'high');
+        requestFrame(selected + 2, 'low');
+        requestFrame(selected - 2, 'low');
+        requestFrame(selected + 3, 'idle');
+        pruneMobileFrameCache(selected);
 
         if (selectedImage) {
           ctx.globalAlpha = 1;
@@ -491,7 +672,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
           return true;
         }
 
-        const fallback = images.find(Boolean);
+        const fallback = getNearestLoadedFrame(selected);
 
         if (fallback && lastDrawnFrame < 0) {
           ctx.globalAlpha = 1;
@@ -507,8 +688,8 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       const lowerImage = images[lower];
       const upperImage = images[upper];
 
-      loadFrame(lower);
-      loadFrame(upper);
+      requestFrame(lower, 'critical');
+      requestFrame(upper, 'high');
 
       if (lowerImage && upperImage) {
         ctx.globalAlpha = 1;
@@ -531,62 +712,16 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     };
 
     const preloadFrames = () => {
-      loadFrame(0);
-      preloadCriticalMobileFrames();
+      requestFrame(0, 'critical');
 
-      let nextIndex = 1;
-      let activeLoads = 0;
-      const maxConcurrentLoads = media.matches ? 2 : 8;
+      if (media.matches) {
+        preloadCriticalMobileFrames();
+        return;
+      }
 
-      const schedulePump = () => {
-        if (!media.matches) {
-          pump();
-          return;
-        }
-
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(() => pump(), { timeout: 260 });
-          return;
-        }
-
-        globalThis.setTimeout(pump, 48);
-      };
-
-      const pump = () => {
-        if (cancelled) {
-          return;
-        }
-
-        while (activeLoads < maxConcurrentLoads && nextIndex < scrollFrameCount) {
-          const frameIndex = nextIndex;
-          nextIndex += 1;
-
-          if (images[frameIndex] || loadingFrames.has(frameIndex)) {
-            continue;
-          }
-
-          activeLoads += 1;
-          loadingFrames.add(frameIndex);
-          const image = new Image();
-          image.decoding = 'async';
-          image.onload = () => {
-            storeDecodedFrame(frameIndex, image, () => {
-              loadingFrames.delete(frameIndex);
-              activeLoads -= 1;
-              schedulePump();
-            });
-          };
-          image.onerror = () => {
-            loadingFrames.delete(frameIndex);
-            activeLoads -= 1;
-            schedulePump();
-          };
-          image.fetchPriority = 'low';
-          image.src = getScrollFrameSrc(frameSet, frameIndex);
-        }
-      };
-
-      schedulePump();
+      for (let index = 1; index < scrollFrameCount; index += 1) {
+        requestFrame(index, 'low');
+      }
     };
 
     const tick = () => {
@@ -601,10 +736,12 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       updateIntroProgressVars(progress);
       markPassed(passed);
 
-      const drawKey = Math.round(smoothedFrame);
+      const mobileFrameGap = Math.abs(targetFrame - smoothedFrame);
+      const renderFrame = isMobile && mobileFrameGap > 18 ? targetFrame : smoothedFrame;
+      const drawKey = Math.round(renderFrame);
       const shouldDraw = Math.abs(lastDrawnFrame - drawKey) >= 1;
 
-      if (shouldDraw && drawFrame(smoothedFrame, false)) {
+      if (shouldDraw && drawFrame(renderFrame, false)) {
         lastDrawnFrame = drawKey;
       }
 
@@ -656,8 +793,10 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         <div className="cinematic-intro__warmth" aria-hidden="true" />
 
         <a className="cinematic-intro__skip" href="#home" onClick={handleSkip}>
-          דלגו לאתר
+          כניסה לאתר
         </a>
+
+        <img className="cinematic-intro__mark" src={logoImage} alt="" aria-hidden="true" />
 
         <div className="cinematic-intro__bridge" aria-hidden="true" />
       </div>
@@ -822,7 +961,7 @@ function App() {
                 whileTap={{ scale: 0.985 }}
               >
                 <PhoneCall size={20} weight="bold" />
-                התקשרו עכשיו
+                התקשרו להזמנה
               </motion.a>
               <motion.a
                 className="btn btn-soft"
@@ -835,7 +974,7 @@ function App() {
                 whileTap={{ scale: 0.985 }}
               >
                 <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
-                שלחו וואטסאפ
+                הזמנה בוואטסאפ
               </motion.a>
               <motion.a
                 className="btn btn-ghost"
