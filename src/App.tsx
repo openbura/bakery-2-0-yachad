@@ -298,6 +298,7 @@ const framePriorityRank: Record<FramePriority, number> = {
   low: 2,
   idle: 3,
 };
+const mobileFirstScrollWarmFrames = Array.from({ length: 17 }, (_, index) => index * 2);
 
 function drawCoverImage(ctx: CanvasRenderingContext2D, image: HTMLImageElement) {
   const { width, height } = ctx.canvas;
@@ -373,6 +374,10 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     let activeLoads = 0;
     let pumpScheduled = false;
     let urgentPumpScheduled = false;
+    const mobileWarmupUntil = media.matches ? performance.now() + 1800 : 0;
+    let warmupCanvas: HTMLCanvasElement | null = null;
+    let warmupCtx: CanvasRenderingContext2D | null = null;
+    const primedFrames = new Set<number>();
 
     if (!ctx) {
       markPassed(true);
@@ -479,6 +484,44 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       });
     };
 
+    const scheduleIdleWork = (callback: () => void, timeout = 360) => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout });
+        return;
+      }
+
+      globalThis.setTimeout(callback, 40);
+    };
+
+    const primeFirstScrollFrame = (index: number, image: HTMLImageElement) => {
+      if (!isMobile || primedFrames.has(index) || !mobileFirstScrollWarmFrames.includes(index)) {
+        return;
+      }
+
+      primedFrames.add(index);
+
+      scheduleIdleWork(() => {
+        if (cancelled || canvas.width < 1 || canvas.height < 1) {
+          return;
+        }
+
+        if (!warmupCanvas) {
+          warmupCanvas = document.createElement('canvas');
+          warmupCanvas.width = canvas.width;
+          warmupCanvas.height = canvas.height;
+          warmupCtx = warmupCanvas.getContext('2d', { alpha: false });
+        } else if (warmupCanvas.width !== canvas.width || warmupCanvas.height !== canvas.height) {
+          warmupCanvas.width = canvas.width;
+          warmupCanvas.height = canvas.height;
+        }
+
+        if (warmupCtx) {
+          warmupCtx.globalAlpha = 1;
+          drawCoverImage(warmupCtx, image);
+        }
+      });
+    };
+
     const storeDecodedFrame = (index: number, image: HTMLImageElement, onReady?: () => void) => {
       const finalize = () => {
         if (cancelled) {
@@ -486,6 +529,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         }
 
         images[index] = image;
+        primeFirstScrollFrame(index, image);
         onReady?.();
       };
 
@@ -547,7 +591,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         return;
       }
 
-      const maxConcurrentLoads = isMobile ? 2 : 8;
+      const maxConcurrentLoads = isMobile ? (performance.now() < mobileWarmupUntil ? 3 : 2) : 8;
 
       while (activeLoads < maxConcurrentLoads && queuedFrames.size > 0) {
         const next = [...queuedFrames.entries()].sort((a, b) => {
@@ -647,8 +691,8 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       }
 
       requestFrame(0, 'critical');
-      [2, 4, 6, 8, 10, 12, 14].forEach((frameIndex, index) => {
-        requestFrame(frameIndex, index < 3 ? 'high' : 'low');
+      mobileFirstScrollWarmFrames.slice(1).forEach((frameIndex, index) => {
+        requestFrame(frameIndex, index < 8 ? 'high' : 'low');
       });
     };
 
