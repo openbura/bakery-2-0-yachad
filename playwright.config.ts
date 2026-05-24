@@ -1,7 +1,23 @@
+import { existsSync } from 'node:fs';
 import { defineConfig, devices } from '@playwright/test';
 
 const port = Number(process.env.PLAYWRIGHT_PORT ?? process.env.VITE_PORT ?? 5175);
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${port}`;
+const localChromeExecutable = [
+  process.env.PLAYWRIGHT_CHROME_EXECUTABLE,
+  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+  'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+]
+  .filter(Boolean)
+  .find((candidate) => existsSync(candidate as string));
+const localLaunchOptions = !process.env.CI && localChromeExecutable ? { executablePath: localChromeExecutable } : undefined;
+const localFfmpegExecutable = [
+  process.env.PLAYWRIGHT_FFMPEG_EXECUTABLE,
+  'C:\\Users\\openb\\AppData\\Local\\ms-playwright\\ffmpeg-1011\\ffmpeg-win64.exe',
+]
+  .filter(Boolean)
+  .find((candidate) => existsSync(candidate as string));
+const videoMode = process.env.CI || localFfmpegExecutable ? 'retain-on-failure' : 'off';
 
 export default defineConfig({
   testDir: './tests',
@@ -14,7 +30,8 @@ export default defineConfig({
     baseURL,
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
-    video: 'retain-on-failure',
+    video: videoMode,
+    launchOptions: localLaunchOptions,
   },
   projects: [
     {

@@ -21,7 +21,7 @@ const test = base.extend<{ consoleErrors: string[] }>({
     page.on('requestfailed', (request) => {
       const url = request.url();
 
-      if (url.startsWith('http://127.0.0.1:5174/')) {
+      if (url.startsWith('http://127.0.0.1:')) {
         errors.push(`${request.failure()?.errorText ?? 'request failed'}: ${url}`);
       }
     });
@@ -37,7 +37,7 @@ test.describe('Bakery website', () => {
     void consoleErrors;
 
     await page.goto('/');
-    await expect(page).toHaveTitle(/Bakery 2\.0/);
+    await expect(page).toHaveTitle(/מאפיית יחד/);
     await expect(page.locator('main.site-shell')).toBeVisible();
     await expect(page.locator('.cinematic-intro')).toBeVisible();
     await expect(page.locator('.cinematic-intro__canvas')).toBeVisible();

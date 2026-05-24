@@ -1,0 +1,421 @@
+{
+  "source": "public/hero-frames/mobile",
+  "sourceCount": 150,
+  "count": 81,
+  "width": 480,
+  "height": 854,
+  "format": "webp",
+  "quality": 45,
+  "totalBytes": 2556418,
+  "totalMB": 2.44,
+  "averageKB": 30.8,
+  "minKB": 21.5,
+  "maxKB": 40.2,
+  "mapping": [
+    {
+      "lite": 0,
+      "source": 0,
+      "file": "frame-000.webp"
+    },
+    {
+      "lite": 1,
+      "source": 2,
+      "file": "frame-001.webp"
+    },
+    {
+      "lite": 2,
+      "source": 4,
+      "file": "frame-002.webp"
+    },
+    {
+      "lite": 3,
+      "source": 6,
+      "file": "frame-003.webp"
+    },
+    {
+      "lite": 4,
+      "source": 7,
+      "file": "frame-004.webp"
+    },
+    {
+      "lite": 5,
+      "source": 9,
+      "file": "frame-005.webp"
+    },
+    {
+      "lite": 6,
+      "source": 11,
+      "file": "frame-006.webp"
+    },
+    {
+      "lite": 7,
+      "source": 13,
+      "file": "frame-007.webp"
+    },
+    {
+      "lite": 8,
+      "source": 15,
+      "file": "frame-008.webp"
+    },
+    {
+      "lite": 9,
+      "source": 17,
+      "file": "frame-009.webp"
+    },
+    {
+      "lite": 10,
+      "source": 19,
+      "file": "frame-010.webp"
+    },
+    {
+      "lite": 11,
+      "source": 20,
+      "file": "frame-011.webp"
+    },
+    {
+      "lite": 12,
+      "source": 22,
+      "file": "frame-012.webp"
+    },
+    {
+      "lite": 13,
+      "source": 24,
+      "file": "frame-013.webp"
+    },
+    {
+      "lite": 14,
+      "source": 26,
+      "file": "frame-014.webp"
+    },
+    {
+      "lite": 15,
+      "source": 28,
+      "file": "frame-015.webp"
+    },
+    {
+      "lite": 16,
+      "source": 30,
+      "file": "frame-016.webp"
+    },
+    {
+      "lite": 17,
+      "source": 32,
+      "file": "frame-017.webp"
+    },
+    {
+      "lite": 18,
+      "source": 34,
+      "file": "frame-018.webp"
+    },
+    {
+      "lite": 19,
+      "source": 35,
+      "file": "frame-019.webp"
+    },
+    {
+      "lite": 20,
+      "source": 37,
+      "file": "frame-020.webp"
+    },
+    {
+      "lite": 21,
+      "source": 39,
+      "file": "frame-021.webp"
+    },
+    {
+      "lite": 22,
+      "source": 41,
+      "file": "frame-022.webp"
+    },
+    {
+      "lite": 23,
+      "source": 43,
+      "file": "frame-023.webp"
+    },
+    {
+      "lite": 24,
+      "source": 45,
+      "file": "frame-024.webp"
+    },
+    {
+      "lite": 25,
+      "source": 47,
+      "file": "frame-025.webp"
+    },
+    {
+      "lite": 26,
+      "source": 48,
+      "file": "frame-026.webp"
+    },
+    {
+      "lite": 27,
+      "source": 50,
+      "file": "frame-027.webp"
+    },
+    {
+      "lite": 28,
+      "source": 52,
+      "file": "frame-028.webp"
+    },
+    {
+      "lite": 29,
+      "source": 54,
+      "file": "frame-029.webp"
+    },
+    {
+      "lite": 30,
+      "source": 56,
+      "file": "frame-030.webp"
+    },
+    {
+      "lite": 31,
+      "source": 58,
+      "file": "frame-031.webp"
+    },
+    {
+      "lite": 32,
+      "source": 60,
+      "file": "frame-032.webp"
+    },
+    {
+      "lite": 33,
+      "source": 61,
+      "file": "frame-033.webp"
+    },
+    {
+      "lite": 34,
+      "source": 63,
+      "file": "frame-034.webp"
+    },
+    {
+      "lite": 35,
+      "source": 65,
+      "file": "frame-035.webp"
+    },
+    {
+      "lite": 36,
+      "source": 67,
+      "file": "frame-036.webp"
+    },
+    {
+      "lite": 37,
+      "source": 69,
+      "file": "frame-037.webp"
+    },
+    {
+      "lite": 38,
+      "source": 71,
+      "file": "frame-038.webp"
+    },
+    {
+      "lite": 39,
+      "source": 73,
+      "file": "frame-039.webp"
+    },
+    {
+      "lite": 40,
+      "source": 74,
+      "file": "frame-040.webp"
+    },
+    {
+      "lite": 41,
+      "source": 76,
+      "file": "frame-041.webp"
+    },
+    {
+      "lite": 42,
+      "source": 78,
+      "file": "frame-042.webp"
+    },
+    {
+      "lite": 43,
+      "source": 80,
+      "file": "frame-043.webp"
+    },
+    {
+      "lite": 44,
+      "source": 82,
+      "file": "frame-044.webp"
+    },
+    {
+      "lite": 45,
+      "source": 84,
+      "file": "frame-045.webp"
+    },
+    {
+      "lite": 46,
+      "source": 86,
+      "file": "frame-046.webp"
+    },
+    {
+      "lite": 47,
+      "source": 88,
+      "file": "frame-047.webp"
+    },
+    {
+      "lite": 48,
+      "source": 89,
+      "file": "frame-048.webp"
+    },
+    {
+      "lite": 49,
+      "source": 91,
+      "file": "frame-049.webp"
+    },
+    {
+      "lite": 50,
+      "source": 93,
+      "file": "frame-050.webp"
+    },
+    {
+      "lite": 51,
+      "source": 95,
+      "file": "frame-051.webp"
+    },
+    {
+      "lite": 52,
+      "source": 97,
+      "file": "frame-052.webp"
+    },
+    {
+      "lite": 53,
+      "source": 99,
+      "file": "frame-053.webp"
+    },
+    {
+      "lite": 54,
+      "source": 101,
+      "file": "frame-054.webp"
+    },
+    {
+      "lite": 55,
+      "source": 102,
+      "file": "frame-055.webp"
+    },
+    {
+      "lite": 56,
+      "source": 104,
+      "file": "frame-056.webp"
+    },
+    {
+      "lite": 57,
+      "source": 106,
+      "file": "frame-057.webp"
+    },
+    {
+      "lite": 58,
+      "source": 108,
+      "file": "frame-058.webp"
+    },
+    {
+      "lite": 59,
+      "source": 110,
+      "file": "frame-059.webp"
+    },
+    {
+      "lite": 60,
+      "source": 112,
+      "file": "frame-060.webp"
+    },
+    {
+      "lite": 61,
+      "source": 114,
+      "file": "frame-061.webp"
+    },
+    {
+      "lite": 62,
+      "source": 115,
+      "file": "frame-062.webp"
+    },
+    {
+      "lite": 63,
+      "source": 117,
+      "file": "frame-063.webp"
+    },
+    {
+      "lite": 64,
+      "source": 119,
+      "file": "frame-064.webp"
+    },
+    {
+      "lite": 65,
+      "source": 121,
+      "file": "frame-065.webp"
+    },
+    {
+      "lite": 66,
+      "source": 123,
+      "file": "frame-066.webp"
+    },
+    {
+      "lite": 67,
+      "source": 125,
+      "file": "frame-067.webp"
+    },
+    {
+      "lite": 68,
+      "source": 127,
+      "file": "frame-068.webp"
+    },
+    {
+      "lite": 69,
+      "source": 129,
+      "file": "frame-069.webp"
+    },
+    {
+      "lite": 70,
+      "source": 130,
+      "file": "frame-070.webp"
+    },
+    {
+      "lite": 71,
+      "source": 132,
+      "file": "frame-071.webp"
+    },
+    {
+      "lite": 72,
+      "source": 134,
+      "file": "frame-072.webp"
+    },
+    {
+      "lite": 73,
+      "source": 136,
+      "file": "frame-073.webp"
+    },
+    {
+      "lite": 74,
+      "source": 138,
+      "file": "frame-074.webp"
+    },
+    {
+      "lite": 75,
+      "source": 140,
+      "file": "frame-075.webp"
+    },
+    {
+      "lite": 76,
+      "source": 142,
+      "file": "frame-076.webp"
+    },
+    {
+      "lite": 77,
+      "source": 143,
+      "file": "frame-077.webp"
+    },
+    {
+      "lite": 78,
+      "source": 145,
+      "file": "frame-078.webp"
+    },
+    {
+      "lite": 79,
+      "source": 147,
+      "file": "frame-079.webp"
+    },
+    {
+      "lite": 80,
+      "source": 149,
+      "file": "frame-080.webp"
+    }
+  ]
+}

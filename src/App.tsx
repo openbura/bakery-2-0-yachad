@@ -45,16 +45,64 @@ const introMobilePoster = '/videos/yachad-intro-mobile-poster.webp';
 const desktopIntroAsset = {
   video: introDesktopVideo,
   poster: introDesktopPoster,
-  frameSet: 'desktop',
+  frameSet: 'desktop' as const,
 };
 
 const mobileIntroAsset = {
   video: introMobileVideo,
   poster: introMobilePoster,
-  frameSet: 'mobile',
+  frameSet: 'mobile-lite' as const,
 };
 
-const scrollFrameCount = 150;
+type IntroFrameSet = 'desktop' | 'mobile' | 'mobile-lite';
+
+type IntroFrameConfig = {
+  count: number;
+  width: number;
+  height: number;
+  preloadAll: boolean;
+  warmupFrameCount: number;
+  normalizeToEven: boolean;
+  startFrame?: number;
+  progressExponent?: number;
+  coarsePreloadStep?: number;
+  deferredFullPreloadMs?: number;
+  pruneCache?: boolean;
+};
+
+const introFrameConfig: Record<IntroFrameSet, IntroFrameConfig> = {
+  desktop: {
+    count: 150,
+    width: 1280,
+    height: 720,
+    preloadAll: true,
+    warmupFrameCount: 48,
+    normalizeToEven: false,
+  },
+  mobile: {
+    count: 150,
+    width: 720,
+    height: 1280,
+    preloadAll: false,
+    warmupFrameCount: 17,
+    normalizeToEven: true,
+  },
+  'mobile-lite': {
+    count: 81,
+    width: 480,
+    height: 854,
+    preloadAll: false,
+    warmupFrameCount: 52,
+    normalizeToEven: false,
+    startFrame: 8,
+    progressExponent: 0.82,
+    coarsePreloadStep: 10,
+    deferredFullPreloadMs: 5600,
+    pruneCache: false,
+  },
+};
+
+const introMobileMediaQuery = '(max-width: 820px)';
 
 const navItems = [
   { label: 'דף הבית', href: '#home' },
@@ -121,18 +169,18 @@ const headerReveal = {
 };
 
 const reveal = {
-  hidden: { opacity: 0, y: 30, filter: 'blur(7px)' },
-  show: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0 },
 };
 
 const heroLogoReveal = {
-  hidden: { opacity: 0, y: 18, scale: 0.9, filter: 'blur(8px)' },
-  show: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' },
+  hidden: { opacity: 0, y: 16, scale: 0.92 },
+  show: { opacity: 1, y: 0, scale: 1 },
 };
 
 const heroTextReveal = {
-  hidden: { opacity: 0, y: 34, filter: 'blur(10px)' },
-  show: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  hidden: { opacity: 0, y: 26 },
+  show: { opacity: 1, y: 0 },
 };
 
 const buttonReveal = {
@@ -146,8 +194,8 @@ const cardReveal = {
 };
 
 const imageReveal = {
-  hidden: { opacity: 0, y: 28, scale: 0.985, clipPath: 'inset(16% 0% 16% 0% round 24px)' },
-  show: { opacity: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 24px)' },
+  hidden: { opacity: 0, y: 24, scale: 0.985 },
+  show: { opacity: 1, y: 0, scale: 1 },
 };
 
 const contactItemReveal = {
@@ -159,8 +207,8 @@ const stagger = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.08,
+      staggerChildren: 0.045,
+      delayChildren: 0.035,
     },
   },
 };
@@ -179,22 +227,21 @@ const buttonStagger = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.08,
+      staggerChildren: 0.045,
+      delayChildren: 0.035,
     },
   },
 };
 
 const mobileMenuVariants: Variants = {
-  hidden: { opacity: 0, y: -16, scale: 0.98, filter: 'blur(8px)' },
+  hidden: { opacity: 0, y: -16, scale: 0.98 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: 'blur(0px)',
     transition: { duration: 0.38, ease: 'easeOut', staggerChildren: 0.06 },
   },
-  exit: { opacity: 0, y: -10, scale: 0.98, filter: 'blur(8px)', transition: { duration: 0.2 } },
+  exit: { opacity: 0, y: -10, scale: 0.98, transition: { duration: 0.2 } },
 };
 
 const mobileMenuItemVariants = {
@@ -233,7 +280,7 @@ function useActiveSection(hrefs: string[]) {
 }
 
 function getIntroAsset() {
-  if (typeof window !== 'undefined' && window.matchMedia('(max-width: 820px)').matches) {
+  if (typeof window !== 'undefined' && window.matchMedia(introMobileMediaQuery).matches) {
     return mobileIntroAsset;
   }
 
@@ -244,7 +291,7 @@ function useIntroAsset() {
   const [asset, setAsset] = useState(getIntroAsset);
 
   useEffect(() => {
-    const media = window.matchMedia('(max-width: 820px)');
+    const media = window.matchMedia(introMobileMediaQuery);
     const updateAsset = () => setAsset(media.matches ? mobileIntroAsset : desktopIntroAsset);
 
     updateAsset();
@@ -254,6 +301,22 @@ function useIntroAsset() {
   }, []);
 
   return asset;
+}
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const updateMatches = () => setMatches(media.matches);
+
+    updateMatches();
+    media.addEventListener('change', updateMatches);
+
+    return () => media.removeEventListener('change', updateMatches);
+  }, [query]);
+
+  return matches;
 }
 
 type CinematicIntroProps = {
@@ -288,7 +351,7 @@ function setIntroProgressVars(section: HTMLElement, progress: number) {
   section.style.setProperty('--intro-media-scale', mediaScale.toFixed(4));
 }
 
-function getScrollFrameSrc(frameSet: string, index: number) {
+function getScrollFrameSrc(frameSet: IntroFrameSet, index: number) {
   return `/hero-frames/${frameSet}/frame-${String(index).padStart(3, '0')}.webp`;
 }
 
@@ -298,8 +361,6 @@ const framePriorityRank: Record<FramePriority, number> = {
   low: 2,
   idle: 3,
 };
-const mobileFirstScrollWarmFrames = Array.from({ length: 17 }, (_, index) => index * 2);
-
 function drawCoverImage(ctx: CanvasRenderingContext2D, image: HTMLImageElement) {
   const { width, height } = ctx.canvas;
   const imageRatio = image.naturalWidth / image.naturalHeight;
@@ -353,13 +414,18 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       return;
     }
 
-    const media = window.matchMedia('(max-width: 820px)');
+    const media = window.matchMedia(introMobileMediaQuery);
     const ctx = canvas.getContext('2d', { alpha: false });
     const frameSet = introAsset.frameSet;
+    const frameConfig = introFrameConfig[frameSet];
+    const frameCount = frameConfig.count;
+    const lastFrameIndex = frameCount - 1;
+    const scrollStartFrame = Math.min(frameConfig.startFrame ?? 0, lastFrameIndex);
+    const scrollFrameSpan = Math.max(1, lastFrameIndex - scrollStartFrame);
     let rafId = 0;
     let cancelled = false;
-    let targetFrame = 0;
-    let smoothedFrame = 0;
+    let targetFrame = scrollStartFrame;
+    let smoothedFrame = scrollStartFrame;
     let lastDrawnFrame = -1;
     let lastProgressVars = -1;
     let sectionTop = 0;
@@ -368,8 +434,14 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     let isMobile = media.matches;
     const images: Array<HTMLImageElement | undefined> = [];
     const loadingFrames = new Set<number>();
+    const decodingFrames = new Set<number>();
     const queuedFrames = new Map<number, { priority: FramePriority; order: number }>();
-    const mobileAnchorFrames = new Set([0, scrollFrameCount - 1]);
+    const mobileAnchorFrames = new Set([scrollStartFrame, lastFrameIndex]);
+    const mobileWarmupPrimeFrames = new Set(
+      Array.from({ length: Math.min(frameCount, frameConfig.warmupFrameCount) }, (_, index) =>
+        scrollStartFrame + (frameConfig.normalizeToEven ? index * 2 : index),
+      ).filter((index) => index <= lastFrameIndex),
+    );
     let queueOrder = 0;
     let activeLoads = 0;
     let pumpScheduled = false;
@@ -378,6 +450,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     let warmupCanvas: HTMLCanvasElement | null = null;
     let warmupCtx: CanvasRenderingContext2D | null = null;
     const primedFrames = new Set<number>();
+    let deferredFullPreloadStarted = false;
 
     if (!ctx) {
       markPassed(true);
@@ -388,6 +461,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
     const updateTargetProgress = () => {
       targetProgress = readScrollProgress();
+      requestTick();
     };
 
     const updateIntroProgressVars = (progress: number) => {
@@ -399,8 +473,8 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
-      const sourceWidth = frameSet === 'mobile' ? 720 : 1280;
-      const sourceHeight = frameSet === 'mobile' ? 1280 : 720;
+      const sourceWidth = frameConfig.width;
+      const sourceHeight = frameConfig.height;
       const nativeScaleCap = Math.min(sourceWidth / Math.max(1, rect.width), sourceHeight / Math.max(1, rect.height));
       const dprCap = Math.min(1, nativeScaleCap);
       const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
@@ -416,7 +490,9 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 
     const recalculateLayout = () => {
       const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      const viewportHeight =
+        Math.ceil(window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight || 1);
+      section.style.setProperty('--intro-viewport-height', `${viewportHeight}px`);
       sectionTop = rect.top + window.scrollY;
       scrollableDistance = Math.max(1, section.offsetHeight - viewportHeight);
       isMobile = media.matches;
@@ -444,22 +520,27 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     };
 
     const normalizeFrameIndex = (index: number) => {
-      const roundedIndex = Math.round(clamp(index, 0, scrollFrameCount - 1));
+      const roundedIndex = Math.round(clamp(index, scrollStartFrame, lastFrameIndex));
 
-      if (!isMobile || roundedIndex === 0 || roundedIndex === scrollFrameCount - 1) {
+      if (
+        !isMobile ||
+        !frameConfig.normalizeToEven ||
+        roundedIndex === scrollStartFrame ||
+        roundedIndex === lastFrameIndex
+      ) {
         return roundedIndex;
       }
 
-      return Math.min(scrollFrameCount - 2, Math.max(0, Math.round(roundedIndex / 2) * 2));
+      return Math.min(lastFrameIndex - 1, Math.max(scrollStartFrame, Math.round(roundedIndex / 2) * 2));
     };
 
     const pruneMobileFrameCache = (centerFrame: number) => {
-      if (!isMobile) {
+      if (!isMobile || frameConfig.preloadAll || frameConfig.pruneCache === false) {
         return;
       }
 
-      const keepRadius = 12;
-      const center = Math.round(clamp(centerFrame, 0, scrollFrameCount - 1));
+      const center = Math.round(clamp(centerFrame, 0, lastFrameIndex));
+      const keepRadius = center < 2 ? Math.max(12, frameConfig.warmupFrameCount) : 12;
 
       images.forEach((image, index) => {
         if (!image || mobileAnchorFrames.has(index)) {
@@ -494,7 +575,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     };
 
     const primeFirstScrollFrame = (index: number, image: HTMLImageElement) => {
-      if (!isMobile || primedFrames.has(index) || !mobileFirstScrollWarmFrames.includes(index)) {
+      if (!isMobile || primedFrames.has(index) || !mobileWarmupPrimeFrames.has(index)) {
         return;
       }
 
@@ -553,9 +634,11 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         return;
       }
 
+      completeLoad();
+      decodingFrames.add(index);
       storeDecodedFrame(index, image, () => {
+        decodingFrames.delete(index);
         onReady?.();
-        completeLoad();
       });
     };
 
@@ -569,9 +652,9 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       image.loading = 'eager';
       image.onload = () => {
         finishLoad(index, image, () => {
-          if (index === 0) {
+          if (index === scrollStartFrame) {
             resizeCanvas();
-            drawFrame(0, false);
+            drawFrame(scrollStartFrame, false);
             setCanvasFrameSource(frameSet);
           }
 
@@ -591,7 +674,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         return;
       }
 
-      const maxConcurrentLoads = isMobile ? (performance.now() < mobileWarmupUntil ? 3 : 2) : 8;
+      const maxConcurrentLoads = isMobile ? (frameConfig.preloadAll ? 8 : performance.now() < mobileWarmupUntil ? 6 : 2) : 8;
 
       while (activeLoads < maxConcurrentLoads && queuedFrames.size > 0) {
         const next = [...queuedFrames.entries()].sort((a, b) => {
@@ -619,7 +702,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         const [frameIndex, item] = next;
         queuedFrames.delete(frameIndex);
 
-        if (images[frameIndex] || loadingFrames.has(frameIndex)) {
+        if (images[frameIndex] || loadingFrames.has(frameIndex) || decodingFrames.has(frameIndex)) {
           continue;
         }
 
@@ -668,7 +751,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     const requestFrame = (index: number, priority: FramePriority = 'high') => {
       const normalizedIndex = normalizeFrameIndex(index);
 
-      if (images[normalizedIndex] || loadingFrames.has(normalizedIndex)) {
+      if (images[normalizedIndex] || loadingFrames.has(normalizedIndex) || decodingFrames.has(normalizedIndex)) {
         return;
       }
 
@@ -690,10 +773,51 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         return;
       }
 
-      requestFrame(0, 'critical');
-      mobileFirstScrollWarmFrames.slice(1).forEach((frameIndex, index) => {
-        requestFrame(frameIndex, index < 8 ? 'high' : 'low');
-      });
+      requestFrame(scrollStartFrame, 'critical');
+      if (frameConfig.preloadAll) {
+        const highPriorityLimit = Math.min(lastFrameIndex, Math.ceil(frameCount * 0.68));
+
+        for (let index = scrollStartFrame + 1; index < frameCount; index += 1) {
+          requestFrame(index, index <= highPriorityLimit ? 'high' : 'low');
+        }
+        return;
+      }
+
+      Array.from(mobileWarmupPrimeFrames)
+        .filter((frameIndex) => frameIndex > 0)
+        .forEach((frameIndex) => {
+          requestFrame(frameIndex, 'high');
+        });
+
+      if (frameConfig.coarsePreloadStep) {
+        for (
+          let index = scrollStartFrame + frameConfig.warmupFrameCount;
+          index <= lastFrameIndex;
+          index += frameConfig.coarsePreloadStep
+        ) {
+          requestFrame(index, 'idle');
+        }
+        requestFrame(lastFrameIndex, 'idle');
+      }
+    };
+
+    const scheduleDeferredFullMobilePreload = () => {
+      if (!media.matches || frameConfig.preloadAll || deferredFullPreloadStarted) {
+        return;
+      }
+
+      deferredFullPreloadStarted = true;
+      globalThis.setTimeout(() => {
+        scheduleIdleWork(() => {
+          if (cancelled) {
+            return;
+          }
+
+          for (let index = scrollStartFrame; index < frameCount; index += 1) {
+            requestFrame(index, 'idle');
+          }
+        }, 900);
+      }, frameConfig.deferredFullPreloadMs ?? 2600);
     };
 
     const drawFrame = (frame: number, blendFrames: boolean) => {
@@ -725,8 +849,8 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         return false;
       }
 
-      const lower = Math.floor(clamp(frame, 0, scrollFrameCount - 1));
-      const upper = Math.min(scrollFrameCount - 1, lower + 1);
+      const lower = Math.floor(clamp(frame, 0, lastFrameIndex));
+      const upper = Math.min(lastFrameIndex, lower + 1);
       const blend = clamp(frame - lower);
       const lowerImage = images[lower];
       const upperImage = images[upper];
@@ -755,26 +879,34 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     };
 
     const preloadFrames = () => {
-      requestFrame(0, 'critical');
+      requestFrame(scrollStartFrame, 'critical');
 
       if (media.matches) {
         preloadCriticalMobileFrames();
         return;
       }
 
-      for (let index = 1; index < scrollFrameCount; index += 1) {
+      for (let index = scrollStartFrame + 1; index < frameCount; index += 1) {
         requestFrame(index, 'low');
+      }
+    };
+
+    const requestTick = () => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(tick);
       }
     };
 
     const tick = () => {
       const progress = targetProgress;
       const frameProgress = isMobile ? clamp(progress / 0.825) : clamp(progress / 0.88);
+      const responsiveFrameProgress =
+        isMobile && frameConfig.progressExponent ? Math.pow(frameProgress, frameConfig.progressExponent) : frameProgress;
       const passed = progress >= 0.98;
       const baseLerp = isMobile ? 0.18 : 0.07;
 
-      targetFrame = frameProgress * (scrollFrameCount - 1);
-      const edgeBoost = targetFrame < 8 || targetFrame > scrollFrameCount - 4 ? 0.24 : baseLerp;
+      targetFrame = scrollStartFrame + responsiveFrameProgress * scrollFrameSpan;
+      const edgeBoost = targetFrame < scrollStartFrame + 8 || targetFrame > lastFrameIndex - 3 ? 0.24 : baseLerp;
       smoothedFrame += (targetFrame - smoothedFrame) * edgeBoost;
       if (isMobile) {
         requestFrame(targetFrame, 'critical');
@@ -785,12 +917,21 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
       markPassed(passed);
 
       const mobileFrameGap = Math.abs(targetFrame - smoothedFrame);
-      const renderFrame = isMobile && (targetFrame < 14 || mobileFrameGap > 10) ? targetFrame : smoothedFrame;
+      const renderFrame =
+        isMobile && (targetFrame < scrollStartFrame + 6 || mobileFrameGap > 10) ? targetFrame : smoothedFrame;
       const drawKey = Math.round(renderFrame);
       const shouldDraw = Math.abs(lastDrawnFrame - drawKey) >= 1;
 
       if (shouldDraw && drawFrame(renderFrame, false)) {
         lastDrawnFrame = drawKey;
+      }
+
+      const isSettledAfterIntro = progress >= 1 && Math.abs(lastFrameIndex - smoothedFrame) < 0.35;
+      const isSettledBeforeIntro = progress <= 0.001 && Math.abs(targetFrame - smoothedFrame) < 0.35 && lastDrawnFrame >= 0;
+
+      if (isSettledBeforeIntro || isSettledAfterIntro) {
+        rafId = 0;
+        return;
       }
 
       rafId = window.requestAnimationFrame(tick);
@@ -799,14 +940,19 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
     recalculateLayout();
     updateIntroProgressVars(targetProgress);
     preloadFrames();
+    scheduleDeferredFullMobilePreload();
+    window.visualViewport?.addEventListener('resize', recalculateLayout);
+    window.visualViewport?.addEventListener('scroll', recalculateLayout, { passive: true });
     window.addEventListener('scroll', updateTargetProgress, { passive: true });
     window.addEventListener('resize', recalculateLayout);
     window.addEventListener('orientationchange', recalculateLayout);
-    rafId = window.requestAnimationFrame(tick);
+    requestTick();
 
     return () => {
       cancelled = true;
       window.cancelAnimationFrame(rafId);
+      window.visualViewport?.removeEventListener('resize', recalculateLayout);
+      window.visualViewport?.removeEventListener('scroll', recalculateLayout);
       window.removeEventListener('scroll', updateTargetProgress);
       window.removeEventListener('resize', recalculateLayout);
       window.removeEventListener('orientationchange', recalculateLayout);
@@ -832,8 +978,8 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
         <div className="cinematic-intro__media" aria-hidden="true">
           <canvas ref={canvasRef} className="cinematic-intro__canvas" />
           <picture className="cinematic-intro__poster" aria-hidden="true">
-            <source srcSet={introMobilePoster} media="(max-width: 820px)" />
-            <img src={introDesktopPoster} alt="" />
+            <source srcSet={introMobilePoster} media={introMobileMediaQuery} />
+            <img src={introDesktopPoster} alt="" decoding="async" />
           </picture>
         </div>
         <div className="cinematic-intro__shade" aria-hidden="true" />
@@ -844,7 +990,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
           כניסה לאתר
         </a>
 
-        <img className="cinematic-intro__mark" src={logoImage} alt="" aria-hidden="true" />
+        <img className="cinematic-intro__mark" src={logoImage} alt="" aria-hidden="true" decoding="async" />
 
         <div className="cinematic-intro__bridge" aria-hidden="true" />
       </div>
@@ -855,14 +1001,19 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [introPassed, setIntroPassed] = useState(false);
+  const [stickyCtaDocked, setStickyCtaDocked] = useState(false);
+  const [stickyCtaNearHero, setStickyCtaNearHero] = useState(true);
+  const stickyCtaNearHeroRef = useRef(true);
   const reducedMotion = useReducedMotion();
   const prefersReducedMotion = Boolean(reducedMotion);
+  const isMobileLayout = useMediaQuery('(max-width: 820px)');
+  const shouldSimplifyPageMotion = prefersReducedMotion || isMobileLayout;
   const activeSection = useActiveSection(navHrefs);
-  const initial = prefersReducedMotion ? false : 'hidden';
-  const transition = { duration: prefersReducedMotion ? 0 : 0.78, ease: 'easeOut' as const };
-  const slowTransition = { duration: prefersReducedMotion ? 0 : 1.12, ease: 'easeOut' as const };
-  const quickTransition = { duration: prefersReducedMotion ? 0 : 0.42, ease: 'easeOut' as const };
-  const stickyCtaVisible = prefersReducedMotion || introPassed;
+  const initial = shouldSimplifyPageMotion ? false : 'hidden';
+  const transition = { duration: shouldSimplifyPageMotion ? 0 : 0.5, ease: 'easeOut' as const };
+  const slowTransition = { duration: shouldSimplifyPageMotion ? 0 : 0.68, ease: 'easeOut' as const };
+  const quickTransition = { duration: shouldSimplifyPageMotion ? 0 : 0.3, ease: 'easeOut' as const };
+  const stickyCtaVisible = (prefersReducedMotion || introPassed) && stickyCtaNearHero && !stickyCtaDocked && !menuOpen;
 
   useEffect(() => {
     if (!menuOpen) {
@@ -879,6 +1030,60 @@ function App() {
 
     return () => window.removeEventListener('keydown', handleEscape);
   }, [menuOpen]);
+
+  useEffect(() => {
+    let rafId = 0;
+
+    const updateStickyCtaZone = () => {
+      rafId = 0;
+      const categories = document.querySelector('#categories');
+      const categoryTop = categories
+        ? categories.getBoundingClientRect().top + window.scrollY
+        : window.innerHeight * 1.35;
+      const categoryRect = categories?.getBoundingClientRect();
+      const categoriesVisible = categoryRect ? categoryRect.top < window.innerHeight && categoryRect.bottom > 0 : false;
+      const showUntil = Math.max(0, categoryTop - window.innerHeight * 0.38);
+      const nearHero = window.scrollY < showUntil && !categoriesVisible;
+
+      if (stickyCtaNearHeroRef.current !== nearHero) {
+        stickyCtaNearHeroRef.current = nearHero;
+        setStickyCtaNearHero(nearHero);
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(updateStickyCtaZone);
+      }
+    };
+
+    scheduleUpdate();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('orientationchange', scheduleUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', scheduleUpdate);
+      window.removeEventListener('orientationchange', scheduleUpdate);
+    };
+  }, []);
+
+  useEffect(() => {
+    const visitSection = document.querySelector('#visit');
+    if (!visitSection || !('IntersectionObserver' in window)) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => setStickyCtaDocked(entry.isIntersecting), {
+      rootMargin: '0px 0px -14% 0px',
+      threshold: 0.01,
+    });
+
+    observer.observe(visitSection);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="site-shell" dir="rtl">
@@ -972,14 +1177,14 @@ function App() {
 
         <section id="home" className="hero-panel">
           <div className="hero-media" aria-hidden="true">
-            <img src={heroImage} alt="" />
+            <img src={heroImage} alt="" decoding="async" fetchPriority="high" />
           </div>
           <motion.div
             className="hero-scrim"
             aria-hidden="true"
-            initial={reducedMotion ? false : { opacity: 0 }}
+            initial={shouldSimplifyPageMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: reducedMotion ? 0 : 1.15, ease: 'easeOut' }}
+            transition={{ duration: shouldSimplifyPageMotion ? 0 : 1.15, ease: 'easeOut' }}
           />
 
           <motion.div className="hero-content" initial={initial} animate="show" variants={heroStagger}>
@@ -987,6 +1192,8 @@ function App() {
               className="hero-logo"
               src={logoImage}
               alt="מאפיית יחד - האחים אופים באהבה"
+              decoding="async"
+              fetchPriority="high"
               variants={heroLogoReveal}
               transition={slowTransition}
             />
@@ -1005,7 +1212,7 @@ function App() {
                 href={phoneHref}
                 variants={buttonReveal}
                 transition={quickTransition}
-                whileHover={reducedMotion ? undefined : { y: -3, scale: 1.018 }}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
                 <PhoneCall size={20} weight="bold" />
@@ -1018,7 +1225,7 @@ function App() {
                 rel="noreferrer"
                 variants={buttonReveal}
                 transition={quickTransition}
-                whileHover={reducedMotion ? undefined : { y: -3, scale: 1.018 }}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
                 <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
@@ -1031,7 +1238,7 @@ function App() {
                 rel="noreferrer"
                 variants={buttonReveal}
                 transition={quickTransition}
-                whileHover={reducedMotion ? undefined : { y: -3, scale: 1.018 }}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
                 <NavigationArrow size={20} weight="bold" />
@@ -1044,10 +1251,10 @@ function App() {
             className="hero-down"
             href="#categories"
             aria-label="מעבר למה תמצאו אצלנו"
-            initial={reducedMotion ? false : { opacity: 0, y: -4 }}
-            animate={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, 6, 0] }}
+            initial={shouldSimplifyPageMotion ? false : { opacity: 0, y: -4 }}
+            animate={shouldSimplifyPageMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, 6, 0] }}
             transition={
-              reducedMotion
+              shouldSimplifyPageMotion
                 ? { duration: 0 }
                 : { opacity: { duration: 0.45, delay: 1.05 }, y: { duration: 2.6, repeat: Infinity, ease: 'easeInOut' } }
             }
@@ -1086,11 +1293,11 @@ function App() {
                 key={title}
                 variants={cardReveal}
                 transition={transition}
-                whileHover={reducedMotion ? undefined : { y: -7 }}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -7 }}
                 whileTap={{ scale: 0.99 }}
               >
                 <div className="category-image">
-                  <img src={image} alt={title} loading="lazy" />
+                  <img src={image} alt={title} loading="lazy" decoding="async" fetchPriority="low" />
                 </div>
                 <div className="category-body">
                   <div>
@@ -1125,7 +1332,7 @@ function App() {
           >
             {freshImages.map((item) => (
               <motion.figure key={item.src} className="fresh-card" variants={imageReveal} transition={slowTransition}>
-                <img src={item.src} alt={item.label} loading="lazy" />
+                <img src={item.src} alt={item.label} loading="lazy" decoding="async" fetchPriority="low" />
                 <figcaption>{item.label}</figcaption>
               </motion.figure>
             ))}
@@ -1172,7 +1379,7 @@ function App() {
             variants={imageReveal}
             transition={slowTransition}
           >
-            <img src={aboutImage} alt="עוגות וקינוחים במאפיית יחד" loading="lazy" />
+            <img src={aboutImage} alt="עוגות וקינוחים במאפיית יחד" loading="lazy" decoding="async" />
           </motion.div>
         </section>
 
@@ -1211,7 +1418,7 @@ function App() {
                 transition={transition}
               >
                 <InstagramLogo size={24} weight="regular" />
-                <span>Instagram: @yachad_bakery</span>
+                <span dir="ltr">@yachad_bakery</span>
               </motion.a>
               <motion.div variants={contactItemReveal} transition={transition}>
                 <Clock size={24} weight="regular" />
@@ -1232,7 +1439,7 @@ function App() {
                 rel="noreferrer"
                 variants={buttonReveal}
                 transition={quickTransition}
-                whileHover={reducedMotion ? undefined : { y: -3, scale: 1.018 }}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
                 <WhatsappLogo className="whatsapp-icon on-gold" size={20} weight="bold" />
@@ -1245,7 +1452,7 @@ function App() {
                 rel="noreferrer"
                 variants={buttonReveal}
                 transition={quickTransition}
-                whileHover={reducedMotion ? undefined : { y: -3, scale: 1.018 }}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
                 <NavigationArrow size={20} weight="bold" />
@@ -1254,15 +1461,29 @@ function App() {
             </motion.div>
           </motion.div>
 
+          <div className="site-footer" aria-label="פרטי מאפיית יחד">
+            <span>מאפיית יחד</span>
+            <span>היוצרים 3, כפר סבא</span>
+            <a href={phoneHref} dir="ltr">
+              050-2696267
+            </a>
+            <a href={instagramHref} target="_blank" rel="noreferrer">
+              <bdi dir="ltr">@yachad_bakery</bdi>
+            </a>
+          </div>
         </section>
       </div>
 
       <motion.nav
         className={`mobile-sticky-cta ${stickyCtaVisible ? 'is-visible' : 'is-hidden'}`}
-        initial={prefersReducedMotion ? false : { opacity: 0, y: 74 }}
+        initial={shouldSimplifyPageMotion ? false : { opacity: 0, y: 74 }}
         animate={{ opacity: stickyCtaVisible ? 1 : 0, y: stickyCtaVisible ? 0 : 74 }}
         style={{ pointerEvents: stickyCtaVisible ? 'auto' : 'none' }}
-        transition={{ duration: prefersReducedMotion ? 0 : 0.58, ease: 'easeOut', delay: prefersReducedMotion ? 0 : 0.1 }}
+        transition={{
+          duration: shouldSimplifyPageMotion ? 0 : 0.58,
+          ease: 'easeOut',
+          delay: shouldSimplifyPageMotion ? 0 : 0.1,
+        }}
       >
         <motion.a whileTap={{ scale: 0.96 }} href={phoneHref}>
           <PhoneCall size={22} weight="bold" />
