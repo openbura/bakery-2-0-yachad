@@ -161,7 +161,7 @@ const benefits = [
   { label: 'מוזמנים לטעום את ההבדל', Icon: SealCheck },
 ];
 
-const hours = ['א׳-ה׳: 05:00-22:00', 'ו׳: 05:00-16:00', 'שבת: סגור'];
+const hours = ['א׳-ה׳: 05:00-21:00', 'ו׳: 05:00-16:00', 'שבת: סגור'];
 
 const headerReveal = {
   hidden: { opacity: 0, y: -18, scale: 0.985 },
