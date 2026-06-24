@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { AnimatePresence, motion, type Variants, useReducedMotion } from 'framer-motion';
 import {
-  CaretDown,
   Clock,
   Grains,
   Heart,
@@ -1246,21 +1245,6 @@ function App() {
               </motion.a>
             </motion.div>
           </motion.div>
-
-          <motion.a
-            className="hero-down"
-            href="#categories"
-            aria-label="מעבר למה תמצאו אצלנו"
-            initial={shouldSimplifyPageMotion ? false : { opacity: 0, y: -4 }}
-            animate={shouldSimplifyPageMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, 6, 0] }}
-            transition={
-              shouldSimplifyPageMotion
-                ? { duration: 0 }
-                : { opacity: { duration: 0.45, delay: 1.05 }, y: { duration: 2.6, repeat: Infinity, ease: 'easeInOut' } }
-            }
-          >
-            <CaretDown size={28} />
-          </motion.a>
         </section>
 
         <section id="categories" className="section categories-section">
