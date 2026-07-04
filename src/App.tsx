@@ -106,7 +106,7 @@ const introMobileMediaQuery = '(max-width: 820px)';
 const navItems = [
   { label: 'דף הבית', href: '#home' },
   { label: 'מה תמצאו אצלנו', href: '#categories' },
-  { label: 'קצת מהתנור', href: '#fresh' },
+  { label: 'טעימות מהמאפייה', href: '#fresh' },
   { label: 'צור קשר', href: '#visit' },
 ];
 
@@ -1303,8 +1303,8 @@ function App() {
             variants={reveal}
             transition={transition}
           >
-            <span className="section-mark">קרואסונים, מאפים ולחמים</span>
-            <h2>קצת מהתנור שלנו</h2>
+            <span className="section-mark">לחמים, מאפים, עוגות וקינוחים</span>
+            <h2>טעימות מהמאפייה</h2>
           </motion.div>
 
           <motion.div
