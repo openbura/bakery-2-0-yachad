@@ -7,7 +7,6 @@ import {
   InstagramLogo,
   List,
   MapPin,
-  NavigationArrow,
   PhoneCall,
   SealCheck,
   Storefront,
@@ -29,6 +28,7 @@ import freshTwo from './assets/bakery-2/fresh-2.webp';
 import freshThree from './assets/bakery-2/fresh-3.webp';
 import freshFour from './assets/bakery-2/fresh-4.webp';
 import aboutImage from './assets/bakery-2/gallery-3.webp';
+import ShopPage from './ShopPage';
 
 const phoneHref = 'tel:0502696267';
 const whatsappHref =
@@ -997,7 +997,7 @@ function CinematicIntro({ reducedMotion, onIntroPassedChange }: CinematicIntroPr
   );
 }
 
-function App() {
+function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [introPassed, setIntroPassed] = useState(false);
   const [stickyCtaDocked, setStickyCtaDocked] = useState(false);
@@ -1110,6 +1110,10 @@ function App() {
           </nav>
 
           <div className="topbar-actions">
+            <a className="topbar-order-link" href="/shop" aria-label="הזמנה אונליין">
+              <Storefront size={20} weight="regular" />
+              <span>הזמנה אונליין</span>
+            </a>
             <a href={mapsHref} aria-label="נווטו למאפייה">
               <MapPin size={20} weight="regular" />
             </a>
@@ -1158,6 +1162,14 @@ function App() {
                     <X size={20} weight="bold" />
                   </button>
                 </div>
+                <motion.a
+                  href="/shop"
+                  variants={mobileMenuItemVariants}
+                  onClick={() => setMenuOpen(false)}
+                  className="mobile-menu__shop-cta"
+                >
+                  הזמנה אונליין
+                </motion.a>
                 {navItems.map((item) => (
                   <motion.a
                     key={item.href}
@@ -1208,6 +1220,17 @@ function App() {
             <motion.div className="hero-actions" variants={buttonStagger}>
               <motion.a
                 className="btn btn-primary"
+                href="/shop"
+                variants={buttonReveal}
+                transition={quickTransition}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
+                whileTap={{ scale: 0.985 }}
+              >
+                <Storefront size={20} weight="bold" />
+                להזמנה אונליין
+              </motion.a>
+              <motion.a
+                className="btn btn-soft"
                 href={phoneHref}
                 variants={buttonReveal}
                 transition={quickTransition}
@@ -1215,7 +1238,7 @@ function App() {
                 whileTap={{ scale: 0.985 }}
               >
                 <PhoneCall size={20} weight="bold" />
-                התקשרו להזמנה
+                התקשרו אלינו
               </motion.a>
               <motion.a
                 className="btn btn-soft"
@@ -1228,20 +1251,7 @@ function App() {
                 whileTap={{ scale: 0.985 }}
               >
                 <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
-                הזמנה בוואטסאפ
-              </motion.a>
-              <motion.a
-                className="btn btn-ghost"
-                href={mapsHref}
-                target="_blank"
-                rel="noreferrer"
-                variants={buttonReveal}
-                transition={quickTransition}
-                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
-                whileTap={{ scale: 0.985 }}
-              >
-                <NavigationArrow size={20} weight="bold" />
-                נווטו למאפייה
+                וואטסאפ למאפייה
               </motion.a>
             </motion.div>
           </motion.div>
@@ -1291,6 +1301,26 @@ function App() {
                 </div>
               </motion.article>
             ))}
+          </motion.div>
+
+          <motion.div
+            className="category-order-cta"
+            initial={initial}
+            whileInView="show"
+            viewport={{ once: true, amount: 0.35 }}
+            variants={reveal}
+            transition={transition}
+          >
+            <h3>ראיתם משהו טעים?</h3>
+            <motion.a
+              className="btn btn-primary"
+              href="/shop"
+              whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
+              whileTap={{ scale: 0.985 }}
+            >
+              <Storefront size={20} weight="bold" />
+              עברו להזמנה אונליין
+            </motion.a>
           </motion.div>
         </section>
 
@@ -1418,6 +1448,17 @@ function App() {
             <motion.div className="visit-actions" variants={buttonStagger}>
               <motion.a
                 className="btn btn-primary"
+                href="/shop"
+                variants={buttonReveal}
+                transition={quickTransition}
+                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
+                whileTap={{ scale: 0.985 }}
+              >
+                <Storefront size={20} weight="bold" />
+                להזמנה אונליין
+              </motion.a>
+              <motion.a
+                className="btn btn-soft"
                 href={whatsappHref}
                 target="_blank"
                 rel="noreferrer"
@@ -1426,21 +1467,19 @@ function App() {
                 whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
-                <WhatsappLogo className="whatsapp-icon on-gold" size={20} weight="bold" />
-                שלחו וואטסאפ
+                <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
+                וואטסאפ למאפייה
               </motion.a>
               <motion.a
                 className="btn btn-soft"
-                href={mapsHref}
-                target="_blank"
-                rel="noreferrer"
+                href={phoneHref}
                 variants={buttonReveal}
                 transition={quickTransition}
                 whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
-                <NavigationArrow size={20} weight="bold" />
-                נווטו למאפייה
+                <PhoneCall size={20} weight="bold" />
+                התקשרו אלינו
               </motion.a>
             </motion.div>
           </motion.div>
@@ -1469,21 +1508,25 @@ function App() {
           delay: shouldSimplifyPageMotion ? 0 : 0.1,
         }}
       >
-        <motion.a whileTap={{ scale: 0.96 }} href={phoneHref}>
-          <PhoneCall size={22} weight="bold" />
-          התקשרו
+        <motion.a whileTap={{ scale: 0.96 }} href="/shop">
+          <Storefront size={22} weight="bold" />
+          הזמנה אונליין
         </motion.a>
         <motion.a whileTap={{ scale: 0.96 }} href={whatsappHref} target="_blank" rel="noreferrer">
           <WhatsappLogo className="whatsapp-icon on-gold" size={22} weight="bold" />
           וואטסאפ
         </motion.a>
-        <motion.a whileTap={{ scale: 0.96 }} href={mapsHref} target="_blank" rel="noreferrer">
-          <MapPin size={22} weight="bold" />
-          ניווט
+        <motion.a whileTap={{ scale: 0.96 }} href={phoneHref}>
+          <PhoneCall size={22} weight="bold" />
+          התקשרו
         </motion.a>
       </motion.nav>
     </main>
   );
+}
+
+function App() {
+  return window.location.pathname === '/shop' ? <ShopPage /> : <HomePage />;
 }
 
 export default App;
