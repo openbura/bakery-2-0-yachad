@@ -503,7 +503,145 @@
       "image_status": "available",
       "options_summary": "בחרו מרכיבים לסלט:; זיתי קלמטה; זיתים ירוקים; זיתים שחורים; פלפל חריף; תערובת לסלט; בטטה; מלפפון; עגבניה; חסה; פטריות; תירס; בצל; קרוטונים; גמבה; חציל; פסטה; טונה (+₪3); בייבי מוצרלה (+₪3); ביצה (+₪3); בולגרית (+₪3); תרצו רטבים בתשלום?; מיונז (+₪2); אלף האיים (+₪2); שום (+₪2); שמן זית ולימון (+₪2)",
       "owner_needs_to_confirm": true,
-      "catalog_accuracy_notes": "נבדק מחדש מול תפריט 10bis הגלוי בדפדפן ב-2026-07-05T20:25:26+03:00. תמונת מוצר ציבורית נקלטה מ-10bis. לאישור בעלים: יש אפשרויות/תוספות ב-10bis שה-MVP עדיין לא תומך בהן."
+      "catalog_accuracy_notes": "בתפריט 10bis הגלוי אומתו שם המוצר והמחיר, אך חלון הבחירות לא היה נגיש בבדיקה פסיבית בגלל חלון כתובת/מצב מגבלת טעינה. מבנה הבחירות נבנה רק מתוך options_summary הקיים בקטלוג המקומי. לאישור בעלים: חובה/מינימום/מקסימום וחלוקת קבוצות מדויקים.",
+      "option_groups": [
+        {
+          "name": "בחרו מרכיבים לסלט",
+          "required": true,
+          "min": 1,
+          "max": null,
+          "options": [
+            {
+              "name": "זיתי קלמטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים ירוקים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים שחורים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פלפל חריף",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "תערובת לסלט",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "בטטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "מלפפון",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "עגבניה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "חסה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פטריות",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "תירס",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "בצל",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "קרוטונים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "גמבה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "חציל",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פסטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "טונה",
+              "price_delta": 3,
+              "active": true
+            },
+            {
+              "name": "בייבי מוצרלה",
+              "price_delta": 3,
+              "active": true
+            },
+            {
+              "name": "ביצה",
+              "price_delta": 3,
+              "active": true
+            },
+            {
+              "name": "בולגרית",
+              "price_delta": 3,
+              "active": true
+            }
+          ]
+        },
+        {
+          "name": "תרצו רטבים בתשלום?",
+          "required": false,
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "name": "מיונז",
+              "price_delta": 2,
+              "active": true
+            },
+            {
+              "name": "אלף האיים",
+              "price_delta": 2,
+              "active": true
+            },
+            {
+              "name": "שום",
+              "price_delta": 2,
+              "active": true
+            },
+            {
+              "name": "שמן זית ולימון",
+              "price_delta": 2,
+              "active": true
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "sandwiches-toasts-01",
