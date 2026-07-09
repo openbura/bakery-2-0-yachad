@@ -94,20 +94,8 @@ const deliveryAreas: DeliveryArea[] = [
   },
 ];
 
-// Helper suggestions only. Free manual typing stays available until a full official street dataset is imported locally.
-const streetSuggestionsByCity: Record<string, string[]> = {
-  'kfar-saba': ['היוצרים', 'ויצמן', 'רוטשילד', 'בן יהודה', 'ירושלים', 'טשרניחובסקי', 'גלר', 'התע"ש', 'עתיר ידע'],
-  'hod-hasharon': ['דרך רמתיים', 'סוקולוב', 'הבנים', 'ז׳בוטינסקי', 'הנשיאים', 'האודם', 'הבנאי', 'החרש'],
-  raanana: ['אחוזה', 'ויצמן', 'הרצל', 'ירושלים', 'קרן היסוד', 'בן גוריון', 'החרושת', 'המלאכה'],
-  other: [],
-};
-
 function formatPrice(value: number) {
   return ilsFormatter.format(value);
-}
-
-function normalizeStreetValue(value: string) {
-  return value.replace(/[״"']/g, '').replace(/\s+/g, ' ').trim();
 }
 
 function getProductDisplayPrice(product: Product) {
@@ -156,7 +144,6 @@ function buildOrderSummary({
   phone,
   cityLabel,
   street,
-  streetWasTypedManually,
   houseNumber,
   entrance,
   floor,
@@ -173,7 +160,6 @@ function buildOrderSummary({
   phone: string;
   cityLabel: string;
   street: string;
-  streetWasTypedManually: boolean;
   houseNumber: string;
   entrance: string;
   floor: string;
@@ -197,7 +183,6 @@ function buildOrderSummary({
   if (fulfillment === 'delivery') {
     lines.push(`עיר: ${cityLabel || 'לא נבחרה'}`);
     lines.push(`רחוב: ${street || 'לא נמסר'}`);
-    lines.push(streetWasTypedManually ? 'רחוב הוזן ידנית — נא לוודא כתובת' : 'רחוב נבחר מהרשימה המקומית');
     lines.push(`מספר בית: ${houseNumber || 'לא נמסר'}`);
     lines.push(`כניסה: ${entrance || '-'}`);
     lines.push(`קומה: ${floor || '-'}`);
@@ -255,12 +240,6 @@ export default function ShopPage() {
   const cartCountLabel = cartCount === 1 ? 'פריט אחד' : `${cartCount} פריטים`;
   const subtotal = cartItems.reduce((sum, item) => sum + item.product.price_ils * item.quantity, 0);
   const selectedArea = deliveryAreas.find((area) => area.id === cityId);
-  const selectedStreetSuggestions = cityId ? streetSuggestionsByCity[cityId] ?? [] : [];
-  const normalizedStreet = normalizeStreetValue(street);
-  const streetSelectedFromList = selectedStreetSuggestions.some(
-    (suggestion) => normalizeStreetValue(suggestion) === normalizedStreet,
-  );
-  const streetWasTypedManually = fulfillment === 'delivery' && normalizedStreet.length > 0 && !streetSelectedFromList;
   const deliveryFee = fulfillment === 'delivery' ? selectedArea?.fee_ils ?? defaultDeliveryFeeIls : 0;
   const total = subtotal + deliveryFee;
   const deliveryMinimumNotMet =
@@ -277,7 +256,6 @@ export default function ShopPage() {
     phone,
     cityLabel: selectedArea?.label ?? '',
     street,
-    streetWasTypedManually,
     houseNumber,
     entrance,
     floor,
@@ -588,22 +566,12 @@ export default function ShopPage() {
                           <input
                             value={street}
                             onChange={(event) => setStreet(event.target.value)}
-                            list={cityId ? 'shop-street-suggestions' : undefined}
-                            placeholder={cityId ? 'התחילו להקליד רחוב' : 'בחרו עיר קודם'}
+                            placeholder="שם הרחוב"
                             disabled={!cityId}
                             required
                           />
                         </label>
                     </div>
-                    <datalist id="shop-street-suggestions">
-                      {selectedStreetSuggestions.map((suggestion) => (
-                        <option key={suggestion} value={suggestion} />
-                      ))}
-                    </datalist>
-                    <p className="shop-field-note">אם הרחוב לא מופיע, אפשר להקליד ידנית.</p>
-                    {streetWasTypedManually && (
-                      <p className="shop-warning">רחוב הוזן ידנית — נא לוודא כתובת.</p>
-                    )}
                     {selectedArea?.requiresConfirmation && (
                       <p className="shop-warning">אזור זה ייבדק מול המאפייה לפני אישור משלוח.</p>
                     )}
