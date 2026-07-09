@@ -154,10 +154,10 @@ const freshImages = [
 ];
 
 const benefits = [
-  { label: 'אפייה במקום', Icon: Grains },
-  { label: 'טעם, איכות וטריות', Icon: Heart },
+  { label: 'חומרי גלם איכותיים', Icon: Grains },
+  { label: 'נאפה באהבה', Icon: Heart },
   { label: 'מאפייה וקונדיטוריה בכפר סבא', Icon: Storefront },
-  { label: 'מוזמנים לטעום את ההבדל', Icon: SealCheck },
+  { label: 'טרי כל בוקר', Icon: SealCheck },
 ];
 
 const hours = ['א׳-ה׳: 05:00-21:00', 'ו׳: 05:00-16:00', 'שבת: סגור'];

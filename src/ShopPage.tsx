@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight,
   Basket,
@@ -18,7 +18,7 @@ import categoryCoffee from './assets/bakery-2/cat-coffee.webp';
 import categoryHosting from './assets/bakery-2/cat-hosting.webp';
 import categoryPastries from './assets/bakery-2/cat-pastries.webp';
 import categorySavory from './assets/bakery-2/cat-savory.webp';
-import logoImage from './assets/bakery-2/logo.webp';
+import shopCoverImage from './assets/bakery-2/shop-cover-yachad.jpg';
 
 type Product = (typeof catalog.products)[number];
 type CartItem = {
@@ -243,6 +243,8 @@ export default function ShopPage() {
   const [notes, setNotes] = useState('');
   const [copyStatus, setCopyStatus] = useState('');
   const [minimumPromptVisible, setMinimumPromptVisible] = useState(false);
+  const [addToastVisible, setAddToastVisible] = useState(false);
+  const checkoutStepRef = useRef<HTMLElement | null>(null);
 
   const categories = useMemo(() => [allCategory, ...Array.from(new Set(products.map((product) => product.category)))], []);
   const visibleProducts = selectedCategory === allCategory
@@ -250,6 +252,7 @@ export default function ShopPage() {
     : products.filter((product) => product.category === selectedCategory);
   const cartItems = Object.values(cart);
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCountLabel = cartCount === 1 ? 'פריט אחד' : `${cartCount} פריטים`;
   const subtotal = cartItems.reduce((sum, item) => sum + item.product.price_ils * item.quantity, 0);
   const selectedArea = deliveryAreas.find((area) => area.id === cityId);
   const selectedStreetSuggestions = cityId ? streetSuggestionsByCity[cityId] ?? [] : [];
@@ -298,6 +301,43 @@ export default function ShopPage() {
       ? 'נשלים כתובת וטלפון לשליחת ההזמנה למאפייה.'
       : 'נשלים פרטי קשר והערות, בלי כתובת למשלוח.';
 
+  useEffect(() => {
+    if (!addToastVisible) {
+      return undefined;
+    }
+
+    const timeout = window.setTimeout(() => setAddToastVisible(false), 1400);
+
+    return () => window.clearTimeout(timeout);
+  }, [addToastVisible]);
+
+  useEffect(() => {
+    if (orderStep !== 'details') {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      checkoutStepRef.current?.scrollIntoView({ block: 'start', behavior: 'auto' });
+      const firstField = checkoutStepRef.current?.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+        'input:not([type="radio"]):not([disabled]), select:not([disabled]), textarea:not([disabled])',
+      );
+      firstField?.focus({ preventScroll: true });
+    });
+  }, [orderStep]);
+
+  useEffect(() => {
+    if (!minimumPromptVisible || !deliveryMinimumNotMet) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      document.querySelector('.shop-minimum-popover, #shop-minimum-hint')?.scrollIntoView({
+        block: 'nearest',
+        behavior: 'smooth',
+      });
+    });
+  }, [minimumPromptVisible, deliveryMinimumNotMet, deliveryMinimumMissing]);
+
   const renderFulfillmentSelector = (variant: 'summary' | 'form') => (
     <div className={`shop-fulfillment-block shop-fulfillment-block--${variant}`}>
       <div className="shop-choice-row" role="radiogroup" aria-label="שיטת קבלה">
@@ -342,13 +382,14 @@ export default function ShopPage() {
     }
 
     window.requestAnimationFrame(() => {
-      document.querySelector('.shop-shell')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      document.querySelector('.shop-shell')?.scrollIntoView({ block: 'start', behavior: 'auto' });
     });
   };
 
   const goToOrderDetails = () => {
     if (deliveryMinimumNotMet) {
       setMinimumPromptVisible(true);
+      setAddToastVisible(false);
       setCartOpen(true);
       return;
     }
@@ -361,7 +402,6 @@ export default function ShopPage() {
     setCartOpen(false);
     setCopyStatus('');
     setMinimumPromptVisible(false);
-    scrollShopTop();
   };
 
   const goToCatalog = () => {
@@ -371,8 +411,14 @@ export default function ShopPage() {
     scrollShopTop();
   };
 
+  const openCartPanel = () => {
+    setAddToastVisible(false);
+    setCartOpen(true);
+  };
+
   const addToCart = (product: Product) => {
     setMinimumPromptVisible(false);
+    setAddToastVisible(false);
     setCart((current) => ({
       ...current,
       [product.id]: {
@@ -380,9 +426,7 @@ export default function ShopPage() {
         quantity: (current[product.id]?.quantity ?? 0) + 1,
       },
     }));
-    if (orderStep === 'catalog') {
-      setCartOpen(true);
-    }
+    window.requestAnimationFrame(() => setAddToastVisible(true));
   };
 
   const updateQuantity = (productId: string, nextQuantity: number) => {
@@ -420,45 +464,29 @@ export default function ShopPage() {
   };
 
   return (
-    <main className="shop-shell" dir="rtl">
-      <header className="shop-topbar" aria-label="ניווט חנות">
-        {orderStep === 'details' ? (
+    <main className={`shop-shell ${orderStep === 'details' ? 'is-details-step' : ''}`} dir="rtl">
+      {orderStep === 'details' && (
+        <header className="shop-topbar" aria-label="ניווט חנות">
           <button className="shop-back-link shop-back-link--button" type="button" onClick={goToCatalog}>
             <ArrowRight size={20} weight="bold" />
             חזרה לתפריט
           </button>
-        ) : (
-          <a className="shop-back-link" href="/">
-            <ArrowRight size={20} weight="bold" />
+        </header>
+      )}
+
+      {orderStep === 'catalog' && (
+        <section className="shop-cover" aria-label="מאפיית יחד - מאפים טריים כל יום">
+          <img src={shopCoverImage} alt="מאפיית יחד - טרי, איכותי, מהלב. מאפים טריים, כל יום, באהבה." decoding="async" />
+          <a className="shop-cover-link" href="/">
+            <ArrowRight size={19} weight="bold" />
             לאתר המאפייה
           </a>
-        )}
-        {orderStep === 'details' ? (
-          <div className="shop-brand" aria-label="מאפיית יחד">
-            <img src={logoImage} alt="" decoding="async" />
-            <span className="shop-brand-copy">
-              <strong>מאפיית יחד</strong>
-            </span>
-          </div>
-        ) : (
-          <a className="shop-brand" href="/" aria-label="מאפיית יחד">
-            <img src={logoImage} alt="" decoding="async" />
-            <span className="shop-brand-copy">
-              <strong>מאפיית יחד</strong>
-            </span>
-          </a>
-        )}
-      </header>
+        </section>
+      )}
 
       <div className={`shop-layout ${orderStep === 'details' ? 'is-checkout-step' : ''}`}>
         {orderStep === 'catalog' ? (
-          <section className="shop-products" aria-labelledby="products-title">
-            <div className="shop-section-head">
-              <div>
-                <span className="shop-kicker">הזמנה אונליין</span>
-                <h1 id="products-title">מה תרצו להזמין?</h1>
-              </div>
-            </div>
+          <section className="shop-products" aria-label="תפריט מאפיית יחד">
 
             <div className="shop-category-tabs" aria-label="סינון קטגוריות">
               {categories.map((category) => (
@@ -468,19 +496,20 @@ export default function ShopPage() {
                   type="button"
                   onClick={() => setSelectedCategory(category)}
                 >
-                  {category}
+                  <span>{category}</span>
                 </button>
               ))}
             </div>
 
             <div className="shop-grid">
-              {visibleProducts.map((product) => (
+              {visibleProducts.map((product, index) => (
                 <article className="shop-product-card" key={product.id}>
                   <div className={`shop-product-media ${product.image_url ? 'has-product-image' : 'is-fallback-image'}`}>
                     <img
                       src={product.image_url || categoryImages[product.category] || categoryHosting}
                       alt=""
-                      loading={product.image_url ? 'lazy' : 'eager'}
+                      loading={product.image_url && index > 5 ? 'lazy' : 'eager'}
+                      fetchPriority={index < 4 ? 'high' : 'auto'}
                       decoding="async"
                     />
                   </div>
@@ -505,7 +534,7 @@ export default function ShopPage() {
             </div>
           </section>
         ) : (
-          <section className="shop-checkout-step" aria-labelledby="checkout-title">
+          <section className="shop-checkout-step" ref={checkoutStepRef} aria-labelledby="checkout-title">
             <div className="shop-checkout-card">
               <div className="shop-checkout-title">
                 <span className="shop-kicker">פרטי הזמנה</span>
@@ -744,10 +773,16 @@ export default function ShopPage() {
       </div>
 
       {cartCount > 0 && orderStep === 'catalog' && (
-        <button className="shop-mobile-cart-button" type="button" onClick={() => setCartOpen(true)}>
+        <button className="shop-mobile-cart-button" type="button" onClick={openCartPanel}>
           <Basket size={21} weight="bold" />
-          {`ההזמנה שלי · ${cartCount} פריטים · ${formatPrice(total)}`}
+          {`ההזמנה שלי · ${cartCountLabel} · ${formatPrice(total)}`}
         </button>
+      )}
+
+      {addToastVisible && orderStep === 'catalog' && (
+        <div className="shop-add-toast" role="status" aria-live="polite">
+          נוסף להזמנה
+        </div>
       )}
     </main>
   );
