@@ -1036,13 +1036,16 @@ function HomePage() {
     const updateStickyCtaZone = () => {
       rafId = 0;
       const categories = document.querySelector('#categories');
+      const hero = document.querySelector('#home');
       const categoryTop = categories
         ? categories.getBoundingClientRect().top + window.scrollY
         : window.innerHeight * 1.35;
-      const categoryRect = categories?.getBoundingClientRect();
-      const categoriesVisible = categoryRect ? categoryRect.top < window.innerHeight && categoryRect.bottom > 0 : false;
-      const showUntil = Math.max(0, categoryTop - window.innerHeight * 0.38);
-      const nearHero = window.scrollY < showUntil && !categoriesVisible;
+      const heroBottom = hero
+        ? hero.getBoundingClientRect().bottom + window.scrollY
+        : window.innerHeight;
+      const showAfter = Math.max(0, heroBottom - window.innerHeight * 0.12);
+      const showUntil = Math.max(showAfter, categoryTop + window.innerHeight * 1.2);
+      const nearHero = window.scrollY > showAfter && window.scrollY < showUntil;
 
       if (stickyCtaNearHeroRef.current !== nearHero) {
         stickyCtaNearHeroRef.current = nearHero;
