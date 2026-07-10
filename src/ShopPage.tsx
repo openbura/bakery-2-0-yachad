@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight,
   Basket,
   Copy,
+  ImageSquare,
   Minus,
   Plus,
   Storefront,
@@ -12,12 +13,6 @@ import {
 } from '@phosphor-icons/react';
 
 import catalog from '../product-catalog-yachad.json';
-import categoryBreads from './assets/bakery-2/cat-breads.webp';
-import categoryCakes from './assets/bakery-2/cat-cakes.webp';
-import categoryCoffee from './assets/bakery-2/cat-coffee.webp';
-import categoryHosting from './assets/bakery-2/cat-hosting.webp';
-import categoryPastries from './assets/bakery-2/cat-pastries.webp';
-import categorySavory from './assets/bakery-2/cat-savory.webp';
 import shopCoverImage from './assets/bakery-2/shop-cover-yachad.jpg';
 
 type Product = (typeof catalog.products)[number];
@@ -49,7 +44,20 @@ type CartItem = {
   unitPriceIls: number;
 };
 type FulfillmentType = 'pickup' | 'delivery';
+type ResidenceType = '' | 'building' | 'private-house';
 type OrderStep = 'catalog' | 'details';
+type CheckoutField =
+  | 'customerName'
+  | 'phone'
+  | 'cityId'
+  | 'street'
+  | 'houseNumber'
+  | 'residenceType'
+  | 'floor'
+  | 'apartment'
+  | 'notes'
+  | 'order';
+type CheckoutErrors = Partial<Record<CheckoutField, string>>;
 type DeliveryArea = {
   id: string;
   label: string;
@@ -62,19 +70,6 @@ const bakeryWhatsappNumber = '972502696267';
 const defaultDeliveryFeeIls = 15;
 const minimumDeliverySubtotalIls = 70;
 const minimumDeliverySubtotalText = '70₪';
-
-const categoryImages: Record<string, string> = {
-  'בורקסים': categoryPastries,
-  'פיצות וסמבוסק': categorySavory,
-  'סלטים': categoryHosting,
-  'כריכים וטוסטים': categorySavory,
-  'מתוקים': categoryPastries,
-  'לחמי מחמצת': categoryBreads,
-  'עוגות': categoryCakes,
-  'עוגיות': categoryCakes,
-  'לחמניות ובייגלים': categoryBreads,
-  'שתייה': categoryCoffee,
-};
 
 const ilsFormatter = new Intl.NumberFormat('he-IL', {
   style: 'currency',
@@ -119,6 +114,11 @@ const deliveryAreas: DeliveryArea[] = [
 
 function formatPrice(value: number) {
   return ilsFormatter.format(value);
+}
+
+function isValidIsraeliPhone(value: string) {
+  const digits = value.replace(/\D/g, '');
+  return /^0(?:5\d{8}|7\d{8}|[23489]\d{7})$/.test(digits);
 }
 
 function getProductDisplayPrice(product: ProductWithOptions) {
@@ -187,15 +187,6 @@ function hasProductOptions(product: ProductWithOptions) {
   return Boolean(product.option_groups?.some((group) => group.options.some((option) => option.active !== false)));
 }
 
-function getCartPriceLine(item: CartItem) {
-  const { product, quantity } = item;
-  const unitNote = getVisibleProductUnitNote(product);
-  const unitPriceIls = getCartItemUnitPrice(item);
-  const unitPrice = quantity > 1 ? `${formatPrice(unitPriceIls)} ליח׳` : formatPrice(unitPriceIls);
-  const totalText = quantity > 1 ? ` · סה״כ ${formatPrice(unitPriceIls * quantity)}` : '';
-
-  return unitPrice + (unitNote ? ` \u00b7 ${unitNote}` : '') + totalText;
-}
 function buildOrderSummary({
   cartItems,
   fulfillment,
@@ -205,6 +196,7 @@ function buildOrderSummary({
   cityLabel,
   street,
   houseNumber,
+  residenceType,
   entrance,
   floor,
   apartment,
@@ -221,6 +213,7 @@ function buildOrderSummary({
   cityLabel: string;
   street: string;
   houseNumber: string;
+  residenceType: ResidenceType;
   entrance: string;
   floor: string;
   apartment: string;
@@ -241,12 +234,18 @@ function buildOrderSummary({
   ];
 
   if (fulfillment === 'delivery') {
+    const residenceLabel = residenceType === 'building' ? 'בניין' : residenceType === 'private-house' ? 'בית פרטי' : 'לא נבחר';
+    lines.push(`סוג מגורים: ${residenceLabel}`);
     lines.push(`עיר: ${cityLabel || 'לא נבחרה'}`);
     lines.push(`רחוב: ${street || 'לא נמסר'}`);
     lines.push(`מספר בית: ${houseNumber || 'לא נמסר'}`);
-    lines.push(`כניסה: ${entrance || '-'}`);
-    lines.push(`קומה: ${floor || '-'}`);
-    lines.push(`דירה: ${apartment || '-'}`);
+    if (residenceType === 'building') {
+      if (entrance.trim()) {
+        lines.push(`כניסה: ${entrance.trim()}`);
+      }
+      lines.push(`קומה: ${floor}`);
+      lines.push(`דירה: ${apartment}`);
+    }
     if (selectedArea?.requiresConfirmation) {
       lines.push('אזור משלוח דורש בדיקה מול המאפייה');
     }
@@ -291,17 +290,23 @@ export default function ShopPage() {
   const [cityId, setCityId] = useState('kfar-saba');
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
+  const [residenceType, setResidenceType] = useState<ResidenceType>('building');
   const [entrance, setEntrance] = useState('');
   const [floor, setFloor] = useState('');
   const [apartment, setApartment] = useState('');
   const [notes, setNotes] = useState('');
   const [copyStatus, setCopyStatus] = useState('');
+  const [checkoutErrors, setCheckoutErrors] = useState<CheckoutErrors>({});
   const [minimumPromptVisible, setMinimumPromptVisible] = useState(false);
   const [addToastVisible, setAddToastVisible] = useState(false);
+  const [categoryPickerOpen, setCategoryPickerOpen] = useState(false);
   const [customizingProduct, setCustomizingProduct] = useState<ProductWithOptions | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({});
   const [customizationError, setCustomizationError] = useState('');
   const checkoutStepRef = useRef<HTMLElement | null>(null);
+  const categoryPickerRef = useRef<HTMLElement | null>(null);
+  const categoryPickerTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const categoryPickerCloseRef = useRef<HTMLButtonElement | null>(null);
 
   const categories = useMemo(() => [allCategory, ...Array.from(new Set(products.map((product) => product.category)))], []);
   const visibleProducts = selectedCategory === allCategory
@@ -319,7 +324,11 @@ export default function ShopPage() {
   const deliveryMinimumMissing = Math.max(0, minimumDeliverySubtotalIls - subtotal);
   const deliveryAddressReady =
     fulfillment === 'pickup' ||
-    (cityId.trim().length > 0 && street.trim().length > 1 && houseNumber.trim().length > 0);
+    (cityId.trim().length > 0 &&
+      street.trim().length > 1 &&
+      houseNumber.trim().length > 0 &&
+      residenceType.length > 0 &&
+      (residenceType === 'private-house' || (floor.trim().length > 0 && apartment.trim().length > 0)));
   const orderSummary = buildOrderSummary({
     cartItems,
     fulfillment,
@@ -329,6 +338,7 @@ export default function ShopPage() {
     cityLabel: selectedArea?.label ?? '',
     street,
     houseNumber,
+    residenceType,
     entrance,
     floor,
     apartment,
@@ -340,17 +350,12 @@ export default function ShopPage() {
   const canSendOrder =
     cartItems.length > 0 &&
     customerName.trim().length > 1 &&
-    phone.trim().length >= 8 &&
+    isValidIsraeliPhone(phone) &&
     deliveryAddressReady &&
+    notes.trim().length > 0 &&
     !deliveryMinimumNotMet;
   const canAttemptContinue = cartItems.length > 0;
   const whatsappHref = `https://wa.me/${bakeryWhatsappNumber}?text=${encodeURIComponent(orderSummary)}`;
-  const checkoutTitle = fulfillment === 'delivery' ? 'פרטי משלוח' : 'פרטי איסוף';
-  const checkoutSubtitle =
-    fulfillment === 'delivery'
-      ? 'נשלים כתובת וטלפון לשליחת ההזמנה למאפייה.'
-      : 'נשלים פרטי קשר והערות, בלי כתובת למשלוח.';
-
   useEffect(() => {
     if (!addToastVisible) {
       return undefined;
@@ -360,6 +365,48 @@ export default function ShopPage() {
 
     return () => window.clearTimeout(timeout);
   }, [addToastVisible]);
+
+  useEffect(() => {
+    if (!categoryPickerOpen) {
+      return undefined;
+    }
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const categoryPickerTrigger = categoryPickerTriggerRef.current;
+    document.body.style.overflow = 'hidden';
+    window.requestAnimationFrame(() => categoryPickerCloseRef.current?.focus());
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setCategoryPickerOpen(false);
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusable = categoryPickerRef.current?.querySelectorAll<HTMLElement>('button:not([disabled])');
+        if (!focusable?.length) {
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
+      categoryPickerTrigger?.focus();
+    };
+  }, [categoryPickerOpen]);
 
   useEffect(() => {
     if (orderStep !== 'details') {
@@ -381,7 +428,7 @@ export default function ShopPage() {
     }
 
     window.requestAnimationFrame(() => {
-      document.querySelector('.shop-minimum-popover, #shop-minimum-hint')?.scrollIntoView({
+      document.querySelector('#shop-minimum-hint')?.scrollIntoView({
         block: 'nearest',
         behavior: 'smooth',
       });
@@ -398,7 +445,9 @@ export default function ShopPage() {
             type="radio"
             onChange={() => {
               setFulfillment('delivery');
+              setResidenceType((current) => current || 'building');
               setMinimumPromptVisible(false);
+              setCheckoutErrors((current) => ({ ...current, order: undefined }));
             }}
           />
           <Truck size={19} weight="bold" />
@@ -411,7 +460,23 @@ export default function ShopPage() {
             type="radio"
             onChange={() => {
               setFulfillment('pickup');
+              setCityId('');
+              setStreet('');
+              setHouseNumber('');
+              setEntrance('');
+              setFloor('');
+              setApartment('');
               setMinimumPromptVisible(false);
+              setCheckoutErrors((current) => ({
+                ...current,
+                cityId: undefined,
+                street: undefined,
+                houseNumber: undefined,
+                residenceType: undefined,
+                floor: undefined,
+                apartment: undefined,
+                order: undefined,
+              }));
             }}
           />
           <Storefront size={19} weight="bold" />
@@ -451,6 +516,7 @@ export default function ShopPage() {
     setOrderStep('details');
     setCartOpen(false);
     setCopyStatus('');
+    setCheckoutErrors({});
     setMinimumPromptVisible(false);
   };
 
@@ -458,6 +524,7 @@ export default function ShopPage() {
     setOrderStep('catalog');
     setCartOpen(false);
     setCopyStatus('');
+    setCheckoutErrors({});
     scrollShopTop();
   };
 
@@ -638,6 +705,98 @@ export default function ShopPage() {
     }
   };
 
+  const clearCheckoutError = (field: CheckoutField) => {
+    setCheckoutErrors((current) => (current[field] ? { ...current, [field]: undefined } : current));
+  };
+
+  const validateCheckout = () => {
+    const nextErrors: CheckoutErrors = {};
+
+    if (customerName.trim().length < 2) {
+      nextErrors.customerName = 'כתבו שם מלא.';
+    }
+
+    if (!isValidIsraeliPhone(phone)) {
+      nextErrors.phone = 'כתבו מספר טלפון ישראלי תקין.';
+    }
+
+    if (fulfillment === 'delivery') {
+      if (!cityId) {
+        nextErrors.cityId = 'בחרו עיר.';
+      }
+      if (street.trim().length < 2) {
+        nextErrors.street = 'כתבו את שם הרחוב.';
+      }
+      if (!houseNumber.trim()) {
+        nextErrors.houseNumber = 'כתבו מספר בית.';
+      }
+      if (!residenceType) {
+        nextErrors.residenceType = 'בחרו בניין או בית פרטי.';
+      }
+      if (residenceType === 'building') {
+        if (!floor.trim()) {
+          nextErrors.floor = 'כתבו קומה.';
+        }
+        if (!apartment.trim()) {
+          nextErrors.apartment = 'כתבו מספר דירה.';
+        }
+      }
+      if (subtotal < minimumDeliverySubtotalIls) {
+        nextErrors.order = `מינימום הזמנה למשלוח הוא ${minimumDeliverySubtotalText}.`;
+      }
+    }
+
+    if (!notes.trim()) {
+      nextErrors.notes = 'כתבו הערות להזמנה.';
+    }
+
+    if (!cartItems.length) {
+      nextErrors.order = 'ההזמנה שלך ריקה.';
+    }
+
+    setCheckoutErrors(nextErrors);
+
+    const fieldOrder: CheckoutField[] = [
+      'customerName',
+      'phone',
+      'cityId',
+      'street',
+      'houseNumber',
+      'residenceType',
+      'floor',
+      'apartment',
+      'notes',
+      'order',
+    ];
+    const firstInvalidField = fieldOrder.find((field) => nextErrors[field]);
+    if (firstInvalidField) {
+      window.requestAnimationFrame(() => {
+        const target = document.getElementById(`checkout-${firstInvalidField}`);
+        target?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        target?.focus({ preventScroll: true });
+      });
+    }
+
+    return !firstInvalidField;
+  };
+
+  const submitOrderToWhatsapp = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!validateCheckout()) {
+      return;
+    }
+
+    window.open(whatsappHref, '_blank', 'noopener,noreferrer');
+  };
+
+  const renderCheckoutError = (field: CheckoutField) => (
+    checkoutErrors[field] ? (
+      <span className="shop-field-error" id={`checkout-${field}-error`} role="alert">
+        {checkoutErrors[field]}
+      </span>
+    ) : null
+  );
+
   return (
     <main className={`shop-shell ${orderStep === 'details' ? 'is-details-step' : ''}`} dir="rtl">
       {orderStep === 'details' && (
@@ -651,6 +810,7 @@ export default function ShopPage() {
 
       {orderStep === 'catalog' && (
         <section className="shop-cover" aria-label="מאפיית יחד - מאפים טריים כל יום">
+          <h1 className="shop-sr-only">הזמנה אונליין ממאפיית יחד</h1>
           <img src={shopCoverImage} alt="מאפיית יחד - טרי, איכותי, מהלב. מאפים טריים, כל יום, באהבה." decoding="async" />
           <a className="shop-cover-link" href="/">
             <ArrowRight size={19} weight="bold" />
@@ -663,75 +823,173 @@ export default function ShopPage() {
         {orderStep === 'catalog' ? (
           <section className="shop-products" aria-label="תפריט מאפיית יחד">
 
-            <div className="shop-category-tabs" aria-label="סינון קטגוריות">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className={selectedCategory === category ? 'is-active' : undefined}
-                  type="button"
-                  onClick={() => setSelectedCategory(category)}
-                >
-                  <span>{category}</span>
-                </button>
-              ))}
+            <div className="shop-category-nav">
+              <div className="shop-category-tabs" aria-label="סינון קטגוריות">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    className={selectedCategory === category ? 'is-active' : undefined}
+                    type="button"
+                    aria-pressed={selectedCategory === category}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    <span>{category}</span>
+                  </button>
+                ))}
+              </div>
+              <button
+                className="shop-category-picker-trigger"
+                ref={categoryPickerTriggerRef}
+                type="button"
+                aria-expanded={categoryPickerOpen}
+                aria-controls="shop-category-picker"
+                onClick={() => setCategoryPickerOpen(true)}
+              >
+                כל הקטגוריות
+              </button>
             </div>
 
             <div className="shop-grid">
-              {visibleProducts.map((product, index) => (
-                <article className="shop-product-card" key={product.id}>
-                  <div className={`shop-product-media ${product.image_url ? 'has-product-image' : 'is-fallback-image'}`}>
-                    <img
-                      src={product.image_url || categoryImages[product.category] || categoryHosting}
-                      alt=""
-                      loading={product.image_url && index > 5 ? 'lazy' : 'eager'}
-                      fetchPriority={index < 4 ? 'high' : 'auto'}
-                      decoding="async"
-                    />
-                  </div>
-                  <div className="shop-product-body">
-                    <div>
-                      <h3>{product.product_name}</h3>
-                      {product.description ? <p>{product.description}</p> : null}
+              {visibleProducts.map((product, index) => {
+                const itemId = makeCartItemId(product);
+                const cartItem = cart[itemId];
+                const productHasOptions = hasProductOptions(product);
+                const displayPrice = getProductDisplayPrice(product);
+
+                return (
+                  <article className="shop-product-card" key={product.id}>
+                    <div className={`shop-product-media ${product.image_url ? 'has-product-image' : 'is-missing-image'}`}>
+                      {product.image_url ? (
+                        <img
+                          src={product.image_url}
+                          alt={product.product_name}
+                          loading={index > 5 ? 'lazy' : 'eager'}
+                          fetchPriority={index < 4 ? 'high' : 'auto'}
+                          decoding="async"
+                        />
+                      ) : (
+                        <div className="shop-product-placeholder" aria-label={`אין עדיין תמונה עבור ${product.product_name}`}>
+                          <ImageSquare size={30} weight="light" aria-hidden="true" />
+                          <span>תמונה תתווסף בקרוב</span>
+                        </div>
+                      )}
                     </div>
-                    <div className="shop-product-foot">
-                      <div className="shop-price-stack">
-                        <strong><bdi>{getProductDisplayPrice(product)}</bdi></strong>
-                        {getVisibleProductUnitNote(product) && <span><bdi>{getVisibleProductUnitNote(product)}</bdi></span>}
+                    <div className="shop-product-body">
+                      <div className="shop-product-copy">
+                        <h3>{product.product_name}</h3>
+                        {product.description ? <p>{product.description}</p> : null}
                       </div>
-                      <button type="button" onClick={() => addToCart(product)}>
-                        <Plus size={18} weight="bold" />
-                        הוספה
-                      </button>
+                      <div className="shop-product-foot">
+                        <div className="shop-price-stack">
+                          <strong dir="ltr" aria-label={displayPrice}>
+                            <span className="shop-price-currency" aria-hidden="true">₪</span>
+                            <bdi className="shop-price-amount" dir="ltr">{displayPrice.replace('₪', '').trim()}</bdi>
+                          </strong>
+                          {getVisibleProductUnitNote(product) && <span><bdi>{getVisibleProductUnitNote(product)}</bdi></span>}
+                        </div>
+                        {cartItem && !productHasOptions ? (
+                          <div className="shop-card-quantity" aria-label={`כמות ${product.product_name}`}>
+                            <button
+                              type="button"
+                              aria-label={`הפחתת ${product.product_name}`}
+                              onClick={() => updateQuantity(itemId, cartItem.quantity - 1)}
+                            >
+                              <Minus size={16} weight="bold" />
+                            </button>
+                            <span aria-live="polite">{cartItem.quantity}</span>
+                            <button
+                              type="button"
+                              aria-label={`הוספת ${product.product_name}`}
+                              onClick={() => updateQuantity(itemId, cartItem.quantity + 1)}
+                            >
+                              <Plus size={16} weight="bold" />
+                            </button>
+                          </div>
+                        ) : (
+                          <button className="shop-add-button" type="button" onClick={() => addToCart(product)}>
+                            <Plus size={18} weight="bold" />
+                            הוספה
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           </section>
         ) : (
           <section className="shop-checkout-step" ref={checkoutStepRef} aria-labelledby="checkout-title">
             <div className="shop-checkout-card">
               <div className="shop-checkout-title">
-                <span className="shop-kicker">פרטי הזמנה</span>
-                <h1 id="checkout-title">{checkoutTitle}</h1>
-                <p>{checkoutSubtitle}</p>
+                <h1 id="checkout-title">פרטי ההזמנה</h1>
               </div>
 
-              <form className="shop-checkout-form shop-checkout-form--page">
+              <div className="shop-checkout-overview" aria-label="סיכום ההזמנה">
+                <div className="shop-checkout-overview-head">
+                  <span>סיכום ההזמנה</span>
+                  <strong><bdi>{formatPrice(total)}</bdi></strong>
+                </div>
+                <div className="shop-checkout-overview-meta">
+                  <span>{cartCountLabel}</span>
+                  <span>סכום ביניים <bdi>{formatPrice(subtotal)}</bdi></span>
+                  <span>{fulfillment === 'delivery' ? `משלוח ${formatPrice(deliveryFee)}` : 'איסוף עצמי'}</span>
+                </div>
+              </div>
+
+              <form
+                className="shop-checkout-form shop-checkout-form--page"
+                id="shop-checkout-form"
+                noValidate
+                onSubmit={submitOrderToWhatsapp}
+              >
                 <div className="shop-form-panel shop-form-panel--fulfillment">
+                  <div className="shop-form-title">אופן קבלה</div>
                   {renderFulfillmentSelector('form')}
                 </div>
 
                 <div className="shop-form-panel">
-                  <div className="shop-form-title">פרטי לקוח</div>
+                  <div className="shop-form-title">פרטי קשר</div>
                   <div className="shop-form-grid shop-form-grid--customer">
-                    <label>
-                      שם מלא
-                      <input value={customerName} onChange={(event) => setCustomerName(event.target.value)} placeholder="שם המזמין/ה" />
+                    <label htmlFor="checkout-customerName">
+                      <span className="shop-field-label">שם מלא <span aria-hidden="true">*</span></span>
+                      <input
+                        id="checkout-customerName"
+                        name="customerName"
+                        value={customerName}
+                        onChange={(event) => {
+                          setCustomerName(event.target.value);
+                          clearCheckoutError('customerName');
+                        }}
+                        placeholder="שם המזמין/ה"
+                        autoComplete="name"
+                        aria-invalid={Boolean(checkoutErrors.customerName)}
+                        aria-describedby={checkoutErrors.customerName ? 'checkout-customerName-error' : undefined}
+                        aria-required="true"
+                        required
+                      />
+                      {renderCheckoutError('customerName')}
                     </label>
-                    <label>
-                      טלפון
-                      <input value={phone} onChange={(event) => setPhone(event.target.value)} inputMode="tel" placeholder="050-0000000" />
+                    <label htmlFor="checkout-phone">
+                      <span className="shop-field-label">טלפון <span aria-hidden="true">*</span></span>
+                      <input
+                        id="checkout-phone"
+                        name="phone"
+                        type="tel"
+                        value={phone}
+                        onChange={(event) => {
+                          setPhone(event.target.value);
+                          clearCheckoutError('phone');
+                        }}
+                        inputMode="tel"
+                        autoComplete="tel-national"
+                        placeholder="050-0000000"
+                        aria-invalid={Boolean(checkoutErrors.phone)}
+                        aria-describedby={checkoutErrors.phone ? 'checkout-phone-error' : undefined}
+                        aria-required="true"
+                        required
+                      />
+                      {renderCheckoutError('phone')}
                     </label>
                   </div>
                 </div>
@@ -740,14 +998,22 @@ export default function ShopPage() {
                   <div className="shop-form-panel shop-form-panel--address">
                     <div className="shop-form-title">כתובת למשלוח</div>
                     <div className="shop-form-grid shop-form-grid--address-main">
-                        <label>
-                          עיר
+                        <label htmlFor="checkout-cityId">
+                          <span className="shop-field-label">עיר <span aria-hidden="true">*</span></span>
                           <select
+                            id="checkout-cityId"
+                            name="city"
                             value={cityId}
                             onChange={(event) => {
                               setCityId(event.target.value);
                               setStreet('');
+                              clearCheckoutError('cityId');
+                              clearCheckoutError('street');
                             }}
+                            autoComplete="address-level2"
+                            aria-invalid={Boolean(checkoutErrors.cityId)}
+                            aria-describedby={checkoutErrors.cityId ? 'checkout-cityId-error' : undefined}
+                            aria-required="true"
                             required
                           >
                             <option value="">בחרו עיר</option>
@@ -757,56 +1023,172 @@ export default function ShopPage() {
                               </option>
                             ))}
                           </select>
+                          {renderCheckoutError('cityId')}
                         </label>
-                        <label>
-                          רחוב
+                        <label htmlFor="checkout-street">
+                          <span className="shop-field-label">רחוב <span aria-hidden="true">*</span></span>
                           <input
+                            id="checkout-street"
+                            name="street"
                             value={street}
-                            onChange={(event) => setStreet(event.target.value)}
+                            onChange={(event) => {
+                              setStreet(event.target.value);
+                              clearCheckoutError('street');
+                            }}
                             placeholder="שם הרחוב"
+                            autoComplete="address-line1"
                             disabled={!cityId}
+                            aria-invalid={Boolean(checkoutErrors.street)}
+                            aria-describedby={checkoutErrors.street ? 'checkout-street-error' : undefined}
+                            aria-required="true"
                             required
                           />
+                          {renderCheckoutError('street')}
                         </label>
                     </div>
                     {selectedArea?.requiresConfirmation && (
                       <p className="shop-warning">אזור זה ייבדק מול המאפייה לפני אישור משלוח.</p>
                     )}
-                    <div className="shop-address-grid">
-                      <label>
-                        מספר בית
-                        <input value={houseNumber} onChange={(event) => setHouseNumber(event.target.value)} inputMode="numeric" required />
+
+                    <fieldset className="shop-residence-field">
+                      <legend className="shop-field-label">סוג מגורים <span aria-hidden="true">*</span></legend>
+                      <div className="shop-choice-row" role="radiogroup" aria-describedby={checkoutErrors.residenceType ? 'checkout-residenceType-error' : undefined}>
+                        <label className={residenceType === 'building' ? 'is-selected' : undefined}>
+                          <input
+                            id="checkout-residenceType"
+                            checked={residenceType === 'building'}
+                            name="residenceType"
+                            type="radio"
+                            value="building"
+                            onChange={() => {
+                              setResidenceType('building');
+                              clearCheckoutError('residenceType');
+                            }}
+                            aria-invalid={Boolean(checkoutErrors.residenceType)}
+                            aria-required="true"
+                            required
+                          />
+                          בניין
+                        </label>
+                        <label className={residenceType === 'private-house' ? 'is-selected' : undefined}>
+                          <input
+                            id="checkout-residenceType-private"
+                            checked={residenceType === 'private-house'}
+                            name="residenceType"
+                            type="radio"
+                            value="private-house"
+                            onChange={() => {
+                              setResidenceType('private-house');
+                              setEntrance('');
+                              setFloor('');
+                              setApartment('');
+                              setCheckoutErrors((current) => ({
+                                ...current,
+                                residenceType: undefined,
+                                floor: undefined,
+                                apartment: undefined,
+                              }));
+                            }}
+                            aria-invalid={Boolean(checkoutErrors.residenceType)}
+                            aria-required="true"
+                            required
+                          />
+                          בית פרטי
+                        </label>
+                      </div>
+                      {renderCheckoutError('residenceType')}
+                    </fieldset>
+
+                    <div className={`shop-address-grid ${residenceType === 'building' ? '' : 'is-private-house'}`}>
+                      <label htmlFor="checkout-houseNumber">
+                        <span className="shop-field-label">מספר בית <span aria-hidden="true">*</span></span>
+                        <input
+                          id="checkout-houseNumber"
+                          name="houseNumber"
+                          value={houseNumber}
+                          onChange={(event) => {
+                            setHouseNumber(event.target.value);
+                            clearCheckoutError('houseNumber');
+                          }}
+                          inputMode="text"
+                          autoComplete="address-line2"
+                          placeholder="מספר"
+                          aria-invalid={Boolean(checkoutErrors.houseNumber)}
+                          aria-describedby={checkoutErrors.houseNumber ? 'checkout-houseNumber-error' : undefined}
+                          aria-required="true"
+                          required
+                        />
+                        {renderCheckoutError('houseNumber')}
                       </label>
-                      <label>
-                        כניסה
-                        <input value={entrance} onChange={(event) => setEntrance(event.target.value)} placeholder="א / ב / ג" />
-                      </label>
-                      <label>
-                        קומה
-                        <input value={floor} onChange={(event) => setFloor(event.target.value)} inputMode="numeric" />
-                      </label>
-                      <label>
-                        דירה
-                        <input value={apartment} onChange={(event) => setApartment(event.target.value)} inputMode="numeric" />
-                      </label>
+                      {residenceType === 'building' && (
+                        <>
+                          <label htmlFor="checkout-entrance">
+                            כניסה — לא חובה
+                            <input id="checkout-entrance" name="entrance" value={entrance} onChange={(event) => setEntrance(event.target.value)} placeholder="א / ב" />
+                          </label>
+                          <label htmlFor="checkout-floor">
+                            <span className="shop-field-label">קומה <span aria-hidden="true">*</span></span>
+                            <input
+                              id="checkout-floor"
+                              name="floor"
+                              value={floor}
+                              onChange={(event) => {
+                                setFloor(event.target.value);
+                                clearCheckoutError('floor');
+                              }}
+                              inputMode="text"
+                              placeholder="2 או קרקע"
+                              aria-invalid={Boolean(checkoutErrors.floor)}
+                              aria-describedby={checkoutErrors.floor ? 'checkout-floor-error' : undefined}
+                              aria-required="true"
+                              required={residenceType === 'building'}
+                            />
+                            {renderCheckoutError('floor')}
+                          </label>
+                          <label htmlFor="checkout-apartment">
+                            <span className="shop-field-label">דירה <span aria-hidden="true">*</span></span>
+                            <input
+                              id="checkout-apartment"
+                              name="apartment"
+                              value={apartment}
+                              onChange={(event) => {
+                                setApartment(event.target.value);
+                                clearCheckoutError('apartment');
+                              }}
+                              inputMode="numeric"
+                              placeholder="מספר דירה"
+                              aria-invalid={Boolean(checkoutErrors.apartment)}
+                              aria-describedby={checkoutErrors.apartment ? 'checkout-apartment-error' : undefined}
+                              aria-required="true"
+                              required={residenceType === 'building'}
+                            />
+                            {renderCheckoutError('apartment')}
+                          </label>
+                        </>
+                      )}
                     </div>
                   </div>
-                ) : (
-                  <div className="shop-form-panel shop-form-panel--pickup">
-                    <div className="shop-form-title">איסוף עצמי</div>
-                    <p className="shop-field-note">אין צורך בכתובת לאיסוף עצמי.</p>
-                  </div>
-                )}
+                ) : null}
 
                 <div className="shop-form-panel">
-                  <label>
-                    הערות להזמנה
+                  <label htmlFor="checkout-notes">
+                    <span className="shop-field-label">הערות להזמנה <span aria-hidden="true">*</span></span>
                     <textarea
+                      id="checkout-notes"
+                      name="notes"
                       value={notes}
-                      onChange={(event) => setNotes(event.target.value)}
+                      onChange={(event) => {
+                        setNotes(event.target.value);
+                        clearCheckoutError('notes');
+                      }}
                       placeholder="קוד בלובי, להשאיר מחוץ לדלת, להתקשר כשמגיעים"
+                      aria-invalid={Boolean(checkoutErrors.notes)}
+                      aria-describedby={checkoutErrors.notes ? 'checkout-notes-error' : undefined}
+                      aria-required="true"
+                      required
                       rows={3}
                     />
+                    {renderCheckoutError('notes')}
                   </label>
                 </div>
               </form>
@@ -825,20 +1207,26 @@ export default function ShopPage() {
             </button>
           </div>
 
-          {orderStep === 'catalog' && renderFulfillmentSelector('summary')}
-
           <div className="shop-cart-scroll">
             {cartItems.length ? (
               <div className="shop-cart-items">
                 {cartItems.map((item) => {
                   const { id, product, quantity } = item;
                   const selectionGroups = getSelectionGroups(item.selections);
+                  const unitPrice = getCartItemUnitPrice(item);
+                  const unitNote = getVisibleProductUnitNote(product);
+                  const itemMeta = [quantity > 1 ? `${formatPrice(unitPrice)} ליח׳` : '', unitNote]
+                    .filter(Boolean)
+                    .join(' · ');
 
                   return (
                     <div className="shop-cart-item" key={id}>
-                      <div>
-                        <strong>{product.product_name}</strong>
-                        <span><bdi>{getCartPriceLine(item)}</bdi></span>
+                      <div className="shop-cart-item-content">
+                        <div className="shop-cart-item-top">
+                          <strong className="shop-cart-item-name">{product.product_name}</strong>
+                          <strong className="shop-cart-line-total"><bdi>{formatPrice(unitPrice * quantity)}</bdi></strong>
+                        </div>
+                        {itemMeta && <span className="shop-cart-item-meta"><bdi>{itemMeta}</bdi></span>}
                         {Object.keys(selectionGroups).length > 0 && (
                           <div className="shop-cart-options" aria-label="בחירות למוצר">
                             {Object.entries(selectionGroups).map(([groupName, selections]) => (
@@ -849,21 +1237,23 @@ export default function ShopPage() {
                           </div>
                         )}
                       </div>
-                      <div className="shop-quantity">
-                        <button type="button" onClick={() => updateQuantity(id, quantity - 1)} aria-label="הפחת כמות">
-                          <Minus size={16} weight="bold" />
-                        </button>
-                        <span>{quantity}</span>
-                        <button type="button" onClick={() => updateQuantity(id, quantity + 1)} aria-label="הוסף כמות">
-                          <Plus size={16} weight="bold" />
-                        </button>
+                      <div className="shop-cart-item-actions">
+                        <div className="shop-quantity" aria-label={`כמות ${product.product_name}`}>
+                          <button type="button" onClick={() => updateQuantity(id, quantity - 1)} aria-label={`הפחתת ${product.product_name}`}>
+                            <Minus size={16} weight="bold" />
+                          </button>
+                          <span aria-live="polite">{quantity}</span>
+                          <button type="button" onClick={() => updateQuantity(id, quantity + 1)} aria-label={`הוספת ${product.product_name}`}>
+                            <Plus size={16} weight="bold" />
+                          </button>
+                        </div>
                         <button
                           className="shop-remove-item"
                           type="button"
                           onClick={() => updateQuantity(id, 0)}
-                          aria-label="הסר מוצר"
+                          aria-label={`הסרת ${product.product_name}`}
                         >
-                          הסר
+                          הסרה
                         </button>
                       </div>
                     </div>
@@ -872,95 +1262,149 @@ export default function ShopPage() {
               </div>
             ) : (
               <div className="shop-empty-cart">
-                <strong>הסל שלך ריק</strong>
+                <strong>ההזמנה שלך ריקה</strong>
               </div>
             )}
           </div>
 
           {cartItems.length > 0 && (
-            <div className="shop-totals" aria-live="polite">
-              <div>
-                <span>סכום ביניים</span>
-                <strong>{formatPrice(subtotal)}</strong>
-              </div>
-              <div>
-                <span>דמי משלוח</span>
-                <strong>{formatPrice(deliveryFee)}</strong>
-              </div>
-              {fulfillment === 'delivery' && (
-                <div className="shop-rule-line">
-                  <span>מינימום הזמנה למשלוח:</span>
-                  <strong>{minimumDeliverySubtotalText}</strong>
-                </div>
-              )}
-              <div className="shop-total-line">
-                <span>סה״כ הזמנה</span>
-                <strong>{formatPrice(total)}</strong>
-              </div>
-              {deliveryMinimumNotMet && (
-                <p className="shop-minimum-note" id="shop-minimum-hint">
-                  <strong>מינימום הזמנה למשלוח הוא {minimumDeliverySubtotalText}</strong>
-                  <span>הוסיפו עוד {formatPrice(deliveryMinimumMissing)} כדי להמשיך למשלוח</span>
-                </p>
-              )}
-            </div>
-          )}
+            <div className="shop-cart-summary">
+              {orderStep === 'catalog' && renderFulfillmentSelector('summary')}
 
-          {orderStep === 'catalog' ? (
-            <div className="shop-summary-actions">
-              <button
-                className={`shop-continue-button ${deliveryMinimumNotMet ? 'is-blocked-by-minimum' : ''}`}
-                type="button"
-                onClick={goToOrderDetails}
-                disabled={!canAttemptContinue}
-                aria-describedby={deliveryMinimumNotMet ? 'shop-minimum-hint' : undefined}
-              >
-                המשך לפרטי הזמנה
-              </button>
-              {minimumPromptVisible && deliveryMinimumNotMet && (
-                <div className="shop-minimum-popover" role="status" aria-live="polite">
-                  <strong>חסרים עוד {formatPrice(deliveryMinimumMissing)} להזמנת מינימום</strong>
-                  <span>בחרו פריט נוסף כדי להמשיך למשלוח.</span>
+              <div className="shop-totals" aria-live="polite">
+                <div className="shop-totals-row">
+                  <span>סכום ביניים</span>
+                  <strong>{formatPrice(subtotal)}</strong>
+                </div>
+                <div className="shop-totals-row">
+                  <span>דמי משלוח</span>
+                  <strong>{formatPrice(deliveryFee)}</strong>
+                </div>
+                {deliveryMinimumNotMet && (
+                  <p
+                    className={`shop-minimum-note ${minimumPromptVisible ? 'is-emphasized' : ''}`}
+                    id="shop-minimum-hint"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <strong>מינימום הזמנה למשלוח הוא {minimumDeliverySubtotalText}</strong>
+                    <span>חסרים עוד {formatPrice(deliveryMinimumMissing)} כדי להמשיך</span>
+                  </p>
+                )}
+                <div className="shop-total-line">
+                  <span>סה״כ הזמנה</span>
+                  <strong>{formatPrice(total)}</strong>
+                </div>
+              </div>
+
+              {orderStep === 'catalog' ? (
+                <div className="shop-summary-actions">
+                  <button
+                    className={`shop-continue-button ${deliveryMinimumNotMet ? 'is-blocked-by-minimum' : ''}`}
+                    type="button"
+                    onClick={goToOrderDetails}
+                    aria-disabled={deliveryMinimumNotMet}
+                    aria-describedby={deliveryMinimumNotMet ? 'shop-minimum-hint' : undefined}
+                  >
+                    המשך לפרטי הזמנה
+                  </button>
+                </div>
+              ) : (
+                <div className="shop-actions">
+                  <button
+                    className="shop-whatsapp-button"
+                    type="button"
+                    onClick={() => {
+                      const checkoutForm = document.getElementById('shop-checkout-form');
+                      if (checkoutForm instanceof HTMLFormElement) {
+                        checkoutForm.requestSubmit();
+                      }
+                    }}
+                    aria-describedby={checkoutErrors.order ? 'checkout-order' : 'checkout-whatsapp-helper'}
+                  >
+                    <WhatsappLogo size={21} weight="bold" />
+                    שליחת ההזמנה בוואטסאפ
+                  </button>
+                  <p className="shop-whatsapp-helper" id="checkout-whatsapp-helper">
+                    ההזמנה תישלח למאפייה לאישור.
+                  </p>
+                  {checkoutErrors.order && (
+                    <p className="shop-field-error shop-order-error" id="checkout-order" role="alert" tabIndex={-1}>
+                      {checkoutErrors.order}
+                    </p>
+                  )}
+                  <button className="shop-copy-button" type="button" onClick={copyOrderSummary} disabled={!canSendOrder}>
+                    <Copy size={18} weight="bold" />
+                    העתקת הזמנה
+                  </button>
+                  {copyStatus && <span className="shop-copy-status">{copyStatus}</span>}
                 </div>
               )}
-            </div>
-          ) : (
-            <div className="shop-actions">
-              <a
-                className={`shop-whatsapp-button ${canSendOrder ? '' : 'is-disabled'}`}
-                href={canSendOrder ? whatsappHref : '#'}
-                target="_blank"
-                rel="noreferrer"
-                aria-disabled={!canSendOrder}
-                onClick={(event) => {
-                  if (!canSendOrder) {
-                    event.preventDefault();
-                  }
-                }}
-              >
-                <WhatsappLogo size={21} weight="bold" />
-                שליחת הזמנה בוואטסאפ
-              </a>
-              <button className="shop-copy-button" type="button" onClick={copyOrderSummary} disabled={!canSendOrder}>
-                <Copy size={18} weight="bold" />
-                העתקת הזמנה
-              </button>
-              {copyStatus && <span className="shop-copy-status">{copyStatus}</span>}
             </div>
           )}
         </aside>
       </div>
 
       {cartCount > 0 && orderStep === 'catalog' && (
-        <button className="shop-mobile-cart-button" type="button" onClick={openCartPanel}>
+        <button
+          className="shop-mobile-cart-button"
+          type="button"
+          onClick={openCartPanel}
+          aria-label={`ההזמנה שלי, ${cartCountLabel}, סך משוער ${formatPrice(total)}`}
+        >
           <Basket size={21} weight="bold" />
-          {`ההזמנה שלי · ${cartCountLabel} · ${formatPrice(total)}`}
+          <span className="shop-mobile-cart-title">ההזמנה שלי</span>
+          <span className="shop-mobile-cart-meta">{cartCountLabel} · <bdi>{formatPrice(total)}</bdi></span>
         </button>
       )}
 
       {addToastVisible && orderStep === 'catalog' && (
         <div className="shop-add-toast" role="status" aria-live="polite">
           נוסף להזמנה
+        </div>
+      )}
+
+      {categoryPickerOpen && orderStep === 'catalog' && (
+        <div
+          className="shop-category-picker-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setCategoryPickerOpen(false);
+            }
+          }}
+        >
+          <section
+            className="shop-category-picker"
+            ref={categoryPickerRef}
+            id="shop-category-picker"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="shop-category-picker-title"
+          >
+            <div className="shop-category-picker-head">
+              <h2 id="shop-category-picker-title">כל הקטגוריות</h2>
+              <button ref={categoryPickerCloseRef} type="button" onClick={() => setCategoryPickerOpen(false)} aria-label="סגירת רשימת קטגוריות">
+                <X size={20} weight="bold" />
+              </button>
+            </div>
+            <div className="shop-category-picker-list">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  className={selectedCategory === category ? 'is-active' : undefined}
+                  type="button"
+                  aria-pressed={selectedCategory === category}
+                  onClick={() => {
+                    setSelectedCategory(category);
+                    setCategoryPickerOpen(false);
+                  }}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </section>
         </div>
       )}
 

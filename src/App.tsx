@@ -2,20 +2,19 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { AnimatePresence, motion, type Variants, useReducedMotion } from 'framer-motion';
 import {
   Clock,
+  FireSimple,
   Grains,
-  Heart,
   InstagramLogo,
   List,
   MapPin,
   PhoneCall,
-  SealCheck,
   Storefront,
+  SunHorizon,
   WhatsappLogo,
   X,
 } from '@phosphor-icons/react';
 import './styles.css';
 
-import heroImage from './assets/bakery-2/hero-cinematic.webp';
 import logoImage from './assets/bakery-2/logo.webp';
 import categoryPastries from './assets/bakery-2/cat-pastries.webp';
 import categoryBreads from './assets/bakery-2/cat-breads.webp';
@@ -154,10 +153,9 @@ const freshImages = [
 ];
 
 const benefits = [
-  { label: 'חומרי גלם איכותיים', Icon: Grains },
-  { label: 'נאפה באהבה', Icon: Heart },
+  { label: 'נאפה במקום', Icon: FireSimple },
+  { label: 'טרי כל בוקר', Icon: SunHorizon },
   { label: 'מאפייה וקונדיטוריה בכפר סבא', Icon: Storefront },
-  { label: 'טרי כל בוקר', Icon: SealCheck },
 ];
 
 const hours = ['א׳-ה׳: 05:00-21:00', 'ו׳: 05:00-16:00', 'שבת: סגור'];
@@ -169,16 +167,6 @@ const headerReveal = {
 
 const reveal = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
-};
-
-const heroLogoReveal = {
-  hidden: { opacity: 0, y: 16, scale: 0.92 },
-  show: { opacity: 1, y: 0, scale: 1 },
-};
-
-const heroTextReveal = {
-  hidden: { opacity: 0, y: 26 },
   show: { opacity: 1, y: 0 },
 };
 
@@ -208,16 +196,6 @@ const stagger = {
     transition: {
       staggerChildren: 0.045,
       delayChildren: 0.035,
-    },
-  },
-};
-
-const heroStagger = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.13,
-      delayChildren: 0.18,
     },
   },
 };
@@ -1101,6 +1079,7 @@ function HomePage() {
           transition={quickTransition}
         >
           <a className="topbar-brand" href="#home" aria-label="מאפיית יחד">
+            <img src={logoImage} alt="" aria-hidden="true" />
             <span>מאפיית יחד</span>
           </a>
 
@@ -1116,12 +1095,6 @@ function HomePage() {
             <a className="topbar-order-link" href="/shop" aria-label="הזמנה אונליין">
               <Storefront size={20} weight="regular" />
               <span>הזמנה אונליין</span>
-            </a>
-            <a href={mapsHref} aria-label="נווטו למאפייה">
-              <MapPin size={20} weight="regular" />
-            </a>
-            <a href={instagramHref} aria-label="אינסטגרם מאפיית יחד" target="_blank" rel="noreferrer">
-              <InstagramLogo size={20} weight="regular" />
             </a>
             <button
               className="menu-toggle"
@@ -1161,18 +1134,7 @@ function HomePage() {
               >
                 <div className="mobile-menu__head">
                   <span>תפריט</span>
-                  <button type="button" aria-label="סגור תפריט" onClick={() => setMenuOpen(false)}>
-                    <X size={20} weight="bold" />
-                  </button>
                 </div>
-                <motion.a
-                  href="/shop"
-                  variants={mobileMenuItemVariants}
-                  onClick={() => setMenuOpen(false)}
-                  className="mobile-menu__shop-cta"
-                >
-                  הזמנה אונליין
-                </motion.a>
                 {navItems.map((item) => (
                   <motion.a
                     key={item.href}
@@ -1189,38 +1151,24 @@ function HomePage() {
           )}
         </AnimatePresence>
 
-        <section id="home" className="hero-panel">
-          <div className="hero-media" aria-hidden="true">
-            <img src={heroImage} alt="" decoding="async" fetchPriority="high" />
-          </div>
+        <section id="home" className="welcome-transition">
           <motion.div
-            className="hero-scrim"
-            aria-hidden="true"
-            initial={shouldSimplifyPageMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: shouldSimplifyPageMotion ? 0 : 1.15, ease: 'easeOut' }}
-          />
-
-          <motion.div className="hero-content" initial={initial} animate="show" variants={heroStagger}>
-            <motion.img
-              className="hero-logo"
-              src={logoImage}
-              alt="מאפיית יחד - האחים אופים באהבה"
-              decoding="async"
-              fetchPriority="high"
-              variants={heroLogoReveal}
-              transition={slowTransition}
-            />
-            <motion.p className="brand-kicker" variants={heroTextReveal} transition={transition}>
-              האחים אופים באהבה
-            </motion.p>
-            <motion.h1 variants={heroTextReveal} transition={transition}>
-              המאפייה של כפר סבא
+            className="welcome-transition__inner"
+            initial={initial}
+            whileInView="show"
+            viewport={{ once: true, amount: 0.45 }}
+            variants={stagger}
+          >
+            <motion.span className="section-mark" variants={reveal} transition={transition}>
+              מאפייה וקונדיטוריה בכפר סבא
+            </motion.span>
+            <motion.h1 variants={reveal} transition={transition}>
+              טרי מהתנור, בכל בוקר
             </motion.h1>
-            <motion.h2 variants={heroTextReveal} transition={slowTransition}>
-              מאפים טריים, לחמים, עוגות וקפה טוב. כל בוקר מהתנור.
-            </motion.h2>
-            <motion.div className="hero-actions" variants={buttonStagger}>
+            <motion.p variants={reveal} transition={transition}>
+              מאפים, לחמים, עוגות וקפה — במאפייה או בהזמנה אונליין.
+            </motion.p>
+            <motion.div className="welcome-transition__actions" variants={buttonStagger}>
               <motion.a
                 className="btn btn-primary"
                 href="/shop"
@@ -1234,18 +1182,7 @@ function HomePage() {
               </motion.a>
               <motion.a
                 className="btn btn-soft"
-                href={phoneHref}
-                variants={buttonReveal}
-                transition={quickTransition}
-                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
-                whileTap={{ scale: 0.985 }}
-              >
-                <PhoneCall size={20} weight="bold" />
-                התקשרו אלינו
-              </motion.a>
-              <motion.a
-                className="btn btn-soft"
-                href={whatsappHref}
+                href={mapsHref}
                 target="_blank"
                 rel="noreferrer"
                 variants={buttonReveal}
@@ -1253,8 +1190,8 @@ function HomePage() {
                 whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
                 whileTap={{ scale: 0.985 }}
               >
-                <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
-                וואטסאפ למאפייה
+                <MapPin size={20} weight="bold" />
+                בואו לבקר
               </motion.a>
             </motion.div>
           </motion.div>
@@ -1269,12 +1206,9 @@ function HomePage() {
             variants={reveal}
             transition={transition}
           >
-            <span className="section-mark">מאפייה וקונדיטוריה בכפר סבא</span>
+            <span className="section-mark">מאפים, לחמים, עוגות ועוד</span>
             <h2>מה תמצאו אצלנו</h2>
-            <p>
-              מאפייה וקונדיטוריה עם אפייה במקום, מוצרים טריים ומבחר שמתאים לבוקר, לצהריים,
-              לקפה או לאירוח.
-            </p>
+            <p>מבחר מהמאפייה לבוקר, לקפה, לאירוח או לקחת הביתה.</p>
           </motion.div>
 
           <motion.div
@@ -1314,7 +1248,6 @@ function HomePage() {
             variants={reveal}
             transition={transition}
           >
-            <h3>ראיתם משהו טעים?</h3>
             <motion.a
               className="btn btn-primary"
               href="/shop"
@@ -1322,7 +1255,7 @@ function HomePage() {
               whileTap={{ scale: 0.985 }}
             >
               <Storefront size={20} weight="bold" />
-              עברו להזמנה אונליין
+              לכל המוצרים והזמנות
             </motion.a>
           </motion.div>
         </section>
@@ -1418,72 +1351,80 @@ function HomePage() {
               מחכים לכם במאפיית יחד, היוצרים 3, כפר סבא.
             </motion.p>
 
-            <motion.div className="contact-list" variants={stagger}>
-              <motion.a href={mapsHref} target="_blank" rel="noreferrer" variants={contactItemReveal} transition={transition}>
-                <MapPin size={24} weight="regular" />
-                <span>היוצרים 3, כפר סבא</span>
-              </motion.a>
-              <motion.a href={phoneHref} variants={contactItemReveal} transition={transition}>
-                <PhoneCall size={24} weight="regular" />
-                <span>050-2696267</span>
-              </motion.a>
-              <motion.a
-                href={instagramHref}
-                target="_blank"
-                rel="noreferrer"
-                variants={contactItemReveal}
-                transition={transition}
-              >
-                <InstagramLogo size={24} weight="regular" />
-                <span dir="ltr">@yachad_bakery</span>
-              </motion.a>
-              <motion.div variants={contactItemReveal} transition={transition}>
-                <Clock size={24} weight="regular" />
-                <span>
-                  שעות פתיחה
+            <motion.div className="visit-content" variants={stagger}>
+              <div className="visit-details-group">
+                <motion.h3 variants={buttonReveal} transition={transition}>פרטי קשר</motion.h3>
+                <motion.div className="contact-list" variants={stagger}>
+                  <motion.a href={mapsHref} target="_blank" rel="noreferrer" variants={contactItemReveal} transition={transition}>
+                    <MapPin size={26} weight="regular" />
+                    <span>היוצרים 3, כפר סבא</span>
+                  </motion.a>
+                  <motion.a href={phoneHref} variants={contactItemReveal} transition={transition}>
+                    <PhoneCall size={26} weight="regular" />
+                    <span>050-2696267</span>
+                  </motion.a>
+                  <motion.a
+                    href={instagramHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    variants={contactItemReveal}
+                    transition={transition}
+                  >
+                    <InstagramLogo size={26} weight="regular" />
+                    <span dir="ltr">@yachad_bakery</span>
+                  </motion.a>
+                </motion.div>
+
+                <motion.div className="visit-actions" variants={buttonStagger}>
+                  <motion.a
+                    className="btn btn-primary"
+                    href="/shop"
+                    variants={buttonReveal}
+                    transition={quickTransition}
+                    whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
+                    whileTap={{ scale: 0.985 }}
+                  >
+                    <Storefront size={20} weight="bold" />
+                    להזמנה אונליין
+                  </motion.a>
+                  <motion.a
+                    className="btn btn-soft"
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    variants={buttonReveal}
+                    transition={quickTransition}
+                    whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
+                    whileTap={{ scale: 0.985 }}
+                  >
+                    <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
+                    וואטסאפ למאפייה
+                  </motion.a>
+                  <motion.a
+                    className="btn btn-soft"
+                    href={phoneHref}
+                    variants={buttonReveal}
+                    transition={quickTransition}
+                    whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
+                    whileTap={{ scale: 0.985 }}
+                  >
+                    <PhoneCall size={20} weight="bold" />
+                    התקשרו אלינו
+                  </motion.a>
+                </motion.div>
+              </div>
+
+              <motion.div className="visit-hours-group" variants={contactItemReveal} transition={transition}>
+                <div className="visit-hours-title">
+                  <Clock size={28} weight="regular" />
+                  <h3>שעות פתיחה</h3>
+                </div>
+                <div className="visit-hours-list">
                   {hours.map((row) => (
                     <strong key={row}>{row}</strong>
                   ))}
-                </span>
+                </div>
               </motion.div>
-            </motion.div>
-
-            <motion.div className="visit-actions" variants={buttonStagger}>
-              <motion.a
-                className="btn btn-primary"
-                href="/shop"
-                variants={buttonReveal}
-                transition={quickTransition}
-                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
-                whileTap={{ scale: 0.985 }}
-              >
-                <Storefront size={20} weight="bold" />
-                להזמנה אונליין
-              </motion.a>
-              <motion.a
-                className="btn btn-soft"
-                href={whatsappHref}
-                target="_blank"
-                rel="noreferrer"
-                variants={buttonReveal}
-                transition={quickTransition}
-                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
-                whileTap={{ scale: 0.985 }}
-              >
-                <WhatsappLogo className="whatsapp-icon" size={20} weight="bold" />
-                וואטסאפ למאפייה
-              </motion.a>
-              <motion.a
-                className="btn btn-soft"
-                href={phoneHref}
-                variants={buttonReveal}
-                transition={quickTransition}
-                whileHover={shouldSimplifyPageMotion ? undefined : { y: -3, scale: 1.018 }}
-                whileTap={{ scale: 0.985 }}
-              >
-                <PhoneCall size={20} weight="bold" />
-                התקשרו אלינו
-              </motion.a>
             </motion.div>
           </motion.div>
 
