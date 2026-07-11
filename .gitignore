@@ -26,3 +26,10 @@ Thumbs.db
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Supabase local-only state and secrets
+/supabase/.temp/
+/supabase/.branches/
+/supabase/.env
+/supabase/.env.*
+!/supabase/.env.example
