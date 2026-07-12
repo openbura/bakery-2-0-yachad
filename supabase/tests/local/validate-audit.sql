@@ -52,6 +52,53 @@ $$;
 grant usage on schema test_validation to anon, authenticated;
 grant execute on all functions in schema test_validation to anon, authenticated;
 
+select test_validation.assert_true(
+  current_setting('server_version_num')::integer between 170000 and 179999,
+  'validation runs on PostgreSQL 17'
+);
+select test_validation.assert_true(
+  (
+    select count(*) = 8
+    from pg_class relation
+    join pg_namespace namespace on namespace.oid = relation.relnamespace
+    where namespace.nspname = 'public'
+      and relation.relkind = 'r'
+      and relation.relname in (
+        'admin_users', 'audit_log', 'categories', 'products',
+        'product_option_groups', 'product_options', 'product_source_metadata', 'store_settings'
+      )
+      and relation.relrowsecurity
+  ),
+  'all eight public Bakery tables have RLS enabled'
+);
+select test_validation.assert_true(
+  has_table_privilege('anon', 'public.categories', 'select')
+    and has_table_privilege('anon', 'public.products', 'select')
+    and has_table_privilege('anon', 'public.product_option_groups', 'select')
+    and has_table_privilege('anon', 'public.product_options', 'select')
+    and has_table_privilege('anon', 'public.store_settings', 'select')
+    and not has_table_privilege('anon', 'public.products', 'insert')
+    and not has_table_privilege('anon', 'public.products', 'update')
+    and not has_table_privilege('anon', 'public.products', 'delete')
+    and not has_table_privilege('anon', 'public.admin_users', 'select')
+    and not has_table_privilege('anon', 'public.product_source_metadata', 'select')
+    and not has_table_privilege('anon', 'public.audit_log', 'select'),
+  'anonymous grants expose only the approved read-only surface'
+);
+select test_validation.assert_true(
+  has_table_privilege('authenticated', 'public.products', 'select')
+    and has_table_privilege('authenticated', 'public.products', 'insert')
+    and has_table_privilege('authenticated', 'public.products', 'update')
+    and has_table_privilege('authenticated', 'public.products', 'delete')
+    and has_table_privilege('authenticated', 'public.store_settings', 'select')
+    and has_table_privilege('authenticated', 'public.store_settings', 'update')
+    and has_table_privilege('authenticated', 'public.audit_log', 'select')
+    and not has_table_privilege('authenticated', 'public.audit_log', 'insert')
+    and not has_table_privilege('authenticated', 'public.audit_log', 'update')
+    and not has_table_privilege('authenticated', 'public.audit_log', 'delete'),
+  'authenticated grants rely on RLS and keep audit append-only'
+);
+
 select test_validation.assert_true(to_regclass('public.audit_log') is not null, 'audit_log exists');
 select test_validation.assert_true(
   (select relrowsecurity from pg_class where oid = 'public.audit_log'::regclass),
@@ -143,20 +190,72 @@ select test_validation.assert_true(
     select delivery_fee_agorot = 1500
       and minimum_delivery_subtotal_agorot = 7000
       and pickup_fee_agorot = 0
+      and ordering_enabled
+      and delivery_enabled
+      and pickup_enabled
     from public.store_settings
     where id = 'default'
   ),
   'store fees remain 1500/7000/0 agorot'
 );
 select test_validation.assert_true(
+  (
+    select not customer_notice_active
+      and customer_notice_type = 'info'
+      and customer_notice_text = ''
+      and customer_notice_start_at is null
+      and customer_notice_end_at is null
+    from public.store_settings
+    where id = 'default'
+  ),
+  'customer notice starts inactive, empty and unscheduled with the info type'
+);
+select test_validation.assert_true(
   (select count(distinct catalog_sha256) = 1 and min(catalog_sha256) = '240c6d3d00a64c35699caba9c53d0cc9ed142a074c14140c52fe307f24b292dc' from public.product_source_metadata),
   'catalog hash is unchanged'
+);
+select test_validation.assert_true(
+  (
+    select count(*) = 78
+      and count(distinct source_payload ->> 'source_10bis_id') = 78
+      and count(distinct source_payload ->> 'source_10bis_numeric_id') = 78
+    from public.product_source_metadata
+  ),
+  'source identifiers are present and unique'
 );
 select test_validation.assert_true((select count(*) = 0 from public.audit_log), 'initial seed creates no audit noise');
 
 \i /work/supabase/seed.sql
 
-select test_validation.assert_true((select count(*) = 0 from public.audit_log), 'idempotent seed rerun creates no audit noise');
+select test_validation.assert_true(
+  (select count(*) = 78 from public.products)
+    and (select count(*) = 10 from public.categories)
+    and (select count(*) = 78 from public.product_source_metadata)
+    and (select count(*) = 0 from public.audit_log),
+  'idempotent seed rerun preserves counts and creates no audit noise'
+);
+select test_validation.assert_true(
+  (
+    select ordering_enabled
+      and delivery_enabled
+      and pickup_enabled
+      and not customer_notice_active
+      and customer_notice_type = 'info'
+      and customer_notice_text = ''
+      and customer_notice_start_at is null
+      and customer_notice_end_at is null
+      and delivery_fee_agorot = 1500
+      and minimum_delivery_subtotal_agorot = 7000
+      and pickup_fee_agorot = 0
+    from public.store_settings
+    where id = 'default'
+  ),
+  'idempotent seed rerun preserves the approved store settings'
+);
+select test_validation.assert_true(
+  (select count(distinct catalog_sha256) = 1 and min(catalog_sha256) = '240c6d3d00a64c35699caba9c53d0cc9ed142a074c14140c52fe307f24b292dc' from public.product_source_metadata),
+  'idempotent seed rerun preserves the catalog hash'
+);
 
 begin;
 
@@ -172,6 +271,12 @@ values
   ('30000000-0000-0000-0000-000000000003', 'Inactive Local Validation Admin', false);
 
 set local role anon;
+select test_validation.assert_true((select count(*) = 10 from public.categories), 'anon reads active categories');
+select test_validation.assert_true((select count(*) = 78 from public.products), 'anon reads active products');
+select test_validation.assert_true((select count(*) = 1 from public.store_settings), 'anon reads the singleton settings row');
+select test_validation.expect_denied('select * from public.admin_users', 'anon admin authorization select');
+select test_validation.expect_denied('select * from public.product_source_metadata', 'anon source metadata select');
+select test_validation.expect_denied('update public.products set price_agorot = price_agorot', 'anon product update');
 select test_validation.expect_denied('select * from public.audit_log', 'anon select');
 select test_validation.expect_denied(
   $$insert into public.audit_log (entity_type, entity_id, action) values ('product', 'x', 'product.price_changed')$$,
@@ -183,6 +288,9 @@ reset role;
 
 select set_config('request.jwt.claim.sub', '30000000-0000-0000-0000-000000000002', true);
 set local role authenticated;
+select test_validation.assert_true((select count(*) = 78 from public.products), 'non-admin reads the public product catalog');
+select test_validation.assert_true((select count(*) = 0 from public.product_source_metadata), 'non-admin cannot read source metadata');
+select test_validation.assert_true((select count(*) = 0 from public.admin_users), 'non-admin sees no admin authorization rows');
 select test_validation.assert_true((select count(*) = 0 from public.audit_log), 'non-admin cannot read audit history');
 select test_validation.expect_denied(
   $$insert into public.audit_log (entity_type, entity_id, action) values ('product', 'x', 'product.price_changed')$$,
@@ -194,6 +302,7 @@ reset role;
 
 select set_config('request.jwt.claim.sub', '30000000-0000-0000-0000-000000000003', true);
 set local role authenticated;
+select test_validation.assert_true((select count(*) = 0 from public.product_source_metadata), 'inactive admin cannot read source metadata');
 select test_validation.assert_true((select count(*) = 0 from public.audit_log), 'inactive admin cannot read audit history');
 select test_validation.expect_denied(
   $$insert into public.audit_log (entity_type, entity_id, action) values ('product', 'x', 'product.price_changed')$$,
@@ -205,6 +314,7 @@ reset role;
 
 select set_config('request.jwt.claim.sub', '30000000-0000-0000-0000-000000000001', true);
 set local role authenticated;
+select test_validation.assert_true((select count(*) = 78 from public.product_source_metadata), 'active admin can read source metadata');
 select test_validation.assert_true((select count(*) = 0 from public.audit_log), 'active admin can read empty audit history');
 select test_validation.expect_denied(
   $$insert into public.audit_log (entity_type, entity_id, action) values ('product', 'x', 'product.price_changed')$$,
@@ -223,16 +333,16 @@ update public.products set price_agorot = price_agorot where id = 'bourekas-01';
 update public.store_settings set ordering_enabled = false where id = 'default';
 update public.store_settings set delivery_enabled = false where id = 'default';
 update public.store_settings set pickup_enabled = false where id = 'default';
-update public.store_settings set customer_notice_text = customer_notice_text || ' test' where id = 'default';
-update public.store_settings set customer_notice_active = false where id = 'default';
 update public.store_settings set customer_notice_text = 'inactive draft' where id = 'default';
 update public.store_settings set customer_notice_active = true where id = 'default';
+update public.store_settings set customer_notice_text = 'active notice' where id = 'default';
 update public.store_settings set customer_notice_type = 'warning' where id = 'default';
+update public.store_settings set customer_notice_active = false where id = 'default';
 update public.store_settings set customer_notice_active = false where id = 'default';
 update public.store_settings set ordering_enabled = ordering_enabled where id = 'default';
 reset role;
 
-select test_validation.assert_true((select count(*) = 12 from public.audit_log), 'only tracked real changes create events');
+select test_validation.assert_true((select count(*) = 11 from public.audit_log), 'only tracked real changes create events');
 select test_validation.assert_true((select count(*) = 1 from public.audit_log where action = 'product.price_changed'), 'price event exists');
 select test_validation.assert_true(
   (select previous_value = '{"price_agorot": 7000}'::jsonb and new_value = '{"price_agorot": 7100}'::jsonb from public.audit_log where action = 'product.price_changed'),
@@ -274,12 +384,12 @@ select test_validation.assert_true(
   'notice publication has the correct lifecycle transition'
 );
 select test_validation.assert_true((select count(*) = 2 from public.audit_log where action = 'store.notice_updated'), 'active notice update events exist');
-select test_validation.assert_true((select count(*) = 2 from public.audit_log where action = 'store.notice_removed'), 'notice removal events exist');
+select test_validation.assert_true((select count(*) = 1 from public.audit_log where action = 'store.notice_removed'), 'notice removal event exists');
 select test_validation.assert_true(
-  (select count(*) = 12 from public.audit_log where actor_user_id = '30000000-0000-0000-0000-000000000001' and actor_role = 'bakery_admin'),
+  (select count(*) = 11 from public.audit_log where actor_user_id = '30000000-0000-0000-0000-000000000001' and actor_role = 'bakery_admin'),
   'authenticated active admin actor and role are captured'
 );
-select test_validation.assert_true((select count(*) = 12 from public.audit_log where created_at is not null), 'all timestamps are database-generated');
+select test_validation.assert_true((select count(*) = 11 from public.audit_log where created_at is not null), 'all timestamps are database-generated');
 select test_validation.assert_true((select max(created_at) <= statement_timestamp() from public.audit_log), 'audit timestamps use database time');
 select test_validation.assert_true((select count(distinct action) = 10 from public.audit_log), 'only stable approved actions are emitted');
 select test_validation.assert_true(
@@ -297,12 +407,12 @@ select test_validation.assert_true(
 
 select set_config('request.jwt.claim.sub', '30000000-0000-0000-0000-000000000001', true);
 set local role authenticated;
-select test_validation.assert_true((select count(*) = 12 from public.audit_log), 'active admin can read audit history');
+select test_validation.assert_true((select count(*) = 11 from public.audit_log), 'active admin can read audit history');
 reset role;
 
 delete from auth.users where id = '30000000-0000-0000-0000-000000000001';
 select test_validation.assert_true(
-  (select count(*) = 12 from public.audit_log where actor_user_id = '30000000-0000-0000-0000-000000000001'),
+  (select count(*) = 11 from public.audit_log where actor_user_id = '30000000-0000-0000-0000-000000000001'),
   'deleting an Auth user does not rewrite historical actor metadata'
 );
 

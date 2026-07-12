@@ -1,6 +1,6 @@
 # Yachad Bakery Supabase foundation
 
-This directory is the local, versioned database foundation for the dedicated Bakery Supabase project. It is intentionally not linked to any remote project yet, and no migration or seed has been applied remotely.
+This directory is the local, versioned database foundation for the dedicated Bakery Supabase project. The repository remains intentionally unlinked; the approved migrations and initial seed were applied to the explicit Bakery project ref during Stage B.2.
 
 ## Isolation boundary
 
@@ -15,7 +15,7 @@ No project ref is committed in `config.toml`. The `project_id` value is only a l
 
 ## Current remote safety-gate result
 
-The empty dedicated project `yachad-bakery-admin` was created in `openbura's Org` in `eu-central-1` and reached `ACTIVE_HEALTHY`. Its safe non-secret ref is `utyzqpjjjwjkkdlepkag`. This repository remains unlinked: the project has not received migrations, seed data, Auth users, application connections, keys, or environment values. AM ROM and CONNEX were not opened, queried, linked, or modified.
+The dedicated project `yachad-bakery-admin` in `openbura's Org`, region `eu-central-1`, is `ACTIVE_HEALTHY`. Its safe non-secret ref is `utyzqpjjjwjkkdlepkag`. On 2026-07-11, Stage B.2 applied the three approved migrations and the controlled initial seed using that ref explicitly. The verified remote state is 10 categories, 78 products, 78 source snapshots, one store-settings row, zero audit rows after seed and zero Auth users. The repository remains unlinked; no application, key or environment value was connected. AM ROM and CONNEX were not opened, queried, linked, or modified.
 
 ## Schema
 
@@ -30,7 +30,7 @@ The empty dedicated project `yachad-bakery-admin` was created in `openbura's Org
 
 ### Append-only audit log
 
-`20260711090000_add_bakery_audit_log.sql` normalizes the still-local foundation to the approved agorot and customer-notice field contract, then creates `public.audit_log`, its RLS policy, indexes and two private trigger functions.
+`20260711090000_add_bakery_audit_log.sql` normalizes the foundation to the approved agorot and customer-notice field contract, then creates `public.audit_log`, its RLS policy, indexes and two private trigger functions.
 
 Each event contains:
 
@@ -56,7 +56,7 @@ Stable tracked actions:
 
 `private.audit_product_changes()` emits one row per changed tracked product field. `private.audit_store_settings_changes()` emits fixed operational actions and a single notice lifecycle event. Both are trigger-only `SECURITY DEFINER` functions with `search_path = ''`, fully qualified relations, fixed action identifiers and revoked browser execution. Inserts and no-op updates create no audit rows.
 
-Anonymous users have no table privileges. Authenticated non-admins and inactive admins cannot read or write. Active Bakery admins receive RLS-filtered `SELECT` only. No dashboard role has `INSERT`, `UPDATE`, or `DELETE`, and no write policy exists. Trigger execution is the only normal audit-write path.
+Anonymous users have no privileges on `audit_log`. Authenticated non-admins and inactive admins cannot read or write it. Active Bakery admins receive RLS-filtered `SELECT` only. No dashboard role has `INSERT`, `UPDATE`, or `DELETE` on the audit table, and no write policy exists. Trigger execution is the only normal audit-write path.
 
 All public-schema tables have RLS enabled. Grants and policies are explicit because modern Supabase projects may not expose SQL-created tables automatically.
 
@@ -87,7 +87,7 @@ node supabase/scripts/generate-seed.mjs
 node supabase/scripts/generate-seed.mjs --check
 ```
 
-The seed is for local reset and controlled initial import. It does not create Auth users and must not be used as an uncontrolled production synchronization job.
+The seed is for local reset and controlled initial import. It starts the customer notice as inactive with type `info`, empty text and null start/end times. It does not create Auth users and must not be used as an uncontrolled production synchronization job.
 
 Structured option rows are intentionally empty until the Bakery owner approves the source options. The schema is ready, but Stage B.1 does not invent option data.
 
@@ -106,13 +106,13 @@ supabase db lint --level warning
 
 Never use `--linked` for local tests. Never run `db push`, remote SQL, or migrations until the remote project identity is verified as Bakery-only.
 
-The repeatable fallback suite runs the complete migration order and seed in an isolated, unlinked `postgres:13` Docker container:
+The repeatable fallback suite runs the complete migration order and seed in an isolated, unlinked `postgres:17-alpine` Docker container:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File supabase/tests/local/run-validation.ps1
 ```
 
-It uses a read-only bind mount, no published database port, no persistent volume and removes the container in `finally`. It validates schema, constraints, RLS/grants, append-only behavior, triggers, actor capture, notice lifecycle, no-op handling, seed noise and catalog/settings regressions. This is a PostgreSQL fallback; the pgTAP files remain the intended Supabase/Postgres 17 suite when a local CLI is available.
+It verifies seed freshness and PostgreSQL major version 17, then uses a read-only bind mount, no published database port, no persistent volume and removes the container in `finally`. It validates schema, constraints, RLS/grants, append-only behavior, triggers, actor capture, notice lifecycle, no-op handling, seed idempotency, source-identifier uniqueness and catalog/settings regressions. The pgTAP files remain the intended full Supabase CLI suite when a local CLI is available.
 
 ## Dedicated remote project gate
 
@@ -120,7 +120,8 @@ It uses a read-only bind mount, no published database port, no persistent volume
 - Project: `yachad-bakery-admin`, ref `utyzqpjjjwjkkdlepkag`, region `eu-central-1`.
 - Creation estimate confirmed at USD 10/month for the smallest standard compute; usage, add-ons and applicable taxes can increase the invoice.
 - No add-ons, plan change or Spend Cap change were made.
-- Stage B.1.1 remains local-only. Do not link or apply anything until a separate Stage B.2 approval explicitly names `utyzqpjjjwjkkdlepkag`.
+- Stage B.2 applied remote migration versions `20260711131949_create_bakery_core`, `20260711132008_enable_bakery_rls` and `20260711132027_add_bakery_audit_log`, followed by the initial 78-product seed. The project remains disconnected from both frontends and has no Auth users.
+- `REMOTE_MIGRATION_MAP.md` records the exact local-file to remote-history mapping and SHA-256 fingerprints for this checkpoint.
 
 ## Environment templates
 
@@ -131,10 +132,12 @@ Dashboard browser configuration remains in `admin-dashboard/.env.example`:
 
 Only a publishable browser key may be used. No dashboard adapter is enabled in Stage B.1, so the approved mock state and prototype login remain unchanged.
 
+Future Stage B.3 integration must explicitly map or align the remote notice type `info` with the dashboard's current local UI value `information`; this checkpoint intentionally does not change dashboard code.
+
 ## Rollback and recovery
 
 - Local: `supabase db reset` reconstructs the database from migrations and seed.
-- Audit migration rollback, before any remote apply: remove the two audit triggers, drop the two private audit functions, drop `public.audit_log`, then reverse the local field renames/type conversions only in a fresh disposable database. Never edit migration history after it has been applied remotely.
-- Before a future remote apply: verify the explicit ref, capture a schema/data backup, review the migration SQL and prepare a separate forward rollback migration. Apply only to `utyzqpjjjwjkkdlepkag` after approval.
+- The approved migration chain has now been applied remotely. Never edit remote migration history or run the old destructive rollback sequence. Any correction must use a reviewed forward migration with a separate approval gate.
+- Before any future remote apply: verify the explicit ref, capture an appropriate backup, review the SQL and prepare a forward recovery plan. Apply only to `utyzqpjjjwjkkdlepkag` after approval.
 - Never use a destructive rollback against AM ROM, CONNEX or an implicitly selected project.
 - External Stage B.1 backup: see the task report; it contains the complete approved dashboard, catalog, docs and Git bundle.

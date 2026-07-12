@@ -3,9 +3,15 @@ $ErrorActionPreference = 'Stop'
 $repositoryRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
 $containerName = 'bakery-audit-validation-' + ([guid]::NewGuid().ToString('N').Substring(0, 10))
 $mount = "type=bind,source=$repositoryRoot,target=/work,readonly"
+$seedGenerator = Join-Path $repositoryRoot 'supabase\scripts\generate-seed.mjs'
 
 try {
-  docker run --detach --rm --name $containerName --env POSTGRES_HOST_AUTH_METHOD=trust --mount $mount postgres:13 | Out-Null
+  & node $seedGenerator --check
+  if ($LASTEXITCODE -ne 0) {
+    throw 'The generated seed is stale or invalid.'
+  }
+
+  docker run --detach --rm --name $containerName --env POSTGRES_HOST_AUTH_METHOD=trust --mount $mount postgres:17-alpine | Out-Null
 
   $ready = $false
   for ($attempt = 0; $attempt -lt 30; $attempt += 1) {
@@ -20,6 +26,13 @@ try {
   if (-not $ready) {
     throw 'The isolated PostgreSQL container did not become ready.'
   }
+
+  $serverVersionNumber = docker exec $containerName psql -U postgres -d postgres -Atc 'show server_version_num'
+  if ($LASTEXITCODE -ne 0 -or -not $serverVersionNumber.StartsWith('17')) {
+    throw "Expected PostgreSQL 17, received server_version_num=$serverVersionNumber."
+  }
+
+  Write-Output "POSTGRES_SERVER_VERSION_NUM=$serverVersionNumber"
 
   $sqlFiles = @(
     '/work/supabase/tests/local/bootstrap.sql',

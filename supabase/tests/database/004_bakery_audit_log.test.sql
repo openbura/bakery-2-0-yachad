@@ -110,15 +110,15 @@ update public.products set price_agorot = price_agorot where id = 'bourekas-01';
 update public.store_settings set ordering_enabled = false where id = 'default';
 update public.store_settings set delivery_enabled = false where id = 'default';
 update public.store_settings set pickup_enabled = false where id = 'default';
-update public.store_settings set customer_notice_text = customer_notice_text || ' test' where id = 'default';
-update public.store_settings set customer_notice_active = false where id = 'default';
 update public.store_settings set customer_notice_text = 'inactive draft' where id = 'default';
 update public.store_settings set customer_notice_active = true where id = 'default';
+update public.store_settings set customer_notice_text = 'active notice' where id = 'default';
 update public.store_settings set customer_notice_type = 'warning' where id = 'default';
+update public.store_settings set customer_notice_active = false where id = 'default';
 update public.store_settings set customer_notice_active = false where id = 'default';
 update public.store_settings set ordering_enabled = ordering_enabled where id = 'default';
 
-select is((select count(*) from public.audit_log), 12::bigint, 'only tracked real changes create audit rows');
+select is((select count(*) from public.audit_log), 11::bigint, 'only tracked real changes create audit rows');
 select is((select count(*) from public.audit_log where action = 'product.price_changed'), 1::bigint, 'price change creates one event');
 select is(
   (select previous_value from public.audit_log where action = 'product.price_changed'),
@@ -163,10 +163,10 @@ select ok(
   'notice publication stores the correct lifecycle transition'
 );
 select is((select count(*) from public.audit_log where action = 'store.notice_updated'), 2::bigint, 'active notice edits create events');
-select is((select count(*) from public.audit_log where action = 'store.notice_removed'), 2::bigint, 'notice removals create events');
-select is((select count(*) from public.audit_log where actor_user_id = '20000000-0000-0000-0000-000000000001'), 12::bigint, 'authenticated admin actor is captured');
-select is((select count(*) from public.audit_log where actor_role = 'bakery_admin'), 12::bigint, 'active Bakery admin role is captured');
-select is((select count(*) from public.audit_log where created_at is not null), 12::bigint, 'database creates every audit timestamp');
+select is((select count(*) from public.audit_log where action = 'store.notice_removed'), 1::bigint, 'notice removal creates an event');
+select is((select count(*) from public.audit_log where actor_user_id = '20000000-0000-0000-0000-000000000001'), 11::bigint, 'authenticated admin actor is captured');
+select is((select count(*) from public.audit_log where actor_role = 'bakery_admin'), 11::bigint, 'active Bakery admin role is captured');
+select is((select count(*) from public.audit_log where created_at is not null), 11::bigint, 'database creates every audit timestamp');
 select is((select count(distinct action) from public.audit_log), 10::bigint, 'only the ten approved stable actions are emitted');
 select ok(
   not exists (
@@ -185,7 +185,7 @@ reset role;
 delete from auth.users where id = '20000000-0000-0000-0000-000000000001';
 select is(
   (select count(*) from public.audit_log where actor_user_id = '20000000-0000-0000-0000-000000000001'),
-  12::bigint,
+  11::bigint,
   'deleting an Auth user does not rewrite historical actor metadata'
 );
 

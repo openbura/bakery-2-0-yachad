@@ -17,10 +17,10 @@ The pgTAP suite covers schema, seed, existing RLS and append-only audit behavior
 
 The RLS/audit tests create transaction-scoped test users under `@yachad.invalid` and roll them back.
 
-Because the Supabase CLI and pgTAP are not currently installed, the executable fallback suite uses the cached `postgres:13` Docker image:
+Because the Supabase CLI and pgTAP are not currently installed, the executable fallback suite uses the official `postgres:17-alpine` Docker image:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File supabase/tests/local/run-validation.ps1
 ```
 
-The runner applies `bootstrap.sql`, the migrations in version order, `seed.sql`, and `validate-audit.sql` through `psql -f` from a read-only bind mount. It publishes no database port, persists no volume, connects to no remote project and removes the temporary container. The fallback validates PostgreSQL behavior but does not replace future PostgreSQL 17, PostgREST or Supabase CLI parity checks.
+The runner first verifies that the generated seed is current, confirms PostgreSQL major version 17, then applies `bootstrap.sql`, the migrations in version order, `seed.sql`, and `validate-audit.sql` through `psql -f` from a read-only bind mount. It publishes no database port, persists no volume, connects to no remote project and removes the temporary container. The fallback validates PostgreSQL 17 schema, seed, grants, RLS and audit behavior, but does not replace future PostgREST or full Supabase CLI parity checks.
