@@ -2,7 +2,7 @@
 
 Verified: 2026-07-12
 
-This document defines the public-safe catalog shape prepared by Stage C.0 for the future `/shop` connection. The public application remains disconnected during this checkpoint.
+This document defines the public-safe catalog shape prepared by Stage C.0 and consumed by the Stage C `/shop` connection. Supabase is authoritative at runtime; the approved JSON remains a reproducible reference and browse-only failure fallback.
 
 ## Source classification
 
@@ -62,3 +62,5 @@ Stage C.0 adds only these tables to `supabase_realtime`:
 - `public.store_settings`
 
 Categories and option data are structural and will be fetched normally. Admin authorization, audit history and source metadata are never part of the public Realtime publication.
+
+The public client treats Realtime payloads as invalidation signals and refetches a complete snapshot. It also refetches on focus, reconnect, checkout entry and immediately before WhatsApp submission.

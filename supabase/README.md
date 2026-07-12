@@ -138,7 +138,7 @@ It verifies seed freshness and PostgreSQL major version 17, then uses a read-onl
 - Stage B.3 Security Correction applied only `20260712152010_tighten_bakery_admin_permissions`. No seed or earlier migration was rerun, no Auth/admin user was created, and product/settings/audit values remained unchanged.
 - Stage C.0 applied only `20260712182447_prepare_public_shop_product_contract`, `20260712182448_import_approved_public_catalog_contract` and `20260712182451_enable_public_shop_realtime`.
 - Stage C.0 preserved every product price and availability value, store settings, the existing Auth/admin rows and all 36 audit events. It added the public-safe fields, normalized 2/24 options and published only `products` and `store_settings` for Postgres Changes.
-- The admin dashboard remains connected. The public Bakery application and `/shop` remain on the local JSON source until Stage C.
+- The admin dashboard remains connected. Stage C connects the public `/shop` through an anonymous, hostname-guarded browser client. The local JSON remains only a browse-only fallback and cannot submit orders when live data is unavailable.
 - `REMOTE_MIGRATION_MAP.md` records the exact local-file to remote-history mapping and SHA-256 fingerprints for this checkpoint.
 
 The post-correction Supabase Security Advisor reports one informational `rls_enabled_no_policy` item for `product_source_metadata`. This is intentional: RLS is enabled, there is no policy, and all `anon` / `authenticated` privileges are revoked, so the table is closed to browser clients. Performance advisor unused-index notices are expected before application traffic and do not justify removing approved indexes during this security correction.

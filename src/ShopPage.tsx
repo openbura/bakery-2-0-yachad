@@ -12,37 +12,17 @@ import {
   X,
 } from '@phosphor-icons/react';
 
-import catalog from '../product-catalog-yachad.json';
 import shopCoverImage from './assets/bakery-2/shop-cover-yachad.jpg';
-
-type Product = (typeof catalog.products)[number];
-type ProductOption = {
-  name: string;
-  price_delta?: number;
-  active?: boolean;
-};
-type ProductOptionGroup = {
-  name: string;
-  required?: boolean;
-  min?: number;
-  max?: number | null;
-  options: ProductOption[];
-};
-type ProductWithOptions = Product & {
-  option_groups?: ProductOptionGroup[];
-};
-type CartSelection = {
-  groupName: string;
-  optionName: string;
-  priceDelta: number;
-};
-type CartItem = {
-  id: string;
-  product: ProductWithOptions;
-  quantity: number;
-  selections?: CartSelection[];
-  unitPriceIls: number;
-};
+import { usePublicShop } from './hooks/usePublicShop';
+import { reconcileCart } from './shop/cartReconciliation';
+import type {
+  CartSelection,
+  ShopCartItem,
+  ShopProduct,
+  ShopProductOption,
+  ShopProductOptionGroup,
+  ShopStoreSettings,
+} from './shop/publicShopTypes';
 type FulfillmentType = 'pickup' | 'delivery';
 type ResidenceType = '' | 'building' | 'private-house';
 type OrderStep = 'catalog' | 'details';
@@ -61,23 +41,18 @@ type CheckoutErrors = Partial<Record<CheckoutField, string>>;
 type DeliveryArea = {
   id: string;
   label: string;
-  fee_ils: number;
   requiresConfirmation: boolean;
   notes: string;
 };
 
 const bakeryWhatsappNumber = '972502696267';
-const defaultDeliveryFeeIls = 15;
-const minimumDeliverySubtotalIls = 70;
-const minimumDeliverySubtotalText = '70₪';
-
 const ilsFormatter = new Intl.NumberFormat('he-IL', {
   style: 'currency',
   currency: 'ILS',
-  maximumFractionDigits: 0,
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
 });
 
-const products = [...(catalog.products as ProductWithOptions[])].sort((a, b) => a.sort_order - b.sort_order);
 const allCategory = 'הכל';
 
 // Demo business rules. Delivery prices can be adjusted later.
@@ -85,35 +60,31 @@ const deliveryAreas: DeliveryArea[] = [
   {
     id: 'kfar-saba',
     label: 'כפר סבא',
-    fee_ils: defaultDeliveryFeeIls,
     requiresConfirmation: false,
     notes: 'כלל דמו: דמי משלוח קבועים; ניתן לעדכן בהמשך.',
   },
   {
     id: 'hod-hasharon',
     label: 'הוד השרון',
-    fee_ils: defaultDeliveryFeeIls,
     requiresConfirmation: false,
     notes: 'כלל דמו: דמי משלוח קבועים; ניתן לעדכן בהמשך.',
   },
   {
     id: 'raanana',
     label: 'רעננה',
-    fee_ils: defaultDeliveryFeeIls,
     requiresConfirmation: false,
     notes: 'כלל דמו: דמי משלוח קבועים; ניתן לעדכן בהמשך.',
   },
   {
     id: 'other',
     label: 'אחר / בדיקה מול המאפייה',
-    fee_ils: defaultDeliveryFeeIls,
     requiresConfirmation: true,
     notes: 'אזור דורש בדיקה מול המאפייה; דמי המשלוח בדמו נשארים קבועים.',
   },
 ];
 
-function formatPrice(value: number) {
-  return ilsFormatter.format(value);
+function formatPrice(valueAgorot: number) {
+  return ilsFormatter.format(valueAgorot / 100);
 }
 
 function isValidIsraeliPhone(value: string) {
@@ -121,33 +92,33 @@ function isValidIsraeliPhone(value: string) {
   return /^0(?:5\d{8}|7\d{8}|[23489]\d{7})$/.test(digits);
 }
 
-function getProductDisplayPrice(product: ProductWithOptions) {
-  return product.display_price_text || formatPrice(product.price_ils);
+function getProductDisplayPrice(product: ShopProduct) {
+  return formatPrice(product.priceAgorot);
 }
 
-function getProductUnitNote(product: ProductWithOptions) {
-  return product.price_unit_note || product.small_note || '';
+function getProductUnitNote(product: ShopProduct) {
+  return product.priceUnitNote || '';
 }
 
 function formatProductUnitNote(note: string) {
   return note.replace(/₪(\d+)\.00\b/g, '₪$1').replace(/\s*\/\s*/g, ' / ').trim();
 }
 
-function shouldShowProductUnitNote(product: ProductWithOptions) {
+function shouldShowProductUnitNote(product: ShopProduct) {
   const unitNote = getProductUnitNote(product);
 
   if (!unitNote) {
     return false;
   }
 
-  if (product.category === 'לחמניות ובייגלים' || /\d+\s+יחידות/.test(product.product_name)) {
+  if (product.category === 'לחמניות ובייגלים' || /\d+\s+יחידות/.test(product.name)) {
     return false;
   }
 
-  return !(product.product_name.includes('1 ק״ג') && formatProductUnitNote(unitNote).includes('/ 1 ק״ג'));
+  return !(product.name.includes('1 ק״ג') && formatProductUnitNote(unitNote).includes('/ 1 ק״ג'));
 }
 
-function getVisibleProductUnitNote(product: ProductWithOptions) {
+function getVisibleProductUnitNote(product: ShopProduct) {
   return shouldShowProductUnitNote(product) ? formatProductUnitNote(getProductUnitNote(product)) : '';
 }
 
@@ -159,32 +130,64 @@ function getSelectionGroups(selections: CartSelection[] = []) {
 }
 
 function getSelectionTotal(selections: CartSelection[] = []) {
-  return selections.reduce((sum, selection) => sum + selection.priceDelta, 0);
+  return selections.reduce((sum, selection) => sum + selection.priceDeltaAgorot, 0);
 }
 
-function getCartItemUnitPrice(item: CartItem) {
-  return item.unitPriceIls ?? item.product.price_ils + getSelectionTotal(item.selections);
+function getCartItemUnitPrice(item: ShopCartItem) {
+  return item.unitPriceAgorot;
 }
 
 function formatOptionLabel(selection: CartSelection) {
-  return `${selection.optionName}${selection.priceDelta > 0 ? ` (+${formatPrice(selection.priceDelta)})` : ''}`;
+  return `${selection.optionName}${selection.priceDeltaAgorot > 0 ? ` (+${formatPrice(selection.priceDeltaAgorot)})` : ''}`;
 }
 
-function makeCartItemId(product: ProductWithOptions, selections: CartSelection[] = []) {
+function makeCartItemId(product: ShopProduct, selections: CartSelection[] = []) {
   if (!selections.length) {
     return product.id;
   }
 
   const selectionKey = [...selections]
-    .sort((a, b) => `${a.groupName}:${a.optionName}`.localeCompare(`${b.groupName}:${b.optionName}`, 'he'))
-    .map((selection) => `${selection.groupName}:${selection.optionName}:${selection.priceDelta}`)
+    .sort((a, b) => `${a.groupCode}:${a.optionCode}`.localeCompare(`${b.groupCode}:${b.optionCode}`))
+    .map((selection) => `${selection.groupCode}:${selection.optionCode}`)
     .join('|');
 
   return `${product.id}::${selectionKey}`;
 }
 
-function hasProductOptions(product: ProductWithOptions) {
-  return Boolean(product.option_groups?.some((group) => group.options.some((option) => option.active !== false)));
+function hasProductOptions(product: ShopProduct) {
+  return Boolean(product.optionGroups.some((group) => group.active && group.options.some((option) => option.active)));
+}
+
+function getOperationalBlock(settings: ShopStoreSettings, items: ShopCartItem[], fulfillment: FulfillmentType) {
+  if (!settings.orderingEnabled) {
+    return 'ההזמנות סגורות כרגע.';
+  }
+  if (fulfillment === 'delivery' && !settings.deliveryEnabled) {
+    return 'אין משלוחים כרגע. אפשר לעבור לאיסוף עצמי.';
+  }
+  if (fulfillment === 'pickup' && !settings.pickupEnabled) {
+    return 'איסוף עצמי אינו זמין כרגע. אפשר לעבור למשלוח.';
+  }
+  const invalidItem = items.find((item) => item.invalidReason);
+  if (invalidItem) {
+    return invalidItem.invalidReason ?? 'יש מוצר שדורש עדכון בעגלה.';
+  }
+  const incompatible = items.find((item) => (
+    fulfillment === 'delivery' ? !item.product.availableForDelivery : !item.product.availableForPickup
+  ));
+  if (incompatible) {
+    return `${incompatible.product.name} אינו זמין בשיטת הקבלה שנבחרה.`;
+  }
+  return '';
+}
+
+function isCustomerNoticeVisible(settings: ShopStoreSettings, now = Date.now()) {
+  if (!settings.customerNoticeActive || !settings.customerNoticeText.trim()) {
+    return false;
+  }
+  const startsAt = settings.customerNoticeStartAt ? Date.parse(settings.customerNoticeStartAt) : null;
+  const endsAt = settings.customerNoticeEndAt ? Date.parse(settings.customerNoticeEndAt) : null;
+  return (startsAt === null || startsAt <= now) && (endsAt === null || endsAt >= now);
 }
 
 function buildOrderSummary({
@@ -205,7 +208,7 @@ function buildOrderSummary({
   deliveryFee,
   total,
 }: {
-  cartItems: CartItem[];
+  cartItems: ShopCartItem[];
   fulfillment: FulfillmentType;
   selectedArea?: DeliveryArea;
   customerName: string;
@@ -256,7 +259,7 @@ function buildOrderSummary({
     const { product, quantity } = item;
     const unitNote = getVisibleProductUnitNote(product);
     const unitText = unitNote ? ` (${unitNote})` : '';
-    lines.push(`- ${product.product_name} x${quantity} - ${formatPrice(getCartItemUnitPrice(item) * quantity)}${unitText}`);
+    lines.push(`- ${product.name} x${quantity} - ${formatPrice(getCartItemUnitPrice(item) * quantity)}${unitText}`);
 
     const selectionGroups = getSelectionGroups(item.selections);
     if (Object.keys(selectionGroups).length > 0) {
@@ -280,8 +283,9 @@ function buildOrderSummary({
 }
 
 export default function ShopPage() {
+  const { snapshot, status: shopStatus, isRefreshing, refresh } = usePublicShop();
   const [selectedCategory, setSelectedCategory] = useState(allCategory);
-  const [cart, setCart] = useState<Record<string, CartItem>>({});
+  const [cart, setCart] = useState<Record<string, ShopCartItem>>({});
   const [cartOpen, setCartOpen] = useState(false);
   const [orderStep, setOrderStep] = useState<OrderStep>('catalog');
   const [fulfillment, setFulfillment] = useState<FulfillmentType>('delivery');
@@ -299,8 +303,11 @@ export default function ShopPage() {
   const [checkoutErrors, setCheckoutErrors] = useState<CheckoutErrors>({});
   const [minimumPromptVisible, setMinimumPromptVisible] = useState(false);
   const [addToastVisible, setAddToastVisible] = useState(false);
+  const [operationalMessage, setOperationalMessage] = useState('');
+  const [priceUpdateVisible, setPriceUpdateVisible] = useState(false);
+  const [finalValidationPending, setFinalValidationPending] = useState(false);
   const [categoryPickerOpen, setCategoryPickerOpen] = useState(false);
-  const [customizingProduct, setCustomizingProduct] = useState<ProductWithOptions | null>(null);
+  const [customizingProduct, setCustomizingProduct] = useState<ShopProduct | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({});
   const [customizationError, setCustomizationError] = useState('');
   const checkoutStepRef = useRef<HTMLElement | null>(null);
@@ -308,20 +315,40 @@ export default function ShopPage() {
   const categoryPickerTriggerRef = useRef<HTMLButtonElement | null>(null);
   const categoryPickerCloseRef = useRef<HTMLButtonElement | null>(null);
 
-  const categories = useMemo(() => [allCategory, ...Array.from(new Set(products.map((product) => product.category)))], []);
+  const products = snapshot.products;
+  const settings = snapshot.settings;
+  const displayedCustomizingProduct = customizingProduct
+    ? products.find((product) => product.id === customizingProduct.id) ?? customizingProduct
+    : null;
+  const isLive = shopStatus === 'live' && snapshot.live;
+  const categories = useMemo(() => [allCategory, ...snapshot.categories.map((category) => category.name)], [snapshot.categories]);
   const visibleProducts = selectedCategory === allCategory
     ? products
     : products.filter((product) => product.category === selectedCategory);
-  const cartItems = Object.values(cart);
+  const cartReconciliation = useMemo(() => reconcileCart(cart, snapshot), [cart, snapshot]);
+  const cartItems = Object.values(cartReconciliation.cart);
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const cartCountLabel = cartCount === 1 ? 'פריט אחד' : `${cartCount} פריטים`;
   const subtotal = cartItems.reduce((sum, item) => sum + getCartItemUnitPrice(item) * item.quantity, 0);
   const selectedArea = deliveryAreas.find((area) => area.id === cityId);
-  const deliveryFee = fulfillment === 'delivery' ? selectedArea?.fee_ils ?? defaultDeliveryFeeIls : 0;
+  const deliveryFee = fulfillment === 'delivery' ? settings.deliveryFeeAgorot : settings.pickupFeeAgorot;
   const total = subtotal + deliveryFee;
   const deliveryMinimumNotMet =
-    fulfillment === 'delivery' && cartItems.length > 0 && subtotal < minimumDeliverySubtotalIls;
-  const deliveryMinimumMissing = Math.max(0, minimumDeliverySubtotalIls - subtotal);
+    fulfillment === 'delivery' && cartItems.length > 0 && subtotal < settings.minimumDeliverySubtotalAgorot;
+  const deliveryMinimumMissing = Math.max(0, settings.minimumDeliverySubtotalAgorot - subtotal);
+  const minimumDeliverySubtotalText = formatPrice(settings.minimumDeliverySubtotalAgorot);
+  const selectedFulfillmentEnabled = fulfillment === 'delivery' ? settings.deliveryEnabled : settings.pickupEnabled;
+  const cartHasInvalidItems = cartItems.some((item) => Boolean(item.invalidReason));
+  const cartHasFulfillmentConflict = cartItems.some((item) => (
+    fulfillment === 'delivery' ? !item.product.availableForDelivery : !item.product.availableForPickup
+  ));
+  const orderingAllowed = isLive && settings.orderingEnabled && (settings.deliveryEnabled || settings.pickupEnabled);
+  const isProductOrderable = (product: ShopProduct) => (
+    orderingAllowed &&
+    product.availableToday &&
+    selectedFulfillmentEnabled &&
+    (fulfillment === 'delivery' ? product.availableForDelivery : product.availableForPickup)
+  );
   const deliveryAddressReady =
     fulfillment === 'pickup' ||
     (cityId.trim().length > 0 &&
@@ -353,9 +380,13 @@ export default function ShopPage() {
     isValidIsraeliPhone(phone) &&
     deliveryAddressReady &&
     notes.trim().length > 0 &&
-    !deliveryMinimumNotMet;
-  const canAttemptContinue = cartItems.length > 0;
-  const whatsappHref = `https://wa.me/${bakeryWhatsappNumber}?text=${encodeURIComponent(orderSummary)}`;
+    !deliveryMinimumNotMet &&
+    orderingAllowed &&
+    selectedFulfillmentEnabled &&
+    !cartHasInvalidItems &&
+    !cartHasFulfillmentConflict;
+  const canAttemptContinue = cartItems.length > 0 && orderingAllowed && selectedFulfillmentEnabled && !cartHasInvalidItems && !cartHasFulfillmentConflict;
+
   useEffect(() => {
     if (!addToastVisible) {
       return undefined;
@@ -438,9 +469,10 @@ export default function ShopPage() {
   const renderFulfillmentSelector = (variant: 'summary' | 'form') => (
     <div className={`shop-fulfillment-block shop-fulfillment-block--${variant}`}>
       <div className="shop-choice-row" role="radiogroup" aria-label="שיטת קבלה">
-        <label className={fulfillment === 'delivery' ? 'is-selected' : undefined}>
+        <label className={`${fulfillment === 'delivery' ? 'is-selected' : ''} ${!settings.deliveryEnabled ? 'is-disabled' : ''}`}>
           <input
             checked={fulfillment === 'delivery'}
+            disabled={!settings.deliveryEnabled || !isLive}
             name={`fulfillment-${variant}`}
             type="radio"
             onChange={() => {
@@ -453,9 +485,10 @@ export default function ShopPage() {
           <Truck size={19} weight="bold" />
           משלוח
         </label>
-        <label className={fulfillment === 'pickup' ? 'is-selected' : undefined}>
+        <label className={`${fulfillment === 'pickup' ? 'is-selected' : ''} ${!settings.pickupEnabled ? 'is-disabled' : ''}`}>
           <input
             checked={fulfillment === 'pickup'}
+            disabled={!settings.pickupEnabled || !isLive}
             name={`fulfillment-${variant}`}
             type="radio"
             onChange={() => {
@@ -484,7 +517,13 @@ export default function ShopPage() {
         </label>
       </div>
       <p className="shop-fulfillment-note">
-        {fulfillment === 'delivery'
+        {!isLive
+          ? 'הזמנה מושבתת עד לחזרת המידע החי.'
+          : fulfillment === 'delivery' && !settings.deliveryEnabled
+            ? 'המשלוחים מושהים כרגע. ניתן לבחור איסוף עצמי.'
+            : fulfillment === 'pickup' && !settings.pickupEnabled
+              ? 'האיסוף העצמי מושהה כרגע. ניתן לבחור משלוח.'
+              : fulfillment === 'delivery'
           ? `דמי משלוח ${formatPrice(deliveryFee)} · מינימום הזמנה למשלוח ${minimumDeliverySubtotalText}`
           : 'איסוף עצמי ללא דמי משלוח'}
       </p>
@@ -501,7 +540,7 @@ export default function ShopPage() {
     });
   };
 
-  const goToOrderDetails = () => {
+  const goToOrderDetails = async () => {
     if (deliveryMinimumNotMet) {
       setMinimumPromptVisible(true);
       setAddToastVisible(false);
@@ -510,7 +549,30 @@ export default function ShopPage() {
     }
 
     if (!canAttemptContinue) {
+      setOperationalMessage(getOperationalBlock(settings, cartItems, fulfillment) || 'לא ניתן להמשיך כרגע.');
       return;
+    }
+
+    setFinalValidationPending(true);
+    try {
+      const freshSnapshot = await refresh();
+      const reconciled = reconcileCart(cart, freshSnapshot);
+      setCart(reconciled.cart);
+      if (reconciled.priceChanged) {
+        setPriceUpdateVisible(true);
+        setOperationalMessage('המחירים בהזמנה עודכנו. בדקו את הסכום לפני שממשיכים.');
+        return;
+      }
+      const block = getOperationalBlock(freshSnapshot.settings, Object.values(reconciled.cart), fulfillment);
+      if (block) {
+        setOperationalMessage(block);
+        return;
+      }
+    } catch {
+      setOperationalMessage('לא הצלחנו לאמת את פרטי ההזמנה מול המאפייה. נסו שוב.');
+      return;
+    } finally {
+      setFinalValidationPending(false);
     }
 
     setOrderStep('details');
@@ -533,30 +595,34 @@ export default function ShopPage() {
     setCartOpen(true);
   };
 
-  const getActiveOptionGroups = (product: ProductWithOptions | null): ProductOptionGroup[] => (
-    product?.option_groups
+  const getActiveOptionGroups = (product: ShopProduct | null): ShopProductOptionGroup[] => (
+    product?.optionGroups
       ?.map((group) => ({
         ...group,
-        options: group.options.filter((option) => option.active !== false),
+        options: group.options.filter((option) => option.active),
       }))
       .filter((group) => group.options.length > 0) ?? []
   );
 
-  const getSelectedProductOptions = (product: ProductWithOptions, selected: Record<string, string[]>) => (
+  const getSelectedProductOptions = (product: ShopProduct, selected: Record<string, string[]>) => (
     getActiveOptionGroups(product).flatMap((group) => {
-      const selectedNames = selected[group.name] ?? [];
-      return selectedNames
-        .map((optionName) => group.options.find((option) => option.name === optionName))
-        .filter((option): option is ProductOption => Boolean(option))
+      const selectedCodes = selected[group.code] ?? [];
+      return selectedCodes
+        .map((optionCode) => group.options.find((option) => option.code === optionCode))
+        .filter((option): option is ShopProductOption => Boolean(option))
         .map((option) => ({
+          groupId: group.id,
+          groupCode: group.code,
           groupName: group.name,
+          optionId: option.id,
+          optionCode: option.code,
           optionName: option.name,
-          priceDelta: option.price_delta ?? 0,
+          priceDeltaAgorot: option.priceDeltaAgorot,
         }));
     })
   );
 
-  const openProductOptions = (product: ProductWithOptions) => {
+  const openProductOptions = (product: ShopProduct) => {
     setSelectedOptions({});
     setCustomizationError('');
     setCustomizingProduct(product);
@@ -569,24 +635,24 @@ export default function ShopPage() {
     setCustomizationError('');
   };
 
-  const toggleProductOption = (group: ProductOptionGroup, optionName: string) => {
+  const toggleProductOption = (group: ShopProductOptionGroup, optionCode: string) => {
     setCustomizationError('');
     setSelectedOptions((current) => {
-      const currentGroupOptions = current[group.name] ?? [];
-      const isSelected = currentGroupOptions.includes(optionName);
-      const maxSelections = group.max ?? null;
+      const currentGroupOptions = current[group.code] ?? [];
+      const isSelected = currentGroupOptions.includes(optionCode);
+      const maxSelections = group.maxSelect;
 
       if (isSelected) {
         return {
           ...current,
-          [group.name]: currentGroupOptions.filter((name) => name !== optionName),
+          [group.code]: currentGroupOptions.filter((code) => code !== optionCode),
         };
       }
 
       if (maxSelections === 1) {
         return {
           ...current,
-          [group.name]: [optionName],
+          [group.code]: [optionCode],
         };
       }
 
@@ -597,7 +663,7 @@ export default function ShopPage() {
 
       return {
         ...current,
-        [group.name]: [...currentGroupOptions, optionName],
+          [group.code]: [...currentGroupOptions, optionCode],
       };
     });
   };
@@ -607,19 +673,25 @@ export default function ShopPage() {
       return;
     }
 
-    const optionGroups = getActiveOptionGroups(customizingProduct);
+    const currentProduct = products.find((product) => product.id === customizingProduct.id);
+    if (!currentProduct || !isProductOrderable(currentProduct)) {
+      setCustomizationError(!isLive ? 'החיבור החי אינו זמין כרגע.' : 'המוצר או שיטת הקבלה אינם זמינים כרגע.');
+      return;
+    }
+
+    const optionGroups = getActiveOptionGroups(currentProduct);
     const invalidGroup = optionGroups.find((group) => {
-      const selectedCount = selectedOptions[group.name]?.length ?? 0;
-      const minSelections = group.min ?? (group.required ? 1 : 0);
-      const maxSelections = group.max ?? null;
+      const selectedCount = selectedOptions[group.code]?.length ?? 0;
+      const minSelections = group.minSelect;
+      const maxSelections = group.maxSelect;
 
       return selectedCount < minSelections || Boolean(maxSelections && selectedCount > maxSelections);
     });
 
     if (invalidGroup) {
-      const selectedCount = selectedOptions[invalidGroup.name]?.length ?? 0;
-      const minSelections = invalidGroup.min ?? (invalidGroup.required ? 1 : 0);
-      const maxSelections = invalidGroup.max ?? null;
+      const selectedCount = selectedOptions[invalidGroup.code]?.length ?? 0;
+      const minSelections = invalidGroup.minSelect;
+      const maxSelections = invalidGroup.maxSelect;
 
       if (selectedCount < minSelections) {
         setCustomizationError(`בחרו לפחות ${minSelections} אפשרויות ב${invalidGroup.name}`);
@@ -629,28 +701,47 @@ export default function ShopPage() {
       return;
     }
 
-    const selections = getSelectedProductOptions(customizingProduct, selectedOptions);
-    const itemId = makeCartItemId(customizingProduct, selections);
-    const unitPriceIls = customizingProduct.price_ils + getSelectionTotal(selections);
+    const selections = getSelectedProductOptions(currentProduct, selectedOptions);
+    const requestedSelectionCount = Object.values(selectedOptions).reduce((sum, groupSelections) => sum + groupSelections.length, 0);
+    if (selections.length !== requestedSelectionCount) {
+      setCustomizationError('אחת האפשרויות השתנתה. בדקו שוב את הבחירות.');
+      return;
+    }
+    const itemId = makeCartItemId(currentProduct, selections);
+    const unitPriceAgorot = currentProduct.priceAgorot + getSelectionTotal(selections);
 
     setMinimumPromptVisible(false);
     setCart((current) => ({
       ...current,
       [itemId]: {
         id: itemId,
-        product: customizingProduct,
+        productId: currentProduct.id,
+        product: currentProduct,
         quantity: (current[itemId]?.quantity ?? 0) + 1,
         selections,
-        unitPriceIls,
+        unitPriceAgorot,
       },
     }));
     closeProductOptions();
     window.requestAnimationFrame(() => setAddToastVisible(true));
   };
 
-  const addToCart = (product: ProductWithOptions) => {
+  const addToCart = (product: ShopProduct) => {
     setMinimumPromptVisible(false);
     setAddToastVisible(false);
+
+    if (!orderingAllowed) {
+      setOperationalMessage(isLive ? 'ההזמנות סגורות כרגע.' : 'המידע החי אינו זמין כרגע. ניתן לעיין בלבד.');
+      return;
+    }
+    if (!product.availableToday) {
+      setOperationalMessage('המוצר אזל להיום.');
+      return;
+    }
+    if (!isProductOrderable(product)) {
+      setOperationalMessage('שיטת הקבלה שנבחרה אינה זמינה עבור המוצר הזה.');
+      return;
+    }
 
     if (hasProductOptions(product)) {
       openProductOptions(product);
@@ -662,10 +753,11 @@ export default function ShopPage() {
       ...current,
       [itemId]: {
         id: itemId,
+        productId: product.id,
         product,
         quantity: (current[itemId]?.quantity ?? 0) + 1,
         selections: [],
-        unitPriceIls: product.price_ils,
+        unitPriceAgorot: product.priceAgorot,
       },
     }));
     window.requestAnimationFrame(() => setAddToastVisible(true));
@@ -741,7 +833,7 @@ export default function ShopPage() {
           nextErrors.apartment = 'כתבו מספר דירה.';
         }
       }
-      if (subtotal < minimumDeliverySubtotalIls) {
+      if (subtotal < settings.minimumDeliverySubtotalAgorot) {
         nextErrors.order = `מינימום הזמנה למשלוח הוא ${minimumDeliverySubtotalText}.`;
       }
     }
@@ -752,6 +844,11 @@ export default function ShopPage() {
 
     if (!cartItems.length) {
       nextErrors.order = 'ההזמנה שלך ריקה.';
+    }
+
+    const operationalBlock = getOperationalBlock(settings, cartItems, fulfillment);
+    if (!isLive || operationalBlock) {
+      nextErrors.order = operationalBlock || 'לא ניתן לאמת הזמנה ללא חיבור חי למאפייה.';
     }
 
     setCheckoutErrors(nextErrors);
@@ -780,13 +877,79 @@ export default function ShopPage() {
     return !firstInvalidField;
   };
 
-  const submitOrderToWhatsapp = (event: FormEvent<HTMLFormElement>) => {
+  const submitOrderToWhatsapp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!validateCheckout()) {
+    if (!validateCheckout() || finalValidationPending) {
       return;
     }
 
-    window.open(whatsappHref, '_blank', 'noopener,noreferrer');
+    const reservedWindow = window.open('', '_blank');
+    setFinalValidationPending(true);
+    setOperationalMessage('מאמתים מחירים וזמינות מול המאפייה…');
+    try {
+      const freshSnapshot = await refresh();
+      const reconciled = reconcileCart(cart, freshSnapshot);
+      setCart(reconciled.cart);
+      const freshItems = Object.values(reconciled.cart);
+      const block = getOperationalBlock(freshSnapshot.settings, freshItems, fulfillment);
+      if (block) {
+        reservedWindow?.close();
+        setCheckoutErrors((current) => ({ ...current, order: block }));
+        setOperationalMessage(block);
+        return;
+      }
+
+      const freshSubtotal = freshItems.reduce((sum, item) => sum + item.unitPriceAgorot * item.quantity, 0);
+      if (fulfillment === 'delivery' && freshSubtotal < freshSnapshot.settings.minimumDeliverySubtotalAgorot) {
+        const message = `מינימום הזמנה למשלוח הוא ${formatPrice(freshSnapshot.settings.minimumDeliverySubtotalAgorot)}.`;
+        reservedWindow?.close();
+        setCheckoutErrors((current) => ({ ...current, order: message }));
+        setOperationalMessage(message);
+        return;
+      }
+
+      if (reconciled.priceChanged || freshSnapshot.settings.deliveryFeeAgorot !== settings.deliveryFeeAgorot || freshSnapshot.settings.pickupFeeAgorot !== settings.pickupFeeAgorot) {
+        reservedWindow?.close();
+        setPriceUpdateVisible(true);
+        setOperationalMessage('המחיר או דמי המשלוח עודכנו. בדקו את הסיכום ושלחו שוב.');
+        return;
+      }
+
+      const freshFee = fulfillment === 'delivery' ? freshSnapshot.settings.deliveryFeeAgorot : freshSnapshot.settings.pickupFeeAgorot;
+      const freshSummary = buildOrderSummary({
+        cartItems: freshItems,
+        fulfillment,
+        selectedArea,
+        customerName,
+        phone,
+        cityLabel: selectedArea?.label ?? '',
+        street,
+        houseNumber,
+        residenceType,
+        entrance,
+        floor,
+        apartment,
+        notes,
+        subtotal: freshSubtotal,
+        deliveryFee: freshFee,
+        total: freshSubtotal + freshFee,
+      });
+      const url = `https://wa.me/${bakeryWhatsappNumber}?text=${encodeURIComponent(freshSummary)}`;
+      setOperationalMessage('ההזמנה אומתה. עוברים לוואטסאפ…');
+      if (reservedWindow) {
+        reservedWindow.opener = null;
+        reservedWindow.location.href = url;
+      } else {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    } catch {
+      reservedWindow?.close();
+      const message = 'לא הצלחנו לבצע אימות חי. ההזמנה לא נשלחה — נסו שוב.';
+      setCheckoutErrors((current) => ({ ...current, order: message }));
+      setOperationalMessage(message);
+    } finally {
+      setFinalValidationPending(false);
+    }
   };
 
   const renderCheckoutError = (field: CheckoutField) => (
@@ -818,6 +981,53 @@ export default function ShopPage() {
           </a>
         </section>
       )}
+
+      <div className="shop-live-status" aria-live="polite">
+        {shopStatus === 'loading' && (
+          <div className="shop-status-banner is-loading" data-testid="shop-loading">
+            טוענים את התפריט העדכני…
+          </div>
+        )}
+        {shopStatus === 'degraded' && (
+          <div className="shop-status-banner is-warning" data-testid="shop-degraded">
+            <div>
+              <strong>המידע החי אינו זמין כרגע</strong>
+              <span>אפשר לעיין בתפריט, אבל לא ניתן לבצע הזמנה עד שהחיבור יחזור.</span>
+            </div>
+            <button type="button" onClick={() => void refresh().catch(() => undefined)} disabled={isRefreshing}>
+              {isRefreshing ? 'מנסים שוב…' : 'ניסיון חוזר'}
+            </button>
+          </div>
+        )}
+        {isLive && !settings.orderingEnabled && (
+          <div className="shop-status-banner is-closed" data-testid="ordering-closed">
+            <strong>ההזמנות סגורות כרגע</strong>
+            <span>התפריט נשאר פתוח לעיון.</span>
+          </div>
+        )}
+        {isLive && settings.orderingEnabled && (!settings.deliveryEnabled || !settings.pickupEnabled) && (
+          <div className="shop-status-banner is-warning" data-testid="fulfillment-status">
+            {!settings.deliveryEnabled && settings.pickupEnabled && 'החנות כרגע בעומס — אין משלוחים כרגע. ניתן לבצע איסוף עצמי.'}
+            {settings.deliveryEnabled && !settings.pickupEnabled && 'איסוף עצמי אינו זמין כרגע. ניתן לבצע משלוח.'}
+            {!settings.deliveryEnabled && !settings.pickupEnabled && 'משלוחים ואיסוף עצמי מושהים כרגע. ניתן לעיין בתפריט בלבד.'}
+          </div>
+        )}
+        {isCustomerNoticeVisible(settings) && (
+          <div className={`shop-status-banner is-notice-${settings.customerNoticeType}`} data-testid="customer-notice">
+            {settings.customerNoticeText}
+          </div>
+        )}
+        {(priceUpdateVisible || cartReconciliation.priceChanged) && (
+          <div className="shop-status-banner is-info" data-testid="price-updated">
+            המחירים בהזמנה עודכנו לפי התפריט החי.
+          </div>
+        )}
+        {operationalMessage && (
+          <div className="shop-status-banner is-info" data-testid="operational-message">
+            {operationalMessage}
+          </div>
+        )}
+      </div>
 
       <div className={`shop-layout ${orderStep === 'details' ? 'is-checkout-step' : ''}`}>
         {orderStep === 'catalog' ? (
@@ -857,18 +1067,18 @@ export default function ShopPage() {
                 const displayPrice = getProductDisplayPrice(product);
 
                 return (
-                  <article className="shop-product-card" key={product.id}>
-                    <div className={`shop-product-media ${product.image_url ? 'has-product-image' : 'is-missing-image'}`}>
-                      {product.image_url ? (
+                  <article className={`shop-product-card ${!product.availableToday ? 'is-unavailable' : ''}`} key={product.id} data-product-id={product.id}>
+                    <div className={`shop-product-media ${product.imageUrl ? 'has-product-image' : 'is-missing-image'}`}>
+                      {product.imageUrl ? (
                         <img
-                          src={product.image_url}
-                          alt={product.product_name}
+                          src={product.imageUrl}
+                          alt={product.name}
                           loading={index > 5 ? 'lazy' : 'eager'}
                           fetchPriority={index < 4 ? 'high' : 'auto'}
                           decoding="async"
                         />
                       ) : (
-                        <div className="shop-product-placeholder" aria-label={`אין עדיין תמונה עבור ${product.product_name}`}>
+                        <div className="shop-product-placeholder" aria-label={`אין עדיין תמונה עבור ${product.name}`}>
                           <ImageSquare size={30} weight="light" aria-hidden="true" />
                           <span>תמונה תתווסף בקרוב</span>
                         </div>
@@ -876,7 +1086,10 @@ export default function ShopPage() {
                     </div>
                     <div className="shop-product-body">
                       <div className="shop-product-copy">
-                        <h3>{product.product_name}</h3>
+                        <div className="shop-product-heading">
+                          <h3>{product.name}</h3>
+                          {!product.availableToday && <span className="shop-stock-badge">אזל להיום</span>}
+                        </div>
                         {product.description ? <p>{product.description}</p> : null}
                       </div>
                       <div className="shop-product-foot">
@@ -888,10 +1101,10 @@ export default function ShopPage() {
                           {getVisibleProductUnitNote(product) && <span><bdi>{getVisibleProductUnitNote(product)}</bdi></span>}
                         </div>
                         {cartItem && !productHasOptions ? (
-                          <div className="shop-card-quantity" aria-label={`כמות ${product.product_name}`}>
+                          <div className="shop-card-quantity" aria-label={`כמות ${product.name}`}>
                             <button
                               type="button"
-                              aria-label={`הפחתת ${product.product_name}`}
+                              aria-label={`הפחתת ${product.name}`}
                               onClick={() => updateQuantity(itemId, cartItem.quantity - 1)}
                             >
                               <Minus size={16} weight="bold" />
@@ -899,16 +1112,22 @@ export default function ShopPage() {
                             <span aria-live="polite">{cartItem.quantity}</span>
                             <button
                               type="button"
-                              aria-label={`הוספת ${product.product_name}`}
+                              aria-label={`הוספת ${product.name}`}
                               onClick={() => updateQuantity(itemId, cartItem.quantity + 1)}
+                              disabled={!isProductOrderable(product)}
                             >
                               <Plus size={16} weight="bold" />
                             </button>
                           </div>
                         ) : (
-                          <button className="shop-add-button" type="button" onClick={() => addToCart(product)}>
+                          <button
+                            className="shop-add-button"
+                            type="button"
+                            onClick={() => addToCart(product)}
+                            disabled={!isProductOrderable(product)}
+                          >
                             <Plus size={18} weight="bold" />
-                            הוספה
+                            {!product.availableToday ? 'אזל להיום' : 'הוספה'}
                           </button>
                         )}
                       </div>
@@ -1223,7 +1442,7 @@ export default function ShopPage() {
                     <div className="shop-cart-item" key={id}>
                       <div className="shop-cart-item-content">
                         <div className="shop-cart-item-top">
-                          <strong className="shop-cart-item-name">{product.product_name}</strong>
+                          <strong className="shop-cart-item-name">{product.name}</strong>
                           <strong className="shop-cart-line-total"><bdi>{formatPrice(unitPrice * quantity)}</bdi></strong>
                         </div>
                         {itemMeta && <span className="shop-cart-item-meta"><bdi>{itemMeta}</bdi></span>}
@@ -1236,14 +1455,17 @@ export default function ShopPage() {
                             ))}
                           </div>
                         )}
+                        {item.invalidReason && (
+                          <p className="shop-cart-item-warning" role="alert">{item.invalidReason}</p>
+                        )}
                       </div>
                       <div className="shop-cart-item-actions">
-                        <div className="shop-quantity" aria-label={`כמות ${product.product_name}`}>
-                          <button type="button" onClick={() => updateQuantity(id, quantity - 1)} aria-label={`הפחתת ${product.product_name}`}>
+                        <div className="shop-quantity" aria-label={`כמות ${product.name}`}>
+                          <button type="button" onClick={() => updateQuantity(id, quantity - 1)} aria-label={`הפחתת ${product.name}`}>
                             <Minus size={16} weight="bold" />
                           </button>
                           <span aria-live="polite">{quantity}</span>
-                          <button type="button" onClick={() => updateQuantity(id, quantity + 1)} aria-label={`הוספת ${product.product_name}`}>
+                          <button type="button" onClick={() => updateQuantity(id, quantity + 1)} aria-label={`הוספת ${product.name}`} disabled={Boolean(item.invalidReason) || !isProductOrderable(product)}>
                             <Plus size={16} weight="bold" />
                           </button>
                         </div>
@@ -1251,7 +1473,7 @@ export default function ShopPage() {
                           className="shop-remove-item"
                           type="button"
                           onClick={() => updateQuantity(id, 0)}
-                          aria-label={`הסרת ${product.product_name}`}
+                          aria-label={`הסרת ${product.name}`}
                         >
                           הסרה
                         </button>
@@ -1302,8 +1524,9 @@ export default function ShopPage() {
                   <button
                     className={`shop-continue-button ${deliveryMinimumNotMet ? 'is-blocked-by-minimum' : ''}`}
                     type="button"
-                    onClick={goToOrderDetails}
-                    aria-disabled={deliveryMinimumNotMet}
+                    onClick={() => void goToOrderDetails()}
+                    disabled={finalValidationPending || !canAttemptContinue}
+                    aria-disabled={deliveryMinimumNotMet || !canAttemptContinue}
                     aria-describedby={deliveryMinimumNotMet ? 'shop-minimum-hint' : undefined}
                   >
                     המשך לפרטי הזמנה
@@ -1321,9 +1544,10 @@ export default function ShopPage() {
                       }
                     }}
                     aria-describedby={checkoutErrors.order ? 'checkout-order' : 'checkout-whatsapp-helper'}
+                    disabled={finalValidationPending || !canSendOrder}
                   >
                     <WhatsappLogo size={21} weight="bold" />
-                    שליחת ההזמנה בוואטסאפ
+                    {finalValidationPending ? 'מאמתים את ההזמנה…' : 'שליחת ההזמנה בוואטסאפ'}
                   </button>
                   <p className="shop-whatsapp-helper" id="checkout-whatsapp-helper">
                     ההזמנה תישלח למאפייה לאישור.
@@ -1333,7 +1557,7 @@ export default function ShopPage() {
                       {checkoutErrors.order}
                     </p>
                   )}
-                  <button className="shop-copy-button" type="button" onClick={copyOrderSummary} disabled={!canSendOrder}>
+                  <button className="shop-copy-button" type="button" onClick={copyOrderSummary} disabled={!canSendOrder || finalValidationPending}>
                     <Copy size={18} weight="bold" />
                     העתקת הזמנה
                   </button>
@@ -1408,14 +1632,14 @@ export default function ShopPage() {
         </div>
       )}
 
-      {customizingProduct && (
+      {displayedCustomizingProduct && (
         <div className="shop-option-backdrop" role="dialog" aria-modal="true" aria-labelledby="shop-option-title">
           <div className="shop-option-drawer">
             <div className="shop-option-head">
               <div>
                 <span className="shop-kicker">התאמה אישית</span>
-                <h2 id="shop-option-title">{customizingProduct.product_name}</h2>
-                <p>מחיר בסיס: {formatPrice(customizingProduct.price_ils)}</p>
+                <h2 id="shop-option-title">{displayedCustomizingProduct.name}</h2>
+                <p>מחיר בסיס: {formatPrice(displayedCustomizingProduct.priceAgorot)}</p>
               </div>
               <button type="button" onClick={closeProductOptions} aria-label="סגירת התאמה">
                 <X size={20} weight="bold" />
@@ -1423,10 +1647,10 @@ export default function ShopPage() {
             </div>
 
             <div className="shop-option-groups">
-              {getActiveOptionGroups(customizingProduct).map((group) => {
-                const selectedInGroup = selectedOptions[group.name] ?? [];
-                const minSelections = group.min ?? (group.required ? 1 : 0);
-                const maxSelections = group.max ?? null;
+              {getActiveOptionGroups(displayedCustomizingProduct).map((group) => {
+                const selectedInGroup = selectedOptions[group.code] ?? [];
+                const minSelections = group.minSelect;
+                const maxSelections = group.maxSelect;
 
                 return (
                   <section className="shop-option-group" key={group.name}>
@@ -1439,17 +1663,17 @@ export default function ShopPage() {
                     </div>
                     <div className="shop-option-choices">
                       {group.options.map((option) => {
-                        const checked = selectedInGroup.includes(option.name);
+                        const checked = selectedInGroup.includes(option.code);
 
                         return (
                           <label className={checked ? 'is-selected' : undefined} key={option.name}>
                             <input
                               type="checkbox"
                               checked={checked}
-                              onChange={() => toggleProductOption(group, option.name)}
+                              onChange={() => toggleProductOption(group, option.code)}
                             />
                             <span>{option.name}</span>
-                            {(option.price_delta ?? 0) > 0 && <bdi>+{formatPrice(option.price_delta ?? 0)}</bdi>}
+                            {option.priceDeltaAgorot > 0 && <bdi>+{formatPrice(option.priceDeltaAgorot)}</bdi>}
                           </label>
                         );
                       })}
@@ -1467,7 +1691,7 @@ export default function ShopPage() {
 
             <div className="shop-option-footer">
               <strong>
-                סה״כ <bdi>{formatPrice(customizingProduct.price_ils + getSelectionTotal(getSelectedProductOptions(customizingProduct, selectedOptions)))}</bdi>
+                סה״כ <bdi>{formatPrice(displayedCustomizingProduct.priceAgorot + getSelectionTotal(getSelectedProductOptions(displayedCustomizingProduct, selectedOptions)))}</bdi>
               </strong>
               <button type="button" onClick={addConfiguredProductToCart}>
                 <Plus size={18} weight="bold" />

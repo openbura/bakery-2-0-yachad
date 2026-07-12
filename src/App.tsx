@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { AnimatePresence, motion, type Variants, useReducedMotion } from 'framer-motion';
 import {
   Clock,
@@ -27,7 +27,8 @@ import freshTwo from './assets/bakery-2/fresh-2.webp';
 import freshThree from './assets/bakery-2/fresh-3.webp';
 import freshFour from './assets/bakery-2/fresh-4.webp';
 import aboutImage from './assets/bakery-2/gallery-3.webp';
-import ShopPage from './ShopPage';
+
+const ShopPage = lazy(() => import('./ShopPage'));
 
 const phoneHref = 'tel:0502696267';
 const whatsappHref =
@@ -1470,7 +1471,11 @@ function HomePage() {
 }
 
 function App() {
-  return window.location.pathname === '/shop' ? <ShopPage /> : <HomePage />;
+  return window.location.pathname === '/shop' ? (
+    <Suspense fallback={<main className="shop-shell" dir="rtl"><div className="shop-status-banner is-loading">טוענים את החנות…</div></main>}>
+      <ShopPage />
+    </Suspense>
+  ) : <HomePage />;
 }
 
 export default App;

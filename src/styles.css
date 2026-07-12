@@ -4645,3 +4645,130 @@ img {
     transform: none !important;
   }
 }
+
+/* Public shop live operational states */
+.shop-live-status {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 1540px);
+  margin: 0 auto 14px;
+}
+
+.shop-status-banner {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 16px;
+  border: 1px solid rgba(103, 70, 43, 0.16);
+  border-radius: 14px;
+  background: #fffaf0;
+  color: #432515;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.shop-status-banner > div {
+  display: grid;
+  gap: 2px;
+}
+
+.shop-status-banner span {
+  color: #72513b;
+}
+
+.shop-status-banner button {
+  min-height: 44px;
+  flex: 0 0 auto;
+  padding: 0 16px;
+  border: 1px solid rgba(103, 70, 43, 0.24);
+  border-radius: 11px;
+  background: #fff;
+  color: #432515;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.shop-status-banner.is-warning,
+.shop-status-banner.is-notice-warning {
+  border-color: rgba(175, 105, 24, 0.28);
+  background: #fff4df;
+  color: #70400d;
+}
+
+.shop-status-banner.is-closed,
+.shop-status-banner.is-notice-closed {
+  border-color: rgba(143, 64, 34, 0.3);
+  background: #fbe9df;
+  color: #672d18;
+}
+
+.shop-status-banner.is-info,
+.shop-status-banner.is-notice-info,
+.shop-status-banner.is-loading {
+  border-color: rgba(126, 91, 48, 0.2);
+  background: #fbf2df;
+}
+
+.shop-product-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.shop-stock-badge {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f5e2d7;
+  color: #7f341c;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.shop-product-card.is-unavailable .shop-product-media img {
+  filter: saturate(0.72) opacity(0.78);
+}
+
+.shop-add-button:disabled,
+.shop-card-quantity button:disabled,
+.shop-continue-button:disabled,
+.shop-whatsapp-button:disabled,
+.shop-copy-button:disabled,
+.shop-fulfillment-block label.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.shop-cart-item-warning {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: #fbe9df;
+  color: #742e19;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .shop-live-status {
+    margin-bottom: 10px;
+  }
+
+  .shop-status-banner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 9px;
+    padding: 11px 12px;
+    font-size: 14px;
+  }
+
+  .shop-status-banner button {
+    width: 100%;
+  }
+}
