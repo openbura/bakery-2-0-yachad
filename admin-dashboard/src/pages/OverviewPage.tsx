@@ -1,6 +1,7 @@
 import {
   BellRinging,
   CheckCircle,
+  ClockCounterClockwise,
   Package,
   PencilSimple,
   ShoppingBagOpen,
@@ -20,6 +21,7 @@ type OverviewProps = {
   onTogglePickup: () => void;
   onToggleNotice: () => void;
   onEditNotice: () => void;
+  savingControl: 'ordering' | 'delivery' | 'pickup' | 'notice' | null;
 };
 
 type QuickControlProps = {
@@ -30,9 +32,11 @@ type QuickControlProps = {
   icon: ComponentType<{ size?: number; weight?: 'regular' | 'duotone' }>;
   onToggle: () => void;
   onEdit?: () => void;
+  saving: boolean;
+  disabled: boolean;
 };
 
-function QuickControl({ label, activeLabel, inactiveLabel, active, icon: Icon, onToggle, onEdit }: QuickControlProps) {
+function QuickControl({ label, activeLabel, inactiveLabel, active, icon: Icon, onToggle, onEdit, saving, disabled }: QuickControlProps) {
   const stateLabel = active ? activeLabel : inactiveLabel;
 
   return (
@@ -43,18 +47,20 @@ function QuickControl({ label, activeLabel, inactiveLabel, active, icon: Icon, o
           <strong>{label}</strong>
           <span className="quick-control__state" aria-live="polite" aria-atomic="true">
             {active ? <CheckCircle size={17} weight="fill" /> : <WarningCircle size={17} weight="fill" />}
-            {stateLabel}
+            {saving ? 'שומר…' : stateLabel}
           </span>
         </div>
       </div>
       <div className="quick-control__actions">
-        {onEdit && <button className="quick-control__edit" type="button" onClick={onEdit}><PencilSimple size={18} /> עריכת ההודעה</button>}
+        {onEdit && <button className="quick-control__edit" type="button" onClick={onEdit} disabled={disabled}><PencilSimple size={18} /> עריכת ההודעה</button>}
         <button
           className="quick-switch"
           type="button"
           role="switch"
           aria-checked={active}
-          aria-label={`${label}: ${stateLabel}`}
+          aria-label={`${label}: ${saving ? 'שומר' : stateLabel}`}
+          aria-busy={saving}
+          disabled={disabled}
           onClick={onToggle}
         >
           <span aria-hidden="true"><span /></span>
@@ -64,7 +70,7 @@ function QuickControl({ label, activeLabel, inactiveLabel, active, icon: Icon, o
   );
 }
 
-export function OverviewPage({ settings, products, onToggleOrdering, onToggleDelivery, onTogglePickup, onToggleNotice, onEditNotice }: OverviewProps) {
+export function OverviewPage({ settings, products, onToggleOrdering, onToggleDelivery, onTogglePickup, onToggleNotice, onEditNotice, savingControl }: OverviewProps) {
   const availableCount = products.filter((product) => product.available).length;
   const unavailableCount = products.length - availableCount;
 
@@ -79,6 +85,7 @@ export function OverviewPage({ settings, products, onToggleOrdering, onToggleDel
       <header className="page-header dashboard-header">
         <div className="dashboard-header__title"><p className="eyebrow">ניהול שוטף</p><h1>דשבורד</h1></div>
         <BakeryLiveClock />
+        <div className="last-updated"><ClockCounterClockwise size={19} /><span>הגדרות עודכנו<br /><strong>{settings.updatedAt}</strong></span></div>
       </header>
 
       <section className="status-board" aria-labelledby="store-status-title">
@@ -107,7 +114,7 @@ export function OverviewPage({ settings, products, onToggleOrdering, onToggleDel
             <div><strong>{availableCount}</strong><span>מוצרים זמינים</span></div>
             <div className="is-warning"><strong>{unavailableCount}</strong><span>אזלו להיום</span></div>
           </div>
-          <p className="muted-copy">הנתונים משקפים את קטלוג הדשבורד המקומי.</p>
+          <p className="muted-copy">הנתונים נטענים ממסד המאפייה ומתעדכנים לאחר כל שמירה מאומתת.</p>
         </section>
       </div>
 
@@ -117,10 +124,10 @@ export function OverviewPage({ settings, products, onToggleOrdering, onToggleDel
           <p>כל מצב מוצג באופן קבוע ומתעדכן מיד לאחר השינוי.</p>
         </div>
         <div className="quick-control-grid">
-          <QuickControl label="הזמנות אונליין" activeLabel="פתוחות" inactiveLabel="סגורות" active={settings.orderingEnabled} icon={ShoppingBagOpen} onToggle={onToggleOrdering} />
-          <QuickControl label="משלוחים" activeLabel="פעילים" inactiveLabel="מושהים" active={settings.deliveryEnabled} icon={Truck} onToggle={onToggleDelivery} />
-          <QuickControl label="איסוף עצמי" activeLabel="פעיל" inactiveLabel="מושהה" active={settings.pickupEnabled} icon={Storefront} onToggle={onTogglePickup} />
-          <QuickControl label="הודעה ללקוחות" activeLabel="פעילה" inactiveLabel="לא פעילה" active={settings.noticeActive} icon={BellRinging} onToggle={onToggleNotice} onEdit={onEditNotice} />
+          <QuickControl label="הזמנות אונליין" activeLabel="פתוחות" inactiveLabel="סגורות" active={settings.orderingEnabled} icon={ShoppingBagOpen} onToggle={onToggleOrdering} saving={savingControl === 'ordering'} disabled={savingControl !== null} />
+          <QuickControl label="משלוחים" activeLabel="פעילים" inactiveLabel="מושהים" active={settings.deliveryEnabled} icon={Truck} onToggle={onToggleDelivery} saving={savingControl === 'delivery'} disabled={savingControl !== null} />
+          <QuickControl label="איסוף עצמי" activeLabel="פעיל" inactiveLabel="מושהה" active={settings.pickupEnabled} icon={Storefront} onToggle={onTogglePickup} saving={savingControl === 'pickup'} disabled={savingControl !== null} />
+          <QuickControl label="הודעה ללקוחות" activeLabel="פעילה" inactiveLabel="לא פעילה" active={settings.noticeActive} icon={BellRinging} onToggle={onToggleNotice} onEdit={onEditNotice} saving={savingControl === 'notice'} disabled={savingControl !== null} />
         </div>
       </section>
     </div>

@@ -1,30 +1,35 @@
 import { WarningCircle } from '@phosphor-icons/react';
 import { useState } from 'react';
-import { temporaryPassword, temporaryUsername, validateTemporaryCredentials } from '../auth/mockAuth';
 import { BrandMark } from '../components/BrandMark';
+import { ownerMessage } from '../services/serviceErrors';
 
-export function LoginPage({ onLogin }: { onLogin: () => void }) {
-  const [username, setUsername] = useState(temporaryUsername);
-  const [password, setPassword] = useState(temporaryPassword);
+type LoginPageProps = {
+  initialUsername: string;
+  initialPassword: string;
+  onLogin: (username: string, password: string) => Promise<void>;
+};
+
+export function LoginPage({ initialUsername, initialPassword, onLogin }: LoginPageProps) {
+  const [username, setUsername] = useState(initialUsername);
+  const [password, setPassword] = useState(initialPassword);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const canSubmit = username.trim().length > 0 && password.length > 0 && !loading;
 
-  const submit = (event: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!canSubmit) return;
 
     setLoading(true);
     setError('');
-    window.setTimeout(() => {
-      if (!validateTemporaryCredentials(username, password)) {
-        setLoading(false);
-        setError('שם המשתמש או הסיסמה אינם נכונים.');
-        return;
-      }
-      onLogin();
-    }, 360);
+    try {
+      await onLogin(username, password);
+    } catch (loginError) {
+      setError(ownerMessage(loginError, 'לא הצלחנו להתחבר. בדקו את הפרטים ונסו שוב.'));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

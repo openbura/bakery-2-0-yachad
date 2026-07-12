@@ -7,7 +7,7 @@ export function Toast({ toast, onDismiss }: { toast: ToastMessage | null; onDism
   const Icon = toast.tone === 'success' ? CheckCircle : toast.tone === 'error' ? WarningCircle : Info;
 
   return (
-    <div className={`toast toast--${toast.tone}`} role="status" aria-live="polite">
+    <div className={`toast toast--${toast.tone}`} role={toast.tone === 'error' ? 'alert' : 'status'} aria-live={toast.tone === 'error' ? 'assertive' : 'polite'}>
       <Icon size={22} weight="fill" aria-hidden="true" />
       <span>{toast.text}</span>
       <button type="button" onClick={onDismiss} aria-label="סגירת הודעה"><X size={18} /></button>

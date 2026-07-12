@@ -1,11 +1,12 @@
 import { CurrencyCircleDollar, X } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
+import { ownerMessage } from '../services/serviceErrors';
 import type { Product } from '../types/dashboard';
 
 type PriceDialogProps = {
   product: Product;
   onClose: () => void;
-  onSave: (productId: string, price: number) => void;
+  onSave: (productId: string, price: number) => Promise<void>;
 };
 
 export function PriceDialog({ product, onClose, onSave }: PriceDialogProps) {
@@ -26,18 +27,23 @@ export function PriceDialog({ product, onClose, onSave }: PriceDialogProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose, product, saving]);
 
-  const submit = (event: React.FormEvent) => {
+  const submit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const nextPrice = Number(value);
-    if (!Number.isFinite(nextPrice) || nextPrice <= 0 || !Number.isInteger(nextPrice)) {
-      setError('יש להזין מחיר חיובי בשקלים שלמים.');
+    const normalizedValue = value.replace(',', '.');
+    const nextPrice = Number(normalizedValue);
+    if (!/^\d+(?:[.,]\d{1,2})?$/.test(value) || !Number.isFinite(nextPrice) || nextPrice <= 0) {
+      setError('יש להזין מחיר חיובי עם עד שתי ספרות אחרי הנקודה.');
       return;
     }
     setSaving(true);
-    window.setTimeout(() => {
-      onSave(product.id, nextPrice);
+    setError('');
+    try {
+      await onSave(product.id, nextPrice);
       onClose();
-    }, 420);
+    } catch (saveError) {
+      setError(ownerMessage(saveError, 'המחיר לא נשמר. בדקו את החיבור ונסו שוב.'));
+      setSaving(false);
+    }
   };
 
   const priceDelta = Number(value) - product.price;
@@ -61,16 +67,20 @@ export function PriceDialog({ product, onClose, onSave }: PriceDialogProps) {
             <input
               ref={inputRef}
               id="product-price"
-              inputMode="numeric"
+              inputMode="decimal"
               value={value}
-              onChange={(event) => { setValue(event.target.value.replace(/[^0-9]/g, '')); setError(''); }}
+              onChange={(event) => {
+                const nextValue = event.target.value;
+                if (/^\d*(?:[.,]\d{0,2})?$/.test(nextValue)) setValue(nextValue);
+                setError('');
+              }}
               aria-invalid={Boolean(error)}
               aria-describedby={error ? 'product-price-error' : unusualChange ? 'product-price-warning' : undefined}
             />
           </div>
           {error && <p className="field-message field-message--error" id="product-price-error">{error}</p>}
           {!error && unusualChange && <p className="field-message field-message--warning" id="product-price-warning">זהו שינוי גדול ביחס למחיר הנוכחי. כדאי לבדוק לפני השמירה.</p>}
-          <p className="mock-note">בשלב A השינוי נשמר בהדגמה המקומית בלבד.</p>
+          <p className="mock-note">המחיר נשמר במסד המאפייה לאחר אימות, ויוצג כאן מחדש עם השלמת השמירה.</p>
           <div className="dialog-actions">
             <button className="button button--ghost" type="button" onClick={onClose} disabled={saving}>ביטול</button>
             <button className="button button--primary" type="submit" disabled={saving}>{saving ? <><span className="spinner" /> שומר…</> : 'שמירת מחיר'}</button>

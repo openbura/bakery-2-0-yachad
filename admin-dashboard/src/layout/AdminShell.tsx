@@ -8,12 +8,13 @@ import {
 } from '@phosphor-icons/react';
 import { useState, type ReactNode } from 'react';
 import { BrandMark } from '../components/BrandMark';
-import type { AdminRoute } from '../types/dashboard';
+import type { AdminProfile, AdminRoute } from '../types/dashboard';
 
 type AdminShellProps = {
   route: AdminRoute;
   onNavigate: (route: AdminRoute) => void;
   onLogout: () => void;
+  profile: AdminProfile;
   children: ReactNode;
 };
 
@@ -23,8 +24,10 @@ const navItems: Array<{ route: AdminRoute; label: string; icon: typeof SquaresFo
   { route: '/settings', label: 'הגדרות', icon: GearSix },
 ];
 
-export function AdminShell({ route, onNavigate, onLogout, children }: AdminShellProps) {
+export function AdminShell({ route, onNavigate, onLogout, profile, children }: AdminShellProps) {
   const [profileOpen, setProfileOpen] = useState(false);
+  const roleLabel = profile.role === 'owner' ? 'בעלים' : 'מנהל';
+  const avatarLetter = profile.displayName.trim().charAt(0) || 'י';
 
   return (
     <div className="admin-shell">
@@ -44,8 +47,8 @@ export function AdminShell({ route, onNavigate, onLogout, children }: AdminShell
         </nav>
         <div className="sidebar__profile">
           <div>
-            <span className="avatar">י</span>
-            <span><strong>מנהלת המאפייה</strong><small>מצב הדגמה מקומי</small></span>
+            <span className="avatar">{avatarLetter}</span>
+            <span><strong>{profile.displayName}</strong><small>{roleLabel} · מחובר למסד המאפייה</small></span>
           </div>
           <button type="button" onClick={onLogout}><SignOut size={20} /><span>יציאה</span></button>
         </div>
@@ -59,8 +62,8 @@ export function AdminShell({ route, onNavigate, onLogout, children }: AdminShell
           </button>
           {profileOpen && (
             <div className="profile-menu">
-              <strong>מנהלת המאפייה</strong>
-              <small>מצב הדגמה מקומי</small>
+              <strong>{profile.displayName}</strong>
+              <small>{roleLabel} · מחובר למסד המאפייה</small>
               <button type="button" onClick={onLogout}><SignOut size={19} /> יציאה</button>
             </div>
           )}

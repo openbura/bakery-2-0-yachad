@@ -121,6 +121,7 @@ bdi { unicode-bidi: isolate; }
 .dashboard-header { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(280px, 360px) minmax(180px, 1fr); align-items: center; gap: 24px; min-height: 96px; padding-block: 0 4px; }
 .dashboard-header__title { grid-column: 1; justify-self: start; }
 .dashboard-header h1 { margin-bottom: 0; }
+.dashboard-header > .last-updated { grid-column: 3; justify-self: end; }
 .bakery-clock { --seconds-progress: 0%; grid-column: 2; justify-self: center; width: min(100%, 310px); min-width: 0; display: grid; justify-items: center; align-content: center; }
 .bakery-clock__readout { display: inline-flex; align-items: flex-start; justify-content: center; color: var(--espresso-900); font-variant-numeric: tabular-nums; line-height: 0.9; white-space: nowrap; }
 .bakery-clock__main-time { min-width: 4.65ch; font-size: clamp(2.65rem, 3.3vw, 3.15rem); font-weight: 800; text-align: center; }
@@ -263,7 +264,7 @@ bdi { unicode-bidi: isolate; }
 .customer-preview__bar span { font-family: 'Frank Ruhl Libre', serif; font-weight: 700; }
 .customer-preview__bar small { color: rgba(255,255,255,0.55); }
 .customer-notice { margin: 14px; padding: 12px; border-radius: 11px; display: flex; align-items: flex-start; gap: 8px; font-size: 0.75rem; line-height: 1.45; }
-.customer-notice--information { background: #e8eef2; color: var(--info); }
+.customer-notice--info { background: #e8eef2; color: var(--info); }
 .customer-notice--warning { background: var(--warning-soft); color: var(--warning); }
 .customer-notice--closed { background: var(--error-soft); color: var(--error); }
 .customer-notice.is-empty { justify-content: center; color: var(--muted); background: var(--cream-100); }
@@ -299,6 +300,17 @@ bdi { unicode-bidi: isolate; }
 .toast--error > svg { color: var(--error); }
 .toast--info > svg { color: var(--info); }
 .toast button { margin-inline-start: auto; width: 44px; height: 44px; border: 0; border-radius: 9px; background: transparent; display: grid; place-items: center; color: var(--muted); }
+
+/* Remote state */
+.standalone-state { position: relative; z-index: 1; width: min(100%, 460px); overflow: hidden; border: 1px solid var(--border); border-radius: 26px; background: rgba(255,253,248,0.96); box-shadow: var(--shadow-raised); }
+.standalone-state__brand { padding: 22px 26px; background: linear-gradient(120deg, var(--espresso-950), #4c2514); }
+.workspace-state { min-height: 360px; padding: 42px 28px; border: 1px solid var(--border); border-radius: var(--radius-md); background: rgba(255,253,248,0.86); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.standalone-state .workspace-state { min-height: 300px; border: 0; border-radius: 0; box-shadow: none; }
+.workspace-state > svg { color: var(--error); }
+.workspace-state__spinner { width: 28px; height: 28px; color: var(--caramel-600); }
+.workspace-state h1 { margin: 18px 0 8px; font-size: 1.8rem; font-weight: 800; }
+.workspace-state p { max-width: 38ch; margin-bottom: 20px; color: var(--muted); font-size: 0.94rem; font-weight: 600; line-height: 1.6; }
+.quick-switch:disabled, .quick-control__edit:disabled, .availability-button:disabled, .edit-price-button:disabled { cursor: wait; opacity: 0.6; }
 
 @media (max-width: 1100px) {
   .admin-shell { grid-template-columns: 220px minmax(0, 1fr); }
@@ -337,6 +349,7 @@ bdi { unicode-bidi: isolate; }
   .dashboard-header { grid-template-columns: 1fr; align-items: center; gap: 12px; min-height: 0; }
   .dashboard-header__title { grid-column: 1; }
   .bakery-clock { grid-column: 1; width: min(100%, 310px); justify-self: center; }
+  .dashboard-header > .last-updated { grid-column: 1; justify-self: stretch; }
   .last-updated { border-inline-start: 0; border-top: 1px solid var(--border); }
   .quick-control-grid { grid-template-columns: 1fr; }
   .filter-bar { grid-template-columns: 1fr 1fr; }
@@ -362,6 +375,7 @@ bdi { unicode-bidi: isolate; }
   .login-card { width: 100%; max-width: 460px; border-radius: 22px; }
   .login-card__brand { padding: 18px 20px; }
   .login-card__content { padding: 28px 22px 30px; }
+  .standalone-state { border-radius: 22px; }
   .login-card h1 { font-size: 2.15rem; }
   .login-intro { margin-bottom: 22px; }
   .page-stack { gap: 16px; }

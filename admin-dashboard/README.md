@@ -1,6 +1,6 @@
 # Yachad Bakery Admin Dashboard
 
-אפליקציית ניהול עצמאית, בעברית ובכיוון RTL, עבור מאפיית יחד. בשלב A הממשק משתמש ב-state מקומי וב-snapshot מקומי של קטלוג החנות הציבורית.
+אפליקציית ניהול עצמאית בעברית ובכיוון RTL עבור מאפיית יחד. הדשבורד מתחבר רק לפרויקט Supabase הייעודי של המאפייה ומאפשר פעולות יומיומיות מוגבלות לפי RLS והרשאות עמודה.
 
 ## פיתוח מקומי
 
@@ -19,17 +19,29 @@ npm run preview
 
 ## נתיבים
 
-- `/login` — מסך התחברות מדומה.
-- `/` — סקירה תפעולית.
-- `/products` — חיפוש, סינון, זמינות ומחיר.
+- `/login` — כניסה באמצעות Supabase Auth ו־allowlist של מנהלי המאפייה.
+- `/` — דשבורד תפעולי ופעולות מהירות.
+- `/products` — חיפוש, סינון, זמינות יומית ועריכת מחיר.
 - `/settings` — סטטוס החנות והודעה ללקוחות.
 
-## גבולות Stage A
+## משתני סביבה מקומיים
 
-- אין Auth אמיתי, Backend או חיבור ל-Supabase.
-- כל שמירה מעדכנת state מקומי בלבד ואינה משנה את האתר הציבורי.
-- האפליקציה מבודדת לחלוטין מאפליקציית המאפייה שנמצאת בשורש המאגר.
-- `src/data/catalogSeed.json` הוא snapshot מקומי של הקטלוג הציבורי לצורכי Stage A בלבד; אין import בזמן ריצה מאפליקציית החנות.
-- שמות משתני Supabase העתידיים מתועדים ב-`.env.example` ללא ערכים.
+העתיקו את שמות המשתנים מ־`.env.example` אל `.env.local`. ערכים אמיתיים נשארים מקומיים ומחוץ ל־Git.
 
-בשלב עתידי `src/auth` יוחלף בגבול Supabase Auth, ו-`src/lib` יכיל לקוח Supabase ייעודי למאפייה בלבד.
+- `VITE_BAKERY_ADMIN_SUPABASE_URL`
+- `VITE_BAKERY_ADMIN_SUPABASE_PUBLISHABLE_KEY`
+- `VITE_BAKERY_SHARED_LOGIN_EMAIL`
+- `VITE_BAKERY_SHARED_LOGIN_USERNAME`
+- `VITE_BAKERY_SHARED_LOGIN_PASSWORD`
+
+הלקוח מאמת שה־URL שייך במדויק ל־`utyzqpjjjwjkkdlepkag`. אין fallback ל־mock, ל־localStorage או לפרויקט Supabase אחר. אין להשתמש במפתח secret/service-role בדפדפן.
+
+## גבולות הרשאה
+
+- מנהל פעיל רשאי לשנות רק `price_agorot` ו־`available_today` במוצרים.
+- בהגדרות החנות ניתן לשנות רק ordering, delivery, pickup ושדות הודעת הלקוחות.
+- אין יצירה/מחיקה של מוצרים, קטגוריות או אפשרויות, ואין גישה ל־source metadata.
+- `audit_log` הוא append-only ונכתב רק בטריגרים של מסד הנתונים.
+- `src/data/catalogSeed.json` נשאר snapshot לתיעוד ול־rollback בלבד ואינו מקור הנתונים בזמן ריצה.
+
+האתר הציבורי וה־`/shop` עדיין אינם מחוברים ל־Supabase בשלב זה.

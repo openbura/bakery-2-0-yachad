@@ -6,34 +6,35 @@ import {
   PencilSimple,
   Warning,
 } from '@phosphor-icons/react';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { EmptyState } from '../components/EmptyState';
 import { PriceDialog } from '../components/PriceDialog';
-import type { Product } from '../types/dashboard';
+import type { Category, Product } from '../types/dashboard';
 
 type ProductsPageProps = {
   products: Product[];
-  onToggleAvailability: (productId: string) => void;
-  onUpdatePrice: (productId: string, price: number) => void;
+  categories: Category[];
+  savingProductId: string | null;
+  onToggleAvailability: (productId: string) => Promise<void>;
+  onUpdatePrice: (productId: string, price: number) => Promise<void>;
 };
 
-export function ProductsPage({ products, onToggleAvailability, onUpdatePrice }: ProductsPageProps) {
+export function ProductsPage({ products, categories, savingProductId, onToggleAvailability, onUpdatePrice }: ProductsPageProps) {
   const [query, setQuery] = useState('');
-  const [category, setCategory] = useState('הכול');
-  const [availability, setAvailability] = useState('הכול');
+  const [category, setCategory] = useState('all');
+  const [availability, setAvailability] = useState('all');
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
-  const categories = useMemo(() => ['הכול', ...Array.from(new Set(products.map((product) => product.category)))], [products]);
   const visibleProducts = products.filter((product) => {
     const matchesQuery = product.name.includes(query.trim());
-    const matchesCategory = category === 'הכול' || product.category === category;
-    const matchesAvailability = availability === 'הכול' || (availability === 'זמינים' ? product.available : !product.available);
+    const matchesCategory = category === 'all' || product.categoryId === category;
+    const matchesAvailability = availability === 'all' || (availability === 'available' ? product.available : !product.available);
     return matchesQuery && matchesCategory && matchesAvailability;
   });
   const availableCount = products.filter((product) => product.available).length;
   const unavailableCount = products.length - availableCount;
 
-  const clearFilters = () => { setQuery(''); setCategory('הכול'); setAvailability('הכול'); };
+  const clearFilters = () => { setQuery(''); setCategory('all'); setAvailability('all'); };
 
   return (
     <div className="page-stack">
@@ -44,12 +45,12 @@ export function ProductsPage({ products, onToggleAvailability, onUpdatePrice }: 
 
       <section className="filter-bar" aria-label="סינון מוצרים">
         <label className="search-field"><MagnifyingGlass size={20} /><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="חיפוש לפי שם מוצר" aria-label="חיפוש לפי שם מוצר" /></label>
-        <label className="select-field"><Funnel size={18} /><span className="sr-only">קטגוריה</span><select value={category} onChange={(event) => setCategory(event.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select></label>
-        <label className="select-field"><Package size={18} /><span className="sr-only">זמינות</span><select value={availability} onChange={(event) => setAvailability(event.target.value)}><option>הכול</option><option>זמינים</option><option>אזלו</option></select></label>
+        <label className="select-field"><Funnel size={18} /><span className="sr-only">קטגוריה</span><select value={category} onChange={(event) => setCategory(event.target.value)}><option value="all">הכול</option>{categories.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+        <label className="select-field"><Package size={18} /><span className="sr-only">זמינות</span><select value={availability} onChange={(event) => setAvailability(event.target.value)}><option value="all">הכול</option><option value="available">זמינים</option><option value="unavailable">אזלו</option></select></label>
       </section>
 
-      <section className="products-workspace" aria-live="polite">
-        <div className="products-workspace__head"><span>{visibleProducts.length} מוצרים מוצגים</span><small>נתוני דוגמה מקומיים</small></div>
+      <section className="products-workspace">
+        <div className="products-workspace__head"><span role="status">{visibleProducts.length} מוצרים מוצגים</span><small>נתונים חיים ממסד המאפייה</small></div>
         {visibleProducts.length === 0 ? <EmptyState onClear={clearFilters} /> : (
           <>
             <div className="product-table" role="table" aria-label="רשימת מוצרים">
@@ -59,9 +60,9 @@ export function ProductsPage({ products, onToggleAvailability, onUpdatePrice }: 
                   <div className="product-identity" role="cell"><span className="product-monogram">{product.name.charAt(0)}</span><strong>{product.name}</strong></div>
                   <span className="category-chip" role="cell">{product.category}</span>
                   <strong className="product-price" role="cell"><bdi dir="ltr">₪{product.price}</bdi></strong>
-                  <button className={`availability-button ${product.available ? 'is-available' : 'is-unavailable'}`} type="button" onClick={() => onToggleAvailability(product.id)} role="cell"><span />{product.available ? 'במלאי' : 'אזל להיום'}</button>
+                  <button className={`availability-button ${product.available ? 'is-available' : 'is-unavailable'}`} type="button" onClick={() => void onToggleAvailability(product.id)} disabled={savingProductId === product.id} aria-busy={savingProductId === product.id} role="cell"><span />{savingProductId === product.id ? 'שומר…' : product.available ? 'במלאי' : 'אזל להיום'}</button>
                   <span className="updated-time" role="cell">{product.updatedAt}</span>
-                  <button className="edit-price-button" type="button" onClick={() => setEditingProduct(product)} aria-label={`עריכת מחיר עבור ${product.name}`}><PencilSimple size={19} /> עריכת מחיר</button>
+                  <button className="edit-price-button" type="button" onClick={() => setEditingProduct(product)} disabled={savingProductId === product.id} aria-label={`עריכת מחיר עבור ${product.name}`}><PencilSimple size={19} /> עריכת מחיר</button>
                 </div>
               ))}
             </div>
@@ -71,7 +72,7 @@ export function ProductsPage({ products, onToggleAvailability, onUpdatePrice }: 
                 <article className="product-card" key={product.id}>
                   <div className="product-card__head"><span className="product-monogram">{product.name.charAt(0)}</span><div><strong>{product.name}</strong><small>{product.category}</small></div><strong className="product-price"><bdi dir="ltr">₪{product.price}</bdi></strong></div>
                   <div className="product-card__meta"><span>עודכן {product.updatedAt}</span><span className={product.available ? 'text-positive' : 'text-warning'}>{product.available ? 'מוכן למכירה' : 'לא ניתן להוסיף להזמנה'}</span></div>
-                  <div className="product-card__actions"><button className={`availability-button ${product.available ? 'is-available' : 'is-unavailable'}`} type="button" onClick={() => onToggleAvailability(product.id)}><span />{product.available ? 'במלאי' : 'אזל להיום'}</button><button className="edit-price-button" type="button" onClick={() => setEditingProduct(product)}><PencilSimple size={19} /> עריכת מחיר</button></div>
+                  <div className="product-card__actions"><button className={`availability-button ${product.available ? 'is-available' : 'is-unavailable'}`} type="button" onClick={() => void onToggleAvailability(product.id)} disabled={savingProductId === product.id} aria-busy={savingProductId === product.id}><span />{savingProductId === product.id ? 'שומר…' : product.available ? 'במלאי' : 'אזל להיום'}</button><button className="edit-price-button" type="button" onClick={() => setEditingProduct(product)} disabled={savingProductId === product.id}><PencilSimple size={19} /> עריכת מחיר</button></div>
                 </article>
               ))}
             </div>
