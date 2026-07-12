@@ -59,7 +59,7 @@ export function SettingsPage({ settings, onSave }: SettingsPageProps) {
 
           <section className="settings-section">
             <div className="settings-section__head"><span><BellRinging size={24} weight="duotone" /></span><div><p className="eyebrow">הודעה ללקוחות</p><h2>עדכון זמני בראש החנות</h2></div></div>
-            <Toggle checked={draft.noticeActive} onChange={(value) => setDraft((current) => ({ ...current, noticeActive: value }))} label="ההודעה פעילה" description="ההודעה נשמרת כעת במסד המאפייה; האתר הציבורי יחובר אליה בשלב הבא" disabled={saving} />
+            <Toggle checked={draft.noticeActive} onChange={(value) => setDraft((current) => ({ ...current, noticeActive: value }))} label="ההודעה פעילה" description="ההודעה נשמרת במסד המאפייה ומתעדכנת באתר הציבורי" disabled={saving} />
 
             <fieldset className="notice-types" disabled={!draft.noticeActive || saving}>
               <legend>סוג ההודעה</legend>
@@ -78,7 +78,7 @@ export function SettingsPage({ settings, onSave }: SettingsPageProps) {
             {draft.noticeActive ? <div className={`customer-notice customer-notice--${draft.noticeType}`}>{draft.noticeType === 'info' ? <Info size={20} weight="fill" /> : <WarningCircle size={20} weight="fill" />}<span>{draft.noticeText || 'תוכן ההודעה יופיע כאן'}</span></div> : <div className="customer-notice is-empty">אין הודעה פעילה</div>}
             <div className="preview-statuses"><span className={draft.deliveryEnabled ? 'is-on' : ''}><Truck size={18} /> משלוחים</span><span className={draft.pickupEnabled ? 'is-on' : ''}><Storefront size={18} /> איסוף עצמי</span></div>
           </div>
-          <p className="mock-note">התצוגה משקפת את ההגדרות במסד. האתר הציבורי עדיין אינו מחובר בשלב זה.</p>
+          <p className="mock-note">התצוגה משקפת את ההגדרות במסד ומתעדכנת באתר הציבורי לאחר השמירה.</p>
         </aside>
       </div>
 

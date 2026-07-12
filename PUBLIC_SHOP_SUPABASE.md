@@ -43,6 +43,11 @@ Material price or fee changes update the visible cart and require the customer t
 
 Realtime events are treated only as invalidation signals; the client refetches an authoritative snapshot instead of trusting partial payloads. Subscriptions are limited to `products` and `store_settings`, debounced and removed on unmount. Focus and network-reconnect events provide recovery if Realtime is interrupted.
 
-## Production preparation
+## Production
 
-Before deployment, configure the same two public variables in the public-site Vercel project, run both application builds/lints and perform a preview smoke test. Never add an admin login, service-role key or private table access to the public application.
+The integration is deployed in the existing Vercel project `bakery-2-0-yachad-deploy`:
+
+- https://bakery-2-0-yachad-deploy.vercel.app/
+- https://bakery-2-0-yachad-deploy.vercel.app/shop
+
+Both browser-safe variables are configured for Preview and Production. Preview and production smoke tests cover direct `/shop` refresh, 78 products, 10 categories, 2 option groups, 24 options, degraded-mode absence during healthy operation and the allowed Supabase hostname guard. Never add an admin login, service-role key or private table access to the public application.

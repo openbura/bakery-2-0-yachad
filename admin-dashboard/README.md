@@ -44,4 +44,11 @@ npm run preview
 - `audit_log` הוא append-only ונכתב רק בטריגרים של מסד הנתונים.
 - `src/data/catalogSeed.json` נשאר snapshot לתיעוד ול־rollback בלבד ואינו מקור הנתונים בזמן ריצה.
 
-האתר הציבורי וה־`/shop` עדיין אינם מחוברים ל־Supabase בשלב זה.
+## פריסה
+
+- פרויקט Vercel: `yachad-bakery-admin`
+- Root Directory: `admin-dashboard`
+- Production: https://yachad-bakery-admin.vercel.app/
+- `vercel.json` מספק SPA rewrite ל־`/login`, `/products` ו־`/settings`.
+
+האתר הציבורי ו־`/shop` מחוברים לאותו מסד Bakery באמצעות גישת public read-only ו־Realtime. חשבון הניהול המשותף הוא החלטת MVP ואינו מאפשר להבחין איזה אח ביצע שינוי; אין לתעד כאן כתובת אימייל, סיסמה או ערך env אמיתי.
