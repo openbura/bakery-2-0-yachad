@@ -41,6 +41,11 @@ select is(
   array['available_today', 'price_agorot']::text[],
   'product update grants are limited to two operational columns'
 );
+select ok(
+  not has_column_privilege('authenticated', 'public.products', 'display_price_text', 'update')
+  and not has_column_privilege('authenticated', 'public.products', 'price_unit_note', 'update'),
+  'admins cannot update public display fields'
+);
 select is(
   (
     select array_agg(column_name::text order by column_name)
@@ -138,6 +143,8 @@ select throws_like('update public.products set name_he = name_he', '%permission 
 select throws_like('update public.products set category_id = category_id', '%permission denied%products%', 'owner cannot change product category');
 select throws_like('update public.products set image_url = image_url', '%permission denied%products%', 'owner cannot change product image');
 select throws_like('update public.products set active = active', '%permission denied%products%', 'owner cannot change product active state');
+select throws_like('update public.products set display_price_text = display_price_text', '%permission denied%products%', 'owner cannot change display price text');
+select throws_like('update public.products set price_unit_note = price_unit_note', '%permission denied%products%', 'owner cannot change unit price note');
 select throws_like('update public.products set available_for_delivery = available_for_delivery', '%permission denied%products%', 'owner cannot change delivery availability');
 select throws_like('update public.products set available_for_pickup = available_for_pickup', '%permission denied%products%', 'owner cannot change pickup availability');
 select throws_like('insert into public.products (id, category_id, name_he, price_agorot) values (''forbidden'', ''breads'', ''x'', 1)', '%permission denied%products%', 'owner cannot insert products');

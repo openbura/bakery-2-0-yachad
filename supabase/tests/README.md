@@ -15,6 +15,7 @@ The pgTAP suite covers schema, seed, restricted RLS/grants and append-only audit
 - `003_bakery_rls.test.sql`
 - `004_bakery_audit_log.test.sql`
 - `005_bakery_admin_permissions.test.sql`
+- `006_bakery_public_catalog_contract.test.sql`
 
 The RLS/audit/security tests create transaction-scoped test users under `@yachad.invalid` and roll them back. The security suite covers anonymous, non-admin, inactive admin, active owner and active manager behavior; exact Product and Store Settings column grants; structural-write denial; self-profile isolation; and append-only audit enforcement.
 
@@ -24,4 +25,6 @@ Because the Supabase CLI and pgTAP are not currently installed, the executable f
 powershell -ExecutionPolicy Bypass -File supabase/tests/local/run-validation.ps1
 ```
 
-The runner first verifies that the generated seed is current, confirms PostgreSQL major version 17, then applies `bootstrap.sql`, every migration in version order, `seed.sql`, `validate-audit.sql` and `validate-security.sql` through `psql -f` from a read-only bind mount. It publishes no database port, persists no volume, connects to no remote project and removes the temporary container. The fallback validates PostgreSQL 17 schema, seed, exact column grants, RLS, structural-write denial and audit behavior, but does not replace future PostgREST or full Supabase CLI parity checks.
+The runner first verifies that the generated seed is current, confirms PostgreSQL major version 17, then discovers and applies every migration in filename order followed by `seed.sql`, `validate-audit.sql`, `validate-public-contract.sql` and `validate-security.sql` through `psql -f` from a read-only bind mount. It publishes no database port, persists no volume, connects to no remote project and removes the temporary container. The fallback validates PostgreSQL 17 schema, seed, exact column grants, RLS, structural-write denial and audit behavior, but does not replace future PostgREST or full Supabase CLI parity checks.
+
+Stage C.0 verifies the 78/10/2/24 public catalog shape, nullable unlimited option bounds, integer-agorot option prices, exact source display fields, anonymous read-only behavior and the scoped `products` / `store_settings` Realtime publication. PostgreSQL proves publication membership; websocket delivery is verified separately against the dedicated Bakery project.

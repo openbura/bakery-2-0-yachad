@@ -51,6 +51,12 @@ select test_validation.assert_true(
 );
 
 select test_validation.assert_true(
+  not has_column_privilege('authenticated', 'public.products', 'display_price_text', 'update')
+    and not has_column_privilege('authenticated', 'public.products', 'price_unit_note', 'update'),
+  'public-safe product text remains structural and browser read-only'
+);
+
+select test_validation.assert_true(
   (
     select array_agg(column_name::text order by column_name)
     from information_schema.column_privileges
@@ -190,6 +196,8 @@ select test_validation.expect_denied('update public.products set name_he = name_
 select test_validation.expect_denied('update public.products set category_id = category_id where id = ''bourekas-01''', 'owner product category update');
 select test_validation.expect_denied('update public.products set image_url = image_url where id = ''bourekas-01''', 'owner product image update');
 select test_validation.expect_denied('update public.products set active = active where id = ''bourekas-01''', 'owner product active update');
+select test_validation.expect_denied('update public.products set display_price_text = display_price_text where id = ''bourekas-01''', 'owner display price text update');
+select test_validation.expect_denied('update public.products set price_unit_note = price_unit_note where id = ''bourekas-01''', 'owner unit price note update');
 select test_validation.expect_denied('update public.products set available_for_delivery = available_for_delivery where id = ''bourekas-01''', 'owner product delivery availability update');
 select test_validation.expect_denied('update public.products set available_for_pickup = available_for_pickup where id = ''bourekas-01''', 'owner product pickup availability update');
 select test_validation.expect_denied('update public.products set price_agorot = 7200, name_he = name_he where id = ''bourekas-01''', 'owner mixed allowed and forbidden product update');

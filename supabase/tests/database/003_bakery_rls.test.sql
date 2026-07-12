@@ -1,6 +1,6 @@
 begin;
 
-select plan(10);
+select plan(14);
 
 insert into auth.users (
   id,
@@ -25,8 +25,12 @@ set local role anon;
 select is((select count(*) from public.products), 78::bigint, 'anon can read active products');
 select is((select count(*) from public.categories), 10::bigint, 'anon can read active categories');
 select is((select count(*) from public.store_settings), 1::bigint, 'anon can read store settings');
+select is((select count(*) from public.product_option_groups), 2::bigint, 'anon can read active option groups');
+select is((select count(*) from public.product_options), 24::bigint, 'anon can read active options');
 select throws_ok('select * from public.admin_users', 'permission denied for table admin_users', 'anon cannot read admin authorization');
 select throws_ok('update public.products set price_agorot = 1 where id = ''bourekas-01''', 'permission denied for table products', 'anon cannot update products');
+select throws_ok('update public.product_option_groups set active = active', 'permission denied for table product_option_groups', 'anon cannot update option groups');
+select throws_ok('update public.product_options set active = active', 'permission denied for table product_options', 'anon cannot update options');
 reset role;
 
 select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-000000000002', true);

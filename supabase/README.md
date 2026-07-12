@@ -15,13 +15,13 @@ No project ref is committed in `config.toml`. The `project_id` value is only a l
 
 ## Current remote safety-gate result
 
-The dedicated project `yachad-bakery-admin` in `openbura's Org`, region `eu-central-1`, is `ACTIVE_HEALTHY`. Its safe non-secret ref is `utyzqpjjjwjkkdlepkag`. On 2026-07-11, Stage B.2 applied the three approved migrations and the controlled initial seed using that ref explicitly. The verified remote state is 10 categories, 78 products, 78 source snapshots, one store-settings row, zero audit rows after seed and zero Auth users. The repository remains unlinked; no application, key or environment value was connected. AM ROM and CONNEX were not opened, queried, linked, or modified.
+The dedicated project `yachad-bakery-admin` in `openbura's Org`, region `eu-central-1`, is `ACTIVE_HEALTHY`. Its safe non-secret ref is `utyzqpjjjwjkkdlepkag`. Stage B.2 applied the approved foundation and seed, Stage B.3 connected the separate admin dashboard, and Stage C.0 completed the public catalog contract without connecting the public application. The verified Stage C.0 state is 10 categories, 78 products, 78 source snapshots, 2 option groups, 24 options, one store-settings row, one Auth user, one active admin and 36 preserved audit rows. The repository remains unlinked; every remote action used the explicit Bakery ref. AM ROM and CONNEX were not opened, queried, linked, or modified.
 
 ## Schema
 
 - `categories`: ordered Hebrew catalog categories.
-- `products`: public-safe product, integer-agorot price, image, same-day and fulfillment availability fields.
-- `product_option_groups` / `product_options`: normalized future option structure.
+- `products`: public-safe product, integer-agorot price, source display/unit text, image, same-day and fulfillment availability fields.
+- `product_option_groups` / `product_options`: normalized public option structure with nullable unlimited maximums and integer-agorot deltas.
 - `store_settings`: singleton ordering, delivery, pickup, notice-window and integer-agorot fee/minimum settings.
 - `admin_users`: Bakery-only authorization allowlist keyed to `auth.users`, with a constrained `owner` / `manager` operational role.
 - `product_source_metadata`: trusted-server-only lossless catalog source payload and SHA-256; browser clients have no access.
@@ -101,7 +101,9 @@ node supabase/scripts/generate-seed.mjs --check
 
 The seed is for local reset and controlled initial import. It starts the customer notice as inactive with type `info`, empty text and null start/end times. It does not create Auth users and must not be used as an uncontrolled production synchronization job.
 
-Structured option rows are intentionally empty until the Bakery owner approves the source options. The schema is ready, but Stage B.1 does not invent option data.
+Stage C.0 derives executable options only from complete structured `option_groups` in the approved source. The current contract contains one executable product (`salads-01`), 2 groups and 24 options. Four products retain unstructured source evidence pending owner confirmation, and seven false-positive source flags are not executable. See `PUBLIC_CATALOG_CONTRACT.md`.
+
+The generated seed also copies `display_price_text` and `price_unit_note` into public-safe nullable product columns. The numeric `price_agorot` remains authoritative for all calculations.
 
 ## Local workflow
 
@@ -124,7 +126,7 @@ The repeatable fallback suite runs the complete migration order and seed in an i
 powershell -ExecutionPolicy Bypass -File supabase/tests/local/run-validation.ps1
 ```
 
-It verifies seed freshness and PostgreSQL major version 17, then uses a read-only bind mount, no published database port, no persistent volume and removes the container in `finally`. It validates schema, constraints, RLS/grants, owner/manager column permissions, structural-write denial, append-only behavior, triggers, actor capture, notice lifecycle, no-op handling, seed idempotency, source-identifier uniqueness and catalog/settings regressions. The pgTAP files remain the intended full Supabase CLI suite when a local CLI is available.
+It verifies seed freshness and PostgreSQL major version 17, then uses a read-only bind mount, no published database port, no persistent volume and removes the container in `finally`. It discovers every migration by filename, validates schema, constraints, RLS/grants, owner/manager column permissions, structural-write denial, append-only behavior, triggers, actor capture, notice lifecycle, seed idempotency, source identifiers, the 78/10/2/24 public contract and the scoped Realtime publication. The pgTAP files remain the intended full Supabase CLI suite when a local CLI is available.
 
 ## Dedicated remote project gate
 
@@ -134,7 +136,9 @@ It verifies seed freshness and PostgreSQL major version 17, then uses a read-onl
 - No add-ons, plan change or Spend Cap change were made.
 - Stage B.2 applied remote migration versions `20260711131949_create_bakery_core`, `20260711132008_enable_bakery_rls` and `20260711132027_add_bakery_audit_log`, followed by the initial 78-product seed.
 - Stage B.3 Security Correction applied only `20260712152010_tighten_bakery_admin_permissions`. No seed or earlier migration was rerun, no Auth/admin user was created, and product/settings/audit values remained unchanged.
-- The project remains disconnected from both frontends and has no Auth users.
+- Stage C.0 applied only `20260712182447_prepare_public_shop_product_contract`, `20260712182448_import_approved_public_catalog_contract` and `20260712182451_enable_public_shop_realtime`.
+- Stage C.0 preserved every product price and availability value, store settings, the existing Auth/admin rows and all 36 audit events. It added the public-safe fields, normalized 2/24 options and published only `products` and `store_settings` for Postgres Changes.
+- The admin dashboard remains connected. The public Bakery application and `/shop` remain on the local JSON source until Stage C.
 - `REMOTE_MIGRATION_MAP.md` records the exact local-file to remote-history mapping and SHA-256 fingerprints for this checkpoint.
 
 The post-correction Supabase Security Advisor reports one informational `rls_enabled_no_policy` item for `product_source_metadata`. This is intentional: RLS is enabled, there is no policy, and all `anon` / `authenticated` privileges are revoked, so the table is closed to browser clients. Performance advisor unused-index notices are expected before application traffic and do not justify removing approved indexes during this security correction.
@@ -148,7 +152,7 @@ Dashboard browser configuration remains in `admin-dashboard/.env.example`:
 
 Only a publishable browser key may be used. No dashboard adapter is enabled in Stage B.1, so the approved mock state and prototype login remain unchanged.
 
-Future Stage B.3 integration must explicitly map or align the remote notice type `info` with the dashboard's current local UI value `information`; this checkpoint intentionally does not change dashboard code.
+The admin dashboard maps the database notice type `info` to the approved Hebrew UI. Stage C must use the same database values without widening the constraint.
 
 ## Rollback and recovery
 

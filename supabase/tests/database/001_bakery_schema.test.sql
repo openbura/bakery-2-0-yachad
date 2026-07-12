@@ -1,6 +1,6 @@
 begin;
 
-select plan(30);
+select plan(35);
 
 select has_table('public', 'admin_users', 'admin_users table exists');
 select has_table('public', 'categories', 'categories table exists');
@@ -21,6 +21,11 @@ select has_column('public', 'products', 'price_agorot', 'products includes price
 select has_column('public', 'products', 'available_today', 'products includes same-day availability');
 select has_column('public', 'products', 'available_for_delivery', 'products includes delivery availability');
 select has_column('public', 'products', 'available_for_pickup', 'products includes pickup availability');
+select has_column('public', 'products', 'display_price_text', 'products includes public display price text');
+select has_column('public', 'products', 'price_unit_note', 'products includes public unit price note');
+select has_column('public', 'product_options', 'price_delta_agorot', 'product options use integer agorot');
+select hasnt_column('public', 'product_options', 'price_delta_ils', 'legacy decimal option price is removed');
+select col_is_null('public', 'product_option_groups', 'max_select', 'max_select is nullable for unlimited selection');
 select has_column('public', 'store_settings', 'ordering_enabled', 'store settings includes ordering state');
 select has_column('public', 'store_settings', 'customer_notice_text', 'store settings includes customer notice');
 select has_column('public', 'store_settings', 'customer_notice_start_at', 'store settings includes notice start time');
