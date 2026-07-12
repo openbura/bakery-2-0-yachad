@@ -18,8 +18,8 @@ values
   ('10000000-0000-0000-0000-000000000001', 'authenticated', 'authenticated', 'admin-test@yachad.invalid', '', now(), '{}'::jsonb, '{}'::jsonb, now(), now()),
   ('10000000-0000-0000-0000-000000000002', 'authenticated', 'authenticated', 'user-test@yachad.invalid', '', now(), '{}'::jsonb, '{}'::jsonb, now(), now());
 
-insert into public.admin_users (user_id, display_name, active)
-values ('10000000-0000-0000-0000-000000000001', 'Test Bakery Admin', true);
+insert into public.admin_users (user_id, display_name, active, role)
+values ('10000000-0000-0000-0000-000000000001', 'Test Bakery Admin', true, 'owner');
 
 set local role anon;
 select is((select count(*) from public.products), 78::bigint, 'anon can read active products');
@@ -32,7 +32,7 @@ reset role;
 select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-000000000002', true);
 set local role authenticated;
 select is((select count(*) from public.admin_users), 0::bigint, 'non-admin cannot see another authorization row');
-select is((select count(*) from public.product_source_metadata), 0::bigint, 'non-admin cannot read source metadata');
+select throws_ok('select * from public.product_source_metadata', 'permission denied for table product_source_metadata', 'non-admin cannot read source metadata');
 select results_eq(
   $$with changed as (
     update public.products set price_agorot = price_agorot where id = 'bourekas-01' returning id
@@ -44,7 +44,7 @@ reset role;
 
 select set_config('request.jwt.claim.sub', '10000000-0000-0000-0000-000000000001', true);
 set local role authenticated;
-select is((select count(*) from public.product_source_metadata), 78::bigint, 'active Bakery admin can read source metadata');
+select throws_ok('select * from public.product_source_metadata', 'permission denied for table product_source_metadata', 'active Bakery admin cannot read source metadata');
 select results_eq(
   $$with changed as (
     update public.products set price_agorot = price_agorot where id = 'bourekas-01' returning id

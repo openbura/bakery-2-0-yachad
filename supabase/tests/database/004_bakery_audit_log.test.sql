@@ -58,10 +58,10 @@ values
   ('20000000-0000-0000-0000-000000000002', 'authenticated', 'authenticated', 'audit-user@yachad.invalid', '', now(), '{}'::jsonb, '{}'::jsonb, now(), now()),
   ('20000000-0000-0000-0000-000000000003', 'authenticated', 'authenticated', 'audit-inactive@yachad.invalid', '', now(), '{}'::jsonb, '{}'::jsonb, now(), now());
 
-insert into public.admin_users (user_id, display_name, active)
+insert into public.admin_users (user_id, display_name, active, role)
 values
-  ('20000000-0000-0000-0000-000000000001', 'Audit Test Admin', true),
-  ('20000000-0000-0000-0000-000000000003', 'Inactive Audit Test Admin', false);
+  ('20000000-0000-0000-0000-000000000001', 'Audit Test Admin', true, 'owner'),
+  ('20000000-0000-0000-0000-000000000003', 'Inactive Audit Test Admin', false, 'manager');
 
 set local role anon;
 select throws_ok('select * from public.audit_log', 'permission denied for table audit_log', 'anon cannot read audit rows');
@@ -101,10 +101,7 @@ select throws_ok('update public.audit_log set action = action', 'permission deni
 select throws_ok('delete from public.audit_log', 'permission denied for table audit_log', 'active admin cannot delete audit rows');
 
 update public.products set price_agorot = 7100 where id = 'bourekas-01';
-update public.products
-set available_today = false, available_for_delivery = false, available_for_pickup = false
-where id = 'bourekas-01';
-update public.products set description_he = description_he where id = 'bourekas-01';
+update public.products set available_today = false where id = 'bourekas-01';
 update public.products set price_agorot = price_agorot where id = 'bourekas-01';
 
 update public.store_settings set ordering_enabled = false where id = 'default';
@@ -118,7 +115,7 @@ update public.store_settings set customer_notice_active = false where id = 'defa
 update public.store_settings set customer_notice_active = false where id = 'default';
 update public.store_settings set ordering_enabled = ordering_enabled where id = 'default';
 
-select is((select count(*) from public.audit_log), 11::bigint, 'only tracked real changes create audit rows');
+select is((select count(*) from public.audit_log), 9::bigint, 'only tracked real changes create audit rows');
 select is((select count(*) from public.audit_log where action = 'product.price_changed'), 1::bigint, 'price change creates one event');
 select is(
   (select previous_value from public.audit_log where action = 'product.price_changed'),
@@ -130,7 +127,7 @@ select is(
   '{"price_agorot": 7100}'::jsonb,
   'price event stores the trusted new value'
 );
-select is((select count(*) from public.audit_log where action like 'product.%availability_changed' or action = 'product.available_today_changed'), 3::bigint, 'product availability changes create three stable events');
+select is((select count(*) from public.audit_log where action = 'product.available_today_changed'), 1::bigint, 'daily availability change creates one stable event');
 select ok(
   (
     select previous_value = '{"available_today": true}'::jsonb
@@ -164,10 +161,10 @@ select ok(
 );
 select is((select count(*) from public.audit_log where action = 'store.notice_updated'), 2::bigint, 'active notice edits create events');
 select is((select count(*) from public.audit_log where action = 'store.notice_removed'), 1::bigint, 'notice removal creates an event');
-select is((select count(*) from public.audit_log where actor_user_id = '20000000-0000-0000-0000-000000000001'), 11::bigint, 'authenticated admin actor is captured');
-select is((select count(*) from public.audit_log where actor_role = 'bakery_admin'), 11::bigint, 'active Bakery admin role is captured');
-select is((select count(*) from public.audit_log where created_at is not null), 11::bigint, 'database creates every audit timestamp');
-select is((select count(distinct action) from public.audit_log), 10::bigint, 'only the ten approved stable actions are emitted');
+select is((select count(*) from public.audit_log where actor_user_id = '20000000-0000-0000-0000-000000000001'), 9::bigint, 'authenticated admin actor is captured');
+select is((select count(*) from public.audit_log where actor_role = 'bakery_admin'), 9::bigint, 'active Bakery admin authorization class is captured');
+select is((select count(*) from public.audit_log where created_at is not null), 9::bigint, 'database creates every audit timestamp');
+select is((select count(distinct action) from public.audit_log), 8::bigint, 'only actions reached through the approved dashboard surface are emitted');
 select ok(
   not exists (
     select 1
@@ -185,7 +182,7 @@ reset role;
 delete from auth.users where id = '20000000-0000-0000-0000-000000000001';
 select is(
   (select count(*) from public.audit_log where actor_user_id = '20000000-0000-0000-0000-000000000001'),
-  11::bigint,
+  9::bigint,
   'deleting an Auth user does not rewrite historical actor metadata'
 );
 

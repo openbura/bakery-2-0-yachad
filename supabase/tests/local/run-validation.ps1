@@ -39,8 +39,10 @@ try {
     '/work/supabase/migrations/20260710235930_create_bakery_core.sql',
     '/work/supabase/migrations/20260711000000_enable_bakery_rls.sql',
     '/work/supabase/migrations/20260711090000_add_bakery_audit_log.sql',
+    '/work/supabase/migrations/20260712151416_tighten_bakery_admin_permissions.sql',
     '/work/supabase/seed.sql',
-    '/work/supabase/tests/local/validate-audit.sql'
+    '/work/supabase/tests/local/validate-audit.sql',
+    '/work/supabase/tests/local/validate-security.sql'
   )
 
   foreach ($sqlFile in $sqlFiles) {
@@ -50,7 +52,7 @@ try {
     }
   }
 
-  Write-Output 'BAKERY_AUDIT_LOCAL_VALIDATION_OK'
+  Write-Output 'BAKERY_SECURITY_LOCAL_VALIDATION_OK'
 }
 finally {
   docker rm --force $containerName 2>$null | Out-Null

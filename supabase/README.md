@@ -23,8 +23,8 @@ The dedicated project `yachad-bakery-admin` in `openbura's Org`, region `eu-cent
 - `products`: public-safe product, integer-agorot price, image, same-day and fulfillment availability fields.
 - `product_option_groups` / `product_options`: normalized future option structure.
 - `store_settings`: singleton ordering, delivery, pickup, notice-window and integer-agorot fee/minimum settings.
-- `admin_users`: Bakery-only authorization allowlist keyed to `auth.users`.
-- `product_source_metadata`: admin-only lossless catalog source payload and SHA-256.
+- `admin_users`: Bakery-only authorization allowlist keyed to `auth.users`, with a constrained `owner` / `manager` operational role.
+- `product_source_metadata`: trusted-server-only lossless catalog source payload and SHA-256; browser clients have no access.
 - `audit_log`: append-only operational history written only by trusted database triggers.
 - `private.set_updated_at()`: non-exposed trigger helper using invoker security.
 
@@ -64,16 +64,28 @@ All public-schema tables have RLS enabled. Grants and policies are explicit beca
 
 1. Public/anonymous clients may read active categories, active products, active options and the singleton store settings row.
 2. An authenticated user is not automatically an administrator.
-3. Administrative access requires an active row in `public.admin_users` whose `user_id` equals `auth.uid()`.
+3. Administrative access requires an active row in `public.admin_users` whose `user_id` equals `auth.uid()` and whose `role` is `owner` or `manager`.
 4. `admin_users` can only be provisioned by a trusted database administrator; browser clients receive no insert/update/delete grant on it.
 5. Authorization does not use user-editable `user_metadata`, and it does not depend on stale custom JWT claims.
 6. Public signup and anonymous sign-in are disabled in local Auth configuration. Use an explicit invitation for each Bakery administrator.
 
+### Restricted dashboard permissions
+
+`20260712151416_tighten_bakery_admin_permissions.sql` is a forward-only correction applied after the original RLS and audit migrations. It removes every broad active-admin `FOR ALL` policy and all authenticated table-level mutation grants.
+
+- Active `owner` and `manager` users may update only `products.price_agorot` and `products.available_today`.
+- Active `owner` and `manager` users may update only ordering, delivery, pickup and customer-notice operational fields in `store_settings`.
+- Fees, minimums, singleton identifiers, product identity/content/category/image/active state, per-product delivery/pickup availability, categories, options and source metadata are not browser-editable.
+- Categories and active option data remain read-only. `product_source_metadata` has neither browser grants nor RLS policies and is intentionally inaccessible.
+- Signed-in users may read only their own `admin_users` row. They cannot create an allowlist row or change any role/active value.
+- `audit_log` remains append-only: active approved admins may select it, while all direct browser inserts, updates and deletes are revoked.
+- `private.set_updated_at()` and the audit triggers remain the trusted database-side writers for managed timestamps and audit rows.
+
 After a Bakery-only remote project and its first Auth user are approved, provision the allowlist row from a trusted SQL session:
 
 ```sql
-insert into public.admin_users (user_id, display_name)
-values ('<BAKERY_AUTH_USER_UUID>', 'Bakery owner');
+insert into public.admin_users (user_id, display_name, role, active)
+values ('<BAKERY_AUTH_USER_UUID>', 'Bakery owner', 'owner', true);
 ```
 
 Do not place an email, password, UUID, token, or secret in migrations or seed files.
@@ -112,7 +124,7 @@ The repeatable fallback suite runs the complete migration order and seed in an i
 powershell -ExecutionPolicy Bypass -File supabase/tests/local/run-validation.ps1
 ```
 
-It verifies seed freshness and PostgreSQL major version 17, then uses a read-only bind mount, no published database port, no persistent volume and removes the container in `finally`. It validates schema, constraints, RLS/grants, append-only behavior, triggers, actor capture, notice lifecycle, no-op handling, seed idempotency, source-identifier uniqueness and catalog/settings regressions. The pgTAP files remain the intended full Supabase CLI suite when a local CLI is available.
+It verifies seed freshness and PostgreSQL major version 17, then uses a read-only bind mount, no published database port, no persistent volume and removes the container in `finally`. It validates schema, constraints, RLS/grants, owner/manager column permissions, structural-write denial, append-only behavior, triggers, actor capture, notice lifecycle, no-op handling, seed idempotency, source-identifier uniqueness and catalog/settings regressions. The pgTAP files remain the intended full Supabase CLI suite when a local CLI is available.
 
 ## Dedicated remote project gate
 
@@ -120,8 +132,12 @@ It verifies seed freshness and PostgreSQL major version 17, then uses a read-onl
 - Project: `yachad-bakery-admin`, ref `utyzqpjjjwjkkdlepkag`, region `eu-central-1`.
 - Creation estimate confirmed at USD 10/month for the smallest standard compute; usage, add-ons and applicable taxes can increase the invoice.
 - No add-ons, plan change or Spend Cap change were made.
-- Stage B.2 applied remote migration versions `20260711131949_create_bakery_core`, `20260711132008_enable_bakery_rls` and `20260711132027_add_bakery_audit_log`, followed by the initial 78-product seed. The project remains disconnected from both frontends and has no Auth users.
+- Stage B.2 applied remote migration versions `20260711131949_create_bakery_core`, `20260711132008_enable_bakery_rls` and `20260711132027_add_bakery_audit_log`, followed by the initial 78-product seed.
+- Stage B.3 Security Correction applied only `20260712152010_tighten_bakery_admin_permissions`. No seed or earlier migration was rerun, no Auth/admin user was created, and product/settings/audit values remained unchanged.
+- The project remains disconnected from both frontends and has no Auth users.
 - `REMOTE_MIGRATION_MAP.md` records the exact local-file to remote-history mapping and SHA-256 fingerprints for this checkpoint.
+
+The post-correction Supabase Security Advisor reports one informational `rls_enabled_no_policy` item for `product_source_metadata`. This is intentional: RLS is enabled, there is no policy, and all `anon` / `authenticated` privileges are revoked, so the table is closed to browser clients. Performance advisor unused-index notices are expected before application traffic and do not justify removing approved indexes during this security correction.
 
 ## Environment templates
 
