@@ -1,0 +1,11 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const root=__dirname,p=path.join(root,'project'),prior=path.resolve(root,'../bakery-polish-20260912/project');
+const hash=x=>crypto.createHash('sha256').update(fs.readFileSync(x)).digest('hex');
+const candidates=['ACTIVE_VERSION.md','product-catalog-yachad.json','src/data/public-catalog-fallback.json','src/ShopPage.tsx','src/services/publicShopRepository.ts','admin-dashboard/src/data/catalogSeed.json','public/product-images/drinks-02.jpg','public/product-images/cakes-01.jpg','admin-dashboard/public/product-images/drinks-02.jpg','admin-dashboard/public/product-images/cakes-01.jpg'];
+const changed=candidates.map(file=>({file,status:fs.existsSync(path.join(prior,file))?'modified':'added',sha256:hash(path.join(p,file))}));
+fs.writeFileSync(path.join(root,'changed-files.json'),JSON.stringify(changed,null,2));
+const unchanged=['src/App.tsx','src/styles.css','admin-dashboard/src/styles/index.css','admin-dashboard/src/domain/pricing.ts','admin-dashboard/src/services/productsRepository.ts','admin-dashboard/src/services/settingsRepository.ts','package.json','package-lock.json','admin-dashboard/package.json','admin-dashboard/package-lock.json'].filter(f=>fs.existsSync(path.join(p,f))).map(file=>({file,unchanged:hash(path.join(p,file))===hash(path.join(prior,file))}));
+fs.writeFileSync(path.join(root,'evidence/unchanged-design-pricing.json'),JSON.stringify(unchanged,null,2));
+let active=fs.readFileSync(path.join(p,'ACTIVE_VERSION.md'),'utf8');active=active.replace('מוצג לקריאה בפורטים4190/4191 להשוואה.','נשמר כגיבוי; ההשוואה הפעילה כעת היא מול bakery-polish בפורטים 4200/4201.');active+='\n\nשחזור התוכן מתועד ב-../RECOVERY.md וב-../content-recovery-inventory.json. להרצת הבדיקה הייעודית: node ../content-qa.cjs. נתוני השחזור נמצאים ב-../public-fixtures.json ומיועדים לעותק הבדיקה; אין SQL migration או עדכון production.\n';fs.writeFileSync(path.join(p,'ACTIVE_VERSION.md'),active);
+let report=fs.readFileSync(path.join(root,'RECOVERY.md'),'utf8');report+='\n\nתמונת האריזה המקורית cookies-09 מציגה ״אלפחורס ללא תוספת סוכר״, לעומת ״אלחפורס״ בקטלוג. לא בוצע שינוי שם על דעתנו. תשע תוויות העוגיות נבדקו ברזולוציה המקורית; אין משקל קריא שאפשר לאמת.\n';fs.writeFileSync(path.join(root,'RECOVERY.md'),report);
+console.log({changed:changed.length,unchanged});

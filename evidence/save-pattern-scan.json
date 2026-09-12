@@ -1,0 +1,33 @@
+{
+  "files": 799,
+  "hits": [
+    {
+      "file": "day-records\\bakery-audit-20260912\\admin-browser-qa.cjs",
+      "line": 10,
+      "reasons": [
+        "literal credential candidate"
+      ]
+    },
+    {
+      "file": "day-records\\bakery-fix-20260912\\preview.cjs",
+      "line": 5,
+      "reasons": [
+        "literal credential candidate"
+      ]
+    },
+    {
+      "file": "day-records\\bakery-polish-20260912\\preview.cjs",
+      "line": 5,
+      "reasons": [
+        "literal credential candidate"
+      ]
+    },
+    {
+      "file": "preview.cjs",
+      "line": 5,
+      "reasons": [
+        "literal credential candidate"
+      ]
+    }
+  ]
+}

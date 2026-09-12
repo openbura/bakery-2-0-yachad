@@ -1,0 +1,121 @@
+{
+  "findings": [
+    {
+      "name": "healthy responsive catalog",
+      "viewports": [
+        {
+          "width": 390,
+          "cards": 78,
+          "enabledAdds": 78,
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "cards": 78,
+          "enabledAdds": 78,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "cards": 78,
+          "enabledAdds": 78,
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "cards": 78,
+          "enabledAdds": 78,
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "cards": 78,
+          "enabledAdds": 78,
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "cards": 78,
+          "enabledAdds": 78,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "all category filters",
+      "counts": {
+        "בורקסים": 5,
+        "פיצות וסמבוסק": 6,
+        "סלטים": 1,
+        "כריכים וטוסטים": 6,
+        "מתוקים": 3,
+        "לחמי מחמצת": 6,
+        "עוגות": 14,
+        "עוגיות": 12,
+        "לחמניות ובייגלים": 16,
+        "שתייה": 9
+      },
+      "restored": 78
+    },
+    {
+      "name": "delivery 70 + 15 and building WhatsApp",
+      "cart": "סכום ביניים\n‏70 ‏₪\nדמי משלוח\n‏15 ‏₪\nסה״כ הזמנה\n‏85 ‏₪",
+      "emptyDisabled": true,
+      "invalidFeedback": 0,
+      "messages": [
+        "הזמנה חדשה ממאפיית יחד\n\nפרטי לקוח:\nשם לקוח: בדיקת ביקורת\nטלפון: 0500000000\n\nפרטי קבלה:\nשיטת קבלה: משלוח\nסוג מגורים: בניין\nעיר: כפר סבא\nרחוב: רחוב בדיקה\nמספר בית: 3\nקומה: 2\nדירה: 4\n\nפריטים:\n- 1 ק״ג בורקסים מיקס הפתעה x1 - ‏70 ‏₪\n\nסיכום ביניים: ‏70 ‏₪\nדמי משלוח: ‏15 ‏₪\nסה״כ הזמנה: ‏85 ‏₪\n\nהערות להזמנה: בדיקה בלבד, לא לשלוח"
+      ]
+    },
+    {
+      "name": "pickup under 70, no address sent, copy and refresh loss",
+      "testError": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'המשך לפרטי הזמנה', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-disabled=\"true\" aria-describedby=\"shop-minimum-hint\" class=\"shop-continue-button is-blocked-by-minimum\">המשך לפרטי הזמנה</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    13 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    },
+    {
+      "name": "private house and other city",
+      "testError": "locator.check: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=radio][value=private]')\u001b[22m\n"
+    },
+    {
+      "name": "salad options and modal keyboard",
+      "focusInitiallyInside": false,
+      "escapeCloses": false,
+      "optionCount": 24,
+      "cart": "ההזמנה שלי\nסלט ירקות בהרכבה\n‏45 ‏₪\n\nבחרו מרכיבים לסלט: זיתי קלמטה\n\n1\nהסרה\nמשלוח\nאיסוף עצמי\n\nדמי משלוח ‏15 ‏₪ · מינימום הזמנה למשלוח ‏70 ‏₪\n\nסכום ביניים\n‏45 ‏₪\nדמי משלוח\n‏15 ‏₪\n\nמינימום הזמנה למשלוח הוא ‏70 ‏₪\nחסרים עוד ‏25 ‏₪ כדי להמשיך\n\nסה״כ הזמנה\n‏60 ‏₪\nהמשך לפרטי הזמנה",
+      "hiddenFocusable": {
+        "focused": "סגור הזמנה",
+        "box": {
+          "x": 27,
+          "y": 261.21875,
+          "width": 44,
+          "height": 44,
+          "top": 261.21875,
+          "right": 71,
+          "bottom": 305.21875,
+          "left": 27
+        },
+        "cartOpen": false
+      }
+    },
+    {
+      "name": "pickup-only empty cart dead end",
+      "enabledAdds": 0,
+      "pickupSelectors": 0,
+      "notice": "הזמנה אונליין ממאפיית יחד\nלאתר המאפייה\nהחנות כרגע בעומס — אין משלוחים כרגע. ניתן לבצע איסוף עצמי.\nהכל\nבורקסים\nפיצות וסמבוסק\nסלטים\nכריכים וטוסטים\nמתוקים\nלחמי מחמצת\nעוגות\nעוגיות\nלחמניות ובייגלים\nשתייה\n1 ק״ג בורקסים מיקס הפתעה\n₪\n‏70 ‏\nהוספה\n1 ק״ג בורקס תפוח אדמה\n₪\n‏70 ‏\nהוספה\n1 ק״ג בורקס גבינה קלאסי\n₪\n‏70 ‏\nהוספה\n1 ק״ג בורקס פיצה\n₪\n‏70 ‏\nהוספה\n1 ק״ג בורקס פטריות\n₪\n‏70 ‏\nהוספה\nפיצה אישית\n\nקוטר 15\n\n₪\n‏"
+    },
+    {
+      "name": "outage fallback then recovery",
+      "testError": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'ניסיון חוזר', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "price change revalidation before sending",
+      "testError": "locator.check: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[value=pickup]')\u001b[22m\n"
+    },
+    {
+      "name": "product becomes unavailable before checkout",
+      "remainsCatalog": true,
+      "warnings": [
+        "המוצר אזל להיום."
+      ]
+    }
+  ],
+  "errors": []
+}

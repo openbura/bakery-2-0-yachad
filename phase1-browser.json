@@ -1,0 +1,65 @@
+[
+  {
+    "name": "validation and approved cities mobile desktop",
+    "status": "PASS",
+    "evidence": {
+      "widths": [
+        390,
+        1440
+      ],
+      "cities": "approved only",
+      "inlineErrors": true
+    }
+  },
+  {
+    "name": "outage is not sold out and retry works",
+    "status": "PASS",
+    "evidence": {
+      "outageMessage": true,
+      "recovered": true
+    }
+  },
+  {
+    "name": "unsaved settings cancel leave save then no warning",
+    "status": "PASS",
+    "evidence": {
+      "cancelPreserves": true,
+      "successfulSaveNoWarning": true
+    }
+  },
+  {
+    "name": "unsaved settings back forward and browser refresh",
+    "status": "PASS",
+    "evidence": {
+      "historyCancel": true,
+      "beforeunload": true,
+      "acceptLeaves": true
+    }
+  },
+  {
+    "name": "closed notice does not change ordering",
+    "status": "PASS",
+    "evidence": {
+      "messageOnly": true
+    }
+  },
+  {
+    "name": "mobile menu modal close focus and scroll",
+    "status": "PASS",
+    "evidence": {
+      "trapped": true,
+      "escape": true,
+      "restore": true,
+      "anchor": true
+    }
+  },
+  {
+    "name": "shop trailing slash history metadata",
+    "status": "PASS",
+    "evidence": {
+      "paths": true,
+      "history": true,
+      "metadata": true
+    }
+  }
+]

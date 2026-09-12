@@ -1,0 +1,466 @@
+[
+  {
+    "name": "before-admin-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-1440.png"
+  },
+  {
+    "name": "before-admin-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-390.png"
+  },
+  {
+    "name": "before-admin-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-768.png"
+  },
+  {
+    "name": "before-admin-price-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 5,
+    "changedPercent": 0.00034722222222222224,
+    "bounds": [
+      910,
+      376,
+      917,
+      381
+    ],
+    "file": "pair-admin-price-1440.png"
+  },
+  {
+    "name": "before-admin-price-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-price-390.png"
+  },
+  {
+    "name": "before-admin-price-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 5,
+    "changedPercent": 0.0006510416666666666,
+    "bounds": [
+      574,
+      376,
+      581,
+      381
+    ],
+    "file": "pair-admin-price-768.png"
+  },
+  {
+    "name": "before-admin-products-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-products-1440.png"
+  },
+  {
+    "name": "before-admin-products-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-products-390.png"
+  },
+  {
+    "name": "before-admin-products-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-products-768.png"
+  },
+  {
+    "name": "before-admin-settings-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 1635,
+    "changedPercent": 0.11354166666666667,
+    "bounds": [
+      762,
+      711,
+      1113,
+      722
+    ],
+    "file": "pair-admin-settings-1440.png"
+  },
+  {
+    "name": "before-admin-settings-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-admin-settings-390.png"
+  },
+  {
+    "name": "before-admin-settings-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 1873,
+    "changedPercent": 0.24388020833333332,
+    "bounds": [
+      362,
+      795,
+      713,
+      806
+    ],
+    "file": "pair-admin-settings-768.png"
+  },
+  {
+    "name": "before-cart-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 36772,
+    "changedPercent": 2.553611111111111,
+    "bounds": [
+      374,
+      0,
+      1425,
+      987
+    ],
+    "file": "pair-cart-1440.png"
+  },
+  {
+    "name": "before-cart-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 737,
+    "changedPercent": 0.2239032689269656,
+    "bounds": [
+      32,
+      34,
+      254,
+      193
+    ],
+    "file": "pair-cart-390.png"
+  },
+  {
+    "name": "before-cart-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 19968,
+    "changedPercent": 2.6,
+    "bounds": [
+      12,
+      0,
+      755,
+      999
+    ],
+    "file": "pair-cart-768.png"
+  },
+  {
+    "name": "before-categories-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 102548,
+    "changedPercent": 7.121388888888889,
+    "bounds": [
+      62,
+      50,
+      1379,
+      999
+    ],
+    "file": "pair-categories-1440.png"
+  },
+  {
+    "name": "before-categories-390.png",
+    "width": 390,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-categories-390.png"
+  },
+  {
+    "name": "before-categories-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-categories-768.png"
+  },
+  {
+    "name": "before-checkout-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 331,
+    "changedPercent": 0.02298611111111111,
+    "bounds": [
+      1233,
+      605,
+      1293,
+      614
+    ],
+    "file": "pair-checkout-1440.png"
+  },
+  {
+    "name": "before-checkout-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 331,
+    "changedPercent": 0.10055899866326407,
+    "bounds": [
+      223,
+      273,
+      283,
+      282
+    ],
+    "file": "pair-checkout-390.png"
+  },
+  {
+    "name": "before-checkout-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 331,
+    "changedPercent": 0.04309895833333333,
+    "bounds": [
+      593,
+      565,
+      653,
+      574
+    ],
+    "file": "pair-checkout-768.png"
+  },
+  {
+    "name": "before-contact-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 47309,
+    "changedPercent": 3.285347222222222,
+    "bounds": [
+      182,
+      385,
+      1265,
+      810
+    ],
+    "file": "pair-contact-1440.png"
+  },
+  {
+    "name": "before-contact-390.png",
+    "width": 390,
+    "height": 1000,
+    "changedPixels": 14863,
+    "changedPercent": 3.811025641025641,
+    "bounds": [
+      19,
+      513,
+      371,
+      562
+    ],
+    "file": "pair-contact-390.png"
+  },
+  {
+    "name": "before-contact-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 15303,
+    "changedPercent": 1.992578125,
+    "bounds": [
+      375,
+      513,
+      737,
+      562
+    ],
+    "file": "pair-contact-768.png"
+  },
+  {
+    "name": "before-home-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-home-1440.png"
+  },
+  {
+    "name": "before-home-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-home-390.png"
+  },
+  {
+    "name": "before-home-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-home-768.png"
+  },
+  {
+    "name": "before-home-welcome-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-home-welcome-1440.png"
+  },
+  {
+    "name": "before-home-welcome-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-home-welcome-390.png"
+  },
+  {
+    "name": "before-home-welcome-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-home-welcome-768.png"
+  },
+  {
+    "name": "before-login-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-login-1440.png"
+  },
+  {
+    "name": "before-login-390.png",
+    "width": 390,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-login-390.png"
+  },
+  {
+    "name": "before-login-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-login-768.png"
+  },
+  {
+    "name": "before-menu-390.png",
+    "width": 390,
+    "height": 1000,
+    "changedPixels": 14020,
+    "changedPercent": 3.594871794871795,
+    "bounds": [
+      12,
+      97,
+      377,
+      377
+    ],
+    "file": "pair-menu-390.png"
+  },
+  {
+    "name": "before-menu-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 21519,
+    "changedPercent": 2.801953125,
+    "bounds": [
+      12,
+      97,
+      755,
+      377
+    ],
+    "file": "pair-menu-768.png"
+  },
+  {
+    "name": "before-options-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 55198,
+    "changedPercent": 3.8331944444444446,
+    "bounds": [
+      14,
+      0,
+      1424,
+      987
+    ],
+    "file": "pair-options-1440.png"
+  },
+  {
+    "name": "before-options-390.png",
+    "width": 390,
+    "height": 1000,
+    "changedPixels": 2144,
+    "changedPercent": 0.5497435897435897,
+    "bounds": [
+      19,
+      0,
+      333,
+      151
+    ],
+    "file": "pair-options-390.png"
+  },
+  {
+    "name": "before-options-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 10874,
+    "changedPercent": 1.4158854166666666,
+    "bounds": [
+      30,
+      0,
+      734,
+      57
+    ],
+    "file": "pair-options-768.png"
+  },
+  {
+    "name": "before-shop-1440.png",
+    "width": 1440,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-shop-1440.png"
+  },
+  {
+    "name": "before-shop-390.png",
+    "width": 390,
+    "height": 844,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-shop-390.png"
+  },
+  {
+    "name": "before-shop-768.png",
+    "width": 768,
+    "height": 1000,
+    "changedPixels": 0,
+    "changedPercent": 0,
+    "bounds": null,
+    "file": "pair-shop-768.png"
+  }
+]

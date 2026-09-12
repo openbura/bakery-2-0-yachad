@@ -1,0 +1,27 @@
+[
+  {
+    "script": "home-recapture.cjs",
+    "exitCode": 0,
+    "output": "[\n  {\n    phase: 'before',\n    width: 390,\n    state: { scrollY: 2992, home: [Object], visit: [Array] }\n  },\n  {\n    phase: 'after',\n    width: 390,\n    state: { scrollY: 2992, home: [Object], visit: [Array] }\n  },\n  {\n    phase: 'before',\n    width: 768,\n    state: { scrollY: 3572, home: [Object], visit: [Array] }\n  },\n  {\n    phase: 'after',\n    width: 768,\n    state: { scrollY: 3572, home: [Object], visit: [Array] }\n  },\n  {\n    phase: 'before',\n    width: 1440,\n    state: { scrollY: 4890, home: [Object], visit: [Array] }\n  },\n  {\n    phase: 'after',\n    width: 1440,\n    state: { scrollY: 4890, home: [Object], visit: [Array] }\n  }\n]\n"
+  },
+  {
+    "script": "price-matrix.cjs",
+    "exitCode": 0,
+    "output": "[\n  {\n    width: 430,\n    publicPricesChecked: 78,\n    adminPricesChecked: 78,\n    overflow: false,\n    errors: []\n  },\n  {\n    width: 1920,\n    publicPricesChecked: 78,\n    adminPricesChecked: 78,\n    overflow: false,\n    errors: []\n  }\n]\n"
+  },
+  {
+    "script": "fulfillment-qa.cjs",
+    "exitCode": 0,
+    "output": "[\n  {\n    width: 390,\n    pickupOnly: true,\n    refreshPreserves: true,\n    handoff: true\n  },\n  {\n    width: 1440,\n    pickupOnly: true,\n    refreshPreserves: true,\n    handoff: true\n  }\n]\n"
+  },
+  {
+    "script": "extra-qa.cjs",
+    "exitCode": 0,
+    "output": "[\n  {\n    test: 'pending submit freezes fulfillment/cart/form',\n    status: 'PASS'\n  },\n  {\n    test: 'maximum quantity remains stable across refresh',\n    status: 'PASS'\n  }\n]\n"
+  },
+  {
+    "script": "core-qa.cjs",
+    "exitCode": 0,
+    "output": "{\"name\":\"pickup-only empty cart\",\"status\":\"PASS\",\"evidence\":{\"enabledAdds\":78}}\n{\"name\":\"concurrent product saves\",\"status\":\"PASS\",\"evidence\":{\"writes\":[{\"table\":\"products\",\"patch\":{\"available_today\":false}},{\"table\":\"products\",\"patch\":{\"price_agorot\":8800}}]}}\n{\"name\":\"stale settings unrelated edit\",\"status\":\"PASS\",\"evidence\":{\"delivery\":false,\"writes\":[{\"table\":\"store_settings\",\"patch\":{\"customer_notice_active\":true,\"customer_notice_text\":\"הודעת בדיקה חדשה\"}}]}}\n"
+  }
+]

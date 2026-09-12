@@ -1,0 +1,742 @@
+{
+  "FOUND_AND_RESTORED": {
+    "descriptions": [
+      {
+        "id": "bourekas-01",
+        "name": "1 ק״ג בורקסים מיקס הפתעה",
+        "description": "מיקס בורקסים הפתעה 1 ק”ג"
+      },
+      {
+        "id": "bourekas-02",
+        "name": "1 ק״ג בורקס תפוח אדמה",
+        "description": "ק\"ג1 בורקס תפוח אדמה"
+      },
+      {
+        "id": "bourekas-04",
+        "name": "1 ק״ג בורקס פיצה",
+        "description": "בורקס פיצה1 ק”ג"
+      },
+      {
+        "id": "bourekas-05",
+        "name": "1 ק״ג בורקס פטריות",
+        "description": "בורקס פטריות ק\"ג1"
+      },
+      {
+        "id": "sweets-01",
+        "name": "1 ק״ג קוראסון שוקולד",
+        "description": "קוראסון שוקולוד ק\"ג1"
+      },
+      {
+        "id": "sweets-02",
+        "name": "1 ק״ג קוראסון רוגלח",
+        "description": "קוראסון רוגלח 1ק”ג"
+      },
+      {
+        "id": "sweets-03",
+        "name": "1 ק״ג גביניות",
+        "description": "ק\"ג 1 גביניות"
+      },
+      {
+        "id": "cakes-01",
+        "name": "עוגת גבינה פירורים",
+        "description": "עוגת גבינה"
+      },
+      {
+        "id": "cakes-07",
+        "name": "עוגת שוקולד בלגי ללא תוספת סוכר",
+        "description": "עוגת שוקולד בלגי ללא תוספת סוכר"
+      },
+      {
+        "id": "cakes-09",
+        "name": "עוגת בסקוויטים איכותית",
+        "description": "עוגת בסקוויטים איכותית"
+      },
+      {
+        "id": "cakes-12",
+        "name": "עוגת שוקולד לבן פיסטוק",
+        "description": "עוגת שוקולד לבן פיסטוק"
+      },
+      {
+        "id": "cakes-14",
+        "name": "עוגת קינדר בואנו",
+        "description": "עוגת קינדר בואנו"
+      },
+      {
+        "id": "bread-01",
+        "name": "10 יחידות לחמניות חלקות מובחרות",
+        "description": "10 לחמניות חלקות מובחרות"
+      },
+      {
+        "id": "bread-02",
+        "name": "10 יחידות לחמניות סומסום מובחרות",
+        "description": "10 לחמניות סומסום מובחרות"
+      },
+      {
+        "id": "bread-03",
+        "name": "10 יחידות לחמניות קלועות איכותיות",
+        "description": "10 לחמניות קלועות איכותיות"
+      },
+      {
+        "id": "bread-04",
+        "name": "10 יחידות לחמניות המבורגר",
+        "description": "10 לחמניות המבורגר"
+      },
+      {
+        "id": "bread-05",
+        "name": "4 יחידות לחמניות כוסמין",
+        "description": "4 לחמניות כוסמין"
+      },
+      {
+        "id": "bread-06",
+        "name": "4 יחידות לחמניות דגנים",
+        "description": "4 לחמניות דגנים"
+      },
+      {
+        "id": "bread-07",
+        "name": "4 יחידות חלה אישית",
+        "description": "4 חלה אישית"
+      },
+      {
+        "id": "bread-08",
+        "name": "4 יחידות חלה אישית מתוקה",
+        "description": "4 חלה אישית מתוקה"
+      },
+      {
+        "id": "bread-09",
+        "name": "3 יחידות לחמניות בייגלה",
+        "description": "3 לחמניות בייגלה"
+      },
+      {
+        "id": "bread-10",
+        "name": "3 יחידות בייגל רומני זעתר",
+        "description": "3 בייגל רומני זעתר"
+      },
+      {
+        "id": "bread-11",
+        "name": "3 יחידות בייגל טוסט",
+        "description": "3 בייגל טוסט"
+      },
+      {
+        "id": "bread-12",
+        "name": "3 יחידות לחם זעתר",
+        "description": "3 לחם זעתר"
+      },
+      {
+        "id": "bread-13",
+        "name": "3 יחידות בייגל רומני שומשום",
+        "description": "3 בייגל רומני שומשום"
+      },
+      {
+        "id": "bread-14",
+        "name": "3 יחידות בייגל רומני מלח",
+        "description": "3 בייגל רומני מלח"
+      },
+      {
+        "id": "bread-15",
+        "name": "4 יחידות לחמניות חיטה מלאה",
+        "description": "4 לחמניות חיטה מלאה"
+      },
+      {
+        "id": "bread-16",
+        "name": "3 יחידות לחם שום",
+        "description": "3 לחם שום"
+      }
+    ],
+    "images": [
+      {
+        "id": "drinks-02",
+        "sourceUrl": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d418e.jpg",
+        "path": "/product-images/drinks-02.jpg",
+        "bytes": 28942,
+        "sha256": "405af3e3ce9896d7fbfba59f3a2762c4c84e878d06f1bd9127cc3ee8e9ad4384"
+      },
+      {
+        "id": "cakes-01",
+        "sourceUrl": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/93fd0d63-3679-4043-aabf-b9052b418d8f.jpg",
+        "path": "/product-images/cakes-01.jpg",
+        "bytes": 42795,
+        "sha256": "7d441048294c70050381c41b667d77bc15049283df5e1ea4de293e458b122e56"
+      }
+    ],
+    "includedPizzaChoices": [
+      {
+        "id": "pizza-sambusak-01",
+        "name": "פיצה אישית",
+        "groups": [
+          {
+            "name": "בחרו תוספת",
+            "required": true,
+            "min": 1,
+            "max": 1,
+            "options": [
+              {
+                "name": "זיתי קלמטה",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "זיתים ירוקים",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "זיתים שחורים",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "פלפל חריף",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "עגבניה",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "פטריות",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "תירס",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "בצל",
+                "price_delta": 0,
+                "active": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pizza-sambusak-02",
+        "name": "פיצה משפחתית + תוספת",
+        "groups": [
+          {
+            "name": "בחרו תוספת",
+            "required": true,
+            "min": 1,
+            "max": 1,
+            "options": [
+              {
+                "name": "זיתי קלמטה",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "זיתים ירוקים",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "זיתים שחורים",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "פלפל חריף",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "עגבניה",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "פטריות",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "תירס",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "בצל",
+                "price_delta": 0,
+                "active": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pizza-sambusak-03",
+        "name": "פיצה פסטו אישית",
+        "groups": [
+          {
+            "name": "בחרו תוספת",
+            "required": true,
+            "min": 1,
+            "max": 1,
+            "options": [
+              {
+                "name": "זיתי קלמטה",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "זיתים ירוקים",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "זיתים שחורים",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "פלפל חריף",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "עגבניה",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "פטריות",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "תירס",
+                "price_delta": 0,
+                "active": true
+              },
+              {
+                "name": "בצל",
+                "price_delta": 0,
+                "active": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "knownUnimplementedChoiceEvidence": [
+      {
+        "id": "pizza-sambusak-01",
+        "name": "פיצה אישית",
+        "sourceOptions": "בחרו תוספת:; בחרו פריט 1 - 0/1 נבחרו; זיתי קלמטה; זיתים ירוקים; זיתים שחורים; פלפל חריף; עגבניה; פטריות; תירס; בצל; תרצו תוספות נוספות בתשלום?; זיתי קלמטה (+₪3); זיתים ירוקים (+₪3); זיתים שחורים (+₪3); פלפל חריף (+₪3); עגבניה (+₪3); פטריות (+₪3); תירס (+₪3); בצל (+₪3); בולגרית (+₪3); אקסטרה גבינה (+₪3); מוצרלה (+₪3); בייבי מוצרלה (+₪3); ביצה (+₪3)"
+      },
+      {
+        "id": "pizza-sambusak-02",
+        "name": "פיצה משפחתית + תוספת",
+        "sourceOptions": "פיצה משפחתית + תוספת; 1; בחרו תוספת:; בחרו פריט 1 - 0/1 נבחרו; זיתי קלמטה; זיתים ירוקים; זיתים שחורים; פלפל חריף; עגבניה; פטריות; תירס; בצל; תרצו תוספות נוספות בתשלום?; זיתי קלמטה (+₪6); זיתים שחורים (+₪6); זיתים ירוקים (+₪6); פלפל חריף (+₪6); עגבניה (+₪6); פטריות (+₪6); בצל (+₪6); בולגרית (+₪6); אקסטרה גבינה (+₪6); מוצרלה (+₪6); בייבי מוצרלה (+₪6); ביצה קשה (+₪6)"
+      },
+      {
+        "id": "pizza-sambusak-03",
+        "name": "פיצה פסטו אישית",
+        "sourceOptions": "בחרו תוספת:; בחרו פריט 1 - 0/1 נבחרו; זיתי קלמטה; זיתים ירוקים; זיתים שחורים; פלפל חריף; עגבניה; פטריות; תירס; בצל; תרצו תוספות נוספות בתשלום?; זיתי קלמטה (+₪3); זיתים ירוקים (+₪3); זיתים שחורים (+₪3); פלפל חריף (+₪3); עגבניה (+₪3); פטריות (+₪3); תירס (+₪3); בצל (+₪3); בולגרית (+₪3); אקסטרה גבינה (+₪3); מוצרלה (+₪3); בייבי מוצרלה (+₪3); ביצה (+₪3)"
+      },
+      {
+        "id": "sandwiches-toasts-06",
+        "name": "טוסט בהרכבה",
+        "sourceOptions": "בחרו מרכיבים לטוסט:; זיתי קלמטה; זיתים ירוקים; זיתים שחורים; פלפל חריף; בטטה; מלפפון; עגבניה; חסה; פטריות; תירס; בצל; קרוטונים; גמבה; חציל; פסטה"
+      }
+    ],
+    "ownerApprovedPizzaRule": {
+      "source": "Explicit user follow-up",
+      "maximumToppings": 3,
+      "firstIncluded": true,
+      "additionalToppingAgorot": 500,
+      "existingOptionNamesPreserved": true
+    }
+  },
+  "FOUND_BUT_CONFLICTING": {
+    "descriptions": [
+      {
+        "id": "cakes-03",
+        "name": "עוגת גבינה אפוייה ללא תוספת סוכר",
+        "storedDescription": "עוגת גבינה אפוייה ללא סוכר"
+      },
+      {
+        "id": "cakes-06",
+        "name": "עוגת טריקולד",
+        "storedDescription": "עוגת נוצ’לטו טבוני"
+      },
+      {
+        "id": "cakes-13",
+        "name": "עוגת גבינה ללא תוספת סוכר",
+        "storedDescription": "עוגת גבינה ללא סוכר"
+      }
+    ],
+    "nameConfirmation": [
+      {
+        "id": "sweets-01",
+        "name": "1 ק״ג קוראסון שוקולד",
+        "category": "מתוקים"
+      },
+      {
+        "id": "cakes-06",
+        "name": "עוגת טריקולד",
+        "category": "עוגות"
+      },
+      {
+        "id": "cookies-09",
+        "name": "עוגיות אלחפורס ללא תוספת סוכר",
+        "category": "עוגיות"
+      }
+    ]
+  },
+  "TRULY_MISSING": {
+    "images": [
+      {
+        "id": "cakes-13",
+        "name": "עוגת גבינה ללא תוספת סוכר",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-14",
+        "name": "עוגת קינדר בואנו",
+        "category": "עוגות"
+      },
+      {
+        "id": "cookies-10",
+        "name": "עוגיות בראוניז",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-11",
+        "name": "עוגיות מושלגות",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-12",
+        "name": "עוגיות תמרים",
+        "category": "עוגיות"
+      },
+      {
+        "id": "bread-15",
+        "name": "4 יחידות לחמניות חיטה מלאה",
+        "category": "לחמניות ובייגלים"
+      },
+      {
+        "id": "bread-16",
+        "name": "3 יחידות לחם שום",
+        "category": "לחמניות ובייגלים"
+      },
+      {
+        "id": "drinks-09",
+        "name": "פחית ספרינג תפוזים",
+        "category": "שתייה"
+      }
+    ],
+    "descriptions": [
+      {
+        "id": "bourekas-03",
+        "name": "1 ק״ג בורקס גבינה קלאסי"
+      },
+      {
+        "id": "pizza-sambusak-02",
+        "name": "פיצה משפחתית + תוספת"
+      },
+      {
+        "id": "salads-01",
+        "name": "סלט ירקות בהרכבה"
+      },
+      {
+        "id": "sandwiches-toasts-06",
+        "name": "טוסט בהרכבה"
+      },
+      {
+        "id": "cakes-02",
+        "name": "עוגת גבינה אפוייה"
+      },
+      {
+        "id": "cakes-04",
+        "name": "עוגת אוריאו"
+      },
+      {
+        "id": "cakes-05",
+        "name": "עוגת גבינה ותות טבעוני"
+      },
+      {
+        "id": "cakes-08",
+        "name": "עוגת בסקוויטים טבעונית"
+      },
+      {
+        "id": "cakes-11",
+        "name": "עוגת מוצרט"
+      },
+      {
+        "id": "cookies-01",
+        "name": "עוגיות אלפחורס"
+      },
+      {
+        "id": "cookies-02",
+        "name": "עוגיות שושנים"
+      },
+      {
+        "id": "cookies-03",
+        "name": "עוגיות ריבה"
+      },
+      {
+        "id": "cookies-04",
+        "name": "עוגיות אוזני פיל"
+      },
+      {
+        "id": "cookies-05",
+        "name": "עוגיות גרנולה ללא תוספת סוכר"
+      },
+      {
+        "id": "cookies-06",
+        "name": "עוגיות שוקו צ’יפס"
+      },
+      {
+        "id": "cookies-07",
+        "name": "עוגיות שוקו צ’יפס ללא תוספת סוכר"
+      },
+      {
+        "id": "cookies-08",
+        "name": "עוגיות ריבה ללא תוספת סוכר"
+      },
+      {
+        "id": "cookies-09",
+        "name": "עוגיות אלחפורס ללא תוספת סוכר"
+      },
+      {
+        "id": "cookies-10",
+        "name": "עוגיות בראוניז"
+      },
+      {
+        "id": "cookies-11",
+        "name": "עוגיות מושלגות"
+      },
+      {
+        "id": "cookies-12",
+        "name": "עוגיות תמרים"
+      },
+      {
+        "id": "drinks-01",
+        "name": "מים מינרליים"
+      },
+      {
+        "id": "drinks-02",
+        "name": "פחית קולה"
+      },
+      {
+        "id": "drinks-03",
+        "name": "פחית קולה זירו"
+      },
+      {
+        "id": "drinks-04",
+        "name": "פחית ספרייט"
+      },
+      {
+        "id": "drinks-05",
+        "name": "פחית ספרייט זירו"
+      },
+      {
+        "id": "drinks-06",
+        "name": "פחית פאנטה"
+      },
+      {
+        "id": "drinks-07",
+        "name": "פחית ספרינג תות בננה"
+      },
+      {
+        "id": "drinks-08",
+        "name": "פחית ספרינג פירות טרופיים"
+      },
+      {
+        "id": "drinks-09",
+        "name": "פחית ספרינג תפוזים"
+      }
+    ],
+    "packageSizes": [
+      {
+        "id": "cakes-01",
+        "name": "עוגת גבינה פירורים",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-02",
+        "name": "עוגת גבינה אפוייה",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-03",
+        "name": "עוגת גבינה אפוייה ללא תוספת סוכר",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-04",
+        "name": "עוגת אוריאו",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-05",
+        "name": "עוגת גבינה ותות טבעוני",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-06",
+        "name": "עוגת טריקולד",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-07",
+        "name": "עוגת שוקולד בלגי ללא תוספת סוכר",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-08",
+        "name": "עוגת בסקוויטים טבעונית",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-09",
+        "name": "עוגת בסקוויטים איכותית",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-10",
+        "name": "עוגת 10 שכבות",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-11",
+        "name": "עוגת מוצרט",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-12",
+        "name": "עוגת שוקולד לבן פיסטוק",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-13",
+        "name": "עוגת גבינה ללא תוספת סוכר",
+        "category": "עוגות"
+      },
+      {
+        "id": "cakes-14",
+        "name": "עוגת קינדר בואנו",
+        "category": "עוגות"
+      },
+      {
+        "id": "cookies-01",
+        "name": "עוגיות אלפחורס",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-02",
+        "name": "עוגיות שושנים",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-03",
+        "name": "עוגיות ריבה",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-04",
+        "name": "עוגיות אוזני פיל",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-05",
+        "name": "עוגיות גרנולה ללא תוספת סוכר",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-06",
+        "name": "עוגיות שוקו צ’יפס",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-07",
+        "name": "עוגיות שוקו צ’יפס ללא תוספת סוכר",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-08",
+        "name": "עוגיות ריבה ללא תוספת סוכר",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-09",
+        "name": "עוגיות אלחפורס ללא תוספת סוכר",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-10",
+        "name": "עוגיות בראוניז",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-11",
+        "name": "עוגיות מושלגות",
+        "category": "עוגיות"
+      },
+      {
+        "id": "cookies-12",
+        "name": "עוגיות תמרים",
+        "category": "עוגיות"
+      },
+      {
+        "id": "drinks-01",
+        "name": "מים מינרליים",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-02",
+        "name": "פחית קולה",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-03",
+        "name": "פחית קולה זירו",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-04",
+        "name": "פחית ספרייט",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-05",
+        "name": "פחית ספרייט זירו",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-06",
+        "name": "פחית פאנטה",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-07",
+        "name": "פחית ספרינג תות בננה",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-08",
+        "name": "פחית ספרינג פירות טרופיים",
+        "category": "שתייה"
+      },
+      {
+        "id": "drinks-09",
+        "name": "פחית ספרינג תפוזים",
+        "category": "שתייה"
+      }
+    ],
+    "choiceRules": [
+      {
+        "products": [
+          "sandwiches-toasts-06"
+        ],
+        "missing": "Selection min/max, included vs paid prices, base bread/cheese rules; 15 existing names found, no assumed rules."
+      }
+    ]
+  }
+}

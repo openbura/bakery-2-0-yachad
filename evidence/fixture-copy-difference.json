@@ -1,0 +1,12 @@
+[
+  {
+    "path": "/products/27/image_url",
+    "before": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/93fd0d63-3679-4043-aabf-b9052b418d8f.jpg",
+    "after": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/93fd0d63-3679-4043-aabf-b9052b419d8f.jpg"
+  },
+  {
+    "path": "/products/70/image_url",
+    "before": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d418e.jpg",
+    "after": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d419e.jpg"
+  }
+]

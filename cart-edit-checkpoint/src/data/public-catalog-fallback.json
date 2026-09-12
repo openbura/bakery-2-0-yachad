@@ -1,0 +1,1380 @@
+{
+  "products": [
+    {
+      "id": "bourekas-01",
+      "category": "בורקסים",
+      "sort_order": 1,
+      "product_name": "1 ק״ג בורקסים מיקס הפתעה",
+      "description": "מיקס בורקסים הפתעה 1 ק”ג",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/39bdc1eb-9749-49e5-94d0-bf0ecab82d00.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bourekas-02",
+      "category": "בורקסים",
+      "sort_order": 2,
+      "product_name": "1 ק״ג בורקס תפוח אדמה",
+      "description": "ק\"ג1 בורקס תפוח אדמה",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e9e0aaae-7326-4cfe-b30a-a9ff18164b38.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bourekas-03",
+      "category": "בורקסים",
+      "sort_order": 3,
+      "product_name": "1 ק״ג בורקס גבינה קלאסי",
+      "description": "",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ed2d6932-5e4c-4780-8427-ba3a40b8e38b.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bourekas-04",
+      "category": "בורקסים",
+      "sort_order": 4,
+      "product_name": "1 ק״ג בורקס פיצה",
+      "description": "בורקס פיצה1 ק”ג",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a4f76563-d9f0-4caa-92c8-dcb95c5472de.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bourekas-05",
+      "category": "בורקסים",
+      "sort_order": 5,
+      "product_name": "1 ק״ג בורקס פטריות",
+      "description": "בורקס פטריות ק\"ג1",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/497e975a-56a6-4977-87bd-66aebcafcdf0.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "pizza-sambusak-01",
+      "category": "פיצות וסמבוסק",
+      "sort_order": 6,
+      "product_name": "פיצה אישית",
+      "description": "קוטר 15",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/db5eb8ba-066e-4abb-8b20-6789d62d8e75.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": [
+        {
+          "name": "בחרו תוספת",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "name": "זיתי קלמטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים ירוקים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים שחורים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פלפל חריף",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "עגבניה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פטריות",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "תירס",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "בצל",
+              "price_delta": 0,
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizza-sambusak-02",
+      "category": "פיצות וסמבוסק",
+      "sort_order": 7,
+      "product_name": "פיצה משפחתית + תוספת",
+      "description": "",
+      "price_ils": 59,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/c8519e76-5697-4a39-a66f-56b193fb1be1.jpg",
+      "active": true,
+      "display_price_text": "₪59",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": [
+        {
+          "name": "בחרו תוספת",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "name": "זיתי קלמטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים ירוקים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים שחורים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פלפל חריף",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "עגבניה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פטריות",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "תירס",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "בצל",
+              "price_delta": 0,
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizza-sambusak-03",
+      "category": "פיצות וסמבוסק",
+      "sort_order": 8,
+      "product_name": "פיצה פסטו אישית",
+      "description": "קוטר 15",
+      "price_ils": 25,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/07a08465-cdf6-499c-9d0a-8ef508574a40.jpg",
+      "active": true,
+      "display_price_text": "₪25",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": [
+        {
+          "name": "בחרו תוספת",
+          "required": true,
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "name": "זיתי קלמטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים ירוקים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים שחורים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פלפל חריף",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "עגבניה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פטריות",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "תירס",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "בצל",
+              "price_delta": 0,
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizza-sambusak-04",
+      "category": "פיצות וסמבוסק",
+      "sort_order": 9,
+      "product_name": "סמבוסק גבינות",
+      "description": "בולגרית וצהובה",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/4d1a2261-885a-4993-b58c-b9eb6988073e.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "pizza-sambusak-05",
+      "category": "פיצות וסמבוסק",
+      "sort_order": 10,
+      "product_name": "סמבוסק פיצה וזיתים",
+      "description": "רוטב פיצה , גבינה צהובה וזיתים ירוקים",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e270a81b-6f40-40f7-9c58-536deb5145b3.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "pizza-sambusak-06",
+      "category": "פיצות וסמבוסק",
+      "sort_order": 11,
+      "product_name": "סמבוסק פסטו בולגרית",
+      "description": "פסטו, צהובה, זיתי קלמטה",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/6748601f-9a9a-4a22-bbe0-d15fb0cf55a8.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "salads-01",
+      "category": "סלטים",
+      "sort_order": 12,
+      "product_name": "סלט ירקות בהרכבה",
+      "description": "",
+      "price_ils": 45,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/dd956ad3-9742-4493-b22f-9cf52023b25d.jpg",
+      "active": true,
+      "display_price_text": "₪45",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": [
+        {
+          "name": "בחרו מרכיבים לסלט",
+          "required": true,
+          "min": 1,
+          "max": null,
+          "options": [
+            {
+              "name": "זיתי קלמטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים ירוקים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "זיתים שחורים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פלפל חריף",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "תערובת לסלט",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "בטטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "מלפפון",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "עגבניה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "חסה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פטריות",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "תירס",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "בצל",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "קרוטונים",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "גמבה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "חציל",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "פסטה",
+              "price_delta": 0,
+              "active": true
+            },
+            {
+              "name": "טונה",
+              "price_delta": 3,
+              "active": true
+            },
+            {
+              "name": "בייבי מוצרלה",
+              "price_delta": 3,
+              "active": true
+            },
+            {
+              "name": "ביצה",
+              "price_delta": 3,
+              "active": true
+            },
+            {
+              "name": "בולגרית",
+              "price_delta": 3,
+              "active": true
+            }
+          ]
+        },
+        {
+          "name": "תרצו רטבים בתשלום?",
+          "required": false,
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "name": "מיונז",
+              "price_delta": 2,
+              "active": true
+            },
+            {
+              "name": "אלף האיים",
+              "price_delta": 2,
+              "active": true
+            },
+            {
+              "name": "שום",
+              "price_delta": 2,
+              "active": true
+            },
+            {
+              "name": "שמן זית ולימון",
+              "price_delta": 2,
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sandwiches-toasts-01",
+      "category": "כריכים וטוסטים",
+      "sort_order": 13,
+      "product_name": "כריך טונה",
+      "description": "טונה , מיונז , חסה , עגבניה , מלפפון",
+      "price_ils": 32,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9e60b2b9-a49c-49ef-87eb-d5ed3d918725.jpg",
+      "active": true,
+      "display_price_text": "₪32",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sandwiches-toasts-02",
+      "category": "כריכים וטוסטים",
+      "sort_order": 14,
+      "product_name": "כריך חביתה",
+      "description": "גבינת שמנת 5% , חסה , עגבניה , מלפפון",
+      "price_ils": 32,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/90b9c334-5c6c-41a9-a029-680eeea74132.jpg",
+      "active": true,
+      "display_price_text": "₪32",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sandwiches-toasts-03",
+      "category": "כריכים וטוסטים",
+      "sort_order": 15,
+      "product_name": "כריך בולגרית",
+      "description": "פסטו , חסה , עגבניה , זיתים שחורים",
+      "price_ils": 32,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ffd7c4dd-43ca-4c87-b9f9-e365192e199b.jpg",
+      "active": true,
+      "display_price_text": "₪32",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sandwiches-toasts-04",
+      "category": "כריכים וטוסטים",
+      "sort_order": 16,
+      "product_name": "כריך סלט ביצים",
+      "description": "סלט ביצים , חסה , עגבניה , מלפפון",
+      "price_ils": 32,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a34ace68-a1eb-4efd-aaf6-0045b1e1de7a.jpg",
+      "active": true,
+      "display_price_text": "₪32",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sandwiches-toasts-05",
+      "category": "כריכים וטוסטים",
+      "sort_order": 17,
+      "product_name": "כריך סביח",
+      "description": "טחינה , חצילים , עגבניה, ביצה",
+      "price_ils": 32,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ee83adf7-63f4-45a4-94af-a7792e10e80a.jpg",
+      "active": true,
+      "display_price_text": "₪32",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sandwiches-toasts-06",
+      "category": "כריכים וטוסטים",
+      "sort_order": 18,
+      "product_name": "טוסט בהרכבה",
+      "description": "",
+      "price_ils": 45,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/68fd7164-7c5c-4082-a43b-c23fb673220d.jpg",
+      "active": true,
+      "display_price_text": "₪45",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sweets-01",
+      "category": "מתוקים",
+      "sort_order": 19,
+      "product_name": "1 ק״ג קוראסון שוקולד",
+      "description": "קוראסון שוקולוד ק\"ג1",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d59338c2-81f1-403b-adf3-f7cd35c0ea0e.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sweets-02",
+      "category": "מתוקים",
+      "sort_order": 20,
+      "product_name": "1 ק״ג קוראסון רוגלח",
+      "description": "קוראסון רוגלח 1ק”ג",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/c9d3b6f9-e475-4806-ab81-139ce809d0cf.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sweets-03",
+      "category": "מתוקים",
+      "sort_order": 21,
+      "product_name": "1 ק״ג גביניות",
+      "description": "ק\"ג 1 גביניות",
+      "price_ils": 70,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/8230e740-03c9-4c00-9e54-f937193a66dd.jpg",
+      "active": true,
+      "display_price_text": "₪70",
+      "price_unit_note": "₪70 / 1 ק״ג",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sourdough-breads-01",
+      "category": "לחמי מחמצת",
+      "sort_order": 22,
+      "product_name": "לחם כוסמין",
+      "description": "550 גרם",
+      "price_ils": 28,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/21f475bb-40a3-4d57-9f54-6e22c834ddd1.jpg",
+      "active": true,
+      "display_price_text": "₪28",
+      "price_unit_note": "₪5.09 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sourdough-breads-02",
+      "category": "לחמי מחמצת",
+      "sort_order": 23,
+      "product_name": "לחם דגנים",
+      "description": "550 גרם",
+      "price_ils": 28,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/40145fef-cb38-4280-bc71-7c6c6e8b24be.jpg",
+      "active": true,
+      "display_price_text": "₪28",
+      "price_unit_note": "₪5.09 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sourdough-breads-03",
+      "category": "לחמי מחמצת",
+      "sort_order": 24,
+      "product_name": "לחם אגוזים וצימוקים",
+      "description": "550 גרם",
+      "price_ils": 28,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/5db52f96-8a68-4b43-bacb-6b0b0b550e60.jpg",
+      "active": true,
+      "display_price_text": "₪28",
+      "price_unit_note": "₪5.09 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sourdough-breads-04",
+      "category": "לחמי מחמצת",
+      "sort_order": 25,
+      "product_name": "לחם אגוזים",
+      "description": "550 גרם",
+      "price_ils": 28,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/87135120-15ba-4881-823b-9637e78f8d0e.jpg",
+      "active": true,
+      "display_price_text": "₪28",
+      "price_unit_note": "₪5.09 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sourdough-breads-05",
+      "category": "לחמי מחמצת",
+      "sort_order": 26,
+      "product_name": "לחם זיתים",
+      "description": "550 גרם",
+      "price_ils": 28,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/fb7970f6-a894-43e4-bad2-5859dee986eb.jpg",
+      "active": true,
+      "display_price_text": "₪28",
+      "price_unit_note": "₪5.09 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "sourdough-breads-06",
+      "category": "לחמי מחמצת",
+      "sort_order": 27,
+      "product_name": "לחם בצל",
+      "description": "550 גרם",
+      "price_ils": 28,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ac211971-7cf1-40f3-875c-fd267cdb360d.jpg",
+      "active": true,
+      "display_price_text": "₪28",
+      "price_unit_note": "₪5.09 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-01",
+      "category": "עוגות",
+      "sort_order": 28,
+      "product_name": "עוגת גבינה פירורים",
+      "description": "עוגת גבינה",
+      "price_ils": 90,
+      "image_url": "/product-images/cakes-01.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-02",
+      "category": "עוגות",
+      "sort_order": 29,
+      "product_name": "עוגת גבינה אפוייה",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/6e8c8d01-df7a-4e3b-846e-153b2ea85273.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-03",
+      "category": "עוגות",
+      "sort_order": 30,
+      "product_name": "עוגת גבינה אפוייה ללא תוספת סוכר",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/75640558-e0d8-4bf4-8e1a-5b074e6cebbb.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-04",
+      "category": "עוגות",
+      "sort_order": 31,
+      "product_name": "עוגת אוריאו",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f8368254-ddcb-4634-a618-134159a6f58c.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-05",
+      "category": "עוגות",
+      "sort_order": 32,
+      "product_name": "עוגת גבינה ותות טבעוני",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/911d567c-553b-41e8-98dc-a0f8216b5d71.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-06",
+      "category": "עוגות",
+      "sort_order": 33,
+      "product_name": "עוגת טריקולד",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7cd9481-3193-4b46-851b-cd0887b6ad6a.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-07",
+      "category": "עוגות",
+      "sort_order": 34,
+      "product_name": "עוגת שוקולד בלגי ללא תוספת סוכר",
+      "description": "עוגת שוקולד בלגי ללא תוספת סוכר",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/018dac1a-b302-4470-98e3-c5ddbbfd4f18.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-08",
+      "category": "עוגות",
+      "sort_order": 35,
+      "product_name": "עוגת בסקוויטים טבעונית",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/401180e4-3b1f-456b-b17f-afe661b58110.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-09",
+      "category": "עוגות",
+      "sort_order": 36,
+      "product_name": "עוגת בסקוויטים איכותית",
+      "description": "עוגת בסקוויטים איכותית",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/60605618-0365-4380-b273-ab18011bfd38.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-10",
+      "category": "עוגות",
+      "sort_order": 37,
+      "product_name": "עוגת 10 שכבות",
+      "description": "עוגת 10 שכבות שוקולד",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/2a0929d1-02c5-4c52-b1c5-d84c95398011.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-11",
+      "category": "עוגות",
+      "sort_order": 38,
+      "product_name": "עוגת מוצרט",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9c549db4-7e88-4af2-a27f-77b84a9bd003.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-12",
+      "category": "עוגות",
+      "sort_order": 39,
+      "product_name": "עוגת שוקולד לבן פיסטוק",
+      "description": "עוגת שוקולד לבן פיסטוק",
+      "price_ils": 90,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/015c6a91-25b9-486d-8c3e-1b734e38b505.jpg",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-13",
+      "category": "עוגות",
+      "sort_order": 40,
+      "product_name": "עוגת גבינה ללא תוספת סוכר",
+      "description": "",
+      "price_ils": 90,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cakes-14",
+      "category": "עוגות",
+      "sort_order": 41,
+      "product_name": "עוגת קינדר בואנו",
+      "description": "עוגת קינדר בואנו",
+      "price_ils": 90,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪90",
+      "price_unit_note": "₪11.25 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-01",
+      "category": "עוגיות",
+      "sort_order": 42,
+      "product_name": "עוגיות אלפחורס",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/be1026b3-55c3-41c4-bd24-6ed9845eb1e3.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-02",
+      "category": "עוגיות",
+      "sort_order": 43,
+      "product_name": "עוגיות שושנים",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b7810b3a-2d57-4501-a7a5-1106a9657b32.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-03",
+      "category": "עוגיות",
+      "sort_order": 44,
+      "product_name": "עוגיות ריבה",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b33e81f6-a944-4edd-9210-6f55e5a6dcac.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-04",
+      "category": "עוגיות",
+      "sort_order": 45,
+      "product_name": "עוגיות אוזני פיל",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/84938a65-e68a-44e6-bfa5-f816730ac553.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-05",
+      "category": "עוגיות",
+      "sort_order": 46,
+      "product_name": "עוגיות גרנולה ללא תוספת סוכר",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/30978b8f-961a-4507-bc3f-3ff8bc7941d6.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-06",
+      "category": "עוגיות",
+      "sort_order": 47,
+      "product_name": "עוגיות שוקו צ’יפס",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f50bd1de-2d7a-4e86-9ab7-d23371103deb.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-07",
+      "category": "עוגיות",
+      "sort_order": 48,
+      "product_name": "עוגיות שוקו צ’יפס ללא תוספת סוכר",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9300d82d-b63c-48b9-92ec-f4ae892c3687.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-08",
+      "category": "עוגיות",
+      "sort_order": 49,
+      "product_name": "עוגיות ריבה ללא תוספת סוכר",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/345d81f9-c862-4c32-b664-a47787df810b.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-09",
+      "category": "עוגיות",
+      "sort_order": 50,
+      "product_name": "עוגיות אלחפורס ללא תוספת סוכר",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b6233718-d593-4bfa-9b5e-eadc6c9d523c.jpg",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-10",
+      "category": "עוגיות",
+      "sort_order": 51,
+      "product_name": "עוגיות בראוניז",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-11",
+      "category": "עוגיות",
+      "sort_order": 52,
+      "product_name": "עוגיות מושלגות",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "cookies-12",
+      "category": "עוגיות",
+      "sort_order": 53,
+      "product_name": "עוגיות תמרים",
+      "description": "",
+      "price_ils": 49,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪49",
+      "price_unit_note": "₪20.42 / 100 גר׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-01",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 54,
+      "product_name": "10 יחידות לחמניות חלקות מובחרות",
+      "description": "10 לחמניות חלקות מובחרות",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/3ca61255-7f71-44d8-ad4c-22ab70356433.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-02",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 55,
+      "product_name": "10 יחידות לחמניות סומסום מובחרות",
+      "description": "10 לחמניות סומסום מובחרות",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ba0ef814-4c5e-4b87-9c8d-ba50b0e1f1af.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-03",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 56,
+      "product_name": "10 יחידות לחמניות קלועות איכותיות",
+      "description": "10 לחמניות קלועות איכותיות",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/fcc08368-0a0d-4853-8aea-33de323594a2.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-04",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 57,
+      "product_name": "10 יחידות לחמניות המבורגר",
+      "description": "10 לחמניות המבורגר",
+      "price_ils": 23,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/15550a59-c78c-42d5-912a-cf4ff70adebb.jpg",
+      "active": true,
+      "display_price_text": "₪23",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-05",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 58,
+      "product_name": "4 יחידות לחמניות כוסמין",
+      "description": "4 לחמניות כוסמין",
+      "price_ils": 13,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9fba4b31-207d-489c-85fb-460c08c8370f.jpg",
+      "active": true,
+      "display_price_text": "₪13",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-06",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 59,
+      "product_name": "4 יחידות לחמניות דגנים",
+      "description": "4 לחמניות דגנים",
+      "price_ils": 13,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/2248a6ac-7dc7-49f1-aa9c-252f7679f6b5.jpg",
+      "active": true,
+      "display_price_text": "₪13",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-07",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 60,
+      "product_name": "4 יחידות חלה אישית",
+      "description": "4 חלה אישית",
+      "price_ils": 13,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/bc13585d-ee62-4ed2-a143-e8ac8984688e.jpg",
+      "active": true,
+      "display_price_text": "₪13",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-08",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 61,
+      "product_name": "4 יחידות חלה אישית מתוקה",
+      "description": "4 חלה אישית מתוקה",
+      "price_ils": 13,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/67ecb91a-e326-4496-b925-f23fa2cd0492.jpg",
+      "active": true,
+      "display_price_text": "₪13",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-09",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 62,
+      "product_name": "3 יחידות לחמניות בייגלה",
+      "description": "3 לחמניות בייגלה",
+      "price_ils": 16,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b617b976-f5bf-4bbb-90ab-8e8a094c5767.jpg",
+      "active": true,
+      "display_price_text": "₪16",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-10",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 63,
+      "product_name": "3 יחידות בייגל רומני זעתר",
+      "description": "3 בייגל רומני זעתר",
+      "price_ils": 16,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/0600194f-7801-4cee-a460-76a8e69992e3.jpg",
+      "active": true,
+      "display_price_text": "₪16",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-11",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 64,
+      "product_name": "3 יחידות בייגל טוסט",
+      "description": "3 בייגל טוסט",
+      "price_ils": 16,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/931f7260-1f07-490e-aa5d-d82fb7d7c62b.jpg",
+      "active": true,
+      "display_price_text": "₪16",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-12",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 65,
+      "product_name": "3 יחידות לחם זעתר",
+      "description": "3 לחם זעתר",
+      "price_ils": 16,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/1aaca7b6-03c1-4589-af91-b0eaed7cbc02.jpg",
+      "active": true,
+      "display_price_text": "₪16",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-13",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 66,
+      "product_name": "3 יחידות בייגל רומני שומשום",
+      "description": "3 בייגל רומני שומשום",
+      "price_ils": 16,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/00e99cc6-69fa-4d34-88cf-7ad7eaf5ac09.jpg",
+      "active": true,
+      "display_price_text": "₪16",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-14",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 67,
+      "product_name": "3 יחידות בייגל רומני מלח",
+      "description": "3 בייגל רומני מלח",
+      "price_ils": 16,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b250acb5-95a7-4764-9509-5fedf2e85939.jpg",
+      "active": true,
+      "display_price_text": "₪16",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-15",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 68,
+      "product_name": "4 יחידות לחמניות חיטה מלאה",
+      "description": "4 לחמניות חיטה מלאה",
+      "price_ils": 13,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪13",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "bread-16",
+      "category": "לחמניות ובייגלים",
+      "sort_order": 69,
+      "product_name": "3 יחידות לחם שום",
+      "description": "3 לחם שום",
+      "price_ils": 16,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪16",
+      "price_unit_note": "",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-01",
+      "category": "שתייה",
+      "sort_order": 70,
+      "product_name": "מים מינרליים",
+      "description": "",
+      "price_ils": 10,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a58655c2-e689-4490-bfe1-8b09787fffe5.jpg",
+      "active": true,
+      "display_price_text": "₪10",
+      "price_unit_note": "₪2 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-02",
+      "category": "שתייה",
+      "sort_order": 71,
+      "product_name": "פחית קולה",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "/product-images/drinks-02.jpg",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-03",
+      "category": "שתייה",
+      "sort_order": 72,
+      "product_name": "פחית קולה זירו",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/812ea80a-a33b-49e5-b20e-597d8c564091.jpg",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-04",
+      "category": "שתייה",
+      "sort_order": 73,
+      "product_name": "פחית ספרייט",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7178b50-b563-45a0-828e-6e69025adbe5.jpg",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-05",
+      "category": "שתייה",
+      "sort_order": 74,
+      "product_name": "פחית ספרייט זירו",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/aa561154-64f2-4be0-8778-2e1a12819648.jpg",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-06",
+      "category": "שתייה",
+      "sort_order": 75,
+      "product_name": "פחית פאנטה",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e878aab1-1290-49d6-aa55-288252bc886e.jpg",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-07",
+      "category": "שתייה",
+      "sort_order": 76,
+      "product_name": "פחית ספרינג תות בננה",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/100fff76-07f8-4ccc-8f79-0e5ca2751c27.jpg",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-08",
+      "category": "שתייה",
+      "sort_order": 77,
+      "product_name": "פחית ספרינג פירות טרופיים",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f5f42117-18cd-4c73-bb09-ccaa789938ca.jpg",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    },
+    {
+      "id": "drinks-09",
+      "category": "שתייה",
+      "sort_order": 78,
+      "product_name": "פחית ספרינג תפוזים",
+      "description": "",
+      "price_ils": 12,
+      "image_url": "",
+      "active": true,
+      "display_price_text": "₪12",
+      "price_unit_note": "₪3.64 / 100 מל׳",
+      "small_note": "",
+      "option_groups": []
+    }
+  ]
+}

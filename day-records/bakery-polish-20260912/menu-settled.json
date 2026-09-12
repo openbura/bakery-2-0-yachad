@@ -1,0 +1,22 @@
+[
+  {
+    "phase": "before",
+    "width": 390,
+    "scrollY": 3572
+  },
+  {
+    "phase": "after",
+    "width": 390,
+    "scrollY": 3572
+  },
+  {
+    "phase": "before",
+    "width": 768,
+    "scrollY": 3572
+  },
+  {
+    "phase": "after",
+    "width": 768,
+    "scrollY": 3572
+  }
+]

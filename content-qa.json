@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "priceAndUnitMetadataUnchanged": 78,
+  "results": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "descriptions": 28,
+      "images": 2,
+      "pizzaGroups": 3,
+      "singleRequiredFreeChoice": true,
+      "refresh": true,
+      "checkoutSummary": "הזמנה חדשה ממאפיית יחד\n\nפרטי לקוח:\nשם לקוח: בדיקת שחזור\nטלפון: 0500000000\n\nפרטי קבלה:\nשיטת קבלה: איסוף עצמי\n\nפריטים:\n- פיצה אישית x1 - ‏23 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n- פיצה משפחתית + תוספת x1 - ‏59 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n- פיצה פסטו אישית x1 - ‏25 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n\nסיכום ביניים: ‏107 ‏₪\nדמי משלוח: ‏0 ‏₪\nסה״כ הזמנה: ‏107 ‏₪",
+      "adminPrices": true,
+      "adminMediaFiles": true,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "status": "PASS",
+      "descriptions": 28,
+      "images": 2,
+      "pizzaGroups": 3,
+      "singleRequiredFreeChoice": true,
+      "refresh": true,
+      "checkoutSummary": "הזמנה חדשה ממאפיית יחד\n\nפרטי לקוח:\nשם לקוח: בדיקת שחזור\nטלפון: 0500000000\n\nפרטי קבלה:\nשיטת קבלה: איסוף עצמי\n\nפריטים:\n- פיצה אישית x1 - ‏23 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n- פיצה משפחתית + תוספת x1 - ‏59 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n- פיצה פסטו אישית x1 - ‏25 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n\nסיכום ביניים: ‏107 ‏₪\nדמי משלוח: ‏0 ‏₪\nסה״כ הזמנה: ‏107 ‏₪",
+      "adminPrices": true,
+      "adminMediaFiles": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "descriptions": 28,
+      "images": 2,
+      "pizzaGroups": 3,
+      "singleRequiredFreeChoice": true,
+      "refresh": true,
+      "checkoutSummary": "הזמנה חדשה ממאפיית יחד\n\nפרטי לקוח:\nשם לקוח: בדיקת שחזור\nטלפון: 0500000000\n\nפרטי קבלה:\nשיטת קבלה: איסוף עצמי\n\nפריטים:\n- פיצה אישית x1 - ‏23 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n- פיצה משפחתית + תוספת x1 - ‏59 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n- פיצה פסטו אישית x1 - ‏25 ‏₪\n  בחירות:\n  - בחרו תוספת: תירס\n\nסיכום ביניים: ‏107 ‏₪\nדמי משלוח: ‏0 ‏₪\nסה״כ הזמנה: ‏107 ‏₪",
+      "adminPrices": true,
+      "adminMediaFiles": true,
+      "errors": []
+    }
+  ],
+  "adminLimitation": "Existing admin does not render descriptions, product photos or option editing; verified API content, asset routes and existing name/price/unit UI. No admin redesign."
+}

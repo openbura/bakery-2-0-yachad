@@ -1,0 +1,63 @@
+{
+  "descriptionIds": [
+    "bourekas-01",
+    "bourekas-02",
+    "bourekas-04",
+    "bourekas-05",
+    "sweets-01",
+    "sweets-02",
+    "sweets-03",
+    "cakes-01",
+    "cakes-07",
+    "cakes-09",
+    "cakes-12",
+    "cakes-14",
+    "bread-01",
+    "bread-02",
+    "bread-03",
+    "bread-04",
+    "bread-05",
+    "bread-06",
+    "bread-07",
+    "bread-08",
+    "bread-09",
+    "bread-10",
+    "bread-11",
+    "bread-12",
+    "bread-13",
+    "bread-14",
+    "bread-15",
+    "bread-16"
+  ],
+  "imageChanges": [
+    {
+      "id": "drinks-02",
+      "sourceUrl": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d418e.jpg",
+      "path": "/product-images/drinks-02.jpg",
+      "bytes": 28942,
+      "sha256": "405af3e3ce9896d7fbfba59f3a2762c4c84e878d06f1bd9127cc3ee8e9ad4384"
+    },
+    {
+      "id": "cakes-01",
+      "sourceUrl": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/93fd0d63-3679-4043-aabf-b9052b418d8f.jpg",
+      "path": "/product-images/cakes-01.jpg",
+      "bytes": 42795,
+      "sha256": "7d441048294c70050381c41b667d77bc15049283df5e1ea4de293e458b122e56"
+    }
+  ],
+  "pizzas": [
+    "pizza-sambusak-01",
+    "pizza-sambusak-02",
+    "pizza-sambusak-03"
+  ],
+  "toppingNames": [
+    "זיתי קלמטה",
+    "זיתים ירוקים",
+    "זיתים שחורים",
+    "פלפל חריף",
+    "עגבניה",
+    "פטריות",
+    "תירס",
+    "בצל"
+  ]
+}

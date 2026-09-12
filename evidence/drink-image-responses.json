@@ -1,0 +1,58 @@
+[
+  {
+    "id": "drinks-01",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a58655c2-e689-4490-bfe1-8b09787fffe5.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 14149
+  },
+  {
+    "id": "drinks-02",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d418e.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 28942
+  },
+  {
+    "id": "drinks-03",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/812ea80a-a33b-49e5-b20e-597d8c564091.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 30249
+  },
+  {
+    "id": "drinks-04",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7178b50-b563-45a0-828e-6e69025adbe5.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 26436
+  },
+  {
+    "id": "drinks-05",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/aa561154-64f2-4be0-8778-2e1a12819648.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 26985
+  },
+  {
+    "id": "drinks-06",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e878aab1-1290-49d6-aa55-288252bc886e.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 17498
+  },
+  {
+    "id": "drinks-07",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/100fff76-07f8-4ccc-8f79-0e5ca2751c27.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 20946
+  },
+  {
+    "id": "drinks-08",
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f5f42117-18cd-4c73-bb09-ccaa789938ca.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 23228
+  }
+]

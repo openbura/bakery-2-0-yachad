@@ -1,0 +1,18 @@
+{
+  "errors": [],
+  "views": [
+    {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "brokenLocalLinks": [],
+  "anchors": [],
+  "findings": 32,
+  "urgentVisible": 6,
+  "openVisible": 6
+}

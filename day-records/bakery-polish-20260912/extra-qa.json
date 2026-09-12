@@ -1,0 +1,10 @@
+[
+  {
+    "test": "pending submit freezes fulfillment/cart/form",
+    "status": "PASS"
+  },
+  {
+    "test": "maximum quantity remains stable across refresh",
+    "status": "PASS"
+  }
+]

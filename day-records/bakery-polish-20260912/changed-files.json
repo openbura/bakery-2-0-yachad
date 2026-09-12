@@ -1,0 +1,87 @@
+[
+  {
+    "file": "ACTIVE_VERSION.md",
+    "change": "added",
+    "sha256": "2da56e783254d24dfc97f8e3d7c7337f2a16edc35a347e9321325ff8c30a205e"
+  },
+  {
+    "file": "admin-dashboard/src/accessibility/modal.ts",
+    "change": "added",
+    "sha256": "b5f3bad777e5f914ba662965f825f0cf8a3327f15599d145f47bcfdaf0674492"
+  },
+  {
+    "file": "admin-dashboard/src/App.tsx",
+    "change": "modified",
+    "sha256": "a0f4b546364039c3e99df2c0e457d25eed04ab2353367bf37c8a9f0313ca3c4a"
+  },
+  {
+    "file": "admin-dashboard/src/components/PriceDialog.tsx",
+    "change": "modified",
+    "sha256": "d0e48a17342de43972c6c48101c765f4d28d95ea712cc4cc7a90fedb08b62089"
+  },
+  {
+    "file": "admin-dashboard/src/hooks/useUnsavedChanges.ts",
+    "change": "added",
+    "sha256": "fe78f9ba318727d5092d73344f663d82378a79aaf0fb4c011663cf81bcf98359"
+  },
+  {
+    "file": "admin-dashboard/src/pages/SettingsPage.tsx",
+    "change": "modified",
+    "sha256": "cd96b539724fc5dd8505be0edb2245de6fe42d6aea64964d7b3e4550118acdb1"
+  },
+  {
+    "file": "admin-dashboard/src/styles/index.css",
+    "change": "modified",
+    "sha256": "48fa0c1ec8d6fc8b13f3d83655e7e7d6ac292754003beeac1a76a9f8f01d236b"
+  },
+  {
+    "file": "DEPLOYMENT.md",
+    "change": "modified",
+    "sha256": "1deaf3b1a10a51cf81323adf15560c98db3d16a4b5834ec5874e91ab9cafb4ca"
+  },
+  {
+    "file": "package.json",
+    "change": "modified",
+    "sha256": "4bd26ed66696811f76e87d51f64e1af7e0547b005a400d244bf106606f7c467b"
+  },
+  {
+    "file": "PROJECT_CONTEXT.md",
+    "change": "modified",
+    "sha256": "4a6cc4bbe76c20acf228a6b0615016e81c063d44c0db2ba766740b14c4bd2fb3"
+  },
+  {
+    "file": "PROJECT_HANDOFF.md",
+    "change": "modified",
+    "sha256": "642c53e1f851035f79304a29078d0dcc4468d024747688993b068d59f4af6607"
+  },
+  {
+    "file": "README.md",
+    "change": "modified",
+    "sha256": "61572d50d2ed63e05d60c184540776091683f3584af34a0a4d0e68dab777bd23"
+  },
+  {
+    "file": "src/App.tsx",
+    "change": "modified",
+    "sha256": "8d3f257cbf4ff8e917c62c8842aa31a32ba1b4863952ca348f52f348af24b190"
+  },
+  {
+    "file": "src/data/public-catalog-fallback.json",
+    "change": "added",
+    "sha256": "f87c0fbdb6526e3cc368a120a7c171fcfb2264ecd6854c0280e6303126c2320c"
+  },
+  {
+    "file": "src/services/publicShopRepository.ts",
+    "change": "modified",
+    "sha256": "b3fa8156e06e5279737704cd7b2848c59e2d4108c5db10003418b1e3d24b8ac5"
+  },
+  {
+    "file": "src/ShopPage.tsx",
+    "change": "modified",
+    "sha256": "d0bcecbea1b5074a452db092e04d8b130c78fd4f5aa622a8d75b3f9dbea4895f"
+  },
+  {
+    "file": "src/styles.css",
+    "change": "modified",
+    "sha256": "adf5e043ee172846fcd1757d41b17ad8c239290545ab0f8e65182454fa284fc5"
+  }
+]

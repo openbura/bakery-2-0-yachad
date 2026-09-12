@@ -1,0 +1,37 @@
+[
+  {
+    "name": "public dialogs focus and mobile hidden cart",
+    "status": "PASS",
+    "evidence": {
+      "focusTrap": true,
+      "escape": true,
+      "restore": true
+    }
+  },
+  {
+    "name": "category picker traps focus and restores trigger",
+    "status": "PASS",
+    "evidence": {
+      "categoryFocus": true
+    }
+  },
+  {
+    "name": "admin price dialog focus dirty close save",
+    "status": "PASS",
+    "evidence": {
+      "initialFocus": true,
+      "typingStable": true,
+      "dirtyCancel": true,
+      "saveRestore": true
+    }
+  },
+  {
+    "name": "reduced motion menu and active category",
+    "status": "PASS",
+    "evidence": {
+      "reducedMotion": true,
+      "activeTallSection": true,
+      "noFakeHover": true
+    }
+  }
+]

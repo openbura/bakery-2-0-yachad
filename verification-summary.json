@@ -1,0 +1,119 @@
+{
+  "technicalQA": "PASS",
+  "commands": [
+    {
+      "name": "public types app",
+      "exitCode": 0
+    },
+    {
+      "name": "public types node",
+      "exitCode": 0
+    },
+    {
+      "name": "public lint",
+      "exitCode": 0
+    },
+    {
+      "name": "public build",
+      "exitCode": 0
+    },
+    {
+      "name": "admin types app",
+      "exitCode": 0
+    },
+    {
+      "name": "admin types node",
+      "exitCode": 0
+    },
+    {
+      "name": "admin lint",
+      "exitCode": 0
+    },
+    {
+      "name": "admin build",
+      "exitCode": 0
+    },
+    {
+      "name": "domain tests",
+      "exitCode": 0
+    },
+    {
+      "name": "existing homepage tests",
+      "exitCode": 0
+    },
+    {
+      "name": "approved operational regression",
+      "exitCode": 0
+    },
+    {
+      "name": "phase1 browser",
+      "exitCode": 0
+    },
+    {
+      "name": "phase2 browser",
+      "exitCode": 0
+    },
+    {
+      "name": "mobile menu breakpoint",
+      "exitCode": 0
+    },
+    {
+      "name": "phase3 browser",
+      "exitCode": 0
+    },
+    {
+      "name": "public catalog and QA command",
+      "exitCode": 0
+    }
+  ],
+  "additionalChecks": [
+    "content-qa.cjs: PASS at390x844,768x1000,1440x1000",
+    "price-matrix.cjs: PASS all78 public/admin prices at430/1920",
+    "unit-check.cjs: PASS all78 unit computations unchanged",
+    "npm audit: 0 vulnerabilities public and admin"
+  ],
+  "existingHomepageTestNote": "7 passed; mobile-only skip of desktop navigation test is intentional in existing suite",
+  "visualComparison": "MATCH to approved style; actual before/after screenshots inspected. Visible differences limited to restored descriptions, two original photos, included pizza choice and explanatory notice.",
+  "userAcceptance": "PENDING",
+  "adminLimitation": "Existing admin does not render descriptions, product photos or option editing; verified API content, asset routes and existing name/price/unit UI. No admin redesign.",
+  "backupVerified": true,
+  "protectedFiles": 1474,
+  "protectedDrift": [],
+  "productionChanged": false,
+  "migrations": [],
+  "authenticationChanged": false,
+  "preview": {
+    "shop": "http://127.0.0.1:4202/shop/",
+    "admin": "http://127.0.0.1:4203/login"
+  },
+  "before": {
+    "reportedFieldInquiries": 112,
+    "descriptions": 61,
+    "missingImages": 8,
+    "packageSizes": 35,
+    "choiceProducts": 4,
+    "nameInquiries": 3,
+    "reportedBrokenImage": 1
+  },
+  "restored": {
+    "descriptions": 28,
+    "brokenPreviewImages": 2,
+    "completeFieldFixes": 30,
+    "partiallyRecoveredPizzaProducts": 3
+  },
+  "remaining": {
+    "missingImages": 8,
+    "missingDescriptions": 30,
+    "conflictingDescriptions": 3,
+    "packageSizes": 35,
+    "pizzaPaidSelectionRules": 3,
+    "toastSelectionRules": 1
+  },
+  "beforeProduction": [
+    "Resolve three cake text/identity conflicts and approved nutritional wording",
+    "Confirm pizza paid-extra/toast rules before enabling those choices",
+    "Provide verified sizes and missing product assets",
+    "Replace demo authentication and validate permissions/RLS in a separate approved task",
+    "Apply reviewed content to real environment only after approval; current fixtures are isolated and resettable"
+  ]
+}

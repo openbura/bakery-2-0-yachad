@@ -1,0 +1,38 @@
+{
+  "findings": [
+    {
+      "name": "pickup under 70, no address sent, copy and refresh loss",
+      "testError": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'איסוף עצמי', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "private house and other city",
+      "hiddenApartment": true,
+      "visibleFields": [
+        "",
+        "",
+        "checkout-customerName",
+        "checkout-phone",
+        "checkout-cityId",
+        "checkout-street",
+        "checkout-residenceType",
+        "checkout-residenceType-private",
+        "checkout-houseNumber",
+        "checkout-notes"
+      ],
+      "messages": [
+        "הזמנה חדשה ממאפיית יחד\n\nפרטי לקוח:\nשם לקוח: בדיקת ביקורת\nטלפון: 0500000000\n\nפרטי קבלה:\nשיטת קבלה: משלוח\nסוג מגורים: בית פרטי\nעיר: אחר / בדיקה מול המאפייה\nרחוב: רחוב בדיקה\nמספר בית: 9\nאזור משלוח דורש בדיקה מול המאפייה\n\nפריטים:\n- 1 ק״ג בורקסים מיקס הפתעה x1 - ‏70 ‏₪\n\nסיכום ביניים: ‏70 ‏₪\nדמי משלוח: ‏15 ‏₪\nסה״כ הזמנה: ‏85 ‏₪\n\nהערות להזמנה: בדיקה בלבד, לא לשלוח"
+      ]
+    },
+    {
+      "name": "outage fallback then recovery",
+      "unavailable": true,
+      "soldOut": 156,
+      "recovered": true
+    },
+    {
+      "name": "price change revalidation before sending",
+      "testError": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'איסוף עצמי', exact: true })\u001b[22m\n"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,384 @@
+{
+  "checks": [
+    {
+      "phase": "before",
+      "name": "home",
+      "width": 390,
+      "overflow": false,
+      "file": "before-home-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "home-welcome",
+      "width": 390,
+      "overflow": false,
+      "file": "before-home-welcome-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "shop",
+      "width": 390,
+      "overflow": false,
+      "file": "before-shop-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "cart",
+      "width": 390,
+      "overflow": false,
+      "file": "before-cart-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "checkout",
+      "width": 390,
+      "overflow": false,
+      "file": "before-checkout-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin",
+      "width": 390,
+      "overflow": false,
+      "file": "before-admin-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-products",
+      "width": 390,
+      "overflow": false,
+      "file": "before-admin-products-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-price",
+      "width": 390,
+      "overflow": false,
+      "file": "before-admin-price-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-settings",
+      "width": 390,
+      "overflow": false,
+      "file": "before-admin-settings-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "home",
+      "width": 390,
+      "overflow": false,
+      "file": "after-home-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "home-welcome",
+      "width": 390,
+      "overflow": false,
+      "file": "after-home-welcome-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "shop",
+      "width": 390,
+      "overflow": false,
+      "file": "after-shop-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "cart",
+      "width": 390,
+      "overflow": false,
+      "file": "after-cart-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "checkout",
+      "width": 390,
+      "overflow": false,
+      "file": "after-checkout-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin",
+      "width": 390,
+      "overflow": false,
+      "file": "after-admin-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-products",
+      "width": 390,
+      "overflow": false,
+      "file": "after-admin-products-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-price",
+      "width": 390,
+      "overflow": false,
+      "file": "after-admin-price-390.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-settings",
+      "width": 390,
+      "overflow": false,
+      "file": "after-admin-settings-390.png"
+    },
+    {
+      "phase": "before",
+      "name": "home",
+      "width": 768,
+      "overflow": false,
+      "file": "before-home-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "home-welcome",
+      "width": 768,
+      "overflow": false,
+      "file": "before-home-welcome-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "shop",
+      "width": 768,
+      "overflow": false,
+      "file": "before-shop-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "cart",
+      "width": 768,
+      "overflow": false,
+      "file": "before-cart-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "checkout",
+      "width": 768,
+      "overflow": false,
+      "file": "before-checkout-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin",
+      "width": 768,
+      "overflow": false,
+      "file": "before-admin-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-products",
+      "width": 768,
+      "overflow": false,
+      "file": "before-admin-products-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-price",
+      "width": 768,
+      "overflow": false,
+      "file": "before-admin-price-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-settings",
+      "width": 768,
+      "overflow": false,
+      "file": "before-admin-settings-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "home",
+      "width": 768,
+      "overflow": false,
+      "file": "after-home-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "home-welcome",
+      "width": 768,
+      "overflow": false,
+      "file": "after-home-welcome-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "shop",
+      "width": 768,
+      "overflow": false,
+      "file": "after-shop-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "cart",
+      "width": 768,
+      "overflow": false,
+      "file": "after-cart-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "checkout",
+      "width": 768,
+      "overflow": false,
+      "file": "after-checkout-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin",
+      "width": 768,
+      "overflow": false,
+      "file": "after-admin-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-products",
+      "width": 768,
+      "overflow": false,
+      "file": "after-admin-products-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-price",
+      "width": 768,
+      "overflow": false,
+      "file": "after-admin-price-768.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-settings",
+      "width": 768,
+      "overflow": false,
+      "file": "after-admin-settings-768.png"
+    },
+    {
+      "phase": "before",
+      "name": "home",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-home-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "home-welcome",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-home-welcome-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "shop",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-shop-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "cart",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-cart-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "checkout",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-checkout-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-admin-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-products",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-admin-products-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-price",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-admin-price-1440.png"
+    },
+    {
+      "phase": "before",
+      "name": "admin-settings",
+      "width": 1440,
+      "overflow": false,
+      "file": "before-admin-settings-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "home",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-home-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "home-welcome",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-home-welcome-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "shop",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-shop-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "cart",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-cart-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "checkout",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-checkout-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-admin-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-products",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-admin-products-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-price",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-admin-price-1440.png"
+    },
+    {
+      "phase": "after",
+      "name": "admin-settings",
+      "width": 1440,
+      "overflow": false,
+      "file": "after-admin-settings-1440.png"
+    }
+  ],
+  "errors": [],
+  "failed": []
+}

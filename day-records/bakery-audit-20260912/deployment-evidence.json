@@ -1,0 +1,13 @@
+{
+  "verifiedAt": "2026-09-12",
+  "commit": "cc89bd5e29aed95e327bb1718043f11b91ea6650",
+  "publicDeployment": "dpl_eQnmoPyTocVvU3gvV54mjpRVVMQK",
+  "adminDeployment": "dpl_4kZZSs3eSQ98iQW9BXynpWq8JBDs",
+  "state": "READY",
+  "provider": "Vercel read-only tool",
+  "livePublicHttp": 200,
+  "liveAdminHttp": 200,
+  "livePasswordPrefilled": true,
+  "passwordValidityTested": false,
+  "sourceBuildByteIdentity": false
+}

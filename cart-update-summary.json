@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "buildTypesLint": "PASS public and admin",
+  "domainTests": "8 PASS",
+  "browserWidths": [
+    390,
+    768,
+    1440
+  ],
+  "visual": "Inspected: existing style preserved",
+  "regression": [
+    {
+      "file": "regression.cjs",
+      "status": "PASS"
+    },
+    {
+      "file": "phase1-browser.cjs",
+      "status": "PASS"
+    },
+    {
+      "file": "phase2-browser.cjs",
+      "status": "PASS"
+    },
+    {
+      "file": "phase2-breakpoint.cjs",
+      "status": "PASS"
+    },
+    {
+      "file": "phase3-browser.cjs",
+      "status": "PASS"
+    },
+    {
+      "file": "phase4-check.cjs",
+      "status": "PASS"
+    }
+  ],
+  "initialRun": "One initial catalog-load timeout; complete operational regression passed on rerun",
+  "productionChanged": false,
+  "checkpoint": "cart-edit-checkpoint",
+  "report": "CART-EDIT.md"
+}

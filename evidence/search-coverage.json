@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-09-12T10:35:04.421Z",
+  "localRoots": [
+    "C:/Users/openb/Documents/Bakery 2.0 backups",
+    "C:/Users/openb/Documents/Bakery admin dashboard backups",
+    "C:/Users/openb/Documents/Bakery Release Backups",
+    "C:/Users/openb/Documents/Bakery Release Worktrees",
+    "C:/Users/openb/Documents/Bakery Supabase backups",
+    "C:/Users/openb/Documents/Bakery Yachad Backups",
+    "C:/Users/openb/Documents/bakery-2-0-yachad-backups",
+    "C:/Users/openb/Documents/bakery-2-0-yachad-deploy",
+    "C:/Users/openb/Documents/bakery-2-0-yachad-netlify-static",
+    "C:/Users/openb/Documents/bakery-2-0-yachad-source",
+    "C:/Users/openb/Documents/New project 13"
+  ],
+  "evidenceTypes": [
+    "catalog and admin seed JSON",
+    "original XLSX export",
+    "SQL seed provenance",
+    "36 git commits; 7 shop/catalog-changing revisions",
+    "verified audit checkpoint ZIP",
+    "release source ZIP",
+    "public/assets/uploads/unused image paths",
+    "10 attached screenshots including excluded other-business Wolt references",
+    "backup manifests and docs",
+    "live original 10bis 84 visible cards, 78 unique products",
+    "ordinary product dialog attempts gated by address, no address entered",
+    "exact historical CloudFront assets and label inspection"
+  ],
+  "canonicalCatalogCommit": "c4cf82d",
+  "saladGroupCommit": "7b3c41f",
+  "sourceMenu": "https://www.10bis.co.il/next/restaurants/menu/delivery/45557/מאפיית-יחד",
+  "limits": [
+    "No private backend dump beyond existing local exports was accessed",
+    "No production database calls or writes",
+    "No inferred package size from comparative prices",
+    "No random substitute or other-business imagery",
+    "Live product detail gate not bypassed"
+  ]
+}

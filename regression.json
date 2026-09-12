@@ -1,0 +1,151 @@
+{
+  "results": [
+    {
+      "name": "price card-cart-checkout-handoff update and rounding",
+      "status": "PASS",
+      "evidence": {
+        "currentPriceAgorot": 1234,
+        "staleComparisonRemoved": true,
+        "handoff": "הזמנה חדשה ממאפיית יחד\n\nפרטי לקוח:\nשם לקוח: בדיקת תיקון\nטלפון: 0500000000\n\nפרטי קבלה:\nשיטת קבלה: איסוף עצמי\n\nפריטים:\n- מים מינרליים x1 - ‏12.34 ‏₪ (מחיר לפריט)\n\nסיכום ביניים: ‏12.34 ‏₪\nדמי משלוח: ‏0 ‏₪\nסה״כ הזמנה: ‏12.34 ‏₪\n\nהערות להזמנה: בדיקה בלבד"
+      }
+    },
+    {
+      "name": "delivery pickup switches preserve address and correct fees",
+      "status": "PASS",
+      "evidence": {
+        "pickup70": true,
+        "delivery85": true,
+        "addressRetained": true
+      }
+    },
+    {
+      "name": "back forward and refresh preserve populated cart",
+      "status": "PASS",
+      "evidence": {
+        "history": true,
+        "refresh": true
+      }
+    },
+    {
+      "name": "invalid persisted state does not deadlock checkout",
+      "status": "PASS",
+      "evidence": {
+        "invalidItemDiscarded": true
+      }
+    },
+    {
+      "name": "closed fulfillment recovers without emptying cart",
+      "status": "PASS",
+      "evidence": {
+        "cartRetained": true,
+        "recovered": true
+      }
+    },
+    {
+      "name": "pickup-exclusive product accessible with empty cart",
+      "status": "PASS",
+      "evidence": {
+        "exclusiveProductAdded": true
+      }
+    },
+    {
+      "name": "explicit 550g unit reprices from current money",
+      "status": "PASS",
+      "evidence": {
+        "text": "לחם כוסמין\n\n550 גרם\n\n₪\n‏33.33 ‏\n₪6.06 / 100 גר׳\nהוספה",
+        "totalAgorot": 6666
+      }
+    },
+    {
+      "name": "salad selections and charges survive refresh",
+      "status": "PASS",
+      "evidence": {
+        "chosen": null,
+        "selectionRetained": true
+      }
+    },
+    {
+      "name": "admin comma price saved readback navigation refresh",
+      "status": "PASS",
+      "evidence": {
+        "storedAgorot": 1234,
+        "refresh": true
+      }
+    },
+    {
+      "name": "product failure feedback failWrite",
+      "status": "PASS",
+      "evidence": {
+        "error": "המחיר לא נשמר. בדקו את החיבור ונסו שוב.",
+        "draftRetained": true
+      }
+    },
+    {
+      "name": "product failure feedback readMismatch",
+      "status": "PASS",
+      "evidence": {
+        "error": "המחיר המרוחק לא תאם לערך שנשמר.",
+        "draftRetained": true
+      }
+    },
+    {
+      "name": "product failure feedback failReadAfter",
+      "status": "PASS",
+      "evidence": {
+        "error": "לא הצלחנו לאמת את השמירה. רעננו ובדקו את הערך לפני ניסיון נוסף.",
+        "draftRetained": true
+      }
+    },
+    {
+      "name": "duplicate price submit issues one write and locks input",
+      "status": "PASS",
+      "evidence": {
+        "writes": 1
+      }
+    },
+    {
+      "name": "concurrent fulfillment CAS rejects impossible state",
+      "status": "PASS",
+      "evidence": {
+        "settings": {
+          "ordering_enabled": true,
+          "delivery_enabled": false,
+          "pickup_enabled": true,
+          "delivery_fee_agorot": 1500,
+          "minimum_delivery_subtotal_agorot": 7000,
+          "pickup_fee_agorot": 0,
+          "customer_notice_active": false,
+          "customer_notice_type": "info",
+          "customer_notice_text": "",
+          "customer_notice_start_at": null,
+          "customer_notice_end_at": null,
+          "updated_at": "2026-09-12T10:54:14.800Z",
+          "id": "default"
+        },
+        "writes": [
+          {
+            "table": "store_settings",
+            "patch": {
+              "delivery_enabled": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile settings error stays visible after toast",
+      "status": "PASS",
+      "evidence": {
+        "persistentError": true
+      }
+    },
+    {
+      "name": "settings noop does not write",
+      "status": "PASS",
+      "evidence": {
+        "writes": 0
+      }
+    }
+  ],
+  "errors": []
+}

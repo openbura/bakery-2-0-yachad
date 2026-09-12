@@ -1,0 +1,94 @@
+{
+  "startedAt": "2026-09-12T07:54:37.345Z",
+  "mode": "unchanged release build; ALL Supabase and Auth mocked in memory",
+  "realRemoteWrites": 0,
+  "mockWrites": [
+    {
+      "table": "store_settings",
+      "id": "default",
+      "patch": {
+        "ordering_enabled": true,
+        "delivery_enabled": true,
+        "pickup_enabled": true,
+        "customer_notice_active": true,
+        "customer_notice_type": "info",
+        "customer_notice_text": "הודעת בדיקה לשגיאה במובייל",
+        "customer_notice_start_at": null,
+        "customer_notice_end_at": null
+      },
+      "rejected": true
+    }
+  ],
+  "blocked": [],
+  "tests": [
+    {
+      "name": "mobile save error after toast disappears",
+      "status": "COMPLETED",
+      "evidence": {
+        "toastGone": true,
+        "visiblePersistentError": false,
+        "srOnlyError": "הגדרות החנות לא נשמרו. בדקו את החיבור ונסו שוב.",
+        "draft": "הודעת בדיקה לשגיאה במובייל"
+      }
+    },
+    {
+      "name": "mobile quick actions scroll reachability",
+      "status": "COMPLETED",
+      "evidence": {
+        "documentTop": 1323.5,
+        "viewportHeight": 844,
+        "totalPageHeight": 1968,
+        "visible": true
+      }
+    },
+    {
+      "name": "mobile settings form reachable below sticky controls",
+      "status": "COMPLETED",
+      "evidence": {
+        "textareaEditable": true,
+        "geometry": {
+          "top": 359.03125,
+          "bottom": 484.21875,
+          "centerHitIsTextarea": true
+        },
+        "bodyWidth": 390
+      }
+    },
+    {
+      "name": "data loading failure and retry",
+      "status": "COMPLETED",
+      "evidence": {
+        "message": "הנתונים לא נטענו\n\nלא הצלחנו לטעון את קטגוריות המוצרים.\n\nניסיון נוסף",
+        "retrySucceeded": true
+      }
+    },
+    {
+      "name": "missing admin allowlist profile is denied",
+      "status": "COMPLETED",
+      "evidence": {
+        "text": "מאפיית יחד\nמרכז ניהול\nלא ניתן לפתוח את הדשבורד\n\nהחשבון אינו מורשה לנהל את המאפייה.\n\nניסיון נוסף",
+        "protectedProductsVisible": false
+      }
+    },
+    {
+      "name": "reduced motion",
+      "status": "COMPLETED",
+      "evidence": {
+        "transition": "1e-05s",
+        "reducedMotion": true
+      }
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-audit-20260912\\screenshots\\admin-mobile-error-after-toast.png",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-audit-20260912\\screenshots\\admin-overview-mobile-quick-actions.png",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-audit-20260912\\screenshots\\admin-settings-mobile-notice-scroll.png",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-audit-20260912\\screenshots\\admin-data-load-error.png",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-audit-20260912\\screenshots\\admin-unauthorized.png"
+  ],
+  "viewports": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "completedAt": "2026-09-12T07:54:43.124Z",
+  "mockWriteCount": 1
+}

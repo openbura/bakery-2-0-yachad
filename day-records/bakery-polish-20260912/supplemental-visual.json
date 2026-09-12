@@ -1,0 +1,198 @@
+[
+  {
+    "phase": "before",
+    "width": 390,
+    "name": "menu",
+    "file": "before-menu-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 390,
+    "name": "categories",
+    "file": "before-categories-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 390,
+    "name": "contact",
+    "file": "before-contact-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 390,
+    "name": "options",
+    "file": "before-options-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 390,
+    "name": "login",
+    "file": "before-login-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 390,
+    "name": "menu",
+    "file": "after-menu-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 390,
+    "name": "categories",
+    "file": "after-categories-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 390,
+    "name": "contact",
+    "file": "after-contact-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 390,
+    "name": "options",
+    "file": "after-options-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 390,
+    "name": "login",
+    "file": "after-login-390.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 768,
+    "name": "menu",
+    "file": "before-menu-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 768,
+    "name": "categories",
+    "file": "before-categories-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 768,
+    "name": "contact",
+    "file": "before-contact-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 768,
+    "name": "options",
+    "file": "before-options-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 768,
+    "name": "login",
+    "file": "before-login-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 768,
+    "name": "menu",
+    "file": "after-menu-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 768,
+    "name": "categories",
+    "file": "after-categories-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 768,
+    "name": "contact",
+    "file": "after-contact-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 768,
+    "name": "options",
+    "file": "after-options-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 768,
+    "name": "login",
+    "file": "after-login-768.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 1440,
+    "name": "categories",
+    "file": "before-categories-1440.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 1440,
+    "name": "contact",
+    "file": "before-contact-1440.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 1440,
+    "name": "options",
+    "file": "before-options-1440.png",
+    "overflow": false
+  },
+  {
+    "phase": "before",
+    "width": 1440,
+    "name": "login",
+    "file": "before-login-1440.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 1440,
+    "name": "categories",
+    "file": "after-categories-1440.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 1440,
+    "name": "contact",
+    "file": "after-contact-1440.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 1440,
+    "name": "options",
+    "file": "after-options-1440.png",
+    "overflow": false
+  },
+  {
+    "phase": "after",
+    "width": 1440,
+    "name": "login",
+    "file": "after-login-1440.png",
+    "overflow": false
+  }
+]

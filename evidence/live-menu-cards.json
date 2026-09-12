@@ -1,0 +1,962 @@
+[
+  {
+    "id": "dishName_22586297_0",
+    "title": "טוסט בהרכבה",
+    "text": "טוסט בהרכבה\n₪45.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/68fd7164-7c5c-4082-a43b-c23fb673220d.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/68fd7164-7c5c-4082-a43b-c23fb673220d.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586224_0",
+    "title": "סלט ירקות בהרכבה",
+    "text": "סלט ירקות בהרכבה\n₪45.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/dd956ad3-9742-4493-b22f-9cf52023b25d.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/dd956ad3-9742-4493-b22f-9cf52023b25d.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586209_0",
+    "title": "יחידות10 לחמניות סומסום מובחרות",
+    "text": "יחידות10 לחמניות סומסום מובחרות\n10 לחמניות סומסום מובחרות\n₪23.00\n₪23.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ba0ef814-4c5e-4b87-9c8d-ba50b0e1f1af.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/ba0ef814-4c5e-4b87-9c8d-ba50b0e1f1af.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586292_0",
+    "title": "כריך טונה",
+    "text": "כריך טונה\nטונה , מיונז , חסה , עגבניה , מלפפון\n₪32.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9e60b2b9-a49c-49ef-87eb-d5ed3d918725.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/9e60b2b9-a49c-49ef-87eb-d5ed3d918725.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586293_0",
+    "title": "כריך חביתה",
+    "text": "כריך חביתה\nגבינת שמנת 5% , חסה , עגבניה , מלפפון\n₪32.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/90b9c334-5c6c-41a9-a029-680eeea74132.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/90b9c334-5c6c-41a9-a029-680eeea74132.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586298_0",
+    "title": "פיצה אישית",
+    "text": "פיצה אישית\nקוטר 15\n₪23.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/db5eb8ba-066e-4abb-8b20-6789d62d8e75.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/db5eb8ba-066e-4abb-8b20-6789d62d8e75.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586167_1",
+    "title": "בורקסים מיקס הפתעה 1 ק”ג",
+    "text": "בורקסים מיקס הפתעה 1 ק”ג\nמיקס בורקסים הפתעה 1 ק”ג\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/39bdc1eb-9749-49e5-94d0-bf0ecab82d00.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/39bdc1eb-9749-49e5-94d0-bf0ecab82d00.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586168_1",
+    "title": "ק\"ג 1 בורקס תפוח אדמה",
+    "text": "ק\"ג 1 בורקס תפוח אדמה\nק\"ג1 בורקס תפוח אדמה\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e9e0aaae-7326-4cfe-b30a-a9ff18164b38.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/e9e0aaae-7326-4cfe-b30a-a9ff18164b38.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586169_1",
+    "title": "ק\"ג1 בורקס גבינה קלאסי",
+    "text": "ק\"ג1 בורקס גבינה קלאסי\nק\"ג1 בורקס גבינה קלאסי\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ed2d6932-5e4c-4780-8427-ba3a40b8e38b.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/ed2d6932-5e4c-4780-8427-ba3a40b8e38b.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586170_1",
+    "title": "בורקס פיצה 1ק”ג",
+    "text": "בורקס פיצה 1ק”ג\nבורקס פיצה1 ק”ג\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a4f76563-d9f0-4caa-92c8-dcb95c5472de.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/a4f76563-d9f0-4caa-92c8-dcb95c5472de.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586171_1",
+    "title": "בורקס פטריות 1ק”ג",
+    "text": "בורקס פטריות 1ק”ג\nבורקס פטריות ק\"ג1\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/497e975a-56a6-4977-87bd-66aebcafcdf0.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/497e975a-56a6-4977-87bd-66aebcafcdf0.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586298_2",
+    "title": "פיצה אישית",
+    "text": "פיצה אישית\nקוטר 15\n₪23.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/db5eb8ba-066e-4abb-8b20-6789d62d8e75.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/db5eb8ba-066e-4abb-8b20-6789d62d8e75.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586299_2",
+    "title": "פיצה משפחתית + תוספת",
+    "text": "פיצה משפחתית + תוספת\n₪59.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/c8519e76-5697-4a39-a66f-56b193fb1be1.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/c8519e76-5697-4a39-a66f-56b193fb1be1.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586300_2",
+    "title": "פיצה פסטו אישית",
+    "text": "פיצה פסטו אישית\nקוטר 15\n₪25.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/07a08465-cdf6-499c-9d0a-8ef508574a40.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/07a08465-cdf6-499c-9d0a-8ef508574a40.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586301_2",
+    "title": "סמבוסק גבינות",
+    "text": "סמבוסק גבינות\nבולגרית וצהובה\n₪23.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/4d1a2261-885a-4993-b58c-b9eb6988073e.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/4d1a2261-885a-4993-b58c-b9eb6988073e.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586302_2",
+    "title": "סמבוסק פיצה וזיתים",
+    "text": "סמבוסק פיצה וזיתים\nרוטב פיצה , גבינה צהובה וזיתים ירוקים\n₪23.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e270a81b-6f40-40f7-9c58-536deb5145b3.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/e270a81b-6f40-40f7-9c58-536deb5145b3.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586303_2",
+    "title": "סמבוסק פסטו בולגרית",
+    "text": "סמבוסק פסטו בולגרית\nפסטו, צהובה, זיתי קלמטה\n₪23.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/6748601f-9a9a-4a22-bbe0-d15fb0cf55a8.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/6748601f-9a9a-4a22-bbe0-d15fb0cf55a8.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586224_3",
+    "title": "סלט ירקות בהרכבה",
+    "text": "סלט ירקות בהרכבה\n₪45.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/dd956ad3-9742-4493-b22f-9cf52023b25d.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/dd956ad3-9742-4493-b22f-9cf52023b25d.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586292_4",
+    "title": "כריך טונה",
+    "text": "כריך טונה\nטונה , מיונז , חסה , עגבניה , מלפפון\n₪32.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9e60b2b9-a49c-49ef-87eb-d5ed3d918725.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/9e60b2b9-a49c-49ef-87eb-d5ed3d918725.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586293_4",
+    "title": "כריך חביתה",
+    "text": "כריך חביתה\nגבינת שמנת 5% , חסה , עגבניה , מלפפון\n₪32.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/90b9c334-5c6c-41a9-a029-680eeea74132.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/90b9c334-5c6c-41a9-a029-680eeea74132.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586294_4",
+    "title": "כריך בולגרית",
+    "text": "כריך בולגרית\nפסטו , חסה , עגבניה , זיתים שחורים\n₪32.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ffd7c4dd-43ca-4c87-b9f9-e365192e199b.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/ffd7c4dd-43ca-4c87-b9f9-e365192e199b.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586295_4",
+    "title": "כריך סלט ביצים",
+    "text": "כריך סלט ביצים\nסלט ביצים , חסה , עגבניה , מלפפון\n₪32.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a34ace68-a1eb-4efd-aaf6-0045b1e1de7a.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/a34ace68-a1eb-4efd-aaf6-0045b1e1de7a.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586296_4",
+    "title": "כריך סביח",
+    "text": "כריך סביח\nטחינה , חצילים , עגבניה, ביצה\n₪32.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ee83adf7-63f4-45a4-94af-a7792e10e80a.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/ee83adf7-63f4-45a4-94af-a7792e10e80a.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586297_4",
+    "title": "טוסט בהרכבה",
+    "text": "טוסט בהרכבה\n₪45.00",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/68fd7164-7c5c-4082-a43b-c23fb673220d.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/68fd7164-7c5c-4082-a43b-c23fb673220d.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586172_5",
+    "title": "ק\"ג 1 קוראסון שוקולד",
+    "text": "ק\"ג 1 קוראסון שוקולד\nקוראסון שוקולוד ק\"ג1\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d59338c2-81f1-403b-adf3-f7cd35c0ea0e.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/d59338c2-81f1-403b-adf3-f7cd35c0ea0e.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586173_5",
+    "title": "ק”ג 1 קוראסון רוגלח",
+    "text": "ק”ג 1 קוראסון רוגלח\nקוראסון רוגלח 1ק”ג\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/c9d3b6f9-e475-4806-ab81-139ce809d0cf.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/c9d3b6f9-e475-4806-ab81-139ce809d0cf.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586174_5",
+    "title": "גביניות 1ק”ג",
+    "text": "גביניות 1ק”ג\nק\"ג 1 גביניות\n₪70.00\n₪70.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/8230e740-03c9-4c00-9e54-f937193a66dd.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/8230e740-03c9-4c00-9e54-f937193a66dd.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586175_6",
+    "title": "לחם כוסמין",
+    "text": "לחם כוסמין\nגרם550 לחם כוסמין\n₪28.00\n₪5.09\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/21f475bb-40a3-4d57-9f54-6e22c834ddd1.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/21f475bb-40a3-4d57-9f54-6e22c834ddd1.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586176_6",
+    "title": "לחם דגנים",
+    "text": "לחם דגנים\nלחם דגנים 550 גרם\n₪28.00\n₪5.09\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/40145fef-cb38-4280-bc71-7c6c6e8b24be.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/40145fef-cb38-4280-bc71-7c6c6e8b24be.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586177_6",
+    "title": "לחם אגוזים וצימוקים",
+    "text": "לחם אגוזים וצימוקים\nלחם אגוזים וצימוקים 550גרם\n₪28.00\n₪5.09\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/5db52f96-8a68-4b43-bacb-6b0b0b550e60.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/5db52f96-8a68-4b43-bacb-6b0b0b550e60.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586178_6",
+    "title": "לחם אגוזים",
+    "text": "לחם אגוזים\nלחם אגוזים 550גרם\n₪28.00\n₪5.09\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/87135120-15ba-4881-823b-9637e78f8d0e.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/87135120-15ba-4881-823b-9637e78f8d0e.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586179_6",
+    "title": "לחם זיתים",
+    "text": "לחם זיתים\nלחם זיתים 550גרם\n₪28.00\n₪5.09\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/fb7970f6-a894-43e4-bad2-5859dee986eb.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/fb7970f6-a894-43e4-bad2-5859dee986eb.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586180_6",
+    "title": "לחם בצל",
+    "text": "לחם בצל\nלחם בצל 550גרם\n₪28.00\n₪5.09\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ac211971-7cf1-40f3-875c-fd267cdb360d.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/ac211971-7cf1-40f3-875c-fd267cdb360d.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586183_7",
+    "title": "עוגת גבינה פירורים",
+    "text": "עוגת גבינה פירורים\nעוגת גבינה\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/93fd0d63-3679-4043-aabf-b9052b418d8f.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/93fd0d63-3679-4043-aabf-b9052b418d8f.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586184_7",
+    "title": "עוגת גבינה אפוייה",
+    "text": "עוגת גבינה אפוייה\nעוגת גבינה אפוייה\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/6e8c8d01-df7a-4e3b-846e-153b2ea85273.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/6e8c8d01-df7a-4e3b-846e-153b2ea85273.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586185_7",
+    "title": "עוגת גבינה אפוייה ללא תוספת סוכר",
+    "text": "עוגת גבינה אפוייה ללא תוספת סוכר\nעוגת גבינה אפוייה ללא סוכר\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/75640558-e0d8-4bf4-8e1a-5b074e6cebbb.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/75640558-e0d8-4bf4-8e1a-5b074e6cebbb.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586186_7",
+    "title": "עוגת אוריאו",
+    "text": "עוגת אוריאו\nעוגת אוריאו\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f8368254-ddcb-4634-a618-134159a6f58c.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/f8368254-ddcb-4634-a618-134159a6f58c.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586187_7",
+    "title": "עוגת גבינה ותות טבעוני",
+    "text": "עוגת גבינה ותות טבעוני\nעוגת גבינה ותות טבעוני\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/911d567c-553b-41e8-98dc-a0f8216b5d71.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/911d567c-553b-41e8-98dc-a0f8216b5d71.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586188_7",
+    "title": "עוגת טריקולד",
+    "text": "עוגת טריקולד\nעוגת נוצ’לטו טבוני\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7cd9481-3193-4b46-851b-cd0887b6ad6a.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7cd9481-3193-4b46-851b-cd0887b6ad6a.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586189_7",
+    "title": "עווגת שוקולד בלגי ללא תוספת סוכר",
+    "text": "עווגת שוקולד בלגי ללא תוספת סוכר\nעוגת שוקולד בלגי ללא תוספת סוכר\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/018dac1a-b302-4470-98e3-c5ddbbfd4f18.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/018dac1a-b302-4470-98e3-c5ddbbfd4f18.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586190_7",
+    "title": "עוגת בסקוויטים טבעונית",
+    "text": "עוגת בסקוויטים טבעונית\nעוגת בסקוויטים טבעונית\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/401180e4-3b1f-456b-b17f-afe661b58110.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/401180e4-3b1f-456b-b17f-afe661b58110.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586191_7",
+    "title": "עוגת בסקווטים איכותית",
+    "text": "עוגת בסקווטים איכותית\nעוגת בסקוויטים איכותית\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/60605618-0365-4380-b273-ab18011bfd38.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/60605618-0365-4380-b273-ab18011bfd38.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586192_7",
+    "title": "עוגת 10 שכבות",
+    "text": "עוגת 10 שכבות\nעוגת 10 שכבות שוקולד\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/2a0929d1-02c5-4c52-b1c5-d84c95398011.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/2a0929d1-02c5-4c52-b1c5-d84c95398011.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586194_7",
+    "title": "עוגת מוצרט",
+    "text": "עוגת מוצרט\nעוגת מוצרט\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9c549db4-7e88-4af2-a27f-77b84a9bd003.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/9c549db4-7e88-4af2-a27f-77b84a9bd003.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586195_7",
+    "title": "שוקולד לבן פיסטוק",
+    "text": "שוקולד לבן פיסטוק\nעוגת שוקולד לבן פיסטוק\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/015c6a91-25b9-486d-8c3e-1b734e38b505.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/015c6a91-25b9-486d-8c3e-1b734e38b505.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586182_undefined",
+    "title": "עוגת גבינה ללא תוספת סוכר",
+    "text": "עוגת גבינה ללא תוספת סוכר\nעוגת גבינה ללא סוכר\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": []
+  },
+  {
+    "id": "dishName_22586193_undefined",
+    "title": "עוגת בקינדר בואנו",
+    "text": "עוגת בקינדר בואנו\nעוגת קינדר בואנו\n₪90.00\n₪11.25\n/ 100 גר׳",
+    "images": []
+  },
+  {
+    "id": "dishName_22586196_8",
+    "title": "עוגיות אלפחורס",
+    "text": "עוגיות אלפחורס\nעוגיות אלפחורס\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/be1026b3-55c3-41c4-bd24-6ed9845eb1e3.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/be1026b3-55c3-41c4-bd24-6ed9845eb1e3.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586197_8",
+    "title": "עוגיות שושנים",
+    "text": "עוגיות שושנים\nעוגיות שושנים\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b7810b3a-2d57-4501-a7a5-1106a9657b32.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/b7810b3a-2d57-4501-a7a5-1106a9657b32.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586200_8",
+    "title": "עוגיות ריבה",
+    "text": "עוגיות ריבה\nעוגיות ריבה\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b33e81f6-a944-4edd-9210-6f55e5a6dcac.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/b33e81f6-a944-4edd-9210-6f55e5a6dcac.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586201_8",
+    "title": "עוגיות אוזני פיל",
+    "text": "עוגיות אוזני פיל\nעוגיות אוזני פיל\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/84938a65-e68a-44e6-bfa5-f816730ac553.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/84938a65-e68a-44e6-bfa5-f816730ac553.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586203_8",
+    "title": "עוגיות גרנולה ללא תוספת סוכר",
+    "text": "עוגיות גרנולה ללא תוספת סוכר\nעוגיות גרנולה ללא תוספת סוכר\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/30978b8f-961a-4507-bc3f-3ff8bc7941d6.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/30978b8f-961a-4507-bc3f-3ff8bc7941d6.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586204_8",
+    "title": "עוגיות שוקו צ’יפס",
+    "text": "עוגיות שוקו צ’יפס\nעוגיות שוקו צ’יפס\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f50bd1de-2d7a-4e86-9ab7-d23371103deb.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/f50bd1de-2d7a-4e86-9ab7-d23371103deb.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586205_8",
+    "title": "עוגיות שוקו צ’יפס ללא תוספת סוכר",
+    "text": "עוגיות שוקו צ’יפס ללא תוספת סוכר\nעוגיות שוקו צ’יפס ללא תוספת סוכר\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9300d82d-b63c-48b9-92ec-f4ae892c3687.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/9300d82d-b63c-48b9-92ec-f4ae892c3687.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586206_8",
+    "title": "עוגיות ריבה ללא תוספת סוכר",
+    "text": "עוגיות ריבה ללא תוספת סוכר\nעוגיות ריבה ללא תוספת סוכר\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/345d81f9-c862-4c32-b664-a47787df810b.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/345d81f9-c862-4c32-b664-a47787df810b.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586207_8",
+    "title": "עוגיות אלחפורס ללא תוספת סוכר",
+    "text": "עוגיות אלחפורס ללא תוספת סוכר\nעוגיות אלחפורס ללא תוספת סוכר\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b6233718-d593-4bfa-9b5e-eadc6c9d523c.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/b6233718-d593-4bfa-9b5e-eadc6c9d523c.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586198_undefined",
+    "title": "עוגיות בראוניז",
+    "text": "עוגיות בראוניז\nעוגיות בראוניז\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": []
+  },
+  {
+    "id": "dishName_22586199_undefined",
+    "title": "עוגיות מושלגות",
+    "text": "עוגיות מושלגות\nעוגיות מושלגות\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": []
+  },
+  {
+    "id": "dishName_22586202_undefined",
+    "title": "עוגיות תמרים",
+    "text": "עוגיות תמרים\nעוגיות תמרים\n₪49.00\n₪20.42\n/ 100 גר׳",
+    "images": []
+  },
+  {
+    "id": "dishName_22586208_9",
+    "title": "יחידות10 לחמניות חלקות מובחרות",
+    "text": "יחידות10 לחמניות חלקות מובחרות\n10 לחמניות חלקות מובחרות\n₪23.00\n₪23.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/3ca61255-7f71-44d8-ad4c-22ab70356433.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/3ca61255-7f71-44d8-ad4c-22ab70356433.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586209_9",
+    "title": "יחידות10 לחמניות סומסום מובחרות",
+    "text": "יחידות10 לחמניות סומסום מובחרות\n10 לחמניות סומסום מובחרות\n₪23.00\n₪23.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ba0ef814-4c5e-4b87-9c8d-ba50b0e1f1af.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/ba0ef814-4c5e-4b87-9c8d-ba50b0e1f1af.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586210_9",
+    "title": "יחידות10 לחמניות קלועות איכותיות",
+    "text": "יחידות10 לחמניות קלועות איכותיות\n10 לחמניות קלועות איכותיות\n₪23.00\n₪23.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/fcc08368-0a0d-4853-8aea-33de323594a2.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/fcc08368-0a0d-4853-8aea-33de323594a2.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586211_9",
+    "title": "יחידות10 לחמניות המבורגר",
+    "text": "יחידות10 לחמניות המבורגר\n10 לחמניות המבורגר\n₪23.00\n₪23.00\n/ 1 ק״ג",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/15550a59-c78c-42d5-912a-cf4ff70adebb.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/15550a59-c78c-42d5-912a-cf4ff70adebb.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586212_9",
+    "title": "יחידות4 לחמניות כוסמין",
+    "text": "יחידות4 לחמניות כוסמין\n4 לחמניות כוסמין\n₪13.00\n₪3.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9fba4b31-207d-489c-85fb-460c08c8370f.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/9fba4b31-207d-489c-85fb-460c08c8370f.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586213_9",
+    "title": "יחידות4 לחמניות דגנים",
+    "text": "יחידות4 לחמניות דגנים\n4 לחמניות דגנים\n₪13.00\n₪3.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/2248a6ac-7dc7-49f1-aa9c-252f7679f6b5.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/2248a6ac-7dc7-49f1-aa9c-252f7679f6b5.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586215_9",
+    "title": "יחידות4 חלה אישית",
+    "text": "יחידות4 חלה אישית\n4 חלה אישית\n₪13.00\n₪3.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/bc13585d-ee62-4ed2-a143-e8ac8984688e.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/bc13585d-ee62-4ed2-a143-e8ac8984688e.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586216_9",
+    "title": "יחידות4 חלה אישית מתוקה",
+    "text": "יחידות4 חלה אישית מתוקה\n4 חלה אישית מתוקה\n₪13.00\n₪3.25\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/67ecb91a-e326-4496-b925-f23fa2cd0492.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/67ecb91a-e326-4496-b925-f23fa2cd0492.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586217_9",
+    "title": "3 יחידות לחמניות בייגלה",
+    "text": "3 יחידות לחמניות בייגלה\n3 לחמניות בייגלה\n₪16.00\n₪5.33\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b617b976-f5bf-4bbb-90ab-8e8a094c5767.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/b617b976-f5bf-4bbb-90ab-8e8a094c5767.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586218_9",
+    "title": "3יחידות בייגל רומני זעתר",
+    "text": "3יחידות בייגל רומני זעתר\n3 בייגל רומני זעתר\n₪16.00\n₪5.33\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/0600194f-7801-4cee-a460-76a8e69992e3.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/0600194f-7801-4cee-a460-76a8e69992e3.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586219_9",
+    "title": "3 יחידות בייגל טוסט",
+    "text": "3 יחידות בייגל טוסט\n3 בייגל טוסט\n₪16.00\n₪4.71\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/931f7260-1f07-490e-aa5d-d82fb7d7c62b.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/931f7260-1f07-490e-aa5d-d82fb7d7c62b.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586221_9",
+    "title": "יחידות3 לחם זעתר",
+    "text": "יחידות3 לחם זעתר\n3 לחם זעתר\n₪16.00\n₪5.33\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/1aaca7b6-03c1-4589-af91-b0eaed7cbc02.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/1aaca7b6-03c1-4589-af91-b0eaed7cbc02.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586222_9",
+    "title": "יחידות3 בייגל רומני שומשום",
+    "text": "יחידות3 בייגל רומני שומשום\n3 בייגל רומני שומשום\n₪16.00\n₪5.33\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/00e99cc6-69fa-4d34-88cf-7ad7eaf5ac09.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/00e99cc6-69fa-4d34-88cf-7ad7eaf5ac09.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586223_9",
+    "title": "יחידות3 בייגל רומני מלח",
+    "text": "יחידות3 בייגל רומני מלח\n3 בייגל רומני מלח\n₪16.00\n₪5.33\n/ 100 גר׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b250acb5-95a7-4764-9509-5fedf2e85939.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/b250acb5-95a7-4764-9509-5fedf2e85939.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586214_undefined",
+    "title": "יחידות4 לחמניות חיטה מלאה",
+    "text": "יחידות4 לחמניות חיטה מלאה\n4 לחמניות חיטה מלאה\n₪13.00\n₪3.25\n/ 100 גר׳",
+    "images": []
+  },
+  {
+    "id": "dishName_22586220_undefined",
+    "title": "יחידות 3 לחם שום",
+    "text": "יחידות 3 לחם שום\n3 לחם שום\n₪16.00\n₪5.33\n/ 100 גר׳",
+    "images": []
+  },
+  {
+    "id": "dishName_22586304_10",
+    "title": "מים מינרליים",
+    "text": "מים מינרליים\n₪10.00\n₪2.00\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a58655c2-e689-4490-bfe1-8b09787fffe5.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/a58655c2-e689-4490-bfe1-8b09787fffe5.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586305_10",
+    "title": "פחית קולה",
+    "text": "פחית קולה\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d418e.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d418e.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586306_10",
+    "title": "פחית קולה זירו",
+    "text": "פחית קולה זירו\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/812ea80a-a33b-49e5-b20e-597d8c564091.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/812ea80a-a33b-49e5-b20e-597d8c564091.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586307_10",
+    "title": "פחית ספרייט",
+    "text": "פחית ספרייט\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7178b50-b563-45a0-828e-6e69025adbe5.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7178b50-b563-45a0-828e-6e69025adbe5.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586308_10",
+    "title": "פחית ספרייט זירו",
+    "text": "פחית ספרייט זירו\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/aa561154-64f2-4be0-8778-2e1a12819648.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/aa561154-64f2-4be0-8778-2e1a12819648.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586309_10",
+    "title": "פחית פאנטה",
+    "text": "פחית פאנטה\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e878aab1-1290-49d6-aa55-288252bc886e.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/e878aab1-1290-49d6-aa55-288252bc886e.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586310_10",
+    "title": "פחית ספרינג תות בננה",
+    "text": "פחית ספרינג תות בננה\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/100fff76-07f8-4ccc-8f79-0e5ca2751c27.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/100fff76-07f8-4ccc-8f79-0e5ca2751c27.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586311_10",
+    "title": "פחית ספרינג פירות טרופיים",
+    "text": "פחית ספרינג פירות טרופיים\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": [
+      {
+        "src": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f5f42117-18cd-4c73-bb09-ccaa789938ca.jpg",
+        "background": "url(\"https://d25t2285lxl5rf.cloudfront.net/images/dishes/f5f42117-18cd-4c73-bb09-ccaa789938ca.jpg\")",
+        "alt": null
+      }
+    ]
+  },
+  {
+    "id": "dishName_22586312_undefined",
+    "title": "פחית ספרינג תפוזים",
+    "text": "פחית ספרינג תפוזים\n₪12.00\n₪3.64\n/ 100 מל׳",
+    "images": []
+  }
+]

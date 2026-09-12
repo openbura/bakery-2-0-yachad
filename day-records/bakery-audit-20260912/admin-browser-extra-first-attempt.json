@@ -1,0 +1,56 @@
+{
+  "startedAt": "2026-09-12T07:52:11.404Z",
+  "mode": "unchanged release build; ALL Supabase and Auth mocked in memory",
+  "realRemoteWrites": 0,
+  "mockWrites": [],
+  "blocked": [],
+  "tests": [
+    {
+      "name": "mobile save error after toast disappears",
+      "status": "TEST_ERROR",
+      "error": "locator.check: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('checkbox').nth(3)\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - forcing action\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\u001b[2m    - navigations have finished\u001b[22m\n"
+    },
+    {
+      "name": "mobile quick actions scroll reachability",
+      "status": "COMPLETED",
+      "evidence": {
+        "documentTop": 1323.5,
+        "viewportHeight": 844,
+        "totalPageHeight": 1968,
+        "visible": true
+      }
+    },
+    {
+      "name": "mobile settings form reachable below sticky controls",
+      "status": "TEST_ERROR",
+      "error": "locator.check: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('checkbox').nth(3)\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - forcing action\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\u001b[2m    - navigations have finished\u001b[22m\n"
+    },
+    {
+      "name": "data loading failure and retry",
+      "status": "TEST_ERROR",
+      "error": "locator.waitFor: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'הנתונים לא נטענו' }) to be visible\u001b[22m\n"
+    },
+    {
+      "name": "inactive unauthorized profile is denied",
+      "status": "COMPLETED",
+      "evidence": {
+        "text": "מאפיית יחד\nמרכז ניהול\nלא ניתן לפתוח את הדשבורד\n\nהחשבון אינו מורשה לנהל את המאפייה.\n\nניסיון נוסף",
+        "protectedProductsVisible": false
+      }
+    },
+    {
+      "name": "reduced motion",
+      "status": "TEST_ERROR",
+      "error": "locator.waitFor: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'דשבורד', exact: true }) to be visible\u001b[22m\n"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-audit-20260912\\screenshots\\admin-overview-mobile-quick-actions.png",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-audit-20260912\\screenshots\\admin-unauthorized.png"
+  ],
+  "viewports": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "completedAt": "2026-09-12T07:52:40.384Z",
+  "mockWriteCount": 0
+}

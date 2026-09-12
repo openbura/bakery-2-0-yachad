@@ -1,0 +1,15 @@
+{
+  "method": "WCAG relative luminance; conservative CSS gradient-stop and overlay bounds, not per-letter screenshot sampling",
+  "normalTextTarget": 4.5,
+  "before": {
+    "visitBright": 2.3656477160481395,
+    "stickyBright": 2.3009769452551785,
+    "optionBright": 4.455834444662854
+  },
+  "after": {
+    "visitBrightWithHighlightAndShine": 4.6046935354715535,
+    "stickyBrightWithActiveOverlay": 4.554441190148074,
+    "optionBright": 4.5160570251245895,
+    "unchangedWelcome": 8.754507217818322
+  }
+}

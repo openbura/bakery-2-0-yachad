@@ -1,0 +1,38 @@
+[
+  {
+    "file": "src/App.tsx",
+    "unchanged": true
+  },
+  {
+    "file": "src/styles.css",
+    "unchanged": true
+  },
+  {
+    "file": "admin-dashboard/src/styles/index.css",
+    "unchanged": true
+  },
+  {
+    "file": "admin-dashboard/src/domain/pricing.ts",
+    "unchanged": true
+  },
+  {
+    "file": "admin-dashboard/src/services/productsRepository.ts",
+    "unchanged": true
+  },
+  {
+    "file": "package.json",
+    "unchanged": true
+  },
+  {
+    "file": "package-lock.json",
+    "unchanged": true
+  },
+  {
+    "file": "admin-dashboard/package.json",
+    "unchanged": true
+  },
+  {
+    "file": "admin-dashboard/package-lock.json",
+    "unchanged": true
+  }
+]

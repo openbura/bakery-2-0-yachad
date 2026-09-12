@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.vite/
+.cache/
+.turbo/
+
+.env
+.env.*
+
+.netlify/
+.vercel/
+
+*.log
+preview.out.log
+preview.err.log
+
+qa-screenshots/
+
+Thumbs.db
+.DS_Store
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Supabase local-only state and secrets
+/supabase/.temp/
+/supabase/.branches/
+/supabase/.env
+/supabase/.env.*

@@ -1,0 +1,48 @@
+{
+  "status": "PASS_WITH_INTENTIONAL_FUNCTIONAL_CHANGES",
+  "pairs": 41,
+  "widths": [
+    390,
+    768,
+    1440
+  ],
+  "overflow": false,
+  "unchangedPixelPairs": [
+    "before-admin-1440.png",
+    "before-admin-390.png",
+    "before-admin-768.png",
+    "before-admin-price-390.png",
+    "before-admin-products-1440.png",
+    "before-admin-products-390.png",
+    "before-admin-products-768.png",
+    "before-admin-settings-390.png",
+    "before-categories-390.png",
+    "before-categories-768.png",
+    "before-home-1440.png",
+    "before-home-390.png",
+    "before-home-768.png",
+    "before-home-welcome-1440.png",
+    "before-home-welcome-390.png",
+    "before-home-welcome-768.png",
+    "before-login-1440.png",
+    "before-login-390.png",
+    "before-login-768.png",
+    "before-shop-1440.png",
+    "before-shop-390.png",
+    "before-shop-768.png"
+  ],
+  "intentionalChanges": [
+    "Visible close control in mobile menu, keyboard focus, active section marker",
+    "Local checkout errors, optional notes label, approved cities only",
+    "Clarifying missing-choice copy and customer-notice admin copy",
+    "Measured gold button contrast adjustment",
+    "Removal of misleading category hover/tap movement"
+  ],
+  "reviewNotes": [
+    "Intro and welcome captures identical at all three widths; intro source and CSS hashes unchanged.",
+    "Shop initial viewport, admin dashboard, product list and login captures identical at all three widths.",
+    "Cart foreground preserved; background grid shifts follow required missing-choice copy above and scroll positioning.",
+    "Mobile menu background mismatch from html overflow locking was corrected and recaptured."
+  ],
+  "knownContentIssue": "External cola image blocked in both baseline and current. Tracked in BUSINESS-INPUT.md; no unapproved replacement."
+}

@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "scope": "Authorized local demo fixes and regression; business content remains explicitly incomplete",
+  "phase1": "PASS",
+  "phase2": "PASS",
+  "phase3": "PASS",
+  "phase4": "PASS",
+  "finalQaCommand": "npm run qa:review",
+  "finalQaSteps": [
+    {
+      "name": "public types app",
+      "exitCode": 0
+    },
+    {
+      "name": "public types node",
+      "exitCode": 0
+    },
+    {
+      "name": "public lint",
+      "exitCode": 0
+    },
+    {
+      "name": "public build",
+      "exitCode": 0
+    },
+    {
+      "name": "admin types app",
+      "exitCode": 0
+    },
+    {
+      "name": "admin types node",
+      "exitCode": 0
+    },
+    {
+      "name": "admin lint",
+      "exitCode": 0
+    },
+    {
+      "name": "admin build",
+      "exitCode": 0
+    },
+    {
+      "name": "domain tests",
+      "exitCode": 0
+    },
+    {
+      "name": "existing homepage tests",
+      "exitCode": 0
+    },
+    {
+      "name": "approved operational regression",
+      "exitCode": 0
+    },
+    {
+      "name": "phase1 browser",
+      "exitCode": 0
+    },
+    {
+      "name": "phase2 browser",
+      "exitCode": 0
+    },
+    {
+      "name": "mobile menu breakpoint",
+      "exitCode": 0
+    },
+    {
+      "name": "phase3 browser",
+      "exitCode": 0
+    },
+    {
+      "name": "public catalog and QA command",
+      "exitCode": 0
+    }
+  ],
+  "browserWidths": [
+    390,
+    430,
+    768,
+    1440,
+    1920
+  ],
+  "visualPairs": 41,
+  "knownContentIssues": [
+    {
+      "id": "drinks-02",
+      "name": "פחית קולה",
+      "reason": "External image request blocked by browser (ERR_BLOCKED_BY_ORB), reproduced in approved before and current after at390/768/1440."
+    }
+  ],
+  "sourceFilesChanged": 17,
+  "productionChanged": false,
+  "remoteDataChanged": false,
+  "migrations": [],
+  "intro": {
+    "introUnchanged": true,
+    "introCssUnchanged": true
+  },
+  "backupVerified": true
+}

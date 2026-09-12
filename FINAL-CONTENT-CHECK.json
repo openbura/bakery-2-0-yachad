@@ -1,0 +1,1782 @@
+{
+  "date": "2026-09-12T10:56:50.009Z",
+  "images": [
+    {
+      "id": "bourekas-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/39bdc1eb-9749-49e5-94d0-bf0ecab82d00.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bourekas-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e9e0aaae-7326-4cfe-b30a-a9ff18164b38.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bourekas-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ed2d6932-5e4c-4780-8427-ba3a40b8e38b.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bourekas-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a4f76563-d9f0-4caa-92c8-dcb95c5472de.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bourekas-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/497e975a-56a6-4977-87bd-66aebcafcdf0.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "pizza-sambusak-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/db5eb8ba-066e-4abb-8b20-6789d62d8e75.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "pizza-sambusak-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/c8519e76-5697-4a39-a66f-56b193fb1be1.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "pizza-sambusak-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/07a08465-cdf6-499c-9d0a-8ef508574a40.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "pizza-sambusak-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/4d1a2261-885a-4993-b58c-b9eb6988073e.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "pizza-sambusak-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e270a81b-6f40-40f7-9c58-536deb5145b3.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "pizza-sambusak-06",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/6748601f-9a9a-4a22-bbe0-d15fb0cf55a8.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "salads-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/dd956ad3-9742-4493-b22f-9cf52023b25d.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sandwiches-toasts-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9e60b2b9-a49c-49ef-87eb-d5ed3d918725.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sandwiches-toasts-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/90b9c334-5c6c-41a9-a029-680eeea74132.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sandwiches-toasts-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ffd7c4dd-43ca-4c87-b9f9-e365192e199b.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sandwiches-toasts-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a34ace68-a1eb-4efd-aaf6-0045b1e1de7a.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sandwiches-toasts-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ee83adf7-63f4-45a4-94af-a7792e10e80a.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sandwiches-toasts-06",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/68fd7164-7c5c-4082-a43b-c23fb673220d.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sweets-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d59338c2-81f1-403b-adf3-f7cd35c0ea0e.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sweets-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/c9d3b6f9-e475-4806-ab81-139ce809d0cf.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sweets-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/8230e740-03c9-4c00-9e54-f937193a66dd.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sourdough-breads-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/21f475bb-40a3-4d57-9f54-6e22c834ddd1.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sourdough-breads-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/40145fef-cb38-4280-bc71-7c6c6e8b24be.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sourdough-breads-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/5db52f96-8a68-4b43-bacb-6b0b0b550e60.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sourdough-breads-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/87135120-15ba-4881-823b-9637e78f8d0e.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sourdough-breads-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/fb7970f6-a894-43e4-bad2-5859dee986eb.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "sourdough-breads-06",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ac211971-7cf1-40f3-875c-fd267cdb360d.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-01",
+      "url": "/product-images/cakes-01.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/6e8c8d01-df7a-4e3b-846e-153b2ea85273.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/75640558-e0d8-4bf4-8e1a-5b074e6cebbb.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f8368254-ddcb-4634-a618-134159a6f58c.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/911d567c-553b-41e8-98dc-a0f8216b5d71.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-06",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7cd9481-3193-4b46-851b-cd0887b6ad6a.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-07",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/018dac1a-b302-4470-98e3-c5ddbbfd4f18.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-08",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/401180e4-3b1f-456b-b17f-afe661b58110.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-09",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/60605618-0365-4380-b273-ab18011bfd38.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-10",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/2a0929d1-02c5-4c52-b1c5-d84c95398011.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-11",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9c549db4-7e88-4af2-a27f-77b84a9bd003.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cakes-12",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/015c6a91-25b9-486d-8c3e-1b734e38b505.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/be1026b3-55c3-41c4-bd24-6ed9845eb1e3.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b7810b3a-2d57-4501-a7a5-1106a9657b32.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b33e81f6-a944-4edd-9210-6f55e5a6dcac.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/84938a65-e68a-44e6-bfa5-f816730ac553.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/30978b8f-961a-4507-bc3f-3ff8bc7941d6.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-06",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f50bd1de-2d7a-4e86-9ab7-d23371103deb.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-07",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9300d82d-b63c-48b9-92ec-f4ae892c3687.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-08",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/345d81f9-c862-4c32-b664-a47787df810b.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "cookies-09",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b6233718-d593-4bfa-9b5e-eadc6c9d523c.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/3ca61255-7f71-44d8-ad4c-22ab70356433.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-02",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/ba0ef814-4c5e-4b87-9c8d-ba50b0e1f1af.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/fcc08368-0a0d-4853-8aea-33de323594a2.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/15550a59-c78c-42d5-912a-cf4ff70adebb.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/9fba4b31-207d-489c-85fb-460c08c8370f.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-06",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/2248a6ac-7dc7-49f1-aa9c-252f7679f6b5.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-07",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/bc13585d-ee62-4ed2-a143-e8ac8984688e.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-08",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/67ecb91a-e326-4496-b925-f23fa2cd0492.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-09",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b617b976-f5bf-4bbb-90ab-8e8a094c5767.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-10",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/0600194f-7801-4cee-a460-76a8e69992e3.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-11",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/931f7260-1f07-490e-aa5d-d82fb7d7c62b.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-12",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/1aaca7b6-03c1-4589-af91-b0eaed7cbc02.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-13",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/00e99cc6-69fa-4d34-88cf-7ad7eaf5ac09.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "bread-14",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/b250acb5-95a7-4764-9509-5fedf2e85939.jpg",
+      "ok": true,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "drinks-01",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/a58655c2-e689-4490-bfe1-8b09787fffe5.jpg",
+      "ok": true,
+      "width": 549,
+      "height": 552
+    },
+    {
+      "id": "drinks-02",
+      "url": "/product-images/drinks-02.jpg",
+      "ok": true,
+      "width": 557,
+      "height": 548
+    },
+    {
+      "id": "drinks-03",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/812ea80a-a33b-49e5-b20e-597d8c564091.jpg",
+      "ok": true,
+      "width": 537,
+      "height": 541
+    },
+    {
+      "id": "drinks-04",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7178b50-b563-45a0-828e-6e69025adbe5.jpg",
+      "ok": true,
+      "width": 595,
+      "height": 600
+    },
+    {
+      "id": "drinks-05",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/aa561154-64f2-4be0-8778-2e1a12819648.jpg",
+      "ok": true,
+      "width": 599,
+      "height": 600
+    },
+    {
+      "id": "drinks-06",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e878aab1-1290-49d6-aa55-288252bc886e.jpg",
+      "ok": true,
+      "width": 499,
+      "height": 502
+    },
+    {
+      "id": "drinks-07",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/100fff76-07f8-4ccc-8f79-0e5ca2751c27.jpg",
+      "ok": true,
+      "width": 555,
+      "height": 558
+    },
+    {
+      "id": "drinks-08",
+      "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/f5f42117-18cd-4c73-bb09-ccaa789938ca.jpg",
+      "ok": true,
+      "width": 617,
+      "height": 600
+    }
+  ],
+  "missingImages": [
+    {
+      "id": "cakes-13",
+      "name": "עוגת גבינה ללא תוספת סוכר",
+      "category": "עוגות"
+    },
+    {
+      "id": "cakes-14",
+      "name": "עוגת קינדר בואנו",
+      "category": "עוגות"
+    },
+    {
+      "id": "cookies-10",
+      "name": "עוגיות בראוניז",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-11",
+      "name": "עוגיות מושלגות",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-12",
+      "name": "עוגיות תמרים",
+      "category": "עוגיות"
+    },
+    {
+      "id": "bread-15",
+      "name": "4 יחידות לחמניות חיטה מלאה",
+      "category": "לחמניות ובייגלים"
+    },
+    {
+      "id": "bread-16",
+      "name": "3 יחידות לחם שום",
+      "category": "לחמניות ובייגלים"
+    },
+    {
+      "id": "drinks-09",
+      "name": "פחית ספרינג תפוזים",
+      "category": "שתייה"
+    }
+  ],
+  "weights": [
+    {
+      "id": "cakes-01",
+      "name": "עוגת גבינה פירורים",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-02",
+      "name": "עוגת גבינה אפוייה",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-03",
+      "name": "עוגת גבינה אפוייה ללא תוספת סוכר",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-04",
+      "name": "עוגת אוריאו",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-05",
+      "name": "עוגת גבינה ותות טבעוני",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-06",
+      "name": "עוגת טריקולד",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-07",
+      "name": "עוגת שוקולד בלגי ללא תוספת סוכר",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-08",
+      "name": "עוגת בסקוויטים טבעונית",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-09",
+      "name": "עוגת בסקוויטים איכותית",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-10",
+      "name": "עוגת 10 שכבות",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-11",
+      "name": "עוגת מוצרט",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-12",
+      "name": "עוגת שוקולד לבן פיסטוק",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-13",
+      "name": "עוגת גבינה ללא תוספת סוכר",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cakes-14",
+      "name": "עוגת קינדר בואנו",
+      "category": "עוגות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-01",
+      "name": "עוגיות אלפחורס",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-02",
+      "name": "עוגיות שושנים",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-03",
+      "name": "עוגיות ריבה",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-04",
+      "name": "עוגיות אוזני פיל",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-05",
+      "name": "עוגיות גרנולה ללא תוספת סוכר",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-06",
+      "name": "עוגיות שוקו צ’יפס",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-07",
+      "name": "עוגיות שוקו צ’יפס ללא תוספת סוכר",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-08",
+      "name": "עוגיות ריבה ללא תוספת סוכר",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-09",
+      "name": "עוגיות אלחפורס ללא תוספת סוכר",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-10",
+      "name": "עוגיות בראוניז",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-11",
+      "name": "עוגיות מושלגות",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "cookies-12",
+      "name": "עוגיות תמרים",
+      "category": "עוגיות",
+      "unit": "לפריט",
+      "missing": "משקל הפריט בגרם או בק״ג"
+    },
+    {
+      "id": "drinks-01",
+      "name": "מים מינרליים",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-02",
+      "name": "פחית קולה",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-03",
+      "name": "פחית קולה זירו",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-04",
+      "name": "פחית ספרייט",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-05",
+      "name": "פחית ספרייט זירו",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-06",
+      "name": "פחית פאנטה",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-07",
+      "name": "פחית ספרינג תות בננה",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-08",
+      "name": "פחית ספרינג פירות טרופיים",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    },
+    {
+      "id": "drinks-09",
+      "name": "פחית ספרינג תפוזים",
+      "category": "שתייה",
+      "unit": "לפריט",
+      "missing": "נפח הפריט במ״ל או בליטר"
+    }
+  ],
+  "descriptions": [
+    {
+      "id": "bourekas-03",
+      "name": "1 ק״ג בורקס גבינה קלאסי",
+      "category": "בורקסים"
+    },
+    {
+      "id": "pizza-sambusak-02",
+      "name": "פיצה משפחתית + תוספת",
+      "category": "פיצות וסמבוסק"
+    },
+    {
+      "id": "salads-01",
+      "name": "סלט ירקות בהרכבה",
+      "category": "סלטים"
+    },
+    {
+      "id": "sandwiches-toasts-06",
+      "name": "טוסט בהרכבה",
+      "category": "כריכים וטוסטים"
+    },
+    {
+      "id": "cakes-02",
+      "name": "עוגת גבינה אפוייה",
+      "category": "עוגות"
+    },
+    {
+      "id": "cakes-04",
+      "name": "עוגת אוריאו",
+      "category": "עוגות"
+    },
+    {
+      "id": "cakes-05",
+      "name": "עוגת גבינה ותות טבעוני",
+      "category": "עוגות"
+    },
+    {
+      "id": "cakes-08",
+      "name": "עוגת בסקוויטים טבעונית",
+      "category": "עוגות"
+    },
+    {
+      "id": "cakes-11",
+      "name": "עוגת מוצרט",
+      "category": "עוגות"
+    },
+    {
+      "id": "cookies-01",
+      "name": "עוגיות אלפחורס",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-02",
+      "name": "עוגיות שושנים",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-03",
+      "name": "עוגיות ריבה",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-04",
+      "name": "עוגיות אוזני פיל",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-05",
+      "name": "עוגיות גרנולה ללא תוספת סוכר",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-06",
+      "name": "עוגיות שוקו צ’יפס",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-07",
+      "name": "עוגיות שוקו צ’יפס ללא תוספת סוכר",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-08",
+      "name": "עוגיות ריבה ללא תוספת סוכר",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-09",
+      "name": "עוגיות אלחפורס ללא תוספת סוכר",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-10",
+      "name": "עוגיות בראוניז",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-11",
+      "name": "עוגיות מושלגות",
+      "category": "עוגיות"
+    },
+    {
+      "id": "cookies-12",
+      "name": "עוגיות תמרים",
+      "category": "עוגיות"
+    },
+    {
+      "id": "drinks-01",
+      "name": "מים מינרליים",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-02",
+      "name": "פחית קולה",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-03",
+      "name": "פחית קולה זירו",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-04",
+      "name": "פחית ספרייט",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-05",
+      "name": "פחית ספרייט זירו",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-06",
+      "name": "פחית פאנטה",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-07",
+      "name": "פחית ספרינג תות בננה",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-08",
+      "name": "פחית ספרינג פירות טרופיים",
+      "category": "שתייה"
+    },
+    {
+      "id": "drinks-09",
+      "name": "פחית ספרינג תפוזים",
+      "category": "שתייה"
+    }
+  ],
+  "groups": {
+    "weight": [
+      "cakes-01",
+      "cakes-02",
+      "cakes-03",
+      "cakes-04",
+      "cakes-05",
+      "cakes-06",
+      "cakes-07",
+      "cakes-08",
+      "cakes-09",
+      "cakes-10",
+      "cakes-11",
+      "cakes-12",
+      "cakes-13",
+      "cakes-14",
+      "cookies-01",
+      "cookies-02",
+      "cookies-03",
+      "cookies-04",
+      "cookies-05",
+      "cookies-06",
+      "cookies-07",
+      "cookies-08",
+      "cookies-09",
+      "cookies-10",
+      "cookies-11",
+      "cookies-12",
+      "drinks-01",
+      "drinks-02",
+      "drinks-03",
+      "drinks-04",
+      "drinks-05",
+      "drinks-06",
+      "drinks-07",
+      "drinks-08",
+      "drinks-09"
+    ],
+    "images": [
+      "cakes-13",
+      "cakes-14",
+      "cookies-10",
+      "cookies-11",
+      "cookies-12",
+      "bread-15",
+      "bread-16",
+      "drinks-09"
+    ],
+    "descriptions": [
+      "bourekas-03",
+      "pizza-sambusak-02",
+      "salads-01",
+      "sandwiches-toasts-06",
+      "cakes-02",
+      "cakes-04",
+      "cakes-05",
+      "cakes-08",
+      "cakes-11",
+      "cookies-01",
+      "cookies-02",
+      "cookies-03",
+      "cookies-04",
+      "cookies-05",
+      "cookies-06",
+      "cookies-07",
+      "cookies-08",
+      "cookies-09",
+      "cookies-10",
+      "cookies-11",
+      "cookies-12",
+      "drinks-01",
+      "drinks-02",
+      "drinks-03",
+      "drinks-04",
+      "drinks-05",
+      "drinks-06",
+      "drinks-07",
+      "drinks-08",
+      "drinks-09"
+    ],
+    "conflicts": [
+      "cakes-03",
+      "cakes-06",
+      "cakes-13",
+      "cookies-09"
+    ],
+    "choices": [
+      "sandwiches-toasts-06"
+    ]
+  },
+  "uniqueProducts": 41,
+  "fieldRequests": 78,
+  "master": [
+    {
+      "id": "cakes-01",
+      "name": "עוגת גבינה פירורים",
+      "needs": [
+        "weight"
+      ]
+    },
+    {
+      "id": "cakes-02",
+      "name": "עוגת גבינה אפוייה",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cakes-03",
+      "name": "עוגת גבינה אפוייה ללא תוספת סוכר",
+      "needs": [
+        "weight",
+        "conflicts"
+      ]
+    },
+    {
+      "id": "cakes-04",
+      "name": "עוגת אוריאו",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cakes-05",
+      "name": "עוגת גבינה ותות טבעוני",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cakes-06",
+      "name": "עוגת טריקולד",
+      "needs": [
+        "weight",
+        "conflicts"
+      ]
+    },
+    {
+      "id": "cakes-07",
+      "name": "עוגת שוקולד בלגי ללא תוספת סוכר",
+      "needs": [
+        "weight"
+      ]
+    },
+    {
+      "id": "cakes-08",
+      "name": "עוגת בסקוויטים טבעונית",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cakes-09",
+      "name": "עוגת בסקוויטים איכותית",
+      "needs": [
+        "weight"
+      ]
+    },
+    {
+      "id": "cakes-10",
+      "name": "עוגת 10 שכבות",
+      "needs": [
+        "weight"
+      ]
+    },
+    {
+      "id": "cakes-11",
+      "name": "עוגת מוצרט",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cakes-12",
+      "name": "עוגת שוקולד לבן פיסטוק",
+      "needs": [
+        "weight"
+      ]
+    },
+    {
+      "id": "cakes-13",
+      "name": "עוגת גבינה ללא תוספת סוכר",
+      "needs": [
+        "weight",
+        "images",
+        "conflicts"
+      ]
+    },
+    {
+      "id": "cakes-14",
+      "name": "עוגת קינדר בואנו",
+      "needs": [
+        "weight",
+        "images"
+      ]
+    },
+    {
+      "id": "cookies-01",
+      "name": "עוגיות אלפחורס",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-02",
+      "name": "עוגיות שושנים",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-03",
+      "name": "עוגיות ריבה",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-04",
+      "name": "עוגיות אוזני פיל",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-05",
+      "name": "עוגיות גרנולה ללא תוספת סוכר",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-06",
+      "name": "עוגיות שוקו צ’יפס",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-07",
+      "name": "עוגיות שוקו צ’יפס ללא תוספת סוכר",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-08",
+      "name": "עוגיות ריבה ללא תוספת סוכר",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-09",
+      "name": "עוגיות אלחפורס ללא תוספת סוכר",
+      "needs": [
+        "weight",
+        "descriptions",
+        "conflicts"
+      ]
+    },
+    {
+      "id": "cookies-10",
+      "name": "עוגיות בראוניז",
+      "needs": [
+        "weight",
+        "images",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-11",
+      "name": "עוגיות מושלגות",
+      "needs": [
+        "weight",
+        "images",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "cookies-12",
+      "name": "עוגיות תמרים",
+      "needs": [
+        "weight",
+        "images",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-01",
+      "name": "מים מינרליים",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-02",
+      "name": "פחית קולה",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-03",
+      "name": "פחית קולה זירו",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-04",
+      "name": "פחית ספרייט",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-05",
+      "name": "פחית ספרייט זירו",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-06",
+      "name": "פחית פאנטה",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-07",
+      "name": "פחית ספרינג תות בננה",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-08",
+      "name": "פחית ספרינג פירות טרופיים",
+      "needs": [
+        "weight",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "drinks-09",
+      "name": "פחית ספרינג תפוזים",
+      "needs": [
+        "weight",
+        "images",
+        "descriptions"
+      ]
+    },
+    {
+      "id": "bread-15",
+      "name": "4 יחידות לחמניות חיטה מלאה",
+      "needs": [
+        "images"
+      ]
+    },
+    {
+      "id": "bread-16",
+      "name": "3 יחידות לחם שום",
+      "needs": [
+        "images"
+      ]
+    },
+    {
+      "id": "bourekas-03",
+      "name": "1 ק״ג בורקס גבינה קלאסי",
+      "needs": [
+        "descriptions"
+      ]
+    },
+    {
+      "id": "pizza-sambusak-02",
+      "name": "פיצה משפחתית + תוספת",
+      "needs": [
+        "descriptions"
+      ]
+    },
+    {
+      "id": "salads-01",
+      "name": "סלט ירקות בהרכבה",
+      "needs": [
+        "descriptions"
+      ]
+    },
+    {
+      "id": "sandwiches-toasts-06",
+      "name": "טוסט בהרכבה",
+      "needs": [
+        "descriptions",
+        "choices"
+      ]
+    }
+  ],
+  "localImageAssetCount": 424,
+  "localAssetPaths": [
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-000.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-001.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-002.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-003.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-004.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-005.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-006.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-007.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-008.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-009.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-010.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-011.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-012.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-013.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-014.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-015.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-016.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-017.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-018.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-019.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-020.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-021.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-022.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-023.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-024.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-025.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-026.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-027.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-028.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-029.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-030.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-031.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-032.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-033.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-034.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-035.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-036.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-037.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-038.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-039.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-040.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-041.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-042.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-043.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-044.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-045.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-046.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-047.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-048.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-049.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-050.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-051.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-052.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-053.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-054.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-055.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-056.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-057.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-058.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-059.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-060.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-061.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-062.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-063.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-064.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-065.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-066.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-067.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-068.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-069.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-070.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-071.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-072.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-073.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-074.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-075.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-076.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-077.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-078.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-079.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-080.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-081.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-082.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-083.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-084.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-085.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-086.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-087.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-088.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-089.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-090.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-091.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-092.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-093.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-094.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-095.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-096.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-097.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-098.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-099.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-100.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-101.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-102.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-103.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-104.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-105.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-106.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-107.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-108.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-109.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-110.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-111.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-112.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-113.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-114.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-115.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-116.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-117.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-118.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-119.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-120.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-121.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-122.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-123.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-124.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-125.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-126.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-127.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-128.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-129.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-130.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-131.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-132.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-133.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-134.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-135.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-136.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-137.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-138.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-139.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-140.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-141.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-142.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-143.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-144.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-145.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-146.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-147.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-148.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\desktop\\frame-149.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-000.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-001.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-002.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-003.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-004.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-005.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-006.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-007.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-008.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-009.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-010.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-011.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-012.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-013.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-014.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-015.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-016.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-017.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-018.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-019.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-020.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-021.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-022.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-023.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-024.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-025.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-026.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-027.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-028.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-029.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-030.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-031.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-032.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-033.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-034.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-035.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-036.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-037.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-038.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-039.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-040.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-041.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-042.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-043.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-044.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-045.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-046.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-047.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-048.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-049.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-050.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-051.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-052.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-053.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-054.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-055.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-056.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-057.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-058.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-059.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-060.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-061.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-062.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-063.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-064.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-065.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-066.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-067.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-068.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-069.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-070.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-071.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-072.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-073.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-074.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-075.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-076.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-077.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-078.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-079.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-080.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-081.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-082.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-083.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-084.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-085.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-086.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-087.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-088.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-089.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-090.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-091.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-092.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-093.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-094.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-095.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-096.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-097.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-098.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-099.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-100.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-101.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-102.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-103.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-104.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-105.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-106.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-107.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-108.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-109.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-110.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-111.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-112.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-113.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-114.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-115.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-116.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-117.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-118.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-119.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-120.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-121.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-122.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-123.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-124.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-125.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-126.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-127.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-128.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-129.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-130.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-131.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-132.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-133.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-134.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-135.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-136.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-137.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-138.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-139.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-140.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-141.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-142.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-143.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-144.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-145.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-146.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-147.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-148.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile\\frame-149.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-000.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-001.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-002.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-003.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-004.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-005.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-006.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-007.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-008.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-009.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-010.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-011.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-012.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-013.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-014.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-015.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-016.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-017.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-018.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-019.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-020.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-021.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-022.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-023.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-024.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-025.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-026.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-027.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-028.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-029.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-030.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-031.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-032.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-033.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-034.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-035.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-036.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-037.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-038.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-039.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-040.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-041.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-042.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-043.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-044.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-045.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-046.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-047.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-048.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-049.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-050.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-051.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-052.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-053.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-054.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-055.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-056.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-057.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-058.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-059.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-060.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-061.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-062.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-063.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-064.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-065.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-066.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-067.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-068.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-069.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-070.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-071.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-072.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-073.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-074.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-075.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-076.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-077.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-078.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-079.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\hero-frames\\mobile-lite\\frame-080.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\product-images\\cakes-01.jpg",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\product-images\\drinks-02.jpg",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\videos\\yachad-intro-desktop-poster.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\public\\videos\\yachad-intro-mobile-poster.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\alfajores.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\cheese-pastry.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\coffee-close.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\coffee-table.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\croissant-chocolate.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\grain-bread.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\jam-cookies.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\layered-chocolate-cake.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\rugelach.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\sambusak-cheese.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\sambusak-pizza.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\store-counter.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\store-fridges.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\toast.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery\\tricolor-cake.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\cat-breads.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\cat-cakes.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\cat-coffee.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\cat-hosting.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\cat-pastries.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\cat-savory.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\fresh-1.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\fresh-2.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\fresh-3.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\fresh-4.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\gallery-1.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\gallery-2.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\gallery-3.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\gallery-4.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\gallery-5.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\gallery-6.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\hero-cinematic.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\logo.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\map-card.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\bakery-2\\shop-cover-yachad.jpg",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\src\\assets\\brand\\maafiyat-yahad-logo.webp",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\admin-dashboard\\public\\favicon.svg",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\admin-dashboard\\public\\product-images\\cakes-01.jpg",
+    "C:\\Users\\openb\\.codex\\visualizations\\2026\\09\\12\\01a09487-2a47-7122-882e-f285e50faaa2\\bakery-content-recovery-20260912\\project\\admin-dashboard\\public\\product-images\\drinks-02.jpg"
+  ],
+  "productChanges": false
+}

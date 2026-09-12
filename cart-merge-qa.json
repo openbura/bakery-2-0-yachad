@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "mergeQuantity": 3,
+  "mergeTotal": 192,
+  "unchangedSavePreservesQuantity": true,
+  "saladEditPrice": 45,
+  "pizzaDiscountNotAppliedToSalad": true
+}

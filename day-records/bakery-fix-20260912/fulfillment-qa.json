@@ -1,0 +1,14 @@
+[
+  {
+    "width": 390,
+    "pickupOnly": true,
+    "refreshPreserves": true,
+    "handoff": true
+  },
+  {
+    "width": 1440,
+    "pickupOnly": true,
+    "refreshPreserves": true,
+    "handoff": true
+  }
+]

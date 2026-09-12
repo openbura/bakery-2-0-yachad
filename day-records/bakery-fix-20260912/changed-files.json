@@ -1,0 +1,19 @@
+{
+  "changed": [
+    "admin-dashboard\\src\\App.tsx",
+    "admin-dashboard\\src\\components\\PriceDialog.tsx",
+    "admin-dashboard\\src\\pages\\ProductsPage.tsx",
+    "admin-dashboard\\src\\pages\\SettingsPage.tsx",
+    "admin-dashboard\\src\\services\\productsRepository.ts",
+    "admin-dashboard\\src\\services\\storeSettingsRepository.ts",
+    "admin-dashboard\\src\\types\\dashboard.ts",
+    "admin-dashboard\\src\\types\\database.ts",
+    "src\\shop\\cartReconciliation.ts",
+    "src\\ShopPage.tsx"
+  ],
+  "added": [
+    "src/shop/checkoutSession.ts",
+    "admin-dashboard/src/domain/pricing.ts",
+    "domain-tests/operational.test.mjs"
+  ]
+}

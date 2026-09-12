@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d418e.jpg",
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 28942
+  },
+  {
+    "url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/65a61230-cc0d-40d9-92b5-52c8a48d419e.jpg",
+    "status": 403,
+    "type": "application/xml",
+    "bytes": 263
+  }
+]

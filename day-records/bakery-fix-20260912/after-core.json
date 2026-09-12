@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "name": "pickup-only empty cart",
+      "status": "PASS",
+      "evidence": {
+        "enabledAdds": 78
+      }
+    },
+    {
+      "name": "concurrent product saves",
+      "status": "PASS",
+      "evidence": {
+        "writes": [
+          {
+            "table": "products",
+            "patch": {
+              "available_today": false
+            }
+          },
+          {
+            "table": "products",
+            "patch": {
+              "price_agorot": 8800
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "stale settings unrelated edit",
+      "status": "PASS",
+      "evidence": {
+        "delivery": false,
+        "writes": [
+          {
+            "table": "store_settings",
+            "patch": {
+              "customer_notice_active": true,
+              "customer_notice_text": "הודעת בדיקה חדשה"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
