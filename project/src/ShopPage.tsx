@@ -1310,7 +1310,7 @@ export default function ShopPage() {
                       {residenceType === 'building' && (
                         <>
                           <label htmlFor="checkout-entrance">
-                            כניסה — לא חובה
+                            כניסה
                             <input id="checkout-entrance" name="entrance" value={entrance} onChange={(event) => setEntrance(event.target.value)} placeholder="א / ב" />
                           </label>
                           <label htmlFor="checkout-floor">
@@ -1359,7 +1359,7 @@ export default function ShopPage() {
 
                 <div className="shop-form-panel">
                   <label htmlFor="checkout-notes">
-                    <span className="shop-field-label">הערות להזמנה — לא חובה</span>
+                    <span className="shop-field-label">הערות להזמנה</span>
                     <textarea
                       id="checkout-notes"
                       name="notes"
