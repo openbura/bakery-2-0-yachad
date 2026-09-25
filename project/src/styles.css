@@ -1664,6 +1664,9 @@ img {
 }
 
 .shop-cart-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   flex: 0 0 auto;
   align-items: center;
   margin: 0;
@@ -2374,7 +2377,8 @@ img {
   display: flex;
   flex-direction: column;
   max-height: calc(100dvh - 96px);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   overscroll-behavior: contain;
   padding: 0;
   border: 1px solid var(--shop-border);
@@ -2410,12 +2414,10 @@ img {
 }
 
 .shop-cart-scroll {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
   padding: 0 16px;
-  scrollbar-gutter: stable;
 }
 
 .shop-cart-items {
