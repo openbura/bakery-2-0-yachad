@@ -1117,6 +1117,26 @@ export default function ShopPage() {
                   <span>סיכום ההזמנה</span>
                   <strong><bdi>{formatPrice(total)}</bdi></strong>
                 </div>
+                <ul className="shop-checkout-overview-items" aria-label="פריטים בהזמנה">
+                  {cartItems.map((item) => {
+                    const selectionGroups = getSelectionGroups(item.selections);
+                    const itemUnitPrice = getCartItemUnitPrice(item);
+                    return (
+                      <li className="shop-checkout-overview-item" key={item.id}>
+                        <div className="shop-checkout-overview-item-main">
+                          <span>{item.quantity} × {item.product.name}</span>
+                          <strong><bdi>{formatPrice(lineTotal(itemUnitPrice, item.quantity))}</bdi></strong>
+                        </div>
+                        {item.quantity > 1 && <span className="shop-checkout-overview-item-note"><bdi>{formatPrice(itemUnitPrice)}</bdi> ליח׳</span>}
+                        {Object.entries(selectionGroups).map(([groupName, selections]) => (
+                          <span className="shop-checkout-overview-item-note" key={groupName}>
+                            {groupName}: {selections.map(formatOptionLabel).join(', ')}
+                          </span>
+                        ))}
+                      </li>
+                    );
+                  })}
+                </ul>
                 <div className="shop-checkout-overview-meta">
                   <span>{cartCountLabel}</span>
                   <span>סכום ביניים <bdi>{formatPrice(subtotal)}</bdi></span>
