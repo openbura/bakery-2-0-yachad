@@ -33,6 +33,7 @@ type CheckoutField =
   | 'customerName'
   | 'phone'
   | 'cityId'
+  | 'otherCity'
   | 'street'
   | 'houseNumber'
   | 'residenceType'
@@ -71,6 +72,12 @@ const deliveryAreas: DeliveryArea[] = [
     label: 'רעננה',
     requiresConfirmation: false,
     notes: 'כלל דמו: דמי משלוח קבועים; ניתן לעדכן בהמשך.',
+  },
+  {
+    id: 'other',
+    label: 'אחר',
+    requiresConfirmation: true,
+    notes: 'אזור המשלוח דורש בדיקה מול המאפייה.',
   },
 ];
 
@@ -263,6 +270,7 @@ export default function ShopPage() {
   const [customerName, setCustomerName] = useState('');
   const [phone, setPhone] = useState('');
   const [cityId, setCityId] = useState('kfar-saba');
+  const [otherCity, setOtherCity] = useState('');
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const [residenceType, setResidenceType] = useState<ResidenceType>('building');
@@ -327,6 +335,7 @@ export default function ShopPage() {
   const cartCountLabel = cartCount === 1 ? 'פריט אחד' : `${cartCount} פריטים`;
   const subtotal = orderTotals(cartItems, 0).subtotal;
   const selectedArea = deliveryAreas.find((area) => area.id === cityId);
+  const cityLabel = cityId === 'other' ? otherCity.trim() : selectedArea?.label ?? '';
   const deliveryFee = fulfillment === 'delivery' ? settings.deliveryFeeAgorot : settings.pickupFeeAgorot;
   const total = orderTotals(cartItems, deliveryFee).total;
   const deliveryMinimumNotMet =
@@ -347,7 +356,7 @@ export default function ShopPage() {
   );
   const deliveryAddressReady =
     fulfillment === 'pickup' ||
-    (Boolean(selectedArea) &&
+    (Boolean(selectedArea) && cityLabel.length > 0 &&
       street.trim().length > 1 &&
       houseNumber.trim().length > 0 &&
       residenceType.length > 0 &&
@@ -358,7 +367,7 @@ export default function ShopPage() {
     selectedArea,
     customerName,
     phone,
-    cityLabel: selectedArea?.label ?? '',
+    cityLabel,
     street,
     houseNumber,
     residenceType,
@@ -783,6 +792,9 @@ export default function ShopPage() {
       if (!deliveryAreas.some(area => area.id === cityId)) {
         nextErrors.cityId = 'בחרו עיר מרשימת אזורי המשלוח.';
       }
+      if (cityId === 'other' && !otherCity.trim()) {
+        nextErrors.otherCity = 'כתבו את שם המושב או היישוב.';
+      }
       if (street.trim().length < 2) {
         nextErrors.street = 'כתבו את שם הרחוב.';
       }
@@ -822,6 +834,7 @@ export default function ShopPage() {
       'customerName',
       'phone',
       'cityId',
+      'otherCity',
       'street',
       'houseNumber',
       'residenceType',
@@ -887,7 +900,7 @@ export default function ShopPage() {
         selectedArea,
         customerName,
         phone,
-        cityLabel: selectedArea?.label ?? '',
+        cityLabel,
         street,
         houseNumber,
         residenceType,
@@ -1206,7 +1219,7 @@ export default function ShopPage() {
                     <div className="shop-form-title">כתובת למשלוח</div>
                     <div className="shop-form-grid shop-form-grid--address-main">
                         <label htmlFor="checkout-cityId">
-                          <span className="shop-field-label">עיר <span aria-hidden="true">*</span></span>
+                          <span className="shop-field-label">עיר / יישוב <span aria-hidden="true">*</span></span>
                           <select
                             id="checkout-cityId"
                             name="city"
@@ -1215,6 +1228,7 @@ export default function ShopPage() {
                               setCityId(event.target.value);
                               setStreet('');
                               clearCheckoutError('cityId');
+                              clearCheckoutError('otherCity');
                               clearCheckoutError('street');
                             }}
                             autoComplete="address-level2"
@@ -1223,7 +1237,7 @@ export default function ShopPage() {
                             aria-required="true"
                             required
                           >
-                            <option value="">בחרו עיר</option>
+                            <option value="">בחרו עיר או יישוב</option>
                             {deliveryAreas.map((area) => (
                               <option key={area.id} value={area.id}>
                                 {area.label}
@@ -1232,6 +1246,27 @@ export default function ShopPage() {
                           </select>
                           {renderCheckoutError('cityId')}
                         </label>
+                        {cityId === 'other' && (
+                          <label htmlFor="checkout-otherCity">
+                            <span className="shop-field-label">שם המושב או היישוב <span aria-hidden="true">*</span></span>
+                            <input
+                              id="checkout-otherCity"
+                              name="otherCity"
+                              value={otherCity}
+                              onChange={(event) => {
+                                setOtherCity(event.target.value);
+                                clearCheckoutError('otherCity');
+                              }}
+                              placeholder="כתבו את שם המושב או היישוב"
+                              autoComplete="address-level2"
+                              aria-invalid={Boolean(checkoutErrors.otherCity)}
+                              aria-describedby={checkoutErrors.otherCity ? 'checkout-otherCity-error' : undefined}
+                              aria-required="true"
+                              required
+                            />
+                            {renderCheckoutError('otherCity')}
+                          </label>
+                        )}
                         <label htmlFor="checkout-street">
                           <span className="shop-field-label">רחוב <span aria-hidden="true">*</span></span>
                           <input
