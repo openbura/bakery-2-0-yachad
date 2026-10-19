@@ -5,10 +5,13 @@ import {
   SquaresFour,
   UserCircle,
   X,
+  Receipt,
 } from '@phosphor-icons/react';
 import { useState, type ReactNode } from 'react';
 import { BrandMark } from '../components/BrandMark';
 import type { AdminProfile, AdminRoute } from '../types/dashboard';
+import { OwnerOrderAlerts } from '../components/OwnerOrderAlerts';
+import { onlineOrdersEnabled } from '../../../src/shop/release';
 
 type AdminShellProps = {
   route: AdminRoute;
@@ -20,6 +23,7 @@ type AdminShellProps = {
 
 const navItems: Array<{ route: AdminRoute; label: string; icon: typeof SquaresFour }> = [
   { route: '/', label: 'דשבורד', icon: SquaresFour },
+  { route: '/orders', label: 'הזמנות', icon: Receipt },
   { route: '/products', label: 'מוצרים', icon: Package },
   { route: '/settings', label: 'הגדרות', icon: GearSix },
 ];
@@ -69,7 +73,7 @@ export function AdminShell({ route, onNavigate, onLogout, profile, children }: A
           )}
         </header>
 
-        <main className="page-content">{children}</main>
+        <main className="page-content">{onlineOrdersEnabled && <OwnerOrderAlerts onOpenOrders={() => onNavigate('/orders')} />}{children}</main>
 
         <nav className="mobile-nav" aria-label="ניווט נייד">
           {navItems.map((item) => {

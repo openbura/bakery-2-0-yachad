@@ -1,0 +1,10 @@
+import { useEffect, useState } from 'react';
+import { readPushRoutes, type PushRoute } from './pushStorage';
+import './push.css';
+
+export default function NotificationsPage(){
+  const [link,setLink]=useState(''),[error,setError]=useState(''),[routes,setRoutes]=useState<PushRoute[]>([]);
+  useEffect(()=>{document.title='מעקב ועדכונים | מאפיית יחד';document.querySelector('meta[name="robots"]')?.setAttribute('content','noindex,nofollow');void readPushRoutes().then(setRoutes).catch(()=>undefined);},[]);
+  const openOrder=(event:React.FormEvent)=>{event.preventDefault();try{const url=new URL(link.trim(),location.origin);if(url.origin!==location.origin||url.search||url.hash||!/^\/order\/[a-f0-9]{64}$/.test(url.pathname))throw Error();location.assign(url.pathname);}catch{setError('הדביקו את קישור המעקב המלא שקיבלתם אחרי שליחת ההזמנה.');}};
+  return <main className="order-tracking-page" dir="rtl"><article className="order-tracking-card"><a className="order-brand" href="/shop">מאפיית יחד</a><h1>מעקב ועדכונים בטלפון</h1><p className="push-recovery-note">אם הוספתם עכשיו את האתר למסך הבית, הדביקו כאן את קישור המעקב ששמרתם. במסך ההזמנה תוכלו להפעיל עדכון כשהמאפייה מאשרת.</p><form className="push-recovery-form" onSubmit={openOrder}><label htmlFor="saved-order-link">קישור המעקב הפרטי</label><input className="push-recovery-input" id="saved-order-link" type="text" inputMode="url" autoComplete="off" spellCheck={false} dir="ltr" value={link} onChange={event=>setLink(event.target.value)} required maxLength={300}/><button type="submit">פתיחת ההזמנה</button>{error&&<p role="alert">{error}</p>}</form>{routes.length>0&&<><h2>מעקב ששמרתם במכשיר הזה</h2><ul className="push-saved-links">{routes.slice(-10).map((route,index)=><li key={route.id}><a href={route.path}>פתיחת מעקב שמור {routes.length>1?index+1:''}</a></li>)}</ul></>}<p className="push-recovery-note">זהו קישור פרטי. שמרו אותו ואל תשתפו אותו עם אחרים. בלי הקישור אפשר לפנות למאפייה לבירור.</p><a href="/shop">לתפריט ולהזמנה חדשה</a></article></main>;
+}

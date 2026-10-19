@@ -1,6 +1,10 @@
-> עדכון 2026-09-12: המקור הפעיל לבדיקה וגבולות production מוגדרים ב-[ACTIVE_VERSION.md](./ACTIVE_VERSION.md). התיעוד להלן מתאר גם את הבסיס ההיסטורי; אין לפרוס ממנו אוטומטית.
+> עדכון פרסום 19.10.2026: המשתמש אישר העלאה ציבורית במצב **קטלוג וסל לצפייה בלבד**. ההזמנות, הסליקה וה־Push יישארו כבויים; אין שינוי ב־Supabase החי. [פרטי הגרסה והבדיקות](./CATALOG_RELEASE_HE.md). עדכון זה גובר על הוראות הפרסום ההיסטוריות בהמשך.
+
+> עדכון 2026-10-19: הזמנות ומעקב פועלים מקומית בלבד; המיגרציות לא הוחלו בענן. [גרסה פעילה](./ACTIVE_VERSION.md) · [בדיקות מקומיות ודרישות המשך](./ONLINE_ORDERS_LOCAL_QA_HE.md). אין לפרוס build עם מפתח הדמה או להחיל seed בדיקה על ייצור. נדרשת הרשאה נפרדת לכל שינוי מרוחק. יתר התיעוד היסטורי.
 
 # Deployment — Bakery / Yachad Bakery
+
+Push: קוד ה־Edge וה־SQL הוכנו לבדיקה, **לא לפריסה אוטומטית**. קראו [PUSH_LOCAL_QA_HE.md](./PUSH_LOCAL_QA_HE.md) לפני המשך. ה־VAPID private key, service key וסוד worker מיועדים לצד שרת בלבד. אין להחיל את SQL ההפעלה, להגדיר סודות בענן או לשלוח Push אמיתי ללא הרשאה מפורשת נוספת.
 
 ## פרויקטי Vercel
 
@@ -24,7 +28,7 @@ Admin, Preview + Production:
 - `VITE_BAKERY_ADMIN_SUPABASE_PUBLISHABLE_KEY`
 - `VITE_BAKERY_SHARED_LOGIN_EMAIL`
 - `VITE_BAKERY_SHARED_LOGIN_USERNAME`
-- `VITE_BAKERY_SHARED_LOGIN_PASSWORD`
+- סיסמת Supabase Auth מוקלדת במסך הכניסה; אין לשמור סיסמה במשתנה `VITE_*` ציבורי.
 
 הערכים אינם נשמרים ב־Git. אין להגדיר service-role בפרויקט Vite.
 

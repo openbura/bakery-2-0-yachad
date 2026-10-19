@@ -1,5 +1,10 @@
 project_id = "yachad-bakery-admin"
 
+# Dedicated server-to-server endpoint. It verifies its own strong worker secret;
+# this is NOT an anonymous browser endpoint. No remote deployment performed.
+[functions.dispatch-push]
+verify_jwt = false
+
 [api]
 enabled = true
 port = 54321

@@ -20,16 +20,16 @@ select test_validation.assert_true(
 select test_validation.assert_true(
   (select count(*) = 78 from public.products)
   and (select count(*) = 10 from public.categories)
-  and (select count(*) = 2 from public.product_option_groups)
-  and (select count(*) = 24 from public.product_options),
+  and (select count(*) = 5 from public.product_option_groups)
+  and (select count(*) = 48 from public.product_options),
   'public catalog has exact product, category, group and option counts'
 );
 
 select test_validation.assert_true(
-  (select count(*) = 1 from public.products where has_options)
+  (select count(*) = 4 from public.products where has_options)
   and (select has_options from public.products where id = 'salads-01')
-  and not exists (select 1 from public.product_option_groups where product_id <> 'salads-01'),
-  'salads-01 is the only executable option product'
+  and not exists (select 1 from public.product_option_groups where product_id not in ('salads-01', 'pizza-sambusak-01', 'pizza-sambusak-02', 'pizza-sambusak-03')),
+  'salad and three pizzas are the executable option products'
 );
 
 select test_validation.assert_true(
@@ -70,8 +70,9 @@ select test_validation.assert_true(
   (select count(*) = 16 from public.product_options where price_delta_agorot = 0)
   and (select count(*) = 4 from public.product_options where price_delta_agorot = 300)
   and (select count(*) = 4 from public.product_options where price_delta_agorot = 200)
+  and (select count(*) = 24 from public.product_options where price_delta_agorot = 500)
   and not exists (select 1 from public.product_options where price_delta_agorot < 0),
-  'option price deltas match the approved 16/4/4 agorot distribution'
+  'option price deltas match the approved salad and pizza options'
 );
 
 select test_validation.assert_true(
@@ -92,16 +93,15 @@ select test_validation.assert_true(
     select array_agg(tablename::text order by tablename)
     from pg_publication_tables
     where pubname = 'supabase_realtime' and schemaname = 'public'
-      and tablename in ('admin_users', 'audit_log', 'categories', 'products', 'product_option_groups', 'product_options', 'product_source_metadata', 'store_settings')
-  ) = array['products', 'store_settings']::text[],
-  'Realtime publication includes only Bakery products and store settings'
+  ) = array['order_attention', 'orders', 'products', 'store_settings']::text[],
+  'Realtime publication includes operational catalog and RLS-protected order tables'
 );
 
 begin;
 set local role anon;
 select test_validation.assert_true((select count(*) = 78 from public.products), 'anon reads active products with public fields');
-select test_validation.assert_true((select count(*) = 2 from public.product_option_groups), 'anon reads active option groups');
-select test_validation.assert_true((select count(*) = 24 from public.product_options), 'anon reads active options');
+select test_validation.assert_true((select count(*) = 5 from public.product_option_groups), 'anon reads active option groups');
+select test_validation.assert_true((select count(*) = 48 from public.product_options), 'anon reads active options');
 select test_validation.expect_denied('update public.products set display_price_text = display_price_text', 'anon display text update');
 select test_validation.expect_denied('update public.product_option_groups set active = active', 'anon option group update');
 select test_validation.expect_denied('update public.product_options set active = active', 'anon option update');

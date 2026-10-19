@@ -46,7 +46,6 @@ export function LoginPage({ initialUsername, initialPassword, onLogin }: LoginPa
             <input
               id="admin-username"
               type="text"
-              inputMode="numeric"
               value={username}
               onChange={(event) => { setUsername(event.target.value); setError(''); }}
               autoComplete="username"
@@ -57,7 +56,6 @@ export function LoginPage({ initialUsername, initialPassword, onLogin }: LoginPa
             <input
               id="admin-password"
               type="password"
-              inputMode="numeric"
               value={password}
               onChange={(event) => { setPassword(event.target.value); setError(''); }}
               autoComplete="current-password"

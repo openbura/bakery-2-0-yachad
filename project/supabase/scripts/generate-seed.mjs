@@ -49,8 +49,9 @@ const structuredOptionProducts = products.filter(
 
 if (products.length !== 78) throw new Error(`Expected 78 products, found ${products.length}.`);
 if (categoryNames.length !== 10) throw new Error(`Expected 10 categories, found ${categoryNames.length}.`);
-if (structuredOptionProducts.length !== 1 || structuredOptionProducts[0]?.id !== 'salads-01') {
-  throw new Error('Expected salads-01 to be the only approved structured option product.');
+const approvedChoiceIds = ['pizza-sambusak-01','pizza-sambusak-02','pizza-sambusak-03','salads-01'];
+if (JSON.stringify(structuredOptionProducts.map(product => product.id).sort()) !== JSON.stringify(approvedChoiceIds.sort())) {
+  throw new Error('Expected the approved three pizzas and salad to have structured choices.');
 }
 
 for (const categoryName of categoryNames) {
@@ -133,8 +134,8 @@ const optionRows = structuredOptionProducts.flatMap((product) =>
   ),
 );
 
-if (optionGroupRows.length !== 2 || optionRows.length !== 24) {
-  throw new Error(`Expected 2 option groups and 24 options, found ${optionGroupRows.length} and ${optionRows.length}.`);
+if (optionGroupRows.length !== 5 || optionRows.length !== 48) {
+  throw new Error(`Expected 5 option groups and 48 options, found ${optionGroupRows.length} and ${optionRows.length}.`);
 }
 
 const metadataRows = products.map((product) =>
@@ -378,16 +379,16 @@ begin
     raise exception 'Bakery seed expected 78 source metadata records';
   end if;
 
-  if (select count(*) from public.product_option_groups) <> 2 then
-    raise exception 'Bakery seed expected 2 option groups';
+  if (select count(*) from public.product_option_groups) <> 5 then
+    raise exception 'Bakery seed expected 5 option groups';
   end if;
 
-  if (select count(*) from public.product_options) <> 24 then
-    raise exception 'Bakery seed expected 24 options';
+  if (select count(*) from public.product_options) <> 48 then
+    raise exception 'Bakery seed expected 48 options';
   end if;
 
-  if (select count(*) from public.products where has_options) <> 1 then
-    raise exception 'Bakery seed expected one executable option product';
+  if (select count(*) from public.products where has_options) <> 4 then
+    raise exception 'Bakery seed expected four executable option products';
   end if;
 end;
 $$;

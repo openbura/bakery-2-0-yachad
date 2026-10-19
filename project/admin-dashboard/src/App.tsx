@@ -8,6 +8,9 @@ import { LoginPage } from './pages/LoginPage';
 import { OverviewPage } from './pages/OverviewPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { OrdersPage } from './pages/OrdersPage';
+import { OrderAttentionProvider } from './components/OrderAttentionProvider';
+import { onlineOrdersEnabled } from '../../src/shop/release';
 import { getLoginPrefill, restoreAuthorizedSession, signInSharedAdmin, signOutAdmin, subscribeToAuthChanges } from './services/authService';
 import { fetchDashboardData, type DashboardData } from './services/dashboardRepository';
 import { updateProductAvailability, updateProductPrice } from './services/productsRepository';
@@ -15,7 +18,7 @@ import { ownerMessage } from './services/serviceErrors';
 import { updateStoreSettings, type StoreSettingsPatch } from './services/storeSettingsRepository';
 import type { AdminProfile, AdminRoute, ToastMessage } from './types/dashboard';
 
-const validRoutes: AdminRoute[] = ['/', '/login', '/products', '/settings'];
+const validRoutes: AdminRoute[] = ['/', '/login', '/orders', '/products', '/settings'];
 
 function getCurrentRoute(): AdminRoute {
   return validRoutes.includes(window.location.pathname as AdminRoute) ? window.location.pathname as AdminRoute : '/';
@@ -30,6 +33,7 @@ export default function App() {
   const undoingNavigation = useRef(false);
   useEffect(() => { window.history.replaceState({ ...window.history.state, bakeryIndex: navigationIndex.current }, '', window.location.href); }, []);
   const [route, setRoute] = useState<AdminRoute>(getCurrentRoute);
+  const [ordersVisit, setOrdersVisit] = useState(0);
   const [authStatus, setAuthStatus] = useState<AuthStatus>('restoring');
   const [profile, setProfile] = useState<AdminProfile | null>(null);
   const [authError, setAuthError] = useState('');
@@ -52,7 +56,10 @@ export default function App() {
   const [toast, setToast] = useState<ToastMessage | null>(null);
 
   const navigate = useCallback((nextRoute: AdminRoute, replace = false) => {
-    if (!replace && nextRoute === window.location.pathname) return;
+    if (!replace && nextRoute === window.location.pathname) {
+      if (nextRoute === '/orders') setOrdersVisit(value => value + 1);
+      return;
+    }
     if (!replace && !confirmNavigation()) return;
     if (!replace) navigationIndex.current += 1;
     if (replace) window.history.replaceState({ bakeryIndex: navigationIndex.current }, '', nextRoute);
@@ -162,6 +169,7 @@ export default function App() {
     const titles: Record<AdminRoute, string> = {
       '/': 'דשבורד | מאפיית יחד',
       '/login': 'כניסה | מאפיית יחד',
+      '/orders': 'הזמנות | מאפיית יחד',
       '/products': 'מוצרים | מאפיית יחד',
       '/settings': 'הגדרות | מאפיית יחד',
     };
@@ -181,7 +189,8 @@ export default function App() {
   const logout = async () => {
     if (!confirmNavigation()) return;
     try {
-      await signOutAdmin();
+      const pushStopped = await signOutAdmin();
+      if (!pushStopped) showToast('התנתקתם, אך הפסקת ההתראות במכשיר לא אומתה. אפשר לחסום אותן בהגדרות המכשיר.', 'error');
     } catch (error) {
       showToast(ownerMessage(error, 'לא הצלחנו להתנתק.'), 'error');
     }
@@ -265,7 +274,9 @@ export default function App() {
 
   const protectedRoute = route === '/login' ? '/' : route;
   let page;
-  if (dataStatus === 'loading' || dataStatus === 'idle') {
+  if (protectedRoute === '/orders') {
+    page = onlineOrdersEnabled ? <OrdersPage key={ordersVisit} /> : <section className="page-card" dir="rtl"><h1>הזמנות אונליין ייפתחו בקרוב</h1><p>האתר הציבורי מציג כרגע קטלוג וסל לצפייה. עדיין אין קבלת הזמנות, סליקה או התראות להזמנות חדשות.</p></section>;
+  } else if (dataStatus === 'loading' || dataStatus === 'idle') {
     page = <WorkspaceState title="טוענים את נתוני המאפייה" message="המוצרים והגדרות החנות נטענים מהמסד…" />;
   } else if (dataStatus === 'error' || !dashboardData) {
     page = <WorkspaceState tone="error" title="הנתונים לא נטענו" message={dataError} onRetry={() => void refreshDashboard()} />;
@@ -295,7 +306,7 @@ export default function App() {
   }
 
   return <>
-    <AdminShell route={protectedRoute} onNavigate={navigate} onLogout={() => void logout()} profile={profile}>{page}</AdminShell>
+    <OrderAttentionProvider><AdminShell route={protectedRoute} onNavigate={navigate} onLogout={() => void logout()} profile={profile}>{page}</AdminShell></OrderAttentionProvider>
     <Toast toast={toast} onDismiss={() => setToast(null)} />
   </>;
 }

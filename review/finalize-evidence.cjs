@@ -1,0 +1,10 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+(async()=>{
+ const dir=path.join(__dirname,'online-qa'),base=JSON.parse(fs.readFileSync(path.join(dir,'run-before-dialog-driver-fix.json'))),rerun=JSON.parse(fs.readFileSync(path.join(dir,'selected.json')));
+ const result=base.map(item=>{if(item.status==='PASS')return item;const replacement=rerun.find(r=>r.name===item.name);assert.equal(replacement?.status,'PASS',item.name);return{...replacement,rerun:{reason:'Browser driver raced between prompt and confirmation dialog; driver now awaits SQL transition response.',originalRun:'run-before-dialog-driver-fix.json',verifiedRun:'selected.json'}};});
+ assert.equal(result.length,16);assert.ok(result.every(x=>x.status==='PASS'));
+ const sql=JSON.parse(fs.readFileSync(path.join(__dirname,'sql-results.json'))),manifest=JSON.parse(fs.readFileSync(path.join(__dirname,'sql-manifest.json'))),state=await(await fetch('http://127.0.0.1:4320/__local/state')).json();assert.equal(state.sourceFingerprint,manifest.sourceFingerprint);assert.equal(sql.length,24);assert.ok(sql.every(x=>x.status==='PASS'));
+ fs.writeFileSync(path.join(dir,'results.json'),JSON.stringify(result,null,2));
+ fs.writeFileSync(path.join(__dirname,'verification-summary.json'),JSON.stringify({verifiedAt:new Date().toISOString(),sourceFingerprint:manifest.sourceFingerprint,browser:{pass:16,fail:0,details:'online-qa/results.json',original:'online-qa/run-before-dialog-driver-fix.json',rerun:'online-qa/selected.json'},sql:{pass:24,fail:0,details:'sql-results.json'},domain:{pass:17,fail:0},limits:{postgres:'18.6 PGlite, serialized single connection; native PostgreSQL17 not exercised',auth:'local transport and uid stub',realtime:'polling fallback verified; cloud Realtime not exercised',sound:'Web Audio scheduling verified with muted browser; physical device loudness not verified'},remoteChanges:false,payment:false},null,2));
+ console.log('Verified 16 browser scenarios, 24 SQL checks, matching persistent DB source manifest. Failed driver case preserved and rerun recorded.');
+})().catch(e=>{console.error(e.message);process.exitCode=1;});

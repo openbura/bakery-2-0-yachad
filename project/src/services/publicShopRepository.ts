@@ -1,5 +1,6 @@
 import catalog from '../data/public-catalog-fallback.json';
 import { getBakerySupabaseClient } from '../lib/bakerySupabaseClient';
+import { polishCatalogText } from '../shop/productPolicy';
 import type {
   NoticeType,
   PublicShopSnapshot,
@@ -72,19 +73,21 @@ function assertIntegerMoney(value: number, field: string) {
   return value;
 }
 
-export async function fetchPublicShopSnapshot(): Promise<PublicShopSnapshot> {
+export async function fetchPublicShopSnapshot(signal: AbortSignal = new AbortController().signal): Promise<PublicShopSnapshot> {
   const client = getBakerySupabaseClient();
   if (!client) {
     throw new Error('Bakery Supabase is not configured');
   }
 
   const [categoriesResult, productsResult, groupsResult, optionsResult, settingsResult] = await Promise.all([
-    client.from('categories').select('id,name_he,sort_order').eq('active', true).order('sort_order'),
-    client.from('products').select('id,category_id,name_he,description_he,price_agorot,image_url,active,available_today,available_for_delivery,available_for_pickup,sort_order,has_options,display_price_text,price_unit_note').eq('active', true).order('sort_order'),
-    client.from('product_option_groups').select('id,product_id,code,name_he,required,min_select,max_select,active,sort_order').eq('active', true).order('sort_order'),
-    client.from('product_options').select('id,group_id,code,name_he,price_delta_agorot,active,sort_order').eq('active', true).order('sort_order'),
-    client.from('store_settings').select('ordering_enabled,delivery_enabled,pickup_enabled,delivery_fee_agorot,minimum_delivery_subtotal_agorot,pickup_fee_agorot,customer_notice_active,customer_notice_type,customer_notice_text,customer_notice_start_at,customer_notice_end_at,updated_at').eq('id', 'default').single(),
+    client.from('categories').select('id,name_he,sort_order').eq('active', true).order('sort_order').abortSignal(signal),
+    client.from('products').select('id,category_id,name_he,description_he,price_agorot,image_url,active,available_today,available_for_delivery,available_for_pickup,sort_order,has_options,display_price_text,price_unit_note').eq('active', true).order('sort_order').abortSignal(signal),
+    client.from('product_option_groups').select('id,product_id,code,name_he,required,min_select,max_select,active,sort_order').eq('active', true).order('sort_order').abortSignal(signal),
+    client.from('product_options').select('id,group_id,code,name_he,price_delta_agorot,active,sort_order').eq('active', true).order('sort_order').abortSignal(signal),
+    client.from('store_settings').select('ordering_enabled,delivery_enabled,pickup_enabled,delivery_fee_agorot,minimum_delivery_subtotal_agorot,pickup_fee_agorot,customer_notice_active,customer_notice_type,customer_notice_text,customer_notice_start_at,customer_notice_end_at,updated_at').eq('id', 'default').abortSignal(signal).single(),
   ]);
+
+  if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
 
   const firstError = [categoriesResult.error, productsResult.error, groupsResult.error, optionsResult.error, settingsResult.error].find(Boolean);
   if (firstError) {
@@ -92,20 +95,25 @@ export async function fetchPublicShopSnapshot(): Promise<PublicShopSnapshot> {
   }
 
   const categories = (categoriesResult.data ?? []) as CategoryRow[];
-  const productRows = (productsResult.data ?? []) as ProductRow[];
+  const rawProductRows = (productsResult.data ?? []) as ProductRow[];
   const groupRows = (groupsResult.data ?? []) as GroupRow[];
   const optionRows = (optionsResult.data ?? []) as OptionRow[];
   const settingsRow = settingsResult.data as SettingsRow | null;
 
-  if (categories.length !== 10 || productRows.length !== 78 || groupRows.length !== catalog.products.reduce((count, product) => count + product.option_groups.length, 0) || optionRows.length !== catalog.products.reduce((count, product) => count + product.option_groups.reduce((options, group) => options + group.options.length, 0), 0) || !settingsRow) {
-    throw new Error('The live Bakery catalog is incomplete');
+  if (!settingsRow || ['ordering_enabled', 'delivery_enabled', 'pickup_enabled', 'customer_notice_active'].some(key => typeof settingsRow[key as keyof SettingsRow] !== 'boolean')) throw new Error('The live Bakery settings are invalid');
+  for (const rows of [categories, rawProductRows, groupRows, optionRows]) {
+    if (rows.some(row => typeof row.id !== 'string' || !row.id) || new Set(rows.map(row => row.id)).size !== rows.length) throw new Error('Duplicate or missing catalog identifiers');
   }
 
   const categoryById = new Map(categories.map((category) => [category.id, category]));
+  const productRows = rawProductRows.filter(product => categoryById.has(product.category_id) && typeof product.name_he === 'string' && product.name_he.trim() && Number.isSafeInteger(product.price_agorot) && product.price_agorot >= 0);
+  const productIds = new Set(productRows.map(product => product.id));
+  const publicGroups = groupRows.filter(group => productIds.has(group.product_id));
+  const publicGroupIds = new Set(publicGroups.map(group => group.id));
   const optionsByGroup = new Map<string, OptionRow[]>();
-  optionRows.forEach((option) => optionsByGroup.set(option.group_id, [...(optionsByGroup.get(option.group_id) ?? []), option]));
+  optionRows.filter(option => publicGroupIds.has(option.group_id) && typeof option.name_he === 'string' && typeof option.code === 'string' && Number.isSafeInteger(option.price_delta_agorot) && option.price_delta_agorot >= 0).forEach((option) => optionsByGroup.set(option.group_id, [...(optionsByGroup.get(option.group_id) ?? []), option]));
   const groupsByProduct = new Map<string, ShopProductOptionGroup[]>();
-  groupRows.forEach((group) => {
+  publicGroups.forEach((group) => {
     const mapped: ShopProductOptionGroup = {
       id: group.id,
       code: group.code,
@@ -133,26 +141,30 @@ export async function fetchPublicShopSnapshot(): Promise<PublicShopSnapshot> {
       throw new Error('A live product has no public category');
     }
     const optionGroups = groupsByProduct.get(product.id) ?? [];
-    if (product.has_options !== (optionGroups.length > 0)) {
-      throw new Error('A live product has an invalid option contract');
-    }
+    const invalidOptions = (product.has_options && optionGroups.length === 0) || optionGroups.some(group =>
+      typeof group.code !== 'string' || !group.code.trim() || typeof group.name !== 'string' || !group.name.trim() ||
+      typeof group.required !== 'boolean' || !Number.isSafeInteger(group.minSelect) || group.minSelect < (group.required ? 1 : 0) ||
+      (group.maxSelect !== null && (!Number.isSafeInteger(group.maxSelect) || group.maxSelect < group.minSelect)) ||
+      group.options.length < group.minSelect || new Set(group.options.map(option => option.code)).size !== group.options.length
+    ) || new Set(optionGroups.map(group => group.code)).size !== optionGroups.length;
     return {
       id: product.id,
       categoryId: product.category_id,
       category: category.name_he,
       sortOrder: product.sort_order,
-      name: product.name_he,
-      description: product.description_he,
+      name: polishCatalogText(product.name_he),
+      description: polishCatalogText(product.description_he || ''),
       priceAgorot: assertIntegerMoney(product.price_agorot, 'price_agorot'),
       imageUrl: product.image_url,
       active: product.active,
-      availableToday: product.available_today,
+      availableToday: Boolean(product.available_today) && !invalidOptions,
       availableForDelivery: product.available_for_delivery,
       availableForPickup: product.available_for_pickup,
       hasOptions: product.has_options,
       displayPriceText: product.display_price_text,
       priceUnitNote: product.price_unit_note,
       optionGroups,
+      unavailableReason: invalidOptions ? 'אפשרויות המוצר אינן זמינות כרגע. אפשר לברר עם המאפייה.' : undefined,
     };
   });
 

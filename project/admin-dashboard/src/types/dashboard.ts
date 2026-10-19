@@ -1,4 +1,4 @@
-export type AdminRoute = '/' | '/login' | '/products' | '/settings';
+export type AdminRoute = '/' | '/login' | '/orders' | '/products' | '/settings';
 
 export type NoticeType = 'info' | 'warning' | 'closed';
 
@@ -50,3 +50,36 @@ export type ToastMessage = {
   tone: 'success' | 'error' | 'info';
   text: string;
 };
+
+export type OrderStatus = 'pending_approval' | 'approved' | 'preparing' | 'ready_for_pickup' | 'out_for_delivery' | 'completed' | 'rejected' | 'cancelled';
+
+export type AdminOrder = {
+  id: string;
+  orderNumber: number;
+  status: OrderStatus;
+  paymentStatus: string;
+  fulfillmentType: 'pickup' | 'delivery';
+  requestedPickupAt: string | null;
+  promisedBy: string | null;
+  customerName: string;
+  phoneE164: string;
+  deliveryAddress: Record<string, string> | null;
+  customerNotes: string;
+  subtotalAgorot: number;
+  fulfillmentFeeAgorot: number;
+  totalAgorot: number;
+  rejectionReason: string | null;
+  createdAt: string;
+  updatedAt: string;
+  items: Array<{
+    id: string;
+    productName: string;
+    quantity: number;
+    unitTotalAgorot: number;
+    lineTotalAgorot: number;
+    options: Array<{ groupName: string; optionName: string; priceDeltaAgorot: number }>;
+  }>;
+  history: Array<{ status: OrderStatus; reason: string | null; createdAt: string }>;
+};
+
+export type AdminPickupSlot = { startsAt: string; capacity: number; reserved: number; enabled: boolean };

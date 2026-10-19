@@ -15,3 +15,8 @@
 **/*.pem
 **/*.key
 **/.auth/
+/checkpoint/
+/review/release/
+/review/**/*.png
+/review/**/secrets/
+/review/**/data*/

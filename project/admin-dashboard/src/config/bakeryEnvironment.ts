@@ -13,7 +13,6 @@ export type BakeryEnvironment = {
   publishableKey: string;
   sharedLoginEmail: string;
   sharedLoginUsername: string;
-  sharedLoginPassword: string;
 };
 
 let cachedEnvironment: BakeryEnvironment | null = null;
@@ -32,7 +31,6 @@ export function getBakeryEnvironment(): BakeryEnvironment {
   const publishableKey = required(import.meta.env.VITE_BAKERY_ADMIN_SUPABASE_PUBLISHABLE_KEY, 'Supabase publishable key');
   const sharedLoginEmail = required(import.meta.env.VITE_BAKERY_SHARED_LOGIN_EMAIL, 'Bakery login email');
   const sharedLoginUsername = required(import.meta.env.VITE_BAKERY_SHARED_LOGIN_USERNAME, 'Bakery login username');
-  const sharedLoginPassword = required(import.meta.env.VITE_BAKERY_SHARED_LOGIN_PASSWORD, 'Bakery login prefill');
 
   let host: string;
   try {
@@ -50,7 +48,6 @@ export function getBakeryEnvironment(): BakeryEnvironment {
     publishableKey,
     sharedLoginEmail,
     sharedLoginUsername,
-    sharedLoginPassword,
   };
   return cachedEnvironment;
 }

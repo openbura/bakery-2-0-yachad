@@ -75,6 +75,64 @@ export type AuditLogRow = {
   created_at: string;
 };
 
+export type OrderRow = {
+  id: string;
+  order_number: number;
+  status: string;
+  payment_status: string;
+  fulfillment_type: 'pickup' | 'delivery';
+  requested_pickup_at: string | null;
+  promised_by: string | null;
+  customer_name: string;
+  phone_e164: string;
+  delivery_address: Json | null;
+  customer_notes: string;
+  subtotal_agorot: number;
+  fulfillment_fee_agorot: number;
+  total_agorot: number;
+  rejection_reason: string | null;
+  created_at: string;
+  updated_at: string;
+  approved_at: string | null;
+  completed_at: string | null;
+  cancelled_at: string | null;
+};
+
+export type OrderItemRow = {
+  id: string;
+  order_id: string;
+  product_id: string | null;
+  product_name_he: string;
+  quantity: number;
+  unit_base_price_agorot: number;
+  unit_total_agorot: number;
+  line_total_agorot: number;
+  created_at: string;
+};
+
+export type OrderItemOptionRow = {
+  id: string;
+  order_item_id: string;
+  group_id: string | null;
+  option_id: string | null;
+  group_name_he: string;
+  option_name_he: string;
+  price_delta_agorot: number;
+  sort_order: number;
+  created_at: string;
+};
+
+export type OrderStatusHistoryRow = {
+  id: number;
+  order_id: string;
+  from_status: string | null;
+  to_status: string;
+  actor_type: 'customer' | 'admin' | 'system';
+  actor_user_id: string | null;
+  reason: string | null;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -92,9 +150,34 @@ export type Database = {
         | 'customer_notice_end_at'
       >>>;
       audit_log: Table<AuditLogRow, never, never>;
+      orders: Table<OrderRow, never, never>;
+      order_items: Table<OrderItemRow, never, never>;
+      order_item_options: Table<OrderItemOptionRow, never, never>;
+      order_status_history: Table<OrderStatusHistoryRow, never, never>;
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      acknowledge_bakery_order: {
+        Args: { p_order_id: string };
+        Returns: { order_id: string; acknowledged_at: string; acknowledged_by: string };
+      };
+      get_bakery_order_attention: {
+        Args: { p_after_number?: number; p_limit?: number };
+        Returns: Array<{ id: string; order_number: number; customer_name: string; fulfillment_type: string; total_agorot: number; created_at: string }>;
+      };
+      transition_bakery_order: {
+        Args: { p_order_id: string; p_expected_updated_at: string; p_to_status: string; p_reason?: string | null };
+        Returns: OrderRow;
+      };
+      get_admin_pickup_slots: {
+        Args: { p_days?: number };
+        Returns: Array<{ starts_at: string; capacity: number; reserved: number; enabled: boolean }>;
+      };
+      set_pickup_slot_override: {
+        Args: { p_starts_at: string; p_enabled: boolean; p_capacity?: number | null };
+        Returns: undefined;
+      };
+    };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;
   };

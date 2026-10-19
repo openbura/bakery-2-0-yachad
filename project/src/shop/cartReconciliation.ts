@@ -1,5 +1,6 @@
 import { unitPrice, priceProductSelections } from '../../admin-dashboard/src/domain/pricing';
 import type { PublicShopSnapshot, ShopCartItem } from './publicShopTypes';
+import { needsBusinessChoices } from './productPolicy';
 
 export type ReconciliationResult = {
   cart: Record<string, ShopCartItem>;
@@ -21,7 +22,7 @@ export function reconcileCart(cart: Record<string, ShopCartItem>, snapshot: Publ
       return;
     }
 
-    let invalidReason = !product.active || !product.availableToday ? 'המוצר אזל להיום.' : undefined;
+    let invalidReason = product.unavailableReason || (needsBusinessChoices(product) ? 'יש לתאם את בחירות המוצר עם המאפייה לפני הזמנה.' : !product.active || !product.availableToday ? 'המוצר אזל להיום.' : undefined);
     const groupsByCode = new Map(product.optionGroups.map((group) => [group.code, group]));
     const selections = priceProductSelections(product.id, item.selections.map((selection) => {
       const group = groupsByCode.get(selection.groupCode);

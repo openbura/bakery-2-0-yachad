@@ -1,0 +1,7 @@
+{
+  "name": "yachad-local-postgres-test-only",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Isolated local PostgreSQL verification tool; never shipped in either frontend",
+  "dependencies": { "@electric-sql/pglite": "0.5.10" }
+}

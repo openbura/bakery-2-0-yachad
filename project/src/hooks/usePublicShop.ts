@@ -10,37 +10,50 @@ export function usePublicShop() {
   const [status, setStatus] = useState<PublicShopStatus>('loading');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [realtimeConnected, setRealtimeConnected] = useState(false);
-  const requestRef = useRef<Promise<PublicShopSnapshot> | null>(null);
+  const requestRef = useRef<{ promise: Promise<PublicShopSnapshot>; controller: AbortController } | null>(null);
+  const generationRef = useRef(0);
   const mountedRef = useRef(true);
 
-  const refresh = useCallback(async () => {
-    if (requestRef.current) {
-      return requestRef.current;
-    }
+  const cancelRefresh = useCallback(() => {
+    generationRef.current += 1;
+    requestRef.current?.controller.abort('cancelled');
+    requestRef.current = null;
+    if (mountedRef.current) setIsRefreshing(false);
+  }, []);
 
+  const refresh = useCallback((replacePending = false): Promise<PublicShopSnapshot> => {
+    if (requestRef.current && !replacePending) return requestRef.current.promise;
+    requestRef.current?.controller.abort('replaced');
+    const controller = new AbortController();
+    const generation = ++generationRef.current;
+    const timeout = window.setTimeout(() => controller.abort('timeout'), 12000);
     setIsRefreshing(true);
-    const request = fetchPublicShopSnapshot();
-    requestRef.current = request;
-
-    try {
-      const next = await request;
-      if (mountedRef.current) {
-        setSnapshot(next);
-        setStatus('live');
+    const promise = (async () => {
+      try {
+        const next = await fetchPublicShopSnapshot(controller.signal);
+        if (controller.signal.aborted) throw new DOMException('Cancelled', 'AbortError');
+        if (mountedRef.current && generation === generationRef.current) {
+          setSnapshot(next);
+          setStatus('live');
+        }
+        return next;
+      } catch (error) {
+        if (mountedRef.current && generation === generationRef.current && controller.signal.reason !== 'cancelled' && controller.signal.reason !== 'replaced') {
+          setStatus('degraded');
+          setSnapshot((current) => current.live ? { ...current, live: false, source: 'fallback' } : getFallbackShopSnapshot());
+        }
+        if (controller.signal.reason === 'timeout') throw new Error('האימות נמשך זמן רב מדי. נסו שוב או פנו למאפייה.', { cause: error });
+        throw error;
+      } finally {
+        window.clearTimeout(timeout);
+        if (generation === generationRef.current) {
+          requestRef.current = null;
+          if (mountedRef.current) setIsRefreshing(false);
+        }
       }
-      return next;
-    } catch (error) {
-      if (mountedRef.current) {
-        setStatus('degraded');
-        setSnapshot((current) => current.live ? { ...current, live: false, source: 'fallback' } : getFallbackShopSnapshot());
-      }
-      throw error;
-    } finally {
-      requestRef.current = null;
-      if (mountedRef.current) {
-        setIsRefreshing(false);
-      }
-    }
+    })();
+    requestRef.current = { promise, controller };
+    return promise;
   }, []);
 
   useEffect(() => {
@@ -48,8 +61,9 @@ export function usePublicShop() {
     void refresh().catch(() => undefined);
     return () => {
       mountedRef.current = false;
+      cancelRefresh();
     };
-  }, [refresh]);
+  }, [refresh, cancelRefresh]);
 
   useEffect(() => {
     const handleFocus = () => void refresh().catch(() => undefined);
@@ -86,5 +100,5 @@ export function usePublicShop() {
     };
   }, [refresh]);
 
-  return { snapshot, status, isRefreshing, realtimeConnected, refresh };
+  return { snapshot, status, isRefreshing, realtimeConnected, refresh, cancelRefresh };
 }

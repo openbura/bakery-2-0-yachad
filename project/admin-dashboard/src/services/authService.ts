@@ -3,6 +3,9 @@ import { getBakeryEnvironment } from '../config/bakeryEnvironment';
 import { getSupabaseClient } from '../lib/supabaseClient';
 import type { AdminProfile } from '../types/dashboard';
 import { OwnerFacingError } from './serviceErrors';
+import { unsubscribeOwnerDevice } from '../../../src/push/pushApi';
+import { ownerPushApi } from './pushApi';
+import { onlineOrdersEnabled } from '../../../src/shop/release';
 
 function mapProfile(row: { user_id: string; display_name: string; role: 'owner' | 'manager'; active: boolean }): AdminProfile {
   return {
@@ -37,7 +40,7 @@ export function getLoginPrefill() {
   const environment = getBakeryEnvironment();
   return {
     username: environment.sharedLoginUsername,
-    password: environment.sharedLoginPassword,
+    password: '',
   };
 }
 
@@ -71,8 +74,10 @@ export async function restoreAuthorizedSession(): Promise<AdminProfile | null> {
 }
 
 export async function signOutAdmin() {
+  const pushStopped = onlineOrdersEnabled ? await unsubscribeOwnerDevice(ownerPushApi) : true;
   const { error } = await getSupabaseClient().auth.signOut();
   if (error) throw new OwnerFacingError('לא הצלחנו להתנתק. נסו שוב.');
+  return pushStopped;
 }
 
 export function subscribeToAuthChanges(listener: (event: AuthChangeEvent, session: Session | null) => void) {

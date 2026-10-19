@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bakery-2-0-yachad-deploy.vercel.app/sitemap.xml

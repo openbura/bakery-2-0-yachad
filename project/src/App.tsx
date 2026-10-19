@@ -15,6 +15,9 @@ import {
   X,
 } from '@phosphor-icons/react';
 import './styles.css';
+import LegalPage, { LegalLinks } from './LegalPage';
+import { bakeryInfo } from './businessInfo';
+import { onlineOrdersEnabled, ordersOpeningMessage } from './shop/release';
 
 import logoImage from './assets/bakery-2/logo.webp';
 import categoryPastries from './assets/bakery-2/cat-pastries.webp';
@@ -30,8 +33,10 @@ import freshFour from './assets/bakery-2/fresh-4.webp';
 import aboutImage from './assets/bakery-2/gallery-3.webp';
 
 const ShopPage = lazy(() => import('./ShopPage'));
+const OrderTrackingPage = lazy(() => import('./OrderTrackingPage'));
+const NotificationsPage = lazy(() => import('./push/NotificationsPage'));
 
-const phoneHref = 'tel:0502696267';
+const phoneHref = bakeryInfo.phoneHref;
 const whatsappHref =
   'https://wa.me/972502696267?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA%20%D7%99%D7%97%D7%93%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%A8%D7%A8%20%D7%9C%D7%92%D7%91%D7%99%20%D7%94%D7%96%D7%9E%D7%A0%D7%94';
 const mapsHref =
@@ -160,7 +165,7 @@ const benefits = [
   { label: 'מאפייה וקונדיטוריה בכפר סבא', Icon: Storefront },
 ];
 
-const hours = ['א׳-ה׳: 05:00-21:00', 'ו׳: 05:00-16:00', 'שבת: סגור'];
+const hours = bakeryInfo.hours;
 
 const headerReveal = {
   hidden: { opacity: 0, y: -18, scale: 0.985 },
@@ -1086,9 +1091,9 @@ function HomePage() {
           </nav>
 
           <div className="topbar-actions">
-            <a className="topbar-order-link" href="/shop" aria-label="הזמנה אונליין">
+            <a className="topbar-order-link" href="/shop" aria-label={onlineOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}>
               <Storefront size={20} weight="regular" />
-              <span>הזמנה אונליין</span>
+              <span>{onlineOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}</span>
             </a>
             <button
               className="menu-toggle"
@@ -1166,7 +1171,7 @@ function HomePage() {
               טרי מהתנור, בכל בוקר
             </motion.h1>
             <motion.p variants={reveal} transition={transition}>
-              מאפים, לחמים, עוגות וקפה — במאפייה או בהזמנה אונליין.
+              {onlineOrdersEnabled ? 'מאפים, לחמים, עוגות וקפה — במאפייה או בהזמנה אונליין.' : 'מאפים, לחמים, עוגות וקפה — מחכים לכם במאפייה. אפשר לעיין בתפריט ולהרכיב סל באתר.'}
             </motion.p>
             <motion.div className="welcome-transition__actions" variants={buttonStagger}>
               <motion.a
@@ -1178,7 +1183,7 @@ function HomePage() {
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
               >
                 <Storefront size={20} weight="bold" />
-                להזמנה אונליין
+                {onlineOrdersEnabled ? 'להזמנה אונליין' : 'לתפריט ולסל'}
               </motion.a>
               <motion.a
                 className="btn btn-soft"
@@ -1318,6 +1323,7 @@ function HomePage() {
               אפייה במקום, מאפים, לחמים, עוגות, עוגיות, קפה ומבחר אפשרויות לאירוח. הקו פשוט:
               טעם, איכות וטריות — עם אווירה חמה ושירות בגובה העיניים.
             </p>
+            <p>קפה ומגשי אירוח אפשר לברר ישירות עם המאפייה. {onlineOrdersEnabled ? 'בתפריט המקוון מופיעים המוצרים הזמינים להזמנה באתר.' : 'בתפריט המקוון אפשר לעיין במוצרי המאפייה ולהרכיב סל לצפייה.'}</p>
           </motion.div>
           <motion.div
             className="about-visual"
@@ -1383,7 +1389,7 @@ function HomePage() {
                     whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
                   >
                     <Storefront size={20} weight="bold" />
-                    להזמנה אונליין
+                    {onlineOrdersEnabled ? 'להזמנה אונליין' : 'לתפריט ולסל'}
                   </motion.a>
                   <motion.a
                     className="btn btn-soft"
@@ -1419,7 +1425,7 @@ function HomePage() {
                 </div>
                 <div className="visit-hours-list">
                   {hours.map((row) => (
-                    <strong key={row}>{row}</strong>
+                    <strong key={row.days}>{row.days}: <bdi dir="ltr">{row.time}</bdi></strong>
                   ))}
                 </div>
               </motion.div>
@@ -1435,6 +1441,7 @@ function HomePage() {
             <a href={instagramHref} target="_blank" rel="noreferrer">
               <bdi dir="ltr">@yachad_bakery</bdi>
             </a>
+            <LegalLinks className="site-footer-legal" />
           </div>
         </section>
       </div>
@@ -1452,7 +1459,7 @@ function HomePage() {
       >
         <motion.a whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }} href="/shop">
           <Storefront size={22} weight="bold" />
-          הזמנה אונליין
+          {onlineOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}
         </motion.a>
         <motion.a whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }} href={whatsappHref} target="_blank" rel="noreferrer">
           <WhatsappLogo className="whatsapp-icon on-gold" size={22} weight="bold" />
@@ -1468,19 +1475,30 @@ function HomePage() {
 }
 
 function App() {
-  const isShop = window.location.pathname.replace(/\/+$/, '') === '/shop';
+  const path = window.location.pathname.replace(/\/+$/, '') || '/';
+  const isShop = path === '/shop';
   useEffect(() => {
     if (!isShop) return;
-    document.title = 'הזמנה אונליין | מאפיית יחד';
+    document.title = `${onlineOrdersEnabled ? 'הזמנה אונליין' : 'תפריט וסל לצפייה'} | מאפיית יחד`;
     const values: Record<string, string> = {
       'meta[name=description]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
-      'meta[property="og:title"]': 'הזמנה אונליין | מאפיית יחד',
+      'meta[property="og:title"]': document.title,
       'meta[property="og:description"]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
       'meta[property="og:url"]': 'https://bakery-2-0-yachad-deploy.vercel.app/shop',
+      'meta[name="twitter:title"]': document.title,
+      'meta[name="twitter:description"]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
     };
+    if (!onlineOrdersEnabled) {
+      for (const selector of ['meta[name=description]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) values[selector] = 'תפריט מאפיית יחד והרכבת סל לצפייה. הזמנות אונליין ייפתחו בקרוב.';
+    }
     Object.entries(values).forEach(([selector, value]) => document.querySelector(selector)?.setAttribute('content', value));
     document.querySelector('link[rel=canonical]')?.setAttribute('href', 'https://bakery-2-0-yachad-deploy.vercel.app/shop');
   }, [isShop]);
+  if (['/terms', '/privacy', '/shipping', '/cancellations', '/accessibility'].includes(path)) return <LegalPage path={path} />;
+  if (!onlineOrdersEnabled && (path.startsWith('/order/') || path === '/notifications')) return <main className="order-tracking-page" dir="rtl"><article className="order-tracking-card"><h1>הזמנות אונליין ייפתחו בקרוב</h1><p>{ordersOpeningMessage}</p><a href="/shop">לתפריט ולסל</a></article></main>;
+  if (path.startsWith('/order/')) return <Suspense fallback={<main className="order-tracking-page" dir="rtl">טוענים את ההזמנה…</main>}><OrderTrackingPage token={path.slice('/order/'.length)} /></Suspense>;
+  if (path === '/notifications') return <Suspense fallback={<main className="order-tracking-page" dir="rtl">טוענים…</main>}><NotificationsPage /></Suspense>;
+  if (path !== '/' && !isShop) return <main className="legal-content" dir="rtl"><h1>העמוד לא נמצא</h1><p>אפשר לחזור אל <a href="/">דף הבית</a> או <a href="/shop">לתפריט המאפייה</a>.</p></main>;
   return isShop ? (
     <Suspense fallback={<main className="shop-shell" dir="rtl"><div className="shop-status-banner is-loading">טוענים את החנות…</div></main>}>
       <ShopPage />

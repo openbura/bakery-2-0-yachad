@@ -9,7 +9,11 @@
     "lint": "eslint .",
     "test:e2e": "playwright test",
     "preview": "vite preview --host 0.0.0.0",
-    "qa:review": "node ../verify-phase.cjs 4"
+    "qa:review": "node ../review/qa-online.cjs",
+    "qa:sql": "node ../review/local-db/verify-orders.cjs",
+    "qa:push": "node ../review/push-tools/verify-push.cjs && node ../review/push-tools/verify-worker.cjs",
+    "qa:push:browser": "node ../review/push-tools/qa-push.cjs",
+    "test:domain": "node --experimental-strip-types --test domain-tests/operational.test.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

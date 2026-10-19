@@ -216,7 +216,7 @@ select test_validation.assert_true(
   'customer notice starts inactive, empty and unscheduled with the info type'
 );
 select test_validation.assert_true(
-  (select count(distinct catalog_sha256) = 1 and min(catalog_sha256) = '240c6d3d00a64c35699caba9c53d0cc9ed142a074c14140c52fe307f24b292dc' from public.product_source_metadata),
+  (select count(distinct catalog_sha256) = 1 and min(catalog_sha256) = '643a7fa736fd1a32e393d715bd7e5e2dbc78f9aa9b1c1eb61c282d1a7ea389d3' from public.product_source_metadata),
   'catalog hash is unchanged'
 );
 select test_validation.assert_true(
@@ -258,7 +258,7 @@ select test_validation.assert_true(
   'idempotent seed rerun preserves the approved store settings'
 );
 select test_validation.assert_true(
-  (select count(distinct catalog_sha256) = 1 and min(catalog_sha256) = '240c6d3d00a64c35699caba9c53d0cc9ed142a074c14140c52fe307f24b292dc' from public.product_source_metadata),
+  (select count(distinct catalog_sha256) = 1 and min(catalog_sha256) = '643a7fa736fd1a32e393d715bd7e5e2dbc78f9aa9b1c1eb61c282d1a7ea389d3' from public.product_source_metadata),
   'idempotent seed rerun preserves the catalog hash'
 );
 

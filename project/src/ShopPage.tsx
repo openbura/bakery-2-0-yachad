@@ -1,15 +1,14 @@
 import { activateModal } from '../admin-dashboard/src/accessibility/modal';
-import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight,
   Basket,
   Copy,
-  ImageSquare,
   Minus,
   Plus,
   Storefront,
   Truck,
-  WhatsappLogo,
+  CheckCircle,
   X,
 } from '@phosphor-icons/react';
 
@@ -25,8 +24,18 @@ import type {
   ShopProductOptionGroup,
   ShopStoreSettings,
 } from './shop/publicShopTypes';
-import { readCheckoutSession, writeCheckoutSession, resolveFulfillment } from './shop/checkoutSession';
+import { readCheckoutSession, writeCheckoutSession, readCheckoutDraft, writeCheckoutDraft } from './shop/checkoutSession';
 import type { FulfillmentType } from './shop/checkoutSession';
+import { normalizeIsraeliPhone } from './shop/phone';
+import { needsBusinessChoices } from './shop/productPolicy';
+import { bakeryInfo } from './businessInfo';
+import ProductImage from './components/ProductImage';
+import { LegalLinks } from './LegalPage';
+import { createOrder, fetchPickupSlots, fetchTrackedOrder, OrderSubmissionError } from './services/ordersRepository';
+import { clearOrderIntent, persistOrderIntent, readOrderIntent, readOrderReceipt, rememberOrderReceipt } from './shop/orderSubmission';
+import { emptyCheckoutDraft } from './shop/checkoutSession';
+import type { CreateOrderInput, CreatedOrder, PickupSlot } from './shop/orderTypes';
+import { onlineOrdersEnabled, ordersOpeningMessage } from './shop/release';
 type ResidenceType = '' | 'building' | 'private-house';
 type OrderStep = 'catalog' | 'details';
 type CheckoutField =
@@ -39,6 +48,7 @@ type CheckoutField =
   | 'residenceType'
   | 'floor'
   | 'apartment'
+  | 'pickupTime'
   | 'notes'
   | 'order';
 type CheckoutErrors = Partial<Record<CheckoutField, string>>;
@@ -49,7 +59,7 @@ type DeliveryArea = {
   notes: string;
 };
 
-const bakeryWhatsappNumber = '972502696267';
+
 
 const allCategory = 'הכל';
 
@@ -83,8 +93,7 @@ const deliveryAreas: DeliveryArea[] = [
 
 
 function isValidIsraeliPhone(value: string) {
-  const digits = value.replace(/\D/g, '');
-  return /^0(?:5\d{8}|7\d{8}|[23489]\d{7})$/.test(digits);
+  return Boolean(normalizeIsraeliPhone(value));
 }
 
 function getProductDisplayPrice(product: ShopProduct) {
@@ -125,10 +134,6 @@ function makeCartItemId(product: ShopProduct, selections: CartSelection[] = []) 
 
 function hasIncludedPizzaChoice(product: ShopProduct) {
   return ['pizza-sambusak-01', 'pizza-sambusak-02', 'pizza-sambusak-03'].includes(product.id) && product.optionGroups.some((group) => group.required && group.minSelect === 1 && group.maxSelect === 3);
-}
-
-function needsBusinessChoices(product: ShopProduct) {
-  return (['פיצה אישית', 'פיצה פסטו אישית'].includes(product.name) || /בהרכבה|\+\s*תוספת/.test(product.name)) && !product.optionGroups.length;
 }
 
 function hasProductOptions(product: ShopProduct) {
@@ -260,24 +265,24 @@ function buildOrderSummary({
 }
 
 export default function ShopPage() {
-  const { snapshot, status: shopStatus, isRefreshing, refresh } = usePublicShop();
+  const { snapshot, status: shopStatus, isRefreshing, refresh, cancelRefresh } = usePublicShop();
   const [selectedCategory, setSelectedCategory] = useState(allCategory);
-  const [initialCheckout] = useState(readCheckoutSession);
+  const [initialCheckout] = useState(() => ({ ...readCheckoutSession(), draft: readCheckoutDraft() }));
   const [cart, setCart] = useState<Record<string, ShopCartItem>>(initialCheckout.cart);
   const [cartOpen, setCartOpen] = useState(false);
-  const [orderStep, setOrderStep] = useState<OrderStep>('catalog');
+  const [orderStep, setOrderStep] = useState<OrderStep>(onlineOrdersEnabled && Object.keys(initialCheckout.cart).length ? initialCheckout.draft.step : 'catalog');
   const [preferredFulfillment, setFulfillment] = useState<FulfillmentType>(initialCheckout.fulfillment);
-  const [customerName, setCustomerName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [cityId, setCityId] = useState('kfar-saba');
-  const [otherCity, setOtherCity] = useState('');
-  const [street, setStreet] = useState('');
-  const [houseNumber, setHouseNumber] = useState('');
-  const [residenceType, setResidenceType] = useState<ResidenceType>('building');
-  const [entrance, setEntrance] = useState('');
-  const [floor, setFloor] = useState('');
-  const [apartment, setApartment] = useState('');
-  const [notes, setNotes] = useState('');
+  const [customerName, setCustomerName] = useState(initialCheckout.draft.customerName);
+  const [phone, setPhone] = useState(initialCheckout.draft.phone);
+  const [cityId, setCityId] = useState(initialCheckout.draft.cityId);
+  const [otherCity, setOtherCity] = useState(initialCheckout.draft.otherCity);
+  const [street, setStreet] = useState(initialCheckout.draft.street);
+  const [houseNumber, setHouseNumber] = useState(initialCheckout.draft.houseNumber);
+  const [residenceType, setResidenceType] = useState<ResidenceType>(initialCheckout.draft.residenceType);
+  const [entrance, setEntrance] = useState(initialCheckout.draft.entrance);
+  const [floor, setFloor] = useState(initialCheckout.draft.floor);
+  const [apartment, setApartment] = useState(initialCheckout.draft.apartment);
+  const [notes, setNotes] = useState(initialCheckout.draft.notes);
   const [copyStatus, setCopyStatus] = useState('');
   const [checkoutErrors, setCheckoutErrors] = useState<CheckoutErrors>({});
   const [minimumPromptVisible, setMinimumPromptVisible] = useState(false);
@@ -285,6 +290,17 @@ export default function ShopPage() {
   const [operationalMessage, setOperationalMessage] = useState('');
   const [priceUpdateVisible, setPriceUpdateVisible] = useState(false);
   const [finalValidationPending, setFinalValidationPending] = useState(false);
+  const [pickupTime, setPickupTime] = useState(initialCheckout.draft.pickupTime);
+  const [pickupSlots, setPickupSlots] = useState<PickupSlot[]>([]);
+  const [slotsError, setSlotsError] = useState('');
+  const [slotsLoading, setSlotsLoading] = useState(false);
+  const [unresolvedOrder, setUnresolvedOrder] = useState(readOrderIntent);
+  const [lastReceipt, setLastReceipt] = useState(readOrderReceipt);
+  const [manualCopyVisible, setManualCopyVisible] = useState(false);
+  const validationRef = useRef<{ id: number; pending: boolean }>({ id: 0, pending: false });
+  const initialStepRef = useRef(orderStep);
+  const historyReadyRef = useRef(false);
+  const completedSubmissionRef = useRef(false);
   const [categoryPickerOpen, setCategoryPickerOpen] = useState(false);
   const [editingCartItemId, setEditingCartItemId] = useState<string | null>(null);
   const [customizingProduct, setCustomizingProduct] = useState<ShopProduct | null>(null);
@@ -301,10 +317,6 @@ export default function ShopPage() {
     return () => media.removeEventListener('change', update);
   }, []);
   useEffect(() => {
-    if (!cartIsModal || !cartPanelRef.current) return;
-    return activateModal(cartPanelRef.current, () => setCartOpen(false));
-  }, [cartIsModal]);
-  useEffect(() => {
     if (!customizingProduct || !optionDialogRef.current) return;
     return activateModal(optionDialogRef.current, () => {
       setCustomizingProduct(null); setSelectedOptions({}); setCustomizationError('');
@@ -319,8 +331,7 @@ export default function ShopPage() {
 
   const products = snapshot.products;
   const settings = snapshot.settings;
-  const fulfillment = snapshot.live ? resolveFulfillment(preferredFulfillment, settings) : preferredFulfillment;
-  if (snapshot.live && fulfillment !== preferredFulfillment) setFulfillment(fulfillment);
+  const fulfillment = preferredFulfillment;
   const displayedCustomizingProduct = customizingProduct
     ? products.find((product) => product.id === customizingProduct.id) ?? customizingProduct
     : null;
@@ -351,6 +362,7 @@ export default function ShopPage() {
   const isProductOrderable = (product: ShopProduct) => (
     orderingAllowed &&
     product.availableToday &&
+    !needsBusinessChoices(product) &&
     selectedFulfillmentEnabled &&
     (fulfillment === 'delivery' ? product.availableForDelivery : product.availableForPickup)
   );
@@ -366,7 +378,7 @@ export default function ShopPage() {
     fulfillment,
     selectedArea,
     customerName,
-    phone,
+    phone: normalizeIsraeliPhone(phone),
     cityLabel,
     street,
     houseNumber,
@@ -389,10 +401,55 @@ export default function ShopPage() {
     selectedFulfillmentEnabled &&
     !cartHasInvalidItems &&
     !cartHasFulfillmentConflict;
-  const canAttemptContinue = cartItems.length > 0 && orderingAllowed && selectedFulfillmentEnabled && !cartHasInvalidItems && !cartHasFulfillmentConflict;
+  const canAttemptContinue = onlineOrdersEnabled && cartItems.length > 0 && orderingAllowed && selectedFulfillmentEnabled && !cartHasInvalidItems && !cartHasFulfillmentConflict;
+  const cartBlockingMessage = !onlineOrdersEnabled ? ordersOpeningMessage : !isLive ? 'אי אפשר לאמת כרגע את ההזמנה. נסו שוב או פנו למאפייה.' : getOperationalBlock(settings, cartItems, fulfillment);
+
+  const cancelValidation = useCallback(() => {
+    const pending = validationRef.current.pending;
+    validationRef.current.id += 1;
+    validationRef.current.pending = false;
+    if (pending) {
+      cancelRefresh();
+      setFinalValidationPending(false);
+      setOperationalMessage(readOrderIntent() ? 'ההמתנה הופסקה, אך ייתכן שההזמנה נשמרה. בדקו את מצב השליחה לפני הזמנה נוספת.' : 'הבדיקה בוטלה. הסל והפרטים נשמרו ואפשר לנסות שוב.');
+    }
+  }, [cancelRefresh]);
 
   useEffect(() => {
-    writeCheckoutSession(snapshot.live ? cartReconciliation.cart : cart, fulfillment);
+    if (!cartIsModal || !cartPanelRef.current) return;
+    return activateModal(cartPanelRef.current, () => { cancelValidation(); setCartOpen(false); });
+  }, [cartIsModal, cancelValidation]);
+
+  useEffect(() => {
+    const validation = validationRef.current;
+    if (!historyReadyRef.current) {
+      historyReadyRef.current = true;
+      const state = window.history.state ?? {};
+      if (initialStepRef.current === 'details' && state.yachadCheckoutStep !== 'details') {
+        window.history.replaceState({ ...state, yachadCheckoutStep: 'catalog' }, '');
+        window.history.pushState({ ...state, yachadCheckoutStep: 'details', yachadHasCatalog: true }, '');
+      } else window.history.replaceState({ ...state, yachadCheckoutStep: initialStepRef.current }, '');
+    }
+    const onPopState = (event: PopStateEvent) => {
+      cancelValidation();
+      setOrderStep(onlineOrdersEnabled && event.state?.yachadCheckoutStep === 'details' ? 'details' : 'catalog');
+      setCartOpen(false);
+      setCheckoutErrors({});
+      };
+    window.addEventListener('popstate', onPopState);
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+      validation.id += 1;
+      validation.pending = false;
+    };
+  }, [cancelValidation]);
+
+  useEffect(() => {
+    if (!completedSubmissionRef.current) writeCheckoutDraft({ step: orderStep, customerName, phone, cityId, otherCity, street, houseNumber, residenceType, entrance, floor, apartment, notes, pickupTime });
+  }, [orderStep, customerName, phone, cityId, otherCity, street, houseNumber, residenceType, entrance, floor, apartment, notes, pickupTime]);
+
+  useEffect(() => {
+    if (!completedSubmissionRef.current) writeCheckoutSession(snapshot.live ? cartReconciliation.cart : cart, fulfillment);
   }, [cart, cartReconciliation, snapshot.live, fulfillment]);
 
   useEffect(() => {
@@ -419,13 +476,17 @@ export default function ShopPage() {
       return;
     }
 
-    window.requestAnimationFrame(() => {
+    const frame = window.requestAnimationFrame(() => {
+      // A quick user tap/keystroke may already have focused another field.
+      // Delayed initial focus must not steal it and put the phone in the name.
+      if (checkoutStepRef.current?.contains(document.activeElement)) return;
       checkoutStepRef.current?.scrollIntoView({ block: 'start', behavior: 'auto' });
       const firstField = checkoutStepRef.current?.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
         'input:not([type="radio"]):not([disabled]), select:not([disabled]), textarea:not([disabled])',
       );
       firstField?.focus({ preventScroll: true });
     });
+    return () => window.cancelAnimationFrame(frame);
   }, [orderStep]);
 
   useEffect(() => {
@@ -441,13 +502,25 @@ export default function ShopPage() {
     });
   }, [minimumPromptVisible, deliveryMinimumNotMet, deliveryMinimumMissing]);
 
+  const reloadPickupSlots = useCallback(async () => {
+    setSlotsLoading(true); setSlotsError('');
+    try { setPickupSlots(await fetchPickupSlots()); }
+    catch { setSlotsError('לא הצלחנו לטעון מועדי איסוף. נסו שוב.'); }
+    finally { setSlotsLoading(false); }
+  }, []);
+  useEffect(() => {
+    if (fulfillment !== 'pickup' || orderStep !== 'details') return;
+    const timer = window.setTimeout(() => void reloadPickupSlots(), 0);
+    return () => window.clearTimeout(timer);
+  }, [fulfillment, orderStep, reloadPickupSlots]);
+
   const renderFulfillmentSelector = (variant: 'summary' | 'form') => (
     <div className={`shop-fulfillment-block shop-fulfillment-block--${variant}`}>
       <div className="shop-choice-row" role="radiogroup" aria-label="שיטת קבלה">
         <label className={`${fulfillment === 'delivery' ? 'is-selected' : ''} ${!settings.deliveryEnabled ? 'is-disabled' : ''}`}>
           <input
             checked={fulfillment === 'delivery'}
-            disabled={!settings.deliveryEnabled || !isLive}
+            disabled={!settings.deliveryEnabled || !isLive || finalValidationPending}
             value="delivery"
             name={`fulfillment-${variant}`}
             type="radio"
@@ -464,7 +537,7 @@ export default function ShopPage() {
         <label className={`${fulfillment === 'pickup' ? 'is-selected' : ''} ${!settings.pickupEnabled ? 'is-disabled' : ''}`}>
           <input
             checked={fulfillment === 'pickup'}
-            disabled={!settings.pickupEnabled || !isLive}
+            disabled={!settings.pickupEnabled || !isLive || finalValidationPending}
             value="pickup"
             name={`fulfillment-${variant}`}
             type="radio"
@@ -499,6 +572,11 @@ export default function ShopPage() {
           ? `דמי משלוח ${formatPrice(deliveryFee)} · מינימום הזמנה למשלוח ${minimumDeliverySubtotalText}`
           : 'איסוף עצמי ללא דמי משלוח'}
       </p>
+      {fulfillment === 'pickup' && <div className="shop-pickup-info">
+        <strong>איסוף מ{bakeryInfo.pickupAddress}</strong>
+        <span>{bakeryInfo.hours.map((row, index) => <span key={row.days}>{index > 0 && ' · '}{row.days}: <bdi dir="ltr">{row.time}</bdi></span>)}</span>
+        <span>יש להמתין לאישור המאפייה ולתיאום מועד האיסוף.</span>
+      </div>}
     </div>
   );
 
@@ -513,6 +591,8 @@ export default function ShopPage() {
   };
 
   const goToOrderDetails = async () => {
+    if (!onlineOrdersEnabled) return;
+    if (validationRef.current.pending) return;
     if (deliveryMinimumNotMet) {
       setMinimumPromptVisible(true);
       setAddToastVisible(false);
@@ -525,12 +605,16 @@ export default function ShopPage() {
       return;
     }
 
+    const attempt = ++validationRef.current.id;
+    validationRef.current.pending = true;
     setFinalValidationPending(true);
+    setOperationalMessage('מאמתים מחירים וזמינות מול המאפייה…');
     try {
-      const freshSnapshot = await refresh();
+      const freshSnapshot = await refresh(true);
+      if (attempt !== validationRef.current.id) return;
       const reconciled = reconcileCart(cart, freshSnapshot);
       setCart(reconciled.cart);
-      if (reconciled.priceChanged) {
+      if (reconciled.priceChanged || freshSnapshot.settings.deliveryFeeAgorot !== settings.deliveryFeeAgorot || freshSnapshot.settings.pickupFeeAgorot !== settings.pickupFeeAgorot) {
         setPriceUpdateVisible(true);
         setOperationalMessage('המחירים בהזמנה עודכנו. בדקו את הסכום לפני שממשיכים.');
         return;
@@ -540,14 +624,26 @@ export default function ShopPage() {
         setOperationalMessage(block);
         return;
       }
-    } catch {
-      setOperationalMessage('לא הצלחנו לאמת את פרטי ההזמנה מול המאפייה. נסו שוב.');
+      if (fulfillment === 'delivery' && orderTotals(Object.values(reconciled.cart), 0).subtotal < freshSnapshot.settings.minimumDeliverySubtotalAgorot) {
+        setOperationalMessage(`מינימום הזמנה למשלוח הוא ${formatPrice(freshSnapshot.settings.minimumDeliverySubtotalAgorot)}.`);
+        setMinimumPromptVisible(true);
+        return;
+      }
+    } catch (error) {
+      if (attempt !== validationRef.current.id) return;
+      setOperationalMessage(error instanceof Error && error.message.includes('האימות נמשך') ? error.message : 'לא הצלחנו לאמת את פרטי ההזמנה. אפשר לנסות שוב או לפנות למאפייה.');
       return;
     } finally {
-      setFinalValidationPending(false);
+      if (attempt === validationRef.current.id) {
+        validationRef.current.pending = false;
+        setFinalValidationPending(false);
+      }
     }
 
+    if (attempt !== validationRef.current.id) return;
+    if (window.history.state?.yachadCheckoutStep !== 'details') window.history.pushState({ ...window.history.state, yachadCheckoutStep: 'details', yachadHasCatalog: true }, '');
     setOrderStep('details');
+    setOperationalMessage('');
     setCartOpen(false);
     setCopyStatus('');
     setCheckoutErrors({});
@@ -555,7 +651,12 @@ export default function ShopPage() {
   };
 
   const goToCatalog = () => {
-    setOrderStep('catalog');
+    cancelValidation();
+    if (window.history.state?.yachadCheckoutStep === 'details' && window.history.state?.yachadHasCatalog) window.history.back();
+    else {
+      window.history.replaceState({ ...window.history.state, yachadCheckoutStep: 'catalog' }, '');
+      setOrderStep('catalog');
+    }
     setCartOpen(false);
     setCopyStatus('');
     setCheckoutErrors({});
@@ -764,12 +865,15 @@ export default function ShopPage() {
         document.body.appendChild(textarea);
         textarea.focus();
         textarea.select();
-        document.execCommand('copy');
+        const copied = document.execCommand('copy');
         textarea.remove();
+        if (!copied) throw new Error('Clipboard unavailable');
       }
       setCopyStatus('הסיכום הועתק');
+      setManualCopyVisible(false);
     } catch {
-      setCopyStatus('לא הצלחנו להעתיק אוטומטית');
+      setCopyStatus('העתקה אוטומטית אינה זמינה. אפשר לסמן ולהעתיק את הסיכום שמתחת.');
+      setManualCopyVisible(true);
     }
   };
 
@@ -788,6 +892,9 @@ export default function ShopPage() {
       nextErrors.phone = 'כתבו מספר טלפון ישראלי תקין.';
     }
 
+    if (fulfillment === 'pickup' && !pickupSlots.some(slot => slot.startsAt === pickupTime && Date.parse(slot.startsAt) >= Date.now() + 60 * 60 * 1000)) {
+      nextErrors.pickupTime = 'בחרו מועד איסוף זמין, לפחות שעה ממועד ההזמנה.';
+    }
     if (fulfillment === 'delivery') {
       if (!deliveryAreas.some(area => area.id === cityId)) {
         nextErrors.cityId = 'בחרו עיר מרשימת אזורי המשלוח.';
@@ -840,6 +947,7 @@ export default function ShopPage() {
       'residenceType',
       'floor',
       'apartment',
+      'pickupTime',
       'notes',
       'order',
     ];
@@ -855,79 +963,87 @@ export default function ShopPage() {
     return !firstInvalidField;
   };
 
-  const submitOrderToWhatsapp = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!validateCheckout() || finalValidationPending) {
+  const finishStoredOrder = (created: CreatedOrder, input: CreateOrderInput, attempt: number) => {
+    const owned = rememberOrderReceipt(created, input);
+    if (attempt !== validationRef.current.id || !owned) {
+      if (attempt === validationRef.current.id && !readOrderIntent()) window.location.assign('/order/' + created.trackingToken);
+      else if (!validationRef.current.pending) {
+        setLastReceipt(current => current && current.orderNumber > created.orderNumber ? current : created); setUnresolvedOrder(readOrderIntent());
+        setOperationalMessage('ההזמנה הקודמת נשמרה וממתינה לאישור. הסל והפרטים שערכתם נשמרו; אפשר לפתוח את קישור המעקב.');
+      }
       return;
     }
+    completedSubmissionRef.current = true;
+    writeCheckoutSession({}, input.fulfillmentType);
+    writeCheckoutDraft({ ...emptyCheckoutDraft });
+    setLastReceipt(created); setUnresolvedOrder(null); setCart({});
+    window.location.assign('/order/' + created.trackingToken);
+  };
 
-    const reservedWindow = window.open('', '_blank');
-    setFinalValidationPending(true);
-    setOperationalMessage('מאמתים מחירים וזמינות מול המאפייה…');
+  const recoverOrderSubmission = async () => {
+    if (!onlineOrdersEnabled) return;
+    const input = readOrderIntent();
+    if (!input || validationRef.current.pending) return;
+    const attempt = ++validationRef.current.id;
+    validationRef.current.pending = true; setFinalValidationPending(true);
+    setOperationalMessage('בודקים את השליחה הקודמת. לא תיווצר הזמנה כפולה.');
     try {
-      const freshSnapshot = await refresh();
-      const reconciled = reconcileCart(cart, freshSnapshot);
-      setCart(reconciled.cart);
-      const freshItems = Object.values(reconciled.cart);
-      const block = getOperationalBlock(freshSnapshot.settings, freshItems, fulfillment);
-      if (block) {
-        reservedWindow?.close();
-        setCheckoutErrors((current) => ({ ...current, order: block }));
-        setOperationalMessage(block);
-        return;
-      }
+      const found = await fetchTrackedOrder(input.trackingToken);
+      const created = found ? { orderNumber: found.orderNumber, trackingToken: input.trackingToken } : await createOrder(input);
+      finishStoredOrder(created, input, attempt);
+    } catch (error) {
+      if (attempt !== validationRef.current.id) return;
+      if (error instanceof OrderSubmissionError && error.definitive && error.code !== 'IDEMPOTENCY_CONFLICT') { clearOrderIntent(input); setUnresolvedOrder(readOrderIntent()); }
+      setOperationalMessage(error instanceof Error ? error.message : 'לא ניתן לבדוק את ההזמנה כרגע. נסו שוב כשיש חיבור.');
+      if (input.fulfillmentType === 'pickup') void reloadPickupSlots();
+      void refresh(true).catch(() => undefined);
+    } finally { if (attempt === validationRef.current.id) { validationRef.current.pending = false; setFinalValidationPending(false); } }
+  };
 
+  const submitOnlineOrder = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (validationRef.current.pending) return;
+    if (readOrderIntent()) { setUnresolvedOrder(readOrderIntent()); void recoverOrderSubmission(); return; }
+    if (!validateCheckout()) return;
+    const attempt = ++validationRef.current.id;
+    validationRef.current.pending = true; setFinalValidationPending(true);
+    let submittedInput: CreateOrderInput | null = null;
+    setOperationalMessage('מאמתים מחירים וזמינות לפני שמירת ההזמנה…');
+    try {
+      const fresh = await refresh(true);
+      if (attempt !== validationRef.current.id) return;
+      const reconciled = reconcileCart(cart, fresh); setCart(reconciled.cart);
+      const freshItems = Object.values(reconciled.cart), block = getOperationalBlock(fresh.settings, freshItems, fulfillment);
+      if (block) { setOperationalMessage(block); setCheckoutErrors(current => ({ ...current, order: block })); return; }
       const freshSubtotal = orderTotals(freshItems, 0).subtotal;
-      if (fulfillment === 'delivery' && freshSubtotal < freshSnapshot.settings.minimumDeliverySubtotalAgorot) {
-        const message = `מינימום הזמנה למשלוח הוא ${formatPrice(freshSnapshot.settings.minimumDeliverySubtotalAgorot)}.`;
-        reservedWindow?.close();
-        setCheckoutErrors((current) => ({ ...current, order: message }));
-        setOperationalMessage(message);
-        return;
+      if (fulfillment === 'delivery' && freshSubtotal < fresh.settings.minimumDeliverySubtotalAgorot) {
+        setOperationalMessage('הסל אינו מגיע למינימום המשלוח העדכני.'); return;
       }
-
-      if (reconciled.priceChanged || freshSnapshot.settings.deliveryFeeAgorot !== settings.deliveryFeeAgorot || freshSnapshot.settings.pickupFeeAgorot !== settings.pickupFeeAgorot) {
-        reservedWindow?.close();
-        setPriceUpdateVisible(true);
-        setOperationalMessage('המחיר או דמי המשלוח עודכנו. בדקו את הסיכום ושלחו שוב.');
-        return;
+      if (reconciled.priceChanged || fresh.settings.deliveryFeeAgorot !== settings.deliveryFeeAgorot || fresh.settings.pickupFeeAgorot !== settings.pickupFeeAgorot) {
+        setPriceUpdateVisible(true); setOperationalMessage('המחיר או דמי המשלוח עודכנו. בדקו את הסיכום ושלחו שוב.'); return;
       }
-
-      const freshFee = fulfillment === 'delivery' ? freshSnapshot.settings.deliveryFeeAgorot : freshSnapshot.settings.pickupFeeAgorot;
-      const freshSummary = buildOrderSummary({
-        cartItems: freshItems,
-        fulfillment,
-        selectedArea,
-        customerName,
-        phone,
-        cityLabel,
-        street,
-        houseNumber,
-        residenceType,
-        entrance,
-        floor,
-        apartment,
-        notes,
-        subtotal: freshSubtotal,
-        deliveryFee: freshFee,
-        total: orderTotals(freshItems, freshFee).total,
+      const fee = fulfillment === 'delivery' ? fresh.settings.deliveryFeeAgorot : fresh.settings.pickupFeeAgorot;
+      const input = persistOrderIntent({
+        fulfillmentType: fulfillment, requestedPickupAt: fulfillment === 'pickup' ? pickupTime : null,
+        customerName: customerName.trim(), phone: normalizeIsraeliPhone(phone), customerNotes: notes.trim(),
+        deliveryAddress: fulfillment === 'delivery' ? { city_id: cityId, city: cityLabel, street: street.trim(), house_number: houseNumber.trim(), residence_type: residenceType,
+          ...(residenceType === 'building' ? { entrance: entrance.trim(), floor: floor.trim(), apartment: apartment.trim() } : {}) } : null,
+        items: freshItems.map(item => ({ product_id: item.productId, quantity: item.quantity, option_ids: item.selections.map(option => option.optionId) })),
+        expectedTotalAgorot: orderTotals(freshItems, fee).total,
       });
-      const url = `https://wa.me/${bakeryWhatsappNumber}?text=${encodeURIComponent(freshSummary)}`;
-      setOperationalMessage('ההזמנה אומתה. עוברים לוואטסאפ…');
-      if (reservedWindow) {
-        reservedWindow.opener = null;
-        reservedWindow.location.href = url;
-      } else {
-        window.open(url, '_blank', 'noopener,noreferrer');
-      }
-    } catch {
-      reservedWindow?.close();
-      const message = 'לא הצלחנו לבצע אימות חי. ההזמנה לא נשלחה — נסו שוב.';
-      setCheckoutErrors((current) => ({ ...current, order: message }));
-      setOperationalMessage(message);
-    } finally {
-      setFinalValidationPending(false);
-    }
+      submittedInput = input;
+      setUnresolvedOrder(input); setOperationalMessage('שומרים את ההזמנה במאפייה…');
+      const created = await createOrder(input);
+      finishStoredOrder(created, input, attempt);
+    } catch (error) {
+      if (attempt !== validationRef.current.id) return;
+      const definitive = error instanceof OrderSubmissionError && error.definitive && error.code !== 'IDEMPOTENCY_CONFLICT';
+      if (definitive && submittedInput) { clearOrderIntent(submittedInput); setUnresolvedOrder(readOrderIntent()); }
+      const message = error instanceof Error ? error.message : 'לא התקבלה תשובה ברורה. בדקו את מצב השליחה לפני הזמנה נוספת.';
+      setOperationalMessage(message); setCheckoutErrors(current => ({ ...current, order: message }));
+      if (fulfillment === 'pickup') void reloadPickupSlots();
+      if (definitive) void refresh(true).catch(() => undefined);
+    } finally { if (attempt === validationRef.current.id) { validationRef.current.pending = false; setFinalValidationPending(false); } }
   };
 
   const renderCheckoutError = (field: CheckoutField) => (
@@ -939,7 +1055,7 @@ export default function ShopPage() {
   );
 
   return (
-    <main className={`shop-shell ${orderStep === 'details' ? 'is-details-step' : ''}`} dir="rtl" inert={finalValidationPending} aria-busy={finalValidationPending}>
+    <main className={`shop-shell ${orderStep === 'details' ? 'is-details-step' : ''}`} dir="rtl" aria-busy={finalValidationPending}>
       {orderStep === 'details' && (
         <header className="shop-topbar" aria-label="ניווט חנות">
           <button className="shop-back-link shop-back-link--button" type="button" onClick={goToCatalog}>
@@ -951,7 +1067,7 @@ export default function ShopPage() {
 
       {orderStep === 'catalog' && (
         <section className="shop-cover" aria-label="מאפיית יחד - מאפים טריים כל יום">
-          <h1 className="shop-sr-only">הזמנה אונליין ממאפיית יחד</h1>
+          <h1 className="shop-sr-only">{onlineOrdersEnabled ? 'הזמנה אונליין ממאפיית יחד' : 'התפריט והסל של מאפיית יחד'}</h1>
           <img src={shopCoverImage} alt="מאפיית יחד - טרי, איכותי, מהלב. מאפים טריים, כל יום, באהבה." decoding="async" />
           <a className="shop-cover-link" href="/">
             <ArrowRight size={19} weight="bold" />
@@ -960,8 +1076,13 @@ export default function ShopPage() {
         </section>
       )}
 
-      {orderStep === 'catalog' && cartItems.length === 0 && orderingAllowed && products.some(product => product.availableToday && product.availableForDelivery !== product.availableForPickup) && renderFulfillmentSelector('summary')}
+      {orderStep === 'catalog' && <div className="shop-service-info">
+        <span>משלוחים בכפר סבא, הוד השרון ורעננה · יישובים נוספים בכפוף לאישור</span>
+        <a href={bakeryInfo.phoneHref}>שאלות על ההזמנה? <bdi>{bakeryInfo.phone}</bdi></a>
+      </div>}
+      {orderStep === 'catalog' && cartItems.length === 0 && renderFulfillmentSelector('summary')}
       <div className="shop-live-status" aria-live="polite">
+        {!onlineOrdersEnabled && <div className="shop-status-banner is-info" data-testid="catalog-only"><strong>הזמנות אונליין ייפתחו בקרוב</strong><span>בינתיים אפשר לעיין בתפריט ולהרכיב סל. לא נשלחת הזמנה ולא מתבצע חיוב.</span></div>}
         {shopStatus === 'loading' && (
           <div className="shop-status-banner is-loading" data-testid="shop-loading">
             טוענים את התפריט העדכני…
@@ -986,7 +1107,7 @@ export default function ShopPage() {
         )}
         {isLive && settings.orderingEnabled && (!settings.deliveryEnabled || !settings.pickupEnabled) && (
           <div className="shop-status-banner is-warning" data-testid="fulfillment-status">
-            {!settings.deliveryEnabled && settings.pickupEnabled && 'החנות כרגע בעומס — אין משלוחים כרגע. ניתן לבצע איסוף עצמי.'}
+            {!settings.deliveryEnabled && settings.pickupEnabled && 'אין משלוחים כרגע. אפשר לבחור איסוף עצמי.'}
             {settings.deliveryEnabled && !settings.pickupEnabled && 'איסוף עצמי אינו זמין כרגע. ניתן לבצע משלוח.'}
             {!settings.deliveryEnabled && !settings.pickupEnabled && 'משלוחים ואיסוף עצמי מושהים כרגע. ניתן לעיין בתפריט בלבד.'}
           </div>
@@ -996,21 +1117,23 @@ export default function ShopPage() {
             {settings.customerNoticeText}
           </div>
         )}
-        {(priceUpdateVisible || cartReconciliation.priceChanged) && (
+        {(priceUpdateVisible || cartReconciliation.priceChanged) && !cartOpen && orderStep === 'catalog' && (
           <div className="shop-status-banner is-info" data-testid="price-updated">
             המחירים בהזמנה עודכנו לפי התפריט החי.
           </div>
         )}
-        {operationalMessage && (
+        {operationalMessage && cartItems.length === 0 && (
           <div className="shop-status-banner is-info" data-testid="operational-message">
             {operationalMessage}
           </div>
         )}
       </div>
 
+      {unresolvedOrder && <section className="shop-submission-recovery" role="status"><strong>יש בקשת הזמנה שצריך לבדוק</strong><p>ייתכן שכבר נשמרה. בדיקת השליחה תחזור לאותה הזמנה ותמנע כפילות; אין צורך למלא או לשלוח מחדש.</p><button type="button" disabled={finalValidationPending} onClick={() => void recoverOrderSubmission()}>בדיקת מצב השליחה</button></section>}
+      {lastReceipt && <p className="shop-last-order"><a href={'/order/' + lastReceipt.trackingToken}>למעקב אחר הזמנה #{lastReceipt.orderNumber}</a></p>}
       <div className={`shop-layout ${orderStep === 'details' ? 'is-checkout-step' : ''}`}>
         {orderStep === 'catalog' ? (
-          <section className="shop-products" aria-label="תפריט מאפיית יחד">
+          <section className="shop-products" aria-label="תפריט מאפיית יחד" inert={finalValidationPending}>
 
             <div className="shop-category-nav">
               <div className="shop-category-tabs" aria-label="סינון קטגוריות">
@@ -1038,6 +1161,8 @@ export default function ShopPage() {
               </button>
             </div>
 
+            <p className="shop-food-notice">מידע על אלרגנים, מרכיבים וכמות עדיין אינו מלא בכל המוצרים. לבירור לפני הזמנה: <a href={bakeryInfo.phoneHref}><bdi>{bakeryInfo.phone}</bdi></a>.</p>
+            {visibleProducts.length === 0 && <div className="shop-empty-products" role="status">אין כרגע מוצרים בקטגוריה הזו. {selectedCategory !== allCategory && <button type="button" onClick={() => setSelectedCategory(allCategory)}>לכל המוצרים</button>}</div>}
             <div className="shop-grid">
               {visibleProducts.map((product, index) => {
                 const itemId = makeCartItemId(product);
@@ -1047,33 +1172,19 @@ export default function ShopPage() {
 
                 return (
                   <article className={`shop-product-card ${isLive && !product.availableToday ? 'is-unavailable' : ''}`} key={product.id} data-product-id={product.id}>
-                    <div className={`shop-product-media ${product.imageUrl ? 'has-product-image' : 'is-missing-image'}`}>
-                      {product.imageUrl ? (
-                        <img
-                          src={product.imageUrl}
-                          alt={product.name}
-                          loading={index > 5 ? 'lazy' : 'eager'}
-                          fetchPriority={index < 4 ? 'high' : 'auto'}
-                          decoding="async"
-                        />
-                      ) : (
-                        <div className="shop-product-placeholder" aria-label={`אין עדיין תמונה עבור ${product.name}`}>
-                          <ImageSquare size={30} weight="light" aria-hidden="true" />
-                          <span>תמונה תתווסף בקרוב</span>
-                        </div>
-                      )}
-                    </div>
+                    <ProductImage key={product.imageUrl} src={product.imageUrl} name={product.name} eager={index < 6} />
                     <div className="shop-product-body">
                       <div className="shop-product-copy">
                         <div className="shop-product-heading">
                           <h3>{product.name}</h3>
-                          {isLive && !product.availableToday && <span className="shop-stock-badge">אזל להיום</span>}
+                          {isLive && !product.availableToday && <span className="shop-stock-badge">{product.unavailableReason ? 'לבירור' : 'אזל להיום'}</span>}
                         </div>
                         {product.description ? <p>{product.description}</p> : null}
                       </div>
                       <div className="shop-product-foot">
                         <div className="shop-price-stack">
-                          {needsBusinessChoices(product) && <small>בחירת התוספות אינה זמינה באתר; יש לתאם עם המאפייה.</small>}
+                          {needsBusinessChoices(product) && <small>ההרכבה מתבצעת בתיאום עם המאפייה. לא ניתן להוסיף בלי בחירת מרכיבים.</small>}
+                          {product.unavailableReason && <small>{product.unavailableReason}</small>}
                           {hasIncludedPizzaChoice(product) && <small>לבחירה: עד 3 תוספות: הראשונה כלולה במחיר, כל תוספת נוספת ב־5 ₪.</small>}
                           <strong dir="ltr" aria-label={displayPrice}>
                             <span className="shop-price-currency" aria-hidden="true">₪</span>
@@ -1081,7 +1192,7 @@ export default function ShopPage() {
                           </strong>
                           {getVisibleProductUnitNote(product) && <span><bdi>{getVisibleProductUnitNote(product)}</bdi></span>}
                         </div>
-                        {cartItem && !productHasOptions ? (
+                        {needsBusinessChoices(product) ? <a className="shop-inquiry-button" href={bakeryInfo.phoneHref}>לתיאום עם המאפייה</a> : cartItem && !productHasOptions ? (
                           <div className="shop-card-quantity" aria-label={`כמות ${product.name}`}>
                             <button
                               type="button"
@@ -1108,7 +1219,7 @@ export default function ShopPage() {
                             disabled={!isProductOrderable(product)}
                           >
                             <Plus size={18} weight="bold" />
-                            {!isLive ? 'לא ניתן להזמין כרגע' : !product.availableToday ? 'אזל להיום' : 'הוספה'}
+                            {!isLive ? 'לא ניתן להזמין כרגע' : product.unavailableReason ? 'לא זמין להזמנה' : !product.availableToday ? 'אזל להיום' : 'הוספה'}
                           </button>
                         )}
                       </div>
@@ -1127,7 +1238,7 @@ export default function ShopPage() {
 
               <div className="shop-checkout-overview" aria-label="סיכום ההזמנה">
                 <div className="shop-checkout-overview-head">
-                  <span>סיכום ההזמנה</span>
+                  <span>סיכום ההזמנה <button className="shop-edit-cart-link" type="button" onClick={goToCatalog}>עריכת הסל</button></span>
                   <strong><bdi>{formatPrice(total)}</bdi></strong>
                 </div>
                 <ul className="shop-checkout-overview-items" aria-label="פריטים בהזמנה">
@@ -1161,13 +1272,27 @@ export default function ShopPage() {
                 className="shop-checkout-form shop-checkout-form--page"
                 id="shop-checkout-form"
                 noValidate
-                onSubmit={submitOrderToWhatsapp}
+                inert={finalValidationPending}
+                onSubmit={submitOnlineOrder}
               >
                 <div className="shop-form-panel shop-form-panel--fulfillment">
                   <div className="shop-form-title">אופן קבלה</div>
                   {renderFulfillmentSelector('form')}
                 </div>
 
+                {fulfillment === 'pickup' && <div className="shop-form-panel shop-form-panel--timing">
+                  <label htmlFor="checkout-pickupTime"><span className="shop-field-label">מועד איסוף <span aria-hidden="true">*</span></span>
+                    <select id="checkout-pickupTime" value={pickupTime} onChange={event => { setPickupTime(event.target.value); clearCheckoutError('pickupTime'); }} disabled={slotsLoading} required aria-required="true" aria-invalid={Boolean(checkoutErrors.pickupTime)} aria-describedby="pickup-time-help">
+                      <option value="">{slotsLoading ? 'טוענים מועדי איסוף…' : 'בחרו תאריך ושעה'}</option>
+                      {pickupSlots.map(slot => <option key={slot.startsAt} value={slot.startsAt}>{new Intl.DateTimeFormat('he-IL', { weekday: 'short', day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Jerusalem' }).format(new Date(slot.startsAt))}</option>)}
+                    </select>
+                    <span className="shop-field-help" id="pickup-time-help">המועד שבחרתם כפוף לאישור המאפייה. אין עדיין אישור להגיע.</span>
+                    {renderCheckoutError('pickupTime')}
+                  </label>
+                  {slotsError && <p className="shop-field-error" role="alert">{slotsError}</p>}
+                  {!slotsLoading && !slotsError && pickupSlots.length === 0 && <p>אין כרגע מועדי איסוף פנויים. אפשר לפנות למאפייה.</p>}
+                  <button type="button" className="shop-edit-cart-link" onClick={() => void reloadPickupSlots()} disabled={slotsLoading}>רענון מועדי איסוף</button>
+                </div>}
                 <div className="shop-form-panel">
                   <div className="shop-form-title">פרטי קשר</div>
                   <div className="shop-form-grid shop-form-grid--customer">
@@ -1183,6 +1308,7 @@ export default function ShopPage() {
                         }}
                         placeholder="שם המזמין/ה"
                         autoComplete="name"
+                        maxLength={100}
                         aria-invalid={Boolean(checkoutErrors.customerName)}
                         aria-describedby={checkoutErrors.customerName ? 'checkout-customerName-error' : undefined}
                         aria-required="true"
@@ -1423,7 +1549,8 @@ export default function ShopPage() {
                         setNotes(event.target.value);
                         clearCheckoutError('notes');
                       }}
-                      placeholder="קוד בלובי, להשאיר מחוץ לדלת, להתקשר כשמגיעים"
+                      maxLength={1000}
+                      placeholder={fulfillment === 'pickup' ? 'בקשות מיוחדות או מידע שחשוב לציין לאיסוף' : 'קוד בלובי, להשאיר מחוץ לדלת, להתקשר כשמגיעים'}
                       aria-invalid={Boolean(checkoutErrors.notes)}
                       aria-describedby={checkoutErrors.notes ? 'checkout-notes-error' : undefined}
                       rows={3}
@@ -1447,12 +1574,12 @@ export default function ShopPage() {
         >
           <div className="shop-cart-head">
             <h2>ההזמנה שלי</h2>
-            <button className="shop-cart-close" type="button" onClick={() => setCartOpen(false)} aria-label="סגור הזמנה">
+            <button className="shop-cart-close" type="button" onClick={() => { cancelValidation(); setCartOpen(false); }} aria-label="סגור הזמנה">
               <X size={20} weight="bold" />
             </button>
           </div>
 
-          <div className="shop-cart-scroll">
+          <div className="shop-cart-scroll" inert={finalValidationPending}>
             {cartItems.length ? (
               <div className="shop-cart-items">
                 {cartItems.map((item) => {
@@ -1481,8 +1608,8 @@ export default function ShopPage() {
                             ))}
                           </div>
                         )}
-                        {item.invalidReason && (
-                          <p className="shop-cart-item-warning" role="alert">{item.invalidReason}</p>
+                        {(item.invalidReason || (fulfillment === 'delivery' ? !product.availableForDelivery : !product.availableForPickup)) && (
+                          <p className="shop-cart-item-warning" role="alert">{item.invalidReason || `המוצר אינו זמין ל${fulfillment === 'delivery' ? 'משלוח' : 'איסוף עצמי'}. בחרו שיטה אחרת או הסירו אותו.`}</p>
                         )}
                       </div>
                       <div className="shop-cart-item-actions">
@@ -1526,7 +1653,7 @@ export default function ShopPage() {
                   <strong>{formatPrice(subtotal)}</strong>
                 </div>
                 <div className="shop-totals-row">
-                  <span>דמי משלוח</span>
+                  <span>{fulfillment === 'delivery' ? 'דמי משלוח' : 'איסוף עצמי'}</span>
                   <strong>{formatPrice(deliveryFee)}</strong>
                 </div>
                 {deliveryMinimumNotMet && (
@@ -1546,6 +1673,13 @@ export default function ShopPage() {
                 </div>
               </div>
 
+              {fulfillment === 'delivery' && cityId === 'other' && <p className="shop-warning">המשלוח ליישוב שבחרתם, מועדו והעלות הסופית דורשים אישור של המאפייה לפני השלמת ההזמנה.</p>}
+              {(operationalMessage || cartBlockingMessage || finalValidationPending || priceUpdateVisible || cartReconciliation.priceChanged) && <div className="shop-cart-feedback" data-testid="cart-feedback" role="status" aria-live="polite">
+                <p>{finalValidationPending ? 'מאמתים מחירים וזמינות מול המאפייה…' : operationalMessage || cartBlockingMessage || 'המחירים בהזמנה עודכנו. בדקו את הסכום לפני שממשיכים.'}</p>
+                {finalValidationPending && <button type="button" onClick={cancelValidation}>ביטול הבדיקה</button>}
+                {!finalValidationPending && shopStatus === 'degraded' && <button type="button" onClick={() => void refresh(true).catch(() => undefined)} disabled={isRefreshing}>ניסיון חוזר</button>}
+              </div>}
+
               {orderStep === 'catalog' ? (
                 <div className="shop-summary-actions">
                   <button
@@ -1556,7 +1690,7 @@ export default function ShopPage() {
                     aria-disabled={deliveryMinimumNotMet || !canAttemptContinue}
                     aria-describedby={deliveryMinimumNotMet ? 'shop-minimum-hint' : undefined}
                   >
-                    המשך לפרטי הזמנה
+                    {onlineOrdersEnabled ? 'המשך לפרטי הזמנה' : 'הזמנות אונליין בקרוב'}
                   </button>
                 </div>
               ) : (
@@ -1573,11 +1707,11 @@ export default function ShopPage() {
                     aria-describedby={checkoutErrors.order ? 'checkout-order' : 'checkout-whatsapp-helper'}
                     disabled={finalValidationPending || !canAttemptContinue}
                   >
-                    <WhatsappLogo size={21} weight="bold" />
-                    {finalValidationPending ? 'מאמתים את ההזמנה…' : 'שליחת ההזמנה בוואטסאפ'}
+                    <CheckCircle size={21} weight="bold" />
+                    {finalValidationPending ? 'שומרים את ההזמנה…' : 'שליחת הזמנה לאישור'}
                   </button>
                   <p className="shop-whatsapp-helper" id="checkout-whatsapp-helper">
-                    ההזמנה תישלח למאפייה לאישור.
+                    ההזמנה תישמר ותמתין לאישור המאפייה. אין כאן תשלום מקוון ולא מתבצע חיוב.
                   </p>
                   {checkoutErrors.order && (
                     <p className="shop-field-error shop-order-error" id="checkout-order" role="alert" tabIndex={-1}>
@@ -1588,13 +1722,20 @@ export default function ShopPage() {
                     <Copy size={18} weight="bold" />
                     העתקת הזמנה
                   </button>
-                  {copyStatus && <span className="shop-copy-status">{copyStatus}</span>}
+                  {copyStatus && <span className="shop-copy-status" role="status">{copyStatus}</span>}
+                  {manualCopyVisible && <label className="shop-manual-copy">סיכום להעתקה ידנית<textarea readOnly rows={7} value={orderSummary} onFocus={event => event.currentTarget.select()} /></label>}
                 </div>
               )}
             </div>
           )}
         </aside>
       </div>
+
+      <footer className="shop-footer">
+        <p>{bakeryInfo.name} · {bakeryInfo.pickupAddress} · <a href={bakeryInfo.phoneHref}><bdi>{bakeryInfo.phone}</bdi></a></p>
+        <p>הטיוטה נשמרת זמנית בלשונית הזו. הזמנה שנשלחה נשמרת במערכת וממתינה לאישור המאפייה. אין כאן תשלום מקוון.</p>
+        <LegalLinks />
+      </footer>
 
       {cartCount > 0 && orderStep === 'catalog' && (
         <button

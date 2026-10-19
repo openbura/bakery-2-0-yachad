@@ -42,7 +42,8 @@ try {
     '/work/supabase/seed.sql',
     '/work/supabase/tests/local/validate-audit.sql',
     '/work/supabase/tests/local/validate-public-contract.sql',
-    '/work/supabase/tests/local/validate-security.sql'
+    '/work/supabase/tests/local/validate-security.sql',
+    '/work/supabase/tests/local/validate-orders.sql'
   )
 
   foreach ($sqlFile in $sqlFiles) {

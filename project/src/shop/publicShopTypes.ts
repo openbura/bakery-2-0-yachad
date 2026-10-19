@@ -44,6 +44,7 @@ export type ShopProduct = {
   displayPriceText: string | null;
   priceUnitNote: string | null;
   optionGroups: ShopProductOptionGroup[];
+  unavailableReason?: string;
 };
 
 export type ShopStoreSettings = {

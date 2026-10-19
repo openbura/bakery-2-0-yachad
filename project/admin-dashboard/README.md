@@ -32,7 +32,7 @@ npm run preview
 - `VITE_BAKERY_ADMIN_SUPABASE_PUBLISHABLE_KEY`
 - `VITE_BAKERY_SHARED_LOGIN_EMAIL`
 - `VITE_BAKERY_SHARED_LOGIN_USERNAME`
-- `VITE_BAKERY_SHARED_LOGIN_PASSWORD`
+- סיסמת Supabase Auth מוקלדת במסך הכניסה; אין לשמור סיסמה במשתנה `VITE_*` ציבורי.
 
 הלקוח מאמת שה־URL שייך במדויק ל־`utyzqpjjjwjkkdlepkag`. אין fallback ל־mock, ל־localStorage או לפרויקט Supabase אחר. אין להשתמש במפתח secret/service-role בדפדפן.
 
