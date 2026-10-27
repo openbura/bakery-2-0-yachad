@@ -3,15 +3,17 @@ const {pgcrypto}=require('@electric-sql/pglite/contrib/pgcrypto');
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const PROJECT=path.resolve(__dirname,'../../project');
 const OWNER='11111111-1111-4111-8111-111111111111',MANAGER='22222222-2222-4222-8222-222222222222',OUTSIDER='33333333-3333-4333-8333-333333333333',INACTIVE='44444444-4444-4444-8444-444444444444';
-const fixture=()=>JSON.parse(fs.readFileSync(path.resolve(__dirname,'../public-fixture-20261019.json'),'utf8'));
+const fixturePath=process.env.BAKERY_LOCAL_FIXTURE_PATH||path.resolve(__dirname,'../public-fixture-20261019.json');
+const fixture=()=>JSON.parse(fs.readFileSync(fixturePath,'utf8'));
 const sourceFiles=['supabase/tests/local/bootstrap.sql',...fs.readdirSync(path.join(PROJECT,'supabase/migrations')).filter(f=>f.endsWith('.sql')).sort().map(f=>'supabase/migrations/'+f),'supabase/changes/web-push.sql','supabase/seed.sql'];
-const sourceFingerprint=crypto.createHash('sha256').update(sourceFiles.map(f=>f+'\n'+fs.readFileSync(path.join(PROJECT,f),'utf8')).join('\n')).update(fs.readFileSync(path.resolve(__dirname,'../public-fixture-20261019.json'))).digest('hex');
+const sourceFingerprint=crypto.createHash('sha256').update(sourceFiles.map(f=>f+'\n'+fs.readFileSync(path.join(PROJECT,f),'utf8')).join('\n')).update(fs.readFileSync(fixturePath)).digest('hex');
 async function replaceFixture(db){
  const data=fixture();
  await db.transaction(async tx=>{
   await tx.exec('delete from public.product_option_groups;');
+  if(process.env.BAKERY_LOCAL_FIXTURE_PATH)await tx.exec('update public.products set active=false; update public.categories set active=false;');
   for(const row of data.categories)await tx.query('insert into public.categories(id,name_he,sort_order,active) values($1,$2,$3,true) on conflict(id) do update set name_he=excluded.name_he,active=true',[row.id,row.name_he,row.sort_order]);
-  for(const row of data.products){const keys=Object.keys(row).filter(k=>/^[a-z_]+$/.test(k)&&!['created_at','updated_at'].includes(k));await tx.query(`update public.products set ${keys.filter(k=>k!=='id').map((k,i)=>`${k}=$${i+2}`).join(',')} where id=$1`,[row.id,...keys.filter(k=>k!=='id').map(k=>row[k])]);}
+  for(const row of data.products){const keys=Object.keys(row).filter(k=>/^[a-z_]+$/.test(k)&&!['created_at','updated_at'].includes(k));await tx.query(`insert into public.products(${keys.join(',')}) values(${keys.map((_,i)=>'$'+(i+1)).join(',')}) on conflict(id) do update set ${keys.filter(k=>k!=='id').map(k=>k+'=excluded.'+k).join(',')}`,keys.map(k=>row[k]));}
   for(const [table,rows]of [['product_option_groups',data.product_option_groups],['product_options',data.product_options]])for(const row of rows){const keys=Object.keys(row).filter(k=>/^[a-z_]+$/.test(k)&&!['created_at','updated_at'].includes(k));await tx.query(`insert into public.${table}(${keys.join(',')}) values(${keys.map((_,i)=>'$'+(i+1)).join(',')})`,keys.map(k=>row[k]));}
   const settings={...data.store_settings,id:'default'};const keys=Object.keys(settings).filter(k=>k!=='id'&&k!=='updated_at');await tx.query(`update public.store_settings set ${keys.map((k,i)=>`${k}=$${i+1}`).join(',')} where id='default'`,keys.map(k=>settings[k]));
  });

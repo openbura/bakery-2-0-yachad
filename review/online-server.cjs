@@ -2,7 +2,7 @@
 // Supabase Auth transport and Realtime are simulated; SQL, RLS and persistence are real.
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {openDatabase,replaceFixture,asRole,rpc,OWNER,PROJECT,sourceFingerprint}=require('./local-db/database.cjs');
-const PUBLIC_PORT=4320,ADMIN_PORT=4321,sessions=new Map(),refreshTokens=new Map();let control={},db,push;
+const PUBLIC_PORT=Number(process.env.BAKERY_LOCAL_PUBLIC_PORT||4320),ADMIN_PORT=Number(process.env.BAKERY_LOCAL_ADMIN_PORT||4321),sessions=new Map(),refreshTokens=new Map();let control={},db,push;
 const knownOrigins=new Set([`http://127.0.0.1:${PUBLIC_PORT}`,`http://127.0.0.1:${ADMIN_PORT}`]);
 const publishedKey='sb_publishable_local_review_only_not_a_real_key';
 const tables=new Set(['admin_users','categories','products','product_option_groups','product_options','store_settings','orders','order_items','order_item_options','order_status_history','order_attention','audit_log']);
@@ -72,13 +72,13 @@ async function handler(req,res,admin){const url=new URL(req.url,'http://127.0.0.
   return json({message:'Unknown local endpoint'},404);
  }
  if(!['GET','HEAD'].includes(req.method)){res.writeHead(405).end();return;}
- const dist=path.join(PROJECT,admin?'admin-dashboard/dist':'dist');let relative=decodeURIComponent(url.pathname),tracking=!admin&&/^\/order\/[^/]+\/?$/.test(relative);
+ const dist=path.resolve(admin?(process.env.BAKERY_LOCAL_ADMIN_DIST||path.join(PROJECT,'admin-dashboard/dist')):(process.env.BAKERY_LOCAL_PUBLIC_DIST||path.join(PROJECT,'dist')));let relative=decodeURIComponent(url.pathname),tracking=!admin&&/^\/order\/[^/]+\/?$/.test(relative);
  let file=path.resolve(dist,tracking?'order/index.html':'.'+relative);if(file!==dist&&!file.startsWith(dist+path.sep)){res.writeHead(403).end();return;}
  if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');
- let exists=fs.existsSync(file)&&fs.statSync(file).isFile();if(admin&&!exists&&['/','/login','/orders','/products','/settings'].includes(relative)){file=path.join(dist,'index.html');exists=fs.existsSync(file);}
+ let exists=fs.existsSync(file)&&fs.statSync(file).isFile();if(!exists&&((!admin&&(relative==='/shop'||tracking))||(admin&&['/','/login','/orders','/products','/settings'].includes(relative)))){file=path.join(dist,'index.html');exists=fs.existsSync(file);}
  const status=exists?200:404;if(!exists)file=path.join(dist,'404.html');if(!fs.existsSync(file)){res.writeHead(404).end('Not found');return;}
  res.statusCode=status;res.setHeader('Content-Type',mime[path.extname(file)]||'application/octet-stream');res.setHeader('Cache-Control','no-store');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('Content-Security-Policy',"connect-src 'self'; form-action 'self'; base-uri 'self'");if(tracking)res.setHeader('X-Robots-Tag','noindex,nofollow,noarchive');
- if(path.extname(file)==='.html')return res.end(fs.readFileSync(file,'utf8').replace('<head>','<head>'+injection).replace('<body>','<body><div style="background:#fff0c7;color:#5b3b11;padding:5px 12px;text-align:center;font:600 14px Assistant,sans-serif;direction:rtl">סביבת בדיקה מקומית בלבד — ללא סליקה או הזמנה לעסק החי</div>'));
+ if(path.extname(file)==='.html')return res.end(fs.readFileSync(file,'utf8').replace('<head>','<head>'+injection));
  if(req.method==='HEAD')return res.end();fs.createReadStream(file).pipe(res);
 }catch(error){json({code:error.code||'LOCAL_ERROR',message:error.message},error.code==='42501'?403:400);}}
-(async()=>{db=await openDatabase();push=await require('./push-tools/local-push.cjs').createLocalPush(db,()=>control);const servers=[http.createServer((req,res)=>void handler(req,res,false)).listen(PUBLIC_PORT,'127.0.0.1'),http.createServer((req,res)=>void handler(req,res,true)).listen(ADMIN_PORT,'127.0.0.1')];console.log('Local SQL orders: http://127.0.0.1:4320/shop | admin http://127.0.0.1:4321/orders');let closing=false;async function close(){if(closing)return;closing=true;for(const server of servers)server.close();push?.close();await db.close();process.exit(0);}process.on('SIGINT',close);process.on('SIGTERM',close);})().catch(error=>{console.error('Local SQL gateway failed:',error.message);process.exitCode=1});
+(async()=>{db=await openDatabase();push=await require('./push-tools/local-push.cjs').createLocalPush(db,()=>control);const servers=[http.createServer((req,res)=>void handler(req,res,false)).listen(PUBLIC_PORT,'127.0.0.1'),http.createServer((req,res)=>void handler(req,res,true)).listen(ADMIN_PORT,'127.0.0.1')];console.log('Local SQL orders ports',PUBLIC_PORT,ADMIN_PORT);let closing=false;async function close(){if(closing)return;closing=true;for(const server of servers)server.close();push?.close();await db.close();process.exit(0);}process.on('SIGINT',close);process.on('SIGTERM',close);})().catch(error=>{console.error('Local SQL gateway failed:',error.message);process.exitCode=1});

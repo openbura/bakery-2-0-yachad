@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "widths": [
+    390,
+    1440
+  ],
+  "passwordPrefill": false,
+  "unauthorizedDashboardAccess": false,
+  "directRouteRedirect": true,
+  "assetHashesMatch": true,
+  "errors": []
+}

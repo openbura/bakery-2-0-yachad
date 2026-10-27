@@ -1,0 +1,18 @@
+{
+  "deployment": "dpl_43agxq1NeF76KS4MJgLWnLgjbbQJ",
+  "state": "READY",
+  "publicUrl": "https://bakery-2-0-yachad-deploy.vercel.app/shop",
+  "rollback": "dpl_H8sX8HtEXAPEKdbcgcQuqvdG2bAS",
+  "orders": "WhatsApp draft handoff, user sends in WhatsApp",
+  "payment": false,
+  "remoteDatabaseChanges": false,
+  "actualMessagesSent": false,
+  "products": 222,
+  "visibleImageCaptions": 0,
+  "photoFraming": "unchanged",
+  "build": "PASS",
+  "lint": "PASS",
+  "publicCheckoutQA": "PASS 390/430/768/1440/1920",
+  "publicPagesQA": "PASS",
+  "audit": "2 preexisting high advisories; no dependency changes"
+}

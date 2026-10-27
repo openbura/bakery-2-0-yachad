@@ -387,6 +387,13 @@ begin
       into v_unit_total
       from public.product_options o join public.product_option_groups g on g.id = o.group_id
       where o.id = any(v_selected_ids);
+    elsif v_product.id = 'salads-01' then
+      select v_product.price_agorot
+        + greatest(count(*) filter (where g.code = 'group-02') - 2, 0) * 200
+        + coalesce(sum(o.price_delta_agorot) filter (where g.code <> 'group-02'), 0)
+      into v_unit_total
+      from public.product_options o join public.product_option_groups g on g.id = o.group_id
+      where o.id = any(v_selected_ids);
     else
       select v_product.price_agorot + coalesce(sum(o.price_delta_agorot), 0)
       into v_unit_total from public.product_options o where o.id = any(v_selected_ids);
@@ -400,6 +407,8 @@ begin
       select v_item_id, g.id, o.id, g.name_he, o.name_he,
         case when v_product.id in ('pizza-sambusak-01','pizza-sambusak-02','pizza-sambusak-03') and g.code in ('included-topping','group-01')
              then case when row_number() over (partition by g.id order by array_position(v_selected_ids, o.id)) = 1 then 0 else 500 end
+             when v_product.id = 'salads-01' and g.code = 'group-02'
+             then case when row_number() over (partition by g.id order by array_position(v_selected_ids, o.id)) <= 2 then 0 else 200 end
              else o.price_delta_agorot end,
         array_position(v_selected_ids, o.id)
       from public.product_options o join public.product_option_groups g on g.id = o.group_id

@@ -6,6 +6,7 @@ import { OwnerFacingError } from './serviceErrors';
 import { unsubscribeOwnerDevice } from '../../../src/push/pushApi';
 import { ownerPushApi } from './pushApi';
 import { onlineOrdersEnabled } from '../../../src/shop/release';
+import { adminSessionExpired, clearAdminActivity, recordAdminActivity } from './adminSessionActivity';
 
 function mapProfile(row: { user_id: string; display_name: string; role: 'owner' | 'manager'; active: boolean }): AdminProfile {
   return {
@@ -29,7 +30,7 @@ async function loadAuthorizedProfile(user: User) {
   }
 
   if (!data || data.user_id !== user.id || !data.active || !['owner', 'manager'].includes(data.role)) {
-    await client.auth.signOut();
+    await client.auth.signOut({ scope: 'local' });
     throw new OwnerFacingError('החשבון אינו מורשה לנהל את המאפייה.');
   }
 
@@ -60,7 +61,9 @@ export async function signInSharedAdmin(username: string, password: string) {
     throw new OwnerFacingError('שם המשתמש או הסיסמה אינם נכונים.');
   }
 
-  return loadAuthorizedProfile(data.user);
+  const profile = await loadAuthorizedProfile(data.user);
+  recordAdminActivity(profile.userId);
+  return profile;
 }
 
 export async function restoreAuthorizedSession(): Promise<AdminProfile | null> {
@@ -70,13 +73,26 @@ export async function restoreAuthorizedSession(): Promise<AdminProfile | null> {
     throw new OwnerFacingError('לא הצלחנו לשחזר את החיבור. בדקו את הרשת ונסו שוב.');
   }
   if (!data.session?.user) return null;
-  return loadAuthorizedProfile(data.session.user);
+  if (adminSessionExpired(data.session.user.id)) {
+    await expireInactiveAdminSession();
+    return null;
+  }
+  const profile = await loadAuthorizedProfile(data.session.user);
+  recordAdminActivity(profile.userId);
+  return profile;
+}
+
+export async function expireInactiveAdminSession() {
+  const { error } = await getSupabaseClient().auth.signOut({ scope: 'local' });
+  if (!error) clearAdminActivity();
+  // Keep the expired marker on network failure so reloading cannot resume it.
 }
 
 export async function signOutAdmin() {
   const pushStopped = onlineOrdersEnabled ? await unsubscribeOwnerDevice(ownerPushApi) : true;
-  const { error } = await getSupabaseClient().auth.signOut();
+  const { error } = await getSupabaseClient().auth.signOut({ scope: 'local' });
   if (error) throw new OwnerFacingError('לא הצלחנו להתנתק. נסו שוב.');
+  clearAdminActivity();
   return pushStopped;
 }
 

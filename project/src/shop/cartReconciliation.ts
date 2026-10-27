@@ -1,6 +1,8 @@
 import { unitPrice, priceProductSelections } from '../../admin-dashboard/src/domain/pricing';
 import type { PublicShopSnapshot, ShopCartItem } from './publicShopTypes';
 import { needsBusinessChoices } from './productPolicy';
+import { cateringTrayId, traySelectionError } from './cateringTray';
+import { familyPizzaGroupActive } from './familyPizza';
 
 export type ReconciliationResult = {
   cart: Record<string, ShopCartItem>;
@@ -44,10 +46,15 @@ export function reconcileCart(cart: Record<string, ShopCartItem>, snapshot: Publ
 
     for (const group of product.optionGroups) {
       const selectedCount = selections.filter((selection) => selection.groupCode === group.code).length;
+      if (!familyPizzaGroupActive(product.id, group.code, selections.find(selection => selection.groupCode === 'pizza-mode')?.optionCode)) {
+        if (selectedCount) invalidReason = 'יש לעדכן את מצב התוספות לפיצה.';
+        continue;
+      }
       if (selectedCount < group.minSelect || (group.maxSelect !== null && selectedCount > group.maxSelect)) {
         invalidReason = `יש לעדכן את הבחירות ב${group.name}.`;
       }
     }
+    if (product.id === cateringTrayId) invalidReason = invalidReason || traySelectionError(selections);
 
     const unitPriceAgorot = unitPrice(product.priceAgorot, selections);
     priceChanged ||= unitPriceAgorot !== item.unitPriceAgorot;

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "routes": [
+    "terms",
+    "privacy",
+    "shipping",
+    "cancellations",
+    "shop"
+  ],
+  "phonePreserved": true,
+  "errors": []
+}

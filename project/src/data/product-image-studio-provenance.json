@@ -1,0 +1,3196 @@
+{
+  "date": "2026-10-27",
+  "products": 222,
+  "uniquePhotos": 210,
+  "originalUrls": 212,
+  "labelledImages": 81,
+  "protectedLabelRegions": 214,
+  "webBytes": 54472750,
+  "updates": [
+    {
+      "file": "product-catalog-yachad.json",
+      "products": 222,
+      "non_image_fields": "identical to backup"
+    },
+    {
+      "file": "src/data/public-catalog-fallback.json",
+      "products": 222,
+      "non_image_fields": "identical to backup"
+    },
+    {
+      "file": "admin-dashboard/src/data/catalogSeed.json",
+      "products": 222,
+      "non_image_fields": "identical to backup"
+    }
+  ],
+  "originalPhotoHashes": "210/210 unchanged",
+  "componentAndStyles": "identical to backup",
+  "publication": "local only",
+  "orders": "disabled",
+  "assets": [
+    {
+      "index": 0,
+      "id": "bourekas-01",
+      "source_urls": [
+        "/catalog-original-20261026/bourekas-01.jpg"
+      ],
+      "product_ids": [
+        "bourekas-01",
+        "bourekas-01-half"
+      ],
+      "source_sha256": "1ed3be2f870cf6da2ebe23cdedd46645a9811c1026070d2be78c48d89c93195c",
+      "generated_sha256": "16708afd0f13616d7c71ce073125844007225705a3c8b98461b68fc412194a2d",
+      "final_sha256": "d566534717d4116f30828de18a287515d2ce4b5aa889d878a02bc9d1b6e9ba77",
+      "file": "000-bourekas-01-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 1,
+      "id": "bourekas-02",
+      "source_urls": [
+        "/catalog-original-20261026/bourekas-02.jpg"
+      ],
+      "product_ids": [
+        "bourekas-02",
+        "bourekas-02-half"
+      ],
+      "source_sha256": "859149067b3e42026fe882f37986a2cd10c268aa84fe7d080b8940dfa89ce8a6",
+      "generated_sha256": "54f9f7ba9a1cdeffe0fc32c7a9aa600ea686f716fb9790305b4abea5de9aaffb",
+      "final_sha256": "23dfb94fb46b6b1c1f66f8efe235cd34bc68349317ee22531f676940a4af94b3",
+      "file": "001-bourekas-02-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 2,
+      "id": "bourekas-03",
+      "source_urls": [
+        "/catalog-original-20261026/bourekas-03.jpg"
+      ],
+      "product_ids": [
+        "bourekas-03",
+        "bourekas-03-half"
+      ],
+      "source_sha256": "ae57b9a05968460ac27bee46d2679eebf1fcd405e5f4d3d87de631d0e124aa57",
+      "generated_sha256": "e68c3e1f48946ec5ebaa2be4157499f38116d7017510867386517232e28acd20",
+      "final_sha256": "627ca74103547b99b65ccb5f58719a636aad641f127ddb052626af1d53f7205d",
+      "file": "002-bourekas-03-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 3,
+      "id": "bourekas-04",
+      "source_urls": [
+        "/catalog-original-20261026/bourekas-04.jpg"
+      ],
+      "product_ids": [
+        "bourekas-04",
+        "bourekas-04-half"
+      ],
+      "source_sha256": "75747147665a1116e0b125a9553acabaeacc970f65d935401b59b6f70979fd6c",
+      "generated_sha256": "e9b8cdd5c28fb84b5e3ee4b12449625d8873e81bcd89905a4391e32e56b6a101",
+      "final_sha256": "49902d13593f2c88e79ac1ff2164dd026528868cd531c8838bc6f269b09e5965",
+      "file": "003-bourekas-04-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 4,
+      "id": "bourekas-05",
+      "source_urls": [
+        "/catalog-original-20261026/bourekas-05.jpg"
+      ],
+      "product_ids": [
+        "bourekas-05",
+        "bourekas-05-half"
+      ],
+      "source_sha256": "f11dec04a8bd52f048947c21eedea6303b63ffac83bc2e401e2c24bc2392cc75",
+      "generated_sha256": "e94cedf39452afd15cf6baf88799e118f3ce9ba134e52668f83ae955be0d4edd",
+      "final_sha256": "2f9b0da60e390976674d6390d503d32ee986fc68f729ac85023de3cdc3fe9f5e",
+      "file": "004-bourekas-05-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 5,
+      "id": "pizza-sambusak-01",
+      "source_urls": [
+        "/catalog-original-20261026/pizza-sambusak-01.jpg"
+      ],
+      "product_ids": [
+        "pizza-sambusak-01"
+      ],
+      "source_sha256": "e048ee8c64ce645ee159617d298554d4f2c7200f22e94079f23b0311526948d6",
+      "generated_sha256": "a198055353e6b7197be5caac7e1c3528000e8b30d1fce964fb67a0b6f2be29e6",
+      "final_sha256": "a9e08d4b88081628d72c6e39e8e8153dbcbc6fb2617194efa851d4d8e1df6f54",
+      "file": "005-pizza-sambusak-01-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 6,
+      "id": "pizza-sambusak-02",
+      "source_urls": [
+        "/catalog-original-20261026/pizza-sambusak-02.jpg"
+      ],
+      "product_ids": [
+        "pizza-sambusak-02"
+      ],
+      "source_sha256": "dd3d7e8cfe92b83935ad889f8487572b498d544277f5f6b83a9fc8bec1bb4b66",
+      "generated_sha256": "8a8e9c3ce8c6f9865bb60fdc82031241fdd9e8d5b6d762329426d7e4ddbf0dca",
+      "final_sha256": "4937980e25a5ae806f8c83fae21022a55148b019adbf815ec43561d4d810f610",
+      "file": "006-pizza-sambusak-02-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 7,
+      "id": "pizza-sambusak-03",
+      "source_urls": [
+        "/catalog-original-20261026/pizza-sambusak-03.jpg"
+      ],
+      "product_ids": [
+        "pizza-sambusak-03"
+      ],
+      "source_sha256": "59627163278af08e29849af07a14beeaff74bd65ff20d65e2fcc15d61bda0bda",
+      "generated_sha256": "06fe4458145bbf7484f77c3308d379efee9abd107f29ce88e2137fbbef6f9557",
+      "final_sha256": "57e6523879c0ab0ec2c9a56706cf35d63baa85936fe7077a63c8ce00b07df192",
+      "file": "007-pizza-sambusak-03-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 8,
+      "id": "pizza-sambusak-04",
+      "source_urls": [
+        "/catalog-original-20261026/pizza-sambusak-04.jpg"
+      ],
+      "product_ids": [
+        "pizza-sambusak-04"
+      ],
+      "source_sha256": "d9ab8504f14fbba039284555a5346e79e01cef3719cb15204aaf19993d82e4e9",
+      "generated_sha256": "5544f14c2872a99be579bdbbb81761bf930babd570bc640b32c2912fd64e4749",
+      "final_sha256": "46f7ef0959b845591c49581f42f15d665e2e450e18a6121830deeeb308414380",
+      "file": "008-pizza-sambusak-04-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 9,
+      "id": "pizza-sambusak-05",
+      "source_urls": [
+        "/catalog-original-20261026/pizza-sambusak-05.jpg"
+      ],
+      "product_ids": [
+        "pizza-sambusak-05"
+      ],
+      "source_sha256": "f3adff009be82aad0eb0609ac0b5219e116564e06191adaf4372b3c30ba812a2",
+      "generated_sha256": "5d77371ea295304a5d9ef6a70933e0b79452a7c77e013c9414cbb0fb97f77701",
+      "final_sha256": "07d63b99a62f89713e9f6540670df628d03f62ca5a3e480ec1d3587997b58163",
+      "file": "009-pizza-sambusak-05-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 10,
+      "id": "pizza-sambusak-06",
+      "source_urls": [
+        "/catalog-original-20261026/pizza-sambusak-06.jpg"
+      ],
+      "product_ids": [
+        "pizza-sambusak-06"
+      ],
+      "source_sha256": "7e326556a1b50da218933316713ee0e4a20ad538e55bbf104717ecb25f937873",
+      "generated_sha256": "728ccc2f351a0db1243a0a20f42cb7452f7c0e6c5f75bfbc2279a6952b3c2758",
+      "final_sha256": "f2678109e94b4cbe6ad82d9573b15a33f6dfb386f9f1246ba1e16a6fff844f96",
+      "file": "010-pizza-sambusak-06-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 11,
+      "id": "salads-01",
+      "source_urls": [
+        "/catalog-original-20261026/salads-01.jpg"
+      ],
+      "product_ids": [
+        "salads-01"
+      ],
+      "source_sha256": "96eb4516da61fc4dec641e0355a466c14fc65626fef96cd425b82b7b91e2f42d",
+      "generated_sha256": "dd46421f2163b70004f0352fcba36671d2269a64a1a8d8c1fe0e3ecd4b1bc9d8",
+      "final_sha256": "b9182e4efa39d6b0aa9cfb66c40991e75467b8fafc7f140881ad3cc1206c1d63",
+      "file": "011-salads-01-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 12,
+      "id": "sandwiches-toasts-01",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa98667355e414395fd9134.jpg"
+      ],
+      "product_ids": [
+        "sandwiches-toasts-01"
+      ],
+      "source_sha256": "967887adf49360921873ab3b103df0d233249101a6728ad81d6fd661a7e97ced",
+      "generated_sha256": "86db0bf5f2d1e324c69edfffe3b1892a70cbe8d7aa71835b1fbf72f2dbb2974a",
+      "final_sha256": "33c29f442a9a9d6e226f217e8de81f167e710bda13ff06942519a3e1f078cefd",
+      "file": "012-sandwiches-toasts-01-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 13,
+      "id": "sandwiches-toasts-02",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa98624d20e69014387143e.jpg"
+      ],
+      "product_ids": [
+        "sandwiches-toasts-02"
+      ],
+      "source_sha256": "da3e818bf49ac526b17d21a56026db3a31c0c57dde8ff5e3c402bd5ca8ffb5e6",
+      "generated_sha256": "12b5fd8e17a1cbe36b5e50795823fe58e3884145300aa15f23a03ff145071d7f",
+      "final_sha256": "1ab68fac951ba679fbc204d2a45ea941f7e7591015f5ce3c8ad77341fd9cc178",
+      "file": "013-sandwiches-toasts-02-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 14,
+      "id": "sandwiches-toasts-04",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa986cf8a8b21e505cc9ea4.jpg"
+      ],
+      "product_ids": [
+        "sandwiches-toasts-04"
+      ],
+      "source_sha256": "a76fa94ab9b8b83be50cce4f41bc877cbce3269bfad7f9e3fe4408b7a92fc288",
+      "generated_sha256": "a793664277e8af793671dedd93ec8ae2848833f7b1fa6481ff53304890e3fd98",
+      "final_sha256": "a222ed39a02bbb622581e7ae0bac7d52c6771a72a427fda27302153a8dbef600",
+      "file": "014-sandwiches-toasts-04-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 15,
+      "id": "sandwiches-toasts-05",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa9872fcca761f1e607166e.jpg"
+      ],
+      "product_ids": [
+        "sandwiches-toasts-05"
+      ],
+      "source_sha256": "5fa6746dbb612504c6daa10fdfdfefd63c82b54b48a9cd8a951331c7e5d550a9",
+      "generated_sha256": "51bd1e8f62f7600a7d8dfa944d7ea631fc62a6ba5517aca6e2eed01a428b0bef",
+      "final_sha256": "7d5f7f31778338293dd62bccbaa5de86d6de32c6ce6797570a6a71d5e0e0966c",
+      "file": "015-sandwiches-toasts-05-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 16,
+      "id": "sandwiches-toasts-06",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa9739271382e0610142a8c.jpg"
+      ],
+      "product_ids": [
+        "sandwiches-toasts-06"
+      ],
+      "source_sha256": "2b00c9c8495da4900f854469de935c8b97afe141c3ebae950ac78525c1dd4023",
+      "generated_sha256": "9da5fbb3a4c10c79abfc9c727de6995ec9709478528a680914db50fcd6689246",
+      "final_sha256": "1f302d1c6f90948e64a2b6915f342d68cf027d3dfabc6df6623df497bc4462e1",
+      "file": "016-sandwiches-toasts-06-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 17,
+      "id": "sweets-01",
+      "source_urls": [
+        "/catalog-original-20261026/sweets-01.jpg"
+      ],
+      "product_ids": [
+        "sweets-01",
+        "sweets-01-half"
+      ],
+      "source_sha256": "ffe8a61e40573ee12d229b2d9f377c06234f8ec7591eba668b59f3f3685d3993",
+      "generated_sha256": "7eb4c7f9b70c049e1efa9feb599ad07a2c9470a5b618aa05846d8f4400ef9956",
+      "final_sha256": "ce32512fcff9d588447864a9435808e1c6e7e09c14daa71783452b7b6f7cf5a3",
+      "file": "017-sweets-01-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 18,
+      "id": "sweets-02",
+      "source_urls": [
+        "/catalog-original-20261026/sweets-02.jpg"
+      ],
+      "product_ids": [
+        "sweets-02",
+        "sweets-02-half"
+      ],
+      "source_sha256": "dfc31dfe357803af1535cbbb056e9eb7d2b61a57eee4a73559f7403f9765b64d",
+      "generated_sha256": "ae8c13115a0929b5603f24c5d817e3c87bf80a3832bb2a82d0b0ce2f51bae21e",
+      "final_sha256": "ccaa7a4ba22f0e2f9e72755eeeecafe3d4fad2609912287f102da871ea979285",
+      "file": "018-sweets-02-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 19,
+      "id": "sweets-03",
+      "source_urls": [
+        "/catalog-original-20261026/sweets-03.jpg"
+      ],
+      "product_ids": [
+        "sweets-03",
+        "sweets-03-half"
+      ],
+      "source_sha256": "d83e9aee8d31da88e7d2799978f81a6a1cb538eac96a1c13ce85878b0cde6f2a",
+      "generated_sha256": "c64269e120cb8837daf1a5e6d5c8cf9e3757880fa1c6dbc3a79ed319e9336038",
+      "final_sha256": "ede4cd3a44d9b7859286def34b5991c9a08e46b1832baabe7f5b6e8ab19f2c15",
+      "file": "019-sweets-03-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 20,
+      "id": "sourdough-breads-01",
+      "source_urls": [
+        "/catalog-original-20261026/sourdough-breads-01.jpg"
+      ],
+      "product_ids": [
+        "sourdough-breads-01"
+      ],
+      "source_sha256": "17ed96ffbae5101f97ab15e25970d4913e2c8ec3eb26f9c7e6252107cb9fef5e",
+      "generated_sha256": "3578c49f8cac43be3d984aab823ab1a4d3316c37c819960e9b76a517f340296c",
+      "final_sha256": "8b41fdabbaab6d6a34cc84842327fb6bde3865c8dd83aba79dda2955de46fa86",
+      "file": "020-sourdough-breads-01-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 21,
+      "id": "sourdough-breads-02",
+      "source_urls": [
+        "/catalog-original-20261026/sourdough-breads-02.jpg"
+      ],
+      "product_ids": [
+        "sourdough-breads-02"
+      ],
+      "source_sha256": "e2ac9d21c52c86155eafecec666b8b45725402ee7af68260a445e8b54dccf6b6",
+      "generated_sha256": "af33871b4a17bc45f615a42b554698495b290c0f14f6b558b3ced40da3e20910",
+      "final_sha256": "1e224ca6fb9d9be4a49bec16f4a133573dd8eddbf835b30c3dc450ebb8db1f05",
+      "file": "021-sourdough-breads-02-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 22,
+      "id": "sourdough-breads-03",
+      "source_urls": [
+        "/catalog-original-20261026/sourdough-breads-03.jpg",
+        "/catalog-original-20261026/sourdough-breads-04.jpg"
+      ],
+      "product_ids": [
+        "sourdough-breads-03",
+        "sourdough-breads-04"
+      ],
+      "source_sha256": "6f1e65f05eced10bed322cd5ce73b91bf8a1e4167e7c35c10901c8da66eacecd",
+      "generated_sha256": "db6d1e84d60c7e9a266d2d22fe3448f69f2a0dc79f6ba359b71b38fe8b03c61c",
+      "final_sha256": "a3cb4fc97ce91011f53c80a18b7c6610e32b78ca764cb8d6731e6d2fb7deb9f2",
+      "file": "022-sourdough-breads-03-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 23,
+      "id": "sourdough-breads-05",
+      "source_urls": [
+        "/catalog-original-20261026/sourdough-breads-05.jpg"
+      ],
+      "product_ids": [
+        "sourdough-breads-05"
+      ],
+      "source_sha256": "8200a1e7b3deac8861eeefb48c1cf10859aca345eb815e3ece7aee9a3d32c333",
+      "generated_sha256": "a64866e0cbbbe919750ae513a7af7b9c4ae6a20ddaa640312ef7a1f6fb55e1b6",
+      "final_sha256": "06828460fa4838c4952a85f359da17585c061395fcfee4f08ca5240db811a27f",
+      "file": "023-sourdough-breads-05-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 24,
+      "id": "sourdough-breads-06",
+      "source_urls": [
+        "/catalog-original-20261026/sourdough-breads-06.jpg"
+      ],
+      "product_ids": [
+        "sourdough-breads-06"
+      ],
+      "source_sha256": "cbd8b53ae73346cb8dce9fdc775812bef842ce20fb45418d1e1919971bcf449d",
+      "generated_sha256": "999bd3b6cfcf2737decbd55c9546bcd708db3ad6a30922a45bd8e9dcf5c9f9e1",
+      "final_sha256": "a06b202045d223482ed8cf8e22075d613fa6d9fac3f2c7e0c73ab047970cecbc",
+      "file": "024-sourdough-breads-06-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 25,
+      "id": "cakes-01",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbef418db57a8339ed8407.jpg"
+      ],
+      "product_ids": [
+        "cakes-01"
+      ],
+      "source_sha256": "b2d01d9167f35a9d568d95274b4744426aebfda89b109c6e84a6857ee2680928",
+      "generated_sha256": "5e617200857ece31abed791ec86e24c1574420917e85a40043335a433303f2dd",
+      "final_sha256": "deeea01fbe4a149d83a6d8595396b02f1f083126cf3e6fd2904f17498819c3d7",
+      "file": "025-cakes-01-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 26,
+      "id": "cakes-02",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbee06d8519d98e7e8c2ef.jpg"
+      ],
+      "product_ids": [
+        "cakes-02"
+      ],
+      "source_sha256": "aa873b1b581bd638bd1f612e1e68bd5136c1017cb25d2b2a4edf542c9595d883",
+      "generated_sha256": "96dd350fe94f20bc910fa32ed6dc3297d39adaf0336fb89477d32df324582fa7",
+      "final_sha256": "1644e9f631a0e3edbbbd327edc9ca8cc9dd2e9fa396c6395cf7c235810c46993",
+      "file": "026-cakes-02-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 27,
+      "id": "cakes-03",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf43d0925b51acbcea8ca.jpg"
+      ],
+      "product_ids": [
+        "cakes-03"
+      ],
+      "source_sha256": "99a04752c2b3e9bf3e0cb6e2f8b2c474e6effff04cf9e58ce5ec9ca5d5d0d855",
+      "generated_sha256": "6608566599e67b7d5847e9e1c4cbbd499038a1edb6f198a918e2f5a8c7e13f48",
+      "final_sha256": "21e89f8c5fd00923add8ccc8de1bc2a77c20a26af2121f32b63d1a537f56f653",
+      "file": "027-cakes-03-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 28,
+      "id": "cakes-04",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbed566d63a782b9e00ec6.jpg"
+      ],
+      "product_ids": [
+        "cakes-04"
+      ],
+      "source_sha256": "a030bdad7dd5985cf8a2dd68698dfa3f11180595b60544ac4647370c75d5d59b",
+      "generated_sha256": "f62f6232fc2ae966cdb54c99a8bfec975bb692cd8459ff4ded9779d90660c6f5",
+      "final_sha256": "4b97f558c7d9d68b412ab9f7fe3e45feb56a552f42aab626a4ef51161c92978b",
+      "file": "028-cakes-04-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 29,
+      "id": "cakes-05",
+      "source_urls": [
+        "/catalog-original-20261026/cakes-05.jpg"
+      ],
+      "product_ids": [
+        "cakes-05"
+      ],
+      "source_sha256": "0cf636ba4bf53bc30a366efcb9aed66a6bae4a621e23d9c790ce30fb7faf7930",
+      "generated_sha256": "836ae103e100787f99a48393169bd6143039f278275e92db3c5bbdf7c24ecdb2",
+      "final_sha256": "f24bd26dae9e3e78d22c706483643b9c59345e57028a90bb4b673bd717f8cea1",
+      "file": "029-cakes-05-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 30,
+      "id": "cakes-06",
+      "source_urls": [
+        "/catalog-original-20261026/cakes-06.jpg"
+      ],
+      "product_ids": [
+        "cakes-06"
+      ],
+      "source_sha256": "3262d8c2d579bc35eb189d78599d48e6c71602b8fb8654dcbee7f43599bb221d",
+      "generated_sha256": "50cd67e4ac2fa58ad4a07a660e4bdc5632f0f3542483a5c27ee12f50b8708317",
+      "final_sha256": "777d85f20ccba04c38c72f234396198ea054d70da38cecbc9fe8667dc3383cd4",
+      "file": "030-cakes-06-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 31,
+      "id": "cakes-07",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf47ff254427dfe6f9935.jpg"
+      ],
+      "product_ids": [
+        "cakes-07"
+      ],
+      "source_sha256": "bdfe61c05b55f74d2913b6558828e9466aa8676ee54c317002c8ab08daa14be4",
+      "generated_sha256": "41066857e4a6d31aa87c9c88003cd82e8169d7f9a2cefa70bdf6233cda943fd6",
+      "final_sha256": "b900b189e0f415ebf1bc91ec1c0d0534ec4a6183200dd08f5ebecb77989a9f76",
+      "file": "031-cakes-07-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 32,
+      "id": "cakes-08",
+      "source_urls": [
+        "/catalog-original-20261026/cakes-08.jpg"
+      ],
+      "product_ids": [
+        "cakes-08"
+      ],
+      "source_sha256": "e7bf95f4bb4922a9dab0e4b7d124706efb73b38d36b6cc7d7f7a48f81c016763",
+      "generated_sha256": "04aee8f146ce56eb2adeb81119aca25f0e877f85e2dc7e21488468840fa35a52",
+      "final_sha256": "afadf8efd89203ff986f09c9d2a7017526cc8de2812413276408cc9043a22013",
+      "file": "032-cakes-08-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 33,
+      "id": "cakes-09",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbefb54c3fa3c6e1a6b9cd.jpg"
+      ],
+      "product_ids": [
+        "cakes-09"
+      ],
+      "source_sha256": "70178b6c3587a32934633dd2275df3282088385af44d21d9acbaf7101c3c6156",
+      "generated_sha256": "c07c64583315a02dc85e2478bda3d7ba7796330e5dd7634b29167e8fde822136",
+      "final_sha256": "a4ea1800d6a9bf63f89dbb120d36525d86b21b61d9d30a0c91e70c42c027cbab",
+      "file": "033-cakes-09-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 34,
+      "id": "cakes-10",
+      "source_urls": [
+        "/catalog-original-20261026/cakes-10.jpg"
+      ],
+      "product_ids": [
+        "cakes-10"
+      ],
+      "source_sha256": "e50fc3635929fcbf1b8bb8413f5e691e50ff289ee887045ceb8fec68a588eb18",
+      "generated_sha256": "44ef173efa208fa23dbadbb84d86053ff9673b693a5e9ccd6587a78844883fd4",
+      "final_sha256": "7d90cb3babdd81e6bb7e0769b9ce996cb6eded32a6df156a3699e1387e9cb51f",
+      "file": "034-cakes-10-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 35,
+      "id": "cakes-11",
+      "source_urls": [
+        "/catalog-original-20261026/cakes-11.jpg"
+      ],
+      "product_ids": [
+        "cakes-11"
+      ],
+      "source_sha256": "ec9ad54ef91ea94add5f6908aa73abc873acd80259d2e33774bb54402db077be",
+      "generated_sha256": "d7d1adc8c793f116611bd427d3c2781efa5da0f7d8532c3fdeed4894096ef276",
+      "final_sha256": "110a60d5405708834de8da07fbfcbf9eb07e24add20e50e1f8c94b375e62fedb",
+      "file": "035-cakes-11-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 36,
+      "id": "cakes-12",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf033432163db67c615db.jpg"
+      ],
+      "product_ids": [
+        "cakes-12"
+      ],
+      "source_sha256": "a71e0677743de5ba3810197a32ec58440a6c66cdaf501957e941dd6aad4150b3",
+      "generated_sha256": "6b97fc0e7fcc3cffc47c601382fa57eeedc56d9341d939d95acd23b2f606cc12",
+      "final_sha256": "1e29db527b10a9dc33e592b4b86f2ff1fa76021d07be19bed1140db2c8e2e08c",
+      "file": "036-cakes-12-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 37,
+      "id": "cakes-14",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf4b6379c6add429f6684.jpg"
+      ],
+      "product_ids": [
+        "cakes-14"
+      ],
+      "source_sha256": "5a045710c744ff8ef48fc176415fe11bb42688be08d534a7a0214e9faec3fc7e",
+      "generated_sha256": "4567c34ca1b7b256f0f249749a0e146d31ce525f0769c84f6db070f846bf0cc7",
+      "final_sha256": "3f87de4ce173a278c1cfa49556e614f0594072ac873223b2913b9305f6c84bb5",
+      "file": "037-cakes-14-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 38,
+      "id": "cookies-01",
+      "source_urls": [
+        "/catalog-original-20261026/cookies-01.jpg"
+      ],
+      "product_ids": [
+        "cookies-01"
+      ],
+      "source_sha256": "bea317bc9fcc8a3edc5f06f98c5d69aedf54964cea88e3a01cf4284f50f6948b",
+      "generated_sha256": "1d4ef71326129cbf5ebbddffa41475f0509b5de25d197a9b40c2e721cf289a20",
+      "final_sha256": "48e429b4c8d354b368e64b8686dbf76cf848e403bd55ab1b9d3921a021af639e",
+      "file": "038-cookies-01-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 39,
+      "id": "cookies-02",
+      "source_urls": [
+        "/catalog-wolt-20261026/28420dd8d7493ec9228f26a1.jpg"
+      ],
+      "product_ids": [
+        "cookies-02"
+      ],
+      "source_sha256": "7ed998c6ca7d280c5f5b48cf6044ae8c830a03a84b7a1c87b54f4d1cffeb794f",
+      "generated_sha256": "27a473582bce791793cfc725692588504365b909ea822c517090be51035e49e4",
+      "final_sha256": "edf9ebef60529c3d3f8d8a28e9129d7ccd1d3e8a7769a25ecb951f4ada8a1915",
+      "file": "039-cookies-02-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 40,
+      "id": "cookies-03",
+      "source_urls": [
+        "/catalog-wolt-20261026/3e53f257e041c56c40da4037.jpg"
+      ],
+      "product_ids": [
+        "cookies-03"
+      ],
+      "source_sha256": "0cb2113ee7d6cf082c0d24a606db3493ee82b7f5e0c8a5ce928ef107676801a0",
+      "generated_sha256": "e33b66921a91438cc0a7bae6ec6f03bda6c8552a3c1e59cdc99ee73de6a2a69a",
+      "final_sha256": "9caf081face28cd5ef9f4b8d123deefda4e7b1cc4bdbb7f28c3fb6daab240d36",
+      "file": "040-cookies-03-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 41,
+      "id": "cookies-04",
+      "source_urls": [
+        "/catalog-wolt-20261026/80233b3ac997eb570e5cc2df.jpg"
+      ],
+      "product_ids": [
+        "cookies-04"
+      ],
+      "source_sha256": "d2e6fd598bff6efa2766995c8bea168417a32902c0084d46dd2ce0e79a7de04c",
+      "generated_sha256": "0ab6e07d625c656d03396f106c469d0fc83c3e184a7ec7951641193b12eaac90",
+      "final_sha256": "687adaf81c7e00e2bb29b597237e518e6bf479b2f3ea344a64fd4d8b3af0e7af",
+      "file": "041-cookies-04-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 42,
+      "id": "cookies-05",
+      "source_urls": [
+        "/catalog-original-20261026/cookies-05.jpg"
+      ],
+      "product_ids": [
+        "cookies-05"
+      ],
+      "source_sha256": "efd97652223101137f4fba2ae353987ce18cef4e91b64631400ebcc14336af20",
+      "generated_sha256": "6555cce4b1ffa5ed2119424876b8698b90b47aa94fb9d0b8bcb0f3c979f84938",
+      "final_sha256": "6d7844c8dda91cbbabf9c37bf116da33a68eab811e2e29b0236dd06e1dc6ae42",
+      "file": "042-cookies-05-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 43,
+      "id": "cookies-06",
+      "source_urls": [
+        "/catalog-original-20261026/cookies-06.jpg"
+      ],
+      "product_ids": [
+        "cookies-06"
+      ],
+      "source_sha256": "0c64ce18b1357e444839419296c2ea2523500a72c6b3f8faa7d1e7a51e42af0e",
+      "generated_sha256": "2e16e33e54321bcd51d85d274b16dd9782ea556f4fe2417a9bb53323c28bb26d",
+      "final_sha256": "de481cd2c8ffc6ba5e7a39aa26644a1f888b779380648d102cc93db17b103c7a",
+      "file": "043-cookies-06-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 44,
+      "id": "cookies-07",
+      "source_urls": [
+        "/catalog-original-20261026/cookies-07.jpg"
+      ],
+      "product_ids": [
+        "cookies-07"
+      ],
+      "source_sha256": "2c56f076143e46dfaf9e98704b474d280e56c92ecca5a78448f40f2fd027032b",
+      "generated_sha256": "b8bb7c695f63af2e8f59afebef0b2abaa60cd4bd52cc03d40fef068a0a6db00b",
+      "final_sha256": "32129cdb96f0adce1b7496f74c33f24c481dc768f835a05729fcf4bd8050ee4e",
+      "file": "044-cookies-07-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 45,
+      "id": "cookies-08",
+      "source_urls": [
+        "/catalog-wolt-20261026/2da8df2571360041ced30281.jpg"
+      ],
+      "product_ids": [
+        "cookies-08"
+      ],
+      "source_sha256": "bee3c966ccb1fcf17302f961ace0d59b168f0fc9da290e73a50a2e89ddd16856",
+      "generated_sha256": "8107d226c55d767e144edf249fef53525083656e7872dbebfa18b0819b97c0e6",
+      "final_sha256": "a8ef65f99db4b86ed009db3df944eeb069831566e4e20fc286a10cdcbb98c9f4",
+      "file": "045-cookies-08-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 46,
+      "id": "cookies-09",
+      "source_urls": [
+        "/catalog-original-20261026/cookies-09.jpg"
+      ],
+      "product_ids": [
+        "cookies-09"
+      ],
+      "source_sha256": "fcb2df1ef98fb8a2983ad5d2ed29224c4a2a22d60417fb8c032e702c8de5a085",
+      "generated_sha256": "d608f7c2ee4f6323a40e24f4daa23db4a96229ed9171ed5572b5a92624ad149f",
+      "final_sha256": "c3f0a66be8aa0eb0e23b167818716e97e9f2eeafc62762ebcf457f85299b4b70",
+      "file": "046-cookies-09-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 47,
+      "id": "cookies-11",
+      "source_urls": [
+        "/catalog-wolt-20261026/9159ee2652d901203338aab1.jpg"
+      ],
+      "product_ids": [
+        "cookies-11"
+      ],
+      "source_sha256": "077ac6788eed212c8dd1e70ee18c688ca000d6fccb24db1306fbdc39533f78a6",
+      "generated_sha256": "d4a4729f93656c2e728b3cac70b41fa4325829d7593889b2458845f58bd980bf",
+      "final_sha256": "04e4ccf6a35664b890a0f44de8e9cd10d7981c0bebbf41006c2a9fcd72994039",
+      "file": "047-cookies-11-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 48,
+      "id": "bread-01",
+      "source_urls": [
+        "/catalog-wolt-20261026/73c7f7de292f166575b3ed4f.jpg"
+      ],
+      "product_ids": [
+        "bread-01",
+        "bread-02",
+        "bread-03"
+      ],
+      "source_sha256": "d4b002a13932f9ed5400aeaa413f8b3248e8a9607c1109823ad09a6ed2d89e23",
+      "generated_sha256": "48db08bf4a63a4adb7f1bccf846d0d5a816136f9f63a5bb5d5fb9263a81a8634",
+      "final_sha256": "d061de6fb4f0a3cc340d674adb508367d3ebfcd220ae21b847bd325d188d8234",
+      "file": "048-bread-01-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 49,
+      "id": "bread-04",
+      "source_urls": [
+        "/catalog-original-20261026/bread-04.jpg"
+      ],
+      "product_ids": [
+        "bread-04"
+      ],
+      "source_sha256": "2f95e92334fc54ef96f5d33f9efd5328d2a976456a78204f3fdc7527573440ef",
+      "generated_sha256": "593a9987993eac8f2488c6913f3af374942346e1eb68f410f4d6e208c75df305",
+      "final_sha256": "ae0498b13f1d8a5a14abdffa0bc0563758f5723b7cd034848a9a7afb3a918a48",
+      "file": "049-bread-04-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 50,
+      "id": "bread-05",
+      "source_urls": [
+        "/catalog-original-20261026/bread-05.jpg"
+      ],
+      "product_ids": [
+        "bread-05"
+      ],
+      "source_sha256": "2a2505525f68ad7420c720882e1e81fae6edf5964f2d1a36fc126b7da21fd5a7",
+      "generated_sha256": "fe8755dee17e413290972b7319411afce152c079acf6b93b8b31b17fa67ac5e1",
+      "final_sha256": "85307dc62a8005ce5565608509d4a6f2e2ea62301a956aaf390b8835fcd85d2d",
+      "file": "050-bread-05-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 51,
+      "id": "bread-06",
+      "source_urls": [
+        "/catalog-original-20261026/bread-06.jpg"
+      ],
+      "product_ids": [
+        "bread-06"
+      ],
+      "source_sha256": "eb7a217e2df35968356c40b0799c8b05ad00d82e768ee2c1dda3bd83078452cd",
+      "generated_sha256": "3f1d0068e0107b100dfc996c439025e7161f6e0b03c596578f7f9785f68b71f6",
+      "final_sha256": "5384b1c41d1bb27045f875e94a3c368c15c0249dab138829bd2584b0fb539b51",
+      "file": "051-bread-06-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 52,
+      "id": "bread-07",
+      "source_urls": [
+        "/catalog-original-20261026/bread-07.jpg",
+        "/catalog-original-20261026/bread-08.jpg"
+      ],
+      "product_ids": [
+        "bread-07",
+        "bread-08"
+      ],
+      "source_sha256": "998a5ad1ed3fd743236d5b38770eff6ebdece90569c9a7176f31bb15c4ca798e",
+      "generated_sha256": "df3c2be00adbce144baf00634c9998f2a0d1a12ab7b4da42dddf6206601381ce",
+      "final_sha256": "3f5cd2f2ee28dfcc29f94d7caad07b6cf4afb73d2afa529aa3c5d51fb6491840",
+      "file": "052-bread-07-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 53,
+      "id": "bread-09",
+      "source_urls": [
+        "/catalog-original-20261026/bread-09.jpg"
+      ],
+      "product_ids": [
+        "bread-09"
+      ],
+      "source_sha256": "00a8c521d4f6cedd2de0f225e3afb4930aa892b006e49857c5c273194ae87d06",
+      "generated_sha256": "27cd16d6b8812e0a623c424608686fda48a3bea55d09cbb0740cd37682ef41d8",
+      "final_sha256": "e379d4cec913e57bd500ae35143b958e7f3baa8e28636278de132c07c6daceab",
+      "file": "053-bread-09-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 54,
+      "id": "bread-10",
+      "source_urls": [
+        "/catalog-original-20261026/bread-10.jpg"
+      ],
+      "product_ids": [
+        "bread-10"
+      ],
+      "source_sha256": "3bc1000d786ea2ae6cbb28f14da0f1684daa80bc85b8f99896f07a14f9c686d3",
+      "generated_sha256": "b3d38749b0d5800af20a46dbd1f8494b173051c8717e5e05cde3e19870277cc5",
+      "final_sha256": "93648998b1701bc0c46e91204e3aa58c6fa2b040e776f8940a2800c90972b339",
+      "file": "054-bread-10-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 55,
+      "id": "bread-11",
+      "source_urls": [
+        "/catalog-original-20261026/bread-11.jpg"
+      ],
+      "product_ids": [
+        "bread-11"
+      ],
+      "source_sha256": "a197f41ca02dd052795081f755b8336567ced8149deb341365261e86ac9a0b54",
+      "generated_sha256": "fd3443b60e71b79e532c9d107b3e8b10a81ce3d0c767829e43ec2514d97873cb",
+      "final_sha256": "3d97cd57810f1b36df4c45c732be4dd44bdd7d6fe112f5dee401f36f85d6ee47",
+      "file": "055-bread-11-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 56,
+      "id": "bread-12",
+      "source_urls": [
+        "/catalog-original-20261026/bread-12.jpg"
+      ],
+      "product_ids": [
+        "bread-12"
+      ],
+      "source_sha256": "87eca253c6dd5e2ce4d955ca07e38d2614f85484b02cfc59e165ec4ace06fa89",
+      "generated_sha256": "ab7d89bf4bb5a8782979a822454e8718cffc0753961215d79556559d44ad7a24",
+      "final_sha256": "887c3d6540c87c780b07d7898f615a2f772d471fd12f8b068d316dbf117f16f6",
+      "file": "056-bread-12-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 57,
+      "id": "bread-13",
+      "source_urls": [
+        "/catalog-original-20261026/bread-13.jpg"
+      ],
+      "product_ids": [
+        "bread-13"
+      ],
+      "source_sha256": "3cfa08320ac86cc68734f7a3d9c04dbfd309e493a093620c6eb491f3ecc20909",
+      "generated_sha256": "3068f119ca1319b8e82fe0c0920d0d38c6c54237a6f0bdad62ea7f4ec6bc069e",
+      "final_sha256": "8bd618befce77f6803d799c4b0ebe27fe1ba44f89ed46d06b969b65eae915574",
+      "file": "057-bread-13-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 58,
+      "id": "bread-14",
+      "source_urls": [
+        "/catalog-original-20261026/bread-14.jpg"
+      ],
+      "product_ids": [
+        "bread-14"
+      ],
+      "source_sha256": "e9c91b3f43897671a668b46dc709f75462f410db024dd036d26a68598d0028bc",
+      "generated_sha256": "2c03b9bd0fa2caf52892781f191a4439a22029d08de8f735f85e76f75027456b",
+      "final_sha256": "52460c55a5c389a96b5979f32c234aee9dbf12a35f36c9349da74d4adbe532ea",
+      "file": "058-bread-14-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 59,
+      "id": "drinks-01",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-01.jpg"
+      ],
+      "product_ids": [
+        "drinks-01"
+      ],
+      "source_sha256": "e6cd91adc5c25bb194c8edb918241637cbde00c0ad0d2fafbbe2a3957fdd253c",
+      "generated_sha256": "dec62ad8922cb6c02cb703adc12950d83ed9ccb081009190c985097d8cbc2c14",
+      "final_sha256": "4d3a42b76c43d6b1c116b8c93f0f217bfca8d0c82a30aaa5461366c44984f993",
+      "file": "059-drinks-01-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 60,
+      "id": "drinks-02",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-02.jpg"
+      ],
+      "product_ids": [
+        "drinks-02"
+      ],
+      "source_sha256": "405af3e3ce9896d7fbfba59f3a2762c4c84e878d06f1bd9127cc3ee8e9ad4384",
+      "generated_sha256": "f0fa8c95c5683850b95ded14784356164a9914f900bd54678eea67542d5d07b0",
+      "final_sha256": "61fb747734a56018438fdba1c68b5394015133c64c860a7ff78a89313cb7c451",
+      "file": "060-drinks-02-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 61,
+      "id": "drinks-03",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-03.jpg"
+      ],
+      "product_ids": [
+        "drinks-03"
+      ],
+      "source_sha256": "2747ba23891e241913da70ffae0130dacc85c1964dfd925fc43b0cf5ce4688e3",
+      "generated_sha256": "1f60090103610a5ef4f89dd178f488fdde98cbb10b5636d374250064c3678305",
+      "final_sha256": "334dd2ed96669b71f929e8b258fda3b0d142449c55047db7d92ded79c0dba787",
+      "file": "061-drinks-03-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 62,
+      "id": "drinks-04",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-04.jpg"
+      ],
+      "product_ids": [
+        "drinks-04"
+      ],
+      "source_sha256": "9b4bb0f66bfcd3853504144d61215f39ed9e91750b0f569465840b9c553e1466",
+      "generated_sha256": "775c60459df951360b417f143cdb58fb18cee6d50927ad5b535a2ecc81b40754",
+      "final_sha256": "85f3339eff935bf3d97f51edb83e9ae0c8d4b658e1d1df3cbb2ee48c7218b6ae",
+      "file": "062-drinks-04-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 63,
+      "id": "drinks-05",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-05.jpg"
+      ],
+      "product_ids": [
+        "drinks-05"
+      ],
+      "source_sha256": "296586ac47301aded6f2eec5c510cddbd991ffa0cbc686eb67a3dc96915bf76c",
+      "generated_sha256": "edaaaeea363f10edd9f987aa6fbed59133901d57c2bf7f055407d7f069af0d56",
+      "final_sha256": "90fa4d25f1c67b4f1ae3ccbc913bee910d97e7bae2e8a44dc005f0dc009784fd",
+      "file": "063-drinks-05-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 64,
+      "id": "drinks-06",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-06.jpg"
+      ],
+      "product_ids": [
+        "drinks-06"
+      ],
+      "source_sha256": "04d8ff2472477f96c40a45259f9836fc9de5b7561d144173fff39e769652ca69",
+      "generated_sha256": "5a5004d91b24847fabd4644068b04a1824b3bf383509fd8a42a472cf2740e2a6",
+      "final_sha256": "ddd1676db56079f2117c68b4a4da45e5f705df7770bd5e3a833139591c1daf0f",
+      "file": "064-drinks-06-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 65,
+      "id": "drinks-07",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-07.jpg"
+      ],
+      "product_ids": [
+        "drinks-07"
+      ],
+      "source_sha256": "d79c6cdb2dbb8573509a790f0840344bd35d1ba4005cdeabb94e5c5c7b8352bd",
+      "generated_sha256": "6fbf899e3e116ddd9cd7498804e15312c2231384f3c5323e22fe571c46f837a1",
+      "final_sha256": "a25bfd8c233ac39b3eb4271716145a70dee0aa005fea2f37a5f3f8e1c6baf22b",
+      "file": "065-drinks-07-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 66,
+      "id": "drinks-08",
+      "source_urls": [
+        "/catalog-original-20261026/drinks-08.jpg"
+      ],
+      "product_ids": [
+        "drinks-08"
+      ],
+      "source_sha256": "408baa70bbfb3e24cf53c2701d725c06be056c54d44633706284fee7b1e006dd",
+      "generated_sha256": "38d116a4e93e71b0f242ca540b89c9f60397dea272e8817eb2ab8af4e15b2623",
+      "final_sha256": "6f1bea7a181c6a734fc29f0ecbcf826c58ca9ada2598d45302332344fec4584e",
+      "file": "066-drinks-08-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 67,
+      "id": "wolt-6e74dc3acd86bec49658fcef",
+      "source_urls": [
+        "/catalog-wolt-20261026/6e74dc3acd86bec49658fcef.jpg"
+      ],
+      "product_ids": [
+        "wolt-6e74dc3acd86bec49658fcef"
+      ],
+      "source_sha256": "76b099334f339977ec405e30e48aadfa59f0713c52c334671ecb8b936e080963",
+      "generated_sha256": "f795ed83a566d719767723ccd2e099dc779b4d1fb33491c906b83a3f183e31b9",
+      "final_sha256": "15309b0c63dcc4e7552f0ce2f3754d5417cf524b195f9e2719bee31eb1fc33c4",
+      "file": "067-wolt-6e74dc3acd86bec49658fcef-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 68,
+      "id": "wolt-8fd7741ec5d148ea9442671b",
+      "source_urls": [
+        "/catalog-wolt-20261026/8fd7741ec5d148ea9442671b.jpg"
+      ],
+      "product_ids": [
+        "wolt-8fd7741ec5d148ea9442671b"
+      ],
+      "source_sha256": "45f27b6dd1b1c7ba7f9e9cb12a0fba1a60a4729fda334f4dc1c7fd84c78f2b6a",
+      "generated_sha256": "617e41ed02e4bb00cd35270fcac95b0558c255eea7e9c7aaf593ca5d332a3dd0",
+      "final_sha256": "0139969677f3a0cba68da4a3e55ddf3e3cdf81d79509597600afa201c4c1f6ee",
+      "file": "068-wolt-8fd7741ec5d148ea9442671b-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 69,
+      "id": "wolt-e7e8d274780326d5b382174e",
+      "source_urls": [
+        "/catalog-wolt-20261026/e7e8d274780326d5b382174e.jpg"
+      ],
+      "product_ids": [
+        "wolt-e7e8d274780326d5b382174e"
+      ],
+      "source_sha256": "8f28b9f1e858dae2630240eca8afdb3f4f52f7712aef9cb50663fcf695d433c1",
+      "generated_sha256": "66bf9b6faead5c1b64c622e96e584b822df23deb5afd11d3bd2728e76e3bd05f",
+      "final_sha256": "afaebf775fb4bbbcb34f0442ff897b97d5aa00a3564bb849b7e02167e6346dd6",
+      "file": "069-wolt-e7e8d274780326d5b382174e-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 70,
+      "id": "wolt-38719041a19f7262766e1563",
+      "source_urls": [
+        "/catalog-wolt-20261026/38719041a19f7262766e1563.jpg"
+      ],
+      "product_ids": [
+        "wolt-38719041a19f7262766e1563"
+      ],
+      "source_sha256": "135b3fb84f9065b0ea5edefc0173476d484c7feb22ccc099d1056f90254c2136",
+      "generated_sha256": "73662f14963995889b3e02e5a496117ed0a21107aed9e17e6bd433a676028741",
+      "final_sha256": "cfe32aa38e2c6caa3e0a746e15340f4db7c2bc925e853d49f492acee197a139f",
+      "file": "070-wolt-38719041a19f7262766e1563-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 71,
+      "id": "wolt-c46e12af49eb3836171f19ef",
+      "source_urls": [
+        "/catalog-wolt-20261026/c46e12af49eb3836171f19ef.jpg"
+      ],
+      "product_ids": [
+        "wolt-c46e12af49eb3836171f19ef"
+      ],
+      "source_sha256": "2ee31114e2fc695b7cfaf0df8d9add35126b4cc4958293740705ce9d29e773bf",
+      "generated_sha256": "4dfe9c2af89b79998695a19469fab80bd732b51445c39e0f493d329fbd139482",
+      "final_sha256": "85f24047975a3465f52f9f993acde51e5be84c0efe728b5035c90c25569957f0",
+      "file": "071-wolt-c46e12af49eb3836171f19ef-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 72,
+      "id": "wolt-472a7920b54a654832411ad2",
+      "source_urls": [
+        "/catalog-wolt-20261026/472a7920b54a654832411ad2.jpg"
+      ],
+      "product_ids": [
+        "wolt-472a7920b54a654832411ad2"
+      ],
+      "source_sha256": "cb27630f5d26b6250c9057b2ce9b44e406cc614ac9f85815fc7e7e1cc42bde85",
+      "generated_sha256": "3227203a590c847c5716515fd9402f8f2a620807f43292d5248dad5269f0ad65",
+      "final_sha256": "7f71e8c9105a2af718023bb4219a195d889d7d33d987e0fb3cdf142c53e9a60e",
+      "file": "072-wolt-472a7920b54a654832411ad2-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 73,
+      "id": "wolt-9be107b1f8199b73cb4338d2",
+      "source_urls": [
+        "/catalog-wolt-20261026/9be107b1f8199b73cb4338d2.jpg"
+      ],
+      "product_ids": [
+        "wolt-9be107b1f8199b73cb4338d2"
+      ],
+      "source_sha256": "98e419e6ccf09905ea71682f3a5b8008fafebb7a5b8c93a62d2e09c5c57242a6",
+      "generated_sha256": "4fa765547da7d30b6e75ed9873d78ad97865d7831f6803c3eb09f1500cfd129b",
+      "final_sha256": "9b4f764d5111ecd0519b69cc31a982d8c563dba7965b69a83a06fbd477a155b1",
+      "file": "073-wolt-9be107b1f8199b73cb4338d2-studio.webp",
+      "original_label_regions": 5
+    },
+    {
+      "index": 74,
+      "id": "wolt-1a93da48baadfe827b2e51ec",
+      "source_urls": [
+        "/catalog-wolt-20261026/1a93da48baadfe827b2e51ec.jpg"
+      ],
+      "product_ids": [
+        "wolt-1a93da48baadfe827b2e51ec"
+      ],
+      "source_sha256": "46cf765e57b2de485aa2ef3a36048f3990254e4239fd47a3ec0f5b397537bdbb",
+      "generated_sha256": "a456a332fee8a54daf45cbd23be984d4585186c261e25e4ff8ad305c4c3e37b0",
+      "final_sha256": "63730211a36c66a2213971e0d497c07d7a67de7c8d684969f013a34299613433",
+      "file": "074-wolt-1a93da48baadfe827b2e51ec-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 75,
+      "id": "wolt-b3993c3949a17830d17f5cef",
+      "source_urls": [
+        "/catalog-wolt-20261026/b3993c3949a17830d17f5cef.jpg"
+      ],
+      "product_ids": [
+        "wolt-b3993c3949a17830d17f5cef"
+      ],
+      "source_sha256": "01c240c7836bdaa1a6d2777676e4eb114a0cc1c4d0d5fd9701f58abcddc8af2d",
+      "generated_sha256": "0c9ccf7baa0a805fd87fb47a850c1848e040d8d124c274333cbbe2aca2c838d6",
+      "final_sha256": "0fe21614213195cd50c78d92364967ea0ae424fc0bc3d65ac426e673cde52d17",
+      "file": "075-wolt-b3993c3949a17830d17f5cef-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 76,
+      "id": "wolt-eec045ce8be851102eb8d8af",
+      "source_urls": [
+        "/catalog-wolt-20261026/eec045ce8be851102eb8d8af.jpg"
+      ],
+      "product_ids": [
+        "wolt-eec045ce8be851102eb8d8af"
+      ],
+      "source_sha256": "d4265958ec0511354af14e4d1ecb51d4c69bf51af14b97cc865c07d91cf4b83b",
+      "generated_sha256": "a16079c3602cd0c545ccaff61f2de46d787978508ee4ea3585aaef21da50f3a0",
+      "final_sha256": "0157f47465d57e60e52035224cb1fca42684ea714ef5ea3852acfe1692d9048a",
+      "file": "076-wolt-eec045ce8be851102eb8d8af-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 77,
+      "id": "wolt-5b6a3b9fa50c9ebf7b4b4bca",
+      "source_urls": [
+        "/catalog-wolt-20261026/5b6a3b9fa50c9ebf7b4b4bca.jpg"
+      ],
+      "product_ids": [
+        "wolt-5b6a3b9fa50c9ebf7b4b4bca"
+      ],
+      "source_sha256": "a5ddf02e0c3ae114be7f21c264d4c536f4651bf49fd42e45d3844bd7997eb38c",
+      "generated_sha256": "22109b6f50737e102f320fc640956773ca61197f2840631805b199d21be6cb36",
+      "final_sha256": "7a4515967fe05d93d55c1132103adf1921c699df776c5026adaf6f59ffbcd593",
+      "file": "077-wolt-5b6a3b9fa50c9ebf7b4b4bca-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 78,
+      "id": "wolt-8f7e0f8b5e09c679709a88cd",
+      "source_urls": [
+        "/catalog-wolt-20261026/8f7e0f8b5e09c679709a88cd.jpg"
+      ],
+      "product_ids": [
+        "wolt-8f7e0f8b5e09c679709a88cd"
+      ],
+      "source_sha256": "cab6c355baed26b765017600fb321fa42fde5c4ef7cfd5e6a18c88bea96f9476",
+      "generated_sha256": "f55a7eaf5803810163d2e5e58e55e67ecc3b6b8e92a5c4eb7c0ba8697f6a94eb",
+      "final_sha256": "1d39c328be07ceae41afc276db2290d17a118f660caa8d07546316465232ba74",
+      "file": "078-wolt-8f7e0f8b5e09c679709a88cd-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 79,
+      "id": "wolt-aa69f72fcac01b4d56e7f5bc",
+      "source_urls": [
+        "/catalog-wolt-20261026/aa69f72fcac01b4d56e7f5bc.jpg"
+      ],
+      "product_ids": [
+        "wolt-aa69f72fcac01b4d56e7f5bc"
+      ],
+      "source_sha256": "374d5035fe77d166bb3c54022806274b73f89c84c4a8543ec87ef2fe650effc3",
+      "generated_sha256": "30bfe9fcc8e829f46cbab8488ed43036a3950953fff15367cd477a2c5db6b591",
+      "final_sha256": "21dd5342cd09c9a177828341112c15ea4f2e6779b5a071d5d5fb2690b5325b3d",
+      "file": "079-wolt-aa69f72fcac01b4d56e7f5bc-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 80,
+      "id": "wolt-7f5d8a9e90e2f08df488f2f5",
+      "source_urls": [
+        "/catalog-wolt-20261026/7f5d8a9e90e2f08df488f2f5.jpg"
+      ],
+      "product_ids": [
+        "wolt-7f5d8a9e90e2f08df488f2f5"
+      ],
+      "source_sha256": "c0d021bd0fed459ad715c147320138422a72593b1d5cd8877de7462c3ada71c5",
+      "generated_sha256": "c09c7e3e4e4ea3c07e5be972f9500925d94b8ca66cd7694b6df9f5b1f3d23da9",
+      "final_sha256": "3764f022f8a1b6e0ce7c5980a5ecaef27a47f239bf306ee639b361d891920b8c",
+      "file": "080-wolt-7f5d8a9e90e2f08df488f2f5-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 81,
+      "id": "wolt-75f073fb9785e7ff184e86d8",
+      "source_urls": [
+        "/catalog-wolt-20261026/75f073fb9785e7ff184e86d8.jpg"
+      ],
+      "product_ids": [
+        "wolt-75f073fb9785e7ff184e86d8"
+      ],
+      "source_sha256": "dac55676c06642c5d88ec71a1bc007f48edaac90ac9e5a948c3b37420f53d894",
+      "generated_sha256": "35e034b6f4fededd03228f43e0f05932d896b8ab8310ce87996b18bcf44f017d",
+      "final_sha256": "659208f11b0e9af18cfe793cb7a36db2c72b1bd85da98b0e9f99330e890a3426",
+      "file": "081-wolt-75f073fb9785e7ff184e86d8-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 82,
+      "id": "wolt-d3e679aadc051ccee3362d36",
+      "source_urls": [
+        "/catalog-wolt-20261026/d3e679aadc051ccee3362d36.jpg"
+      ],
+      "product_ids": [
+        "wolt-d3e679aadc051ccee3362d36"
+      ],
+      "source_sha256": "186bac6eecade274201fa04d4440339510f2179aa2b60765b7acbe9a676f5299",
+      "generated_sha256": "e4d23386df68161880a07358ea2cd7ac60b59e198489545fc3c26e7d36c6a251",
+      "final_sha256": "192ca8e4835f14b99a1807de51a7d621e16b694e78bb882bbd12a21714a34858",
+      "file": "082-wolt-d3e679aadc051ccee3362d36-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 83,
+      "id": "wolt-5fa974bd69c1de71557e4082",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa974bd69c1de71557e4082.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa974bd69c1de71557e4082"
+      ],
+      "source_sha256": "9c182df210ae289f92e4af5325860f0b3fc892983802587e0b4a5b5730cb09fc",
+      "generated_sha256": "39fd4bfce9f62b03ab1c4e32550a8fd66db908b5a3828dc6fb8f4fea2891dd89",
+      "final_sha256": "53fc12d745ab18ffd6de6569e16061c68e9261c6a090eaf670285d8095d7703f",
+      "file": "083-wolt-5fa974bd69c1de71557e4082-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 84,
+      "id": "wolt-5fa975a27e37081619b8b158",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa975a27e37081619b8b158.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa975a27e37081619b8b158"
+      ],
+      "source_sha256": "4aada7b8190be43a3e73c501a0561ca46a8b2a4e623bf1ac4a8f43a042339ad2",
+      "generated_sha256": "70dbc197e21aa203c3939da3c81767b6c41043e2dd1d736249459b990c7b09ad",
+      "final_sha256": "f29579eef7c31610e9e09c8afe299ada482408a07f51ea0c55739a3112edb20b",
+      "file": "084-wolt-5fa975a27e37081619b8b158-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 85,
+      "id": "wolt-5fa975c0657ca7b0abcca606",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa975c0657ca7b0abcca606.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa975c0657ca7b0abcca606"
+      ],
+      "source_sha256": "d122daf4f5acc2720c6e8a69ab940721da5f4cdb46fc56ca01559cf90ea65c6c",
+      "generated_sha256": "590fd0b741d2b385b9c3a02dc6e93d41ab511f25bcc04d240cb466457b74272f",
+      "final_sha256": "7fbfec13d6f41aade18d23cdea2df0c154fa1d73c74f9bca9ead90bb82035c9c",
+      "file": "085-wolt-5fa975c0657ca7b0abcca606-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 86,
+      "id": "wolt-5fa975caf226c472aff0e64a",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa975caf226c472aff0e64a.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa975caf226c472aff0e64a"
+      ],
+      "source_sha256": "fbaab1efc6edae794e88ad439516630695c3d244397d25fd2e2baf217c30609b",
+      "generated_sha256": "c1df0c3483eaa6181696d878286f42a343ec72d4e79e293cde8b9c907b3fc87a",
+      "final_sha256": "360ddcb79ffc35a8e2a32da3ac5aaaa4a7238894ebd0b0f7b209ef4eb7539d8f",
+      "file": "086-wolt-5fa975caf226c472aff0e64a-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 87,
+      "id": "wolt-5fa975d62a9b21d4a8277376",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa975d62a9b21d4a8277376.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa975d62a9b21d4a8277376"
+      ],
+      "source_sha256": "aa30d9af506e8c09cf4e1c569fe280dc97b3506c744d4b259870a856170dfebf",
+      "generated_sha256": "9b9a1913b59933041b667e61ebe40033db3669b6520ef44d3be41a77a8db96c9",
+      "final_sha256": "1e4eccb027f9f6a90476a9a77004537a79a2b02935ad3623e6bd43e1c7aa9fd8",
+      "file": "087-wolt-5fa975d62a9b21d4a8277376-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 88,
+      "id": "wolt-5fa975f974cabbbf9752cfcd",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa975f974cabbbf9752cfcd.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa975f974cabbbf9752cfcd"
+      ],
+      "source_sha256": "56cd3f55d02bfb4f5743fad419c6780b10eff438656a3456789c423771c8c9dc",
+      "generated_sha256": "e72a4cc0a8281e9400c8dc72ef453bdc697bc3339c17dcd5998157fc0ad76ede",
+      "final_sha256": "e6a510559900e4d7c3eb39b7afda1e490295e8f798d20046fefbad01c76be3d8",
+      "file": "088-wolt-5fa975f974cabbbf9752cfcd-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 89,
+      "id": "wolt-bbcb0d62bce4a78831dd49a9",
+      "source_urls": [
+        "/catalog-wolt-20261026/bbcb0d62bce4a78831dd49a9.jpg"
+      ],
+      "product_ids": [
+        "wolt-bbcb0d62bce4a78831dd49a9"
+      ],
+      "source_sha256": "c5fdd5352459f7a103c0487244c12ff46474507767ffabaacc9ff9256279b4e0",
+      "generated_sha256": "8cadf22ba9b5e17112c9f708d48a82e53a42986c4eb8d2ad92d1daaf6fc48f50",
+      "final_sha256": "cd999a21a68c66adf3981e70f069dacc3bcbf3407d631f08cec27b829c5da179",
+      "file": "089-wolt-bbcb0d62bce4a78831dd49a9-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 90,
+      "id": "wolt-8710674d7832f2998779b013",
+      "source_urls": [
+        "/catalog-wolt-20261026/8710674d7832f2998779b013.jpg"
+      ],
+      "product_ids": [
+        "wolt-8710674d7832f2998779b013"
+      ],
+      "source_sha256": "418082f7d9bd7a9d13123c369c8dc91115983b560a13b81d4d724593a8836cea",
+      "generated_sha256": "2fb15d96827ab09545a1c39ae794d33b03a2db4bb1c0554918333e56de0c66c8",
+      "final_sha256": "aa758f174a10edc7f32b98ba8ac7f5d1b7af2f01c13f383a7f2bcea1fb577a5a",
+      "file": "090-wolt-8710674d7832f2998779b013-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 91,
+      "id": "wolt-3a5e430e7d8faa6ebc62d63d",
+      "source_urls": [
+        "/catalog-wolt-20261026/3a5e430e7d8faa6ebc62d63d.jpg"
+      ],
+      "product_ids": [
+        "wolt-3a5e430e7d8faa6ebc62d63d"
+      ],
+      "source_sha256": "1b061b34a06bb06d39fbd93f2bd9dbcca2c20affb132334e265b22bcb5348e6a",
+      "generated_sha256": "67488bcc32b976f0690b4a042cefd353a8eb9ebba74b413747b0c8a3f2353924",
+      "final_sha256": "ca91eee07dd38f359458d8236566a24420b91fb2532a3549c31d7a5786d83408",
+      "file": "091-wolt-3a5e430e7d8faa6ebc62d63d-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 92,
+      "id": "wolt-450cb1abbc2279418bb418de",
+      "source_urls": [
+        "/catalog-wolt-20261026/450cb1abbc2279418bb418de.jpg"
+      ],
+      "product_ids": [
+        "wolt-450cb1abbc2279418bb418de"
+      ],
+      "source_sha256": "e8ea42d60f1df213141d9076d27dd9c1672e76a6d98cb49b95eea967809c45dc",
+      "generated_sha256": "fb3fafd20a122ad37b8ba0418a5ba93a3019dc749690a0242065ffde5ad4c993",
+      "final_sha256": "e691396e8590b2cd7968eaa9787e2c0c97f3dab6dfeb360e43f1149bebfb37db",
+      "file": "092-wolt-450cb1abbc2279418bb418de-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 93,
+      "id": "wolt-e0bd4ab11f0ff67491e8ec21",
+      "source_urls": [
+        "/catalog-wolt-20261026/e0bd4ab11f0ff67491e8ec21.jpg"
+      ],
+      "product_ids": [
+        "wolt-e0bd4ab11f0ff67491e8ec21"
+      ],
+      "source_sha256": "ad6535013eb6cdeebce6bfb682991faa15e6f3eefd633ecc88382a636c9f2152",
+      "generated_sha256": "98e54e9f2465a5de09354280b2e3641fa8cb1cfe3fafeace1916eb9beeaced92",
+      "final_sha256": "d2972b9973503cfebbe7725ad90f26b3049070c6a928303c787f4c322fa47041",
+      "file": "093-wolt-e0bd4ab11f0ff67491e8ec21-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 94,
+      "id": "wolt-501dfc55b450c84247c190bd",
+      "source_urls": [
+        "/catalog-wolt-20261026/501dfc55b450c84247c190bd.jpg"
+      ],
+      "product_ids": [
+        "wolt-501dfc55b450c84247c190bd"
+      ],
+      "source_sha256": "46e80bb6511837233b03fd1eb533bf56ef9d9ade0596b60c060fd80460ce0313",
+      "generated_sha256": "864569671b398640bc1195b6b22f6796df854b2d485ea4e188b7e9311dbfbde9",
+      "final_sha256": "d65158a16fd54e4e28b5c08adc550e8972db890ccbdf78cf728c3053cea0f9dd",
+      "file": "094-wolt-501dfc55b450c84247c190bd-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 95,
+      "id": "wolt-41ee6d9abf313beb627a3763",
+      "source_urls": [
+        "/catalog-wolt-20261026/41ee6d9abf313beb627a3763.jpg"
+      ],
+      "product_ids": [
+        "wolt-41ee6d9abf313beb627a3763"
+      ],
+      "source_sha256": "93171e12ece97cd367c2477cf77d870450bb12771980e46f4629ecb26b02b439",
+      "generated_sha256": "5dc5f792533d79f7ae2e5ebd59b471edb3c6d8525233a8b19da09b47c3d6b872",
+      "final_sha256": "3f5c892786e2ddc1e2be99abefddd57bd8afc76f31d7dc7aa6152e8d33d0752a",
+      "file": "095-wolt-41ee6d9abf313beb627a3763-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 96,
+      "id": "wolt-14b8c0d182bd616c3af07c89",
+      "source_urls": [
+        "/catalog-wolt-20261026/14b8c0d182bd616c3af07c89.jpg"
+      ],
+      "product_ids": [
+        "wolt-14b8c0d182bd616c3af07c89"
+      ],
+      "source_sha256": "fb807e970f392be6712417101c6b2be83024a0e98a76511ea24548db79a5b89e",
+      "generated_sha256": "684cab9f6c3d710e0eaec80fc35f032e2330e65f3d57a6128c09f959c3e116d4",
+      "final_sha256": "748e615e82824d07c4a4932337c42b87120164668a94bf641430dc9509805f72",
+      "file": "096-wolt-14b8c0d182bd616c3af07c89-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 97,
+      "id": "wolt-f040db21163b81c4eb1da05f",
+      "source_urls": [
+        "/catalog-wolt-20261026/f040db21163b81c4eb1da05f.jpg"
+      ],
+      "product_ids": [
+        "wolt-f040db21163b81c4eb1da05f"
+      ],
+      "source_sha256": "253f002654b3e88465449f4fd5281ae4fad54d6e805c9c5680a28afb20845d08",
+      "generated_sha256": "f1adabc6a1a81e538856292567996e2e84c0e923e9f9eed12f3219ac37449db2",
+      "final_sha256": "196be79298fc9541bc1b099bf0923eaa941808c8eed3ac54e7ae031d6899094c",
+      "file": "097-wolt-f040db21163b81c4eb1da05f-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 98,
+      "id": "wolt-5fa985babf597cb222ae68f5",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa985babf597cb222ae68f5.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa985babf597cb222ae68f5"
+      ],
+      "source_sha256": "49b58f9e010fbaa2016f9e7e35547bd3bf200c47ee74c45b881b131bfafdbba7",
+      "generated_sha256": "70cf2bca8b01edbd4402a96a47bb4acd43e9a3fe30e404da2d06e07b75419fcc",
+      "final_sha256": "8f13541f9170dc3b847ed17f7cdaf03f24bc30d771ec1fc5c22b2f3ccdc763a9",
+      "file": "098-wolt-5fa985babf597cb222ae68f5-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 99,
+      "id": "wolt-5fa9869c355e414395fd918d",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa9869c355e414395fd918d.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa9869c355e414395fd918d"
+      ],
+      "source_sha256": "f7a9653bb1c6cdb739f089dc5ac66a0952d12156cc52d9e5195c2a700f9b2f3a",
+      "generated_sha256": "b56af16897c4533dc573db6a1a215bf7c464f387efa54c08312f8f45e8957b7d",
+      "final_sha256": "882e74ccd7685c80fec99f68b402f6f7a27a1c2934f21ab5700cb95722417c79",
+      "file": "099-wolt-5fa9869c355e414395fd918d-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 100,
+      "id": "wolt-5fa987068a9a5e8aa52733db",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa987068a9a5e8aa52733db.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa987068a9a5e8aa52733db"
+      ],
+      "source_sha256": "43d2aa043075521949550be29c7fb78ccada2c640d9974b5a8e63d6ea009a582",
+      "generated_sha256": "a9604a254d2fcc11d93d64b8385bba582cd134abc4becbe387e1c188ad102bd6",
+      "final_sha256": "b209e51dd307dcf5898350549c9129390406eaaa98d60bee8040bde8b1c3c8ee",
+      "file": "100-wolt-5fa987068a9a5e8aa52733db-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 101,
+      "id": "wolt-5fa9877348c13bc7837a3d42",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa9877348c13bc7837a3d42.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa9877348c13bc7837a3d42"
+      ],
+      "source_sha256": "bb7ee9ce3639c031a319ef3a291e12b5e8d0b05edd03b385b91dbe6e953430de",
+      "generated_sha256": "8b2256ec024fd6282db50e8109fab93627635e47cb1e3a1fce898fbbabdf9d0d",
+      "final_sha256": "0d90aeb57506d37e86aac757ba937f61e1258ac405e778ade2f45680ea61a43b",
+      "file": "101-wolt-5fa9877348c13bc7837a3d42-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 102,
+      "id": "wolt-5fa987928a9a5e8aa52734a3",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa987928a9a5e8aa52734a3.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa987928a9a5e8aa52734a3"
+      ],
+      "source_sha256": "88e1f778c32e388ff8e26887a0f3021244ac8026dc608a3a434970688a55f4bf",
+      "generated_sha256": "24ab67e0b151e8438fa41aee6e6d82cb34a85f1d22a8815a0101b4a02ddd9ff1",
+      "final_sha256": "1e0715ea44970243ff21548776cf3c8006f4e6147739502a709f8b24be2a356f",
+      "file": "102-wolt-5fa987928a9a5e8aa52734a3-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 103,
+      "id": "wolt-5fa987ae31296922a514244b",
+      "source_urls": [
+        "/catalog-wolt-20261026/5fa987ae31296922a514244b.jpg"
+      ],
+      "product_ids": [
+        "wolt-5fa987ae31296922a514244b"
+      ],
+      "source_sha256": "880d21f30518fa8f1492d33e834c1b4112112282b77b404dcd917977a0ead6df",
+      "generated_sha256": "9adf92a6bde728aa19cdde9e67fdaee2cd088859e8cf10104fc910f3f3d45edd",
+      "final_sha256": "e9e70aaa41cf7b340e8afe40c3c71461b84bbaf018d613f99887538785dcffb7",
+      "file": "103-wolt-5fa987ae31296922a514244b-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 104,
+      "id": "wolt-61dbee836d63a782b9e01050",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbee836d63a782b9e01050.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbee836d63a782b9e01050"
+      ],
+      "source_sha256": "913fb1706bd17182fce1407ed8a56440111fbf28a8bd46c27eddcc7e5f67df23",
+      "generated_sha256": "c09a43020afec7b92afe31d678cc826eb87c801f0d4a084afe9c09e943141ce8",
+      "final_sha256": "6173af2605d620a448085bacfa1277c9bae22b26656c7eae1c2d189065cc1240",
+      "file": "104-wolt-61dbee836d63a782b9e01050-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 105,
+      "id": "wolt-61dbeebd379c6add429f5ec2",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbeebd379c6add429f5ec2.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbeebd379c6add429f5ec2"
+      ],
+      "source_sha256": "5ce2602b374d3c45d5a8ecf94bd6d0cf7d3dd09483c2bbd5382add12b2277500",
+      "generated_sha256": "fc6f1d25d0eef3e1bb94b04cacc3786d951968dfa4aad8b2290e46ae3004e3e6",
+      "final_sha256": "ce61c12dcf00acf151eafa05259482bd6dca67fa3dd96f52dd0f5084a3b6648a",
+      "file": "105-wolt-61dbeebd379c6add429f5ec2-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 106,
+      "id": "wolt-61dbf13b8331c4855c2f4e78",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf13b8331c4855c2f4e78.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbf13b8331c4855c2f4e78"
+      ],
+      "source_sha256": "53a1c4b6b2607523dfa7809e22a098a57ffe1c97130172764e234208f7dc0910",
+      "generated_sha256": "31745f700bc2c1644972b0e06a87c8cba6fa93f1f56c036d53f4234534c1d77f",
+      "final_sha256": "b98d07dce719d18388fc02a1182f066427cf6ae9591fa0a4990ba41a84c5dc0f",
+      "file": "106-wolt-61dbf13b8331c4855c2f4e78-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 107,
+      "id": "wolt-61dbf3e9db14fb4ae7f21cab",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf3e9db14fb4ae7f21cab.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbf3e9db14fb4ae7f21cab"
+      ],
+      "source_sha256": "fa444a1e0c817e64c544ec5a5dfe39cb63fa8b8c95503fc4c1e3e5e6a922fd3c",
+      "generated_sha256": "3785a8f407cf4d06478da446f75aab6e1c0bcb27bad0e6e69047a6e8abf0e664",
+      "final_sha256": "40ef8e101ceb9a5f21ff0536502060178e22d99b25650534377991c234a5faf7",
+      "file": "107-wolt-61dbf3e9db14fb4ae7f21cab-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 108,
+      "id": "wolt-61dbf4938a30223420e01f96",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf4938a30223420e01f96.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbf4938a30223420e01f96"
+      ],
+      "source_sha256": "45c33d10afc75b6faa38e9990c64b73de89f3d1e55391f04fd4921fd877314db",
+      "generated_sha256": "2f5e710550a9cd859eab70e3ca1403e01c6e1ad01eaa801088a531f2f6796352",
+      "final_sha256": "951c53d51a9c493d6defb1324681c6132dd4dc4d6334213d8c65680056ead6ba",
+      "file": "108-wolt-61dbf4938a30223420e01f96-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 109,
+      "id": "wolt-61dbf534a584e8d78a28a261",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf534a584e8d78a28a261.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbf534a584e8d78a28a261"
+      ],
+      "source_sha256": "46abb2ba443bb8b5359ee1d7ffb73b40b19b074241e4d9b06f50babd3f3b5673",
+      "generated_sha256": "7cc93c3146edef42693674d73a91032ad759122028c5a0420d70338137a7c913",
+      "final_sha256": "a89c29ead274bba86247c9da710a87ca3de95fd4f89bfd785ba8cf8c8a53ec5f",
+      "file": "109-wolt-61dbf534a584e8d78a28a261-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 110,
+      "id": "wolt-61dbf564114d151d77a5801a",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf564114d151d77a5801a.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbf564114d151d77a5801a"
+      ],
+      "source_sha256": "05179cd5ebe2b934cf4e46c0db9b2593a3fb18e73db8f4e6788db9e69ebb9bd1",
+      "generated_sha256": "34be5170fc3848fbaf67b010462579d830b66e0a3601ed02d7f6563ce59cc0c8",
+      "final_sha256": "80f030c57409185526dbbc879a969ecd2dbf5e4ae1458c05c33c69d1c08c4350",
+      "file": "110-wolt-61dbf564114d151d77a5801a-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 111,
+      "id": "wolt-61dbf5bd59c2eef013d41e11",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf5bd59c2eef013d41e11.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbf5bd59c2eef013d41e11"
+      ],
+      "source_sha256": "f9ef686dff1b030f8b7c5ac36cccfbecb709f9aa5c17e8fbda2c72c6cc800e38",
+      "generated_sha256": "ecf254d6f03774c442b8a6feddab419614fedd2e791d8e8c7082d6c39f2a04b0",
+      "final_sha256": "357abe01c50e15a5d576de1f3050ba4bf87d2110b2255b578167d9a07ee98c9e",
+      "file": "111-wolt-61dbf5bd59c2eef013d41e11-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 112,
+      "id": "wolt-0fca2dfd1cf63663168803ec",
+      "source_urls": [
+        "/catalog-wolt-20261026/0fca2dfd1cf63663168803ec.jpg"
+      ],
+      "product_ids": [
+        "wolt-0fca2dfd1cf63663168803ec"
+      ],
+      "source_sha256": "4578d255bc5e8bf15922db65ac3e8c50c7c31924f40ae400b575c50d0230b4a7",
+      "generated_sha256": "b7455b9dbe0fb695f1a9eef5fdb31c979f0415d2c230e41db9f8cb9ae1320f1e",
+      "final_sha256": "4bd0cf930ae276558ce23b22abfbb846272bfba75b6b87d4c029358b663bc5d8",
+      "file": "112-wolt-0fca2dfd1cf63663168803ec-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 113,
+      "id": "wolt-d1d019e8ee84f4c901045931",
+      "source_urls": [
+        "/catalog-wolt-20261026/d1d019e8ee84f4c901045931.jpg"
+      ],
+      "product_ids": [
+        "wolt-d1d019e8ee84f4c901045931"
+      ],
+      "source_sha256": "ee58b7036e6a87b3ef22ca4eff3f03af9281d1cb7a6c16679c5c4835e3b64d75",
+      "generated_sha256": "65ad70d66c2d8e64d6e05593ef2e50100c37720de5a23dc3cb2440cfa5908bc2",
+      "final_sha256": "0902f91830869e20bf500cb7f42c40ddd8a947611f4f47e1f6a5d13a09a4c981",
+      "file": "113-wolt-d1d019e8ee84f4c901045931-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 114,
+      "id": "wolt-933943e95ad123d7e188ce20",
+      "source_urls": [
+        "/catalog-wolt-20261026/933943e95ad123d7e188ce20.jpg"
+      ],
+      "product_ids": [
+        "wolt-933943e95ad123d7e188ce20"
+      ],
+      "source_sha256": "d69f8523e7edc1195ecfe194ac0f52f0eef2e385274add5f2666c423cd12f3d1",
+      "generated_sha256": "263ec9a918ecb2a7f938fec1b911dfea9fdb3cbc331e71210a44ae95a23f4603",
+      "final_sha256": "2d47267661c482dda6e1c620c406a70febe378d19d0fc664e62378217b19ddbd",
+      "file": "114-wolt-933943e95ad123d7e188ce20-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 115,
+      "id": "wolt-ddf71f055aaec78bc322a456",
+      "source_urls": [
+        "/catalog-wolt-20261026/ddf71f055aaec78bc322a456.jpg"
+      ],
+      "product_ids": [
+        "wolt-ddf71f055aaec78bc322a456"
+      ],
+      "source_sha256": "6556c7199de157680632822fa44aa88029f9f71af1feed2a0832ed5411e37de3",
+      "generated_sha256": "3b9a9d110d2d3525b39c635379f81144bee7be8304de11a50c77604a957d1716",
+      "final_sha256": "2245ea086f8ddf797de5d6d5ca61044ec7219ef851befcae0ece86a5c39abd33",
+      "file": "115-wolt-ddf71f055aaec78bc322a456-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 116,
+      "id": "wolt-4c240fde8367f6ee568a4570",
+      "source_urls": [
+        "/catalog-wolt-20261026/4c240fde8367f6ee568a4570.jpg"
+      ],
+      "product_ids": [
+        "wolt-4c240fde8367f6ee568a4570"
+      ],
+      "source_sha256": "66a93d9d8f7282285900d62cecdd43379b823d0062f1beb91fa93de24fb49b84",
+      "generated_sha256": "100e6095b7b5b2bc8e5ac9a13f918df18d91e46bc8786574e67853c56ec63011",
+      "final_sha256": "29c60bf163d71f7304be9f7e01e82770170bd9f323d8e674f0d6b5c5e6237e02",
+      "file": "116-wolt-4c240fde8367f6ee568a4570-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 117,
+      "id": "wolt-fc178d87a472c2a8450bc6bf",
+      "source_urls": [
+        "/catalog-wolt-20261026/fc178d87a472c2a8450bc6bf.jpg"
+      ],
+      "product_ids": [
+        "wolt-fc178d87a472c2a8450bc6bf"
+      ],
+      "source_sha256": "672b6913d299ee8e837ef6db8df2fd0dfc038d6b25585e25bb94f4ac8a6c0d28",
+      "generated_sha256": "56a5c42af9708bc34ed985ec867680cc566945fd6436df08a862a161e91038df",
+      "final_sha256": "d22984a51dba05b3068cbc0be44b6f9308021e79ae4ab6e7150f16b651b2b94e",
+      "file": "117-wolt-fc178d87a472c2a8450bc6bf-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 118,
+      "id": "wolt-2c190df10296397a5920cb8f",
+      "source_urls": [
+        "/catalog-wolt-20261026/2c190df10296397a5920cb8f.jpg"
+      ],
+      "product_ids": [
+        "wolt-2c190df10296397a5920cb8f"
+      ],
+      "source_sha256": "d0daf1554910758bfe0b0b8fba736826a46d2b37d9ef0fe276d4d5e1670d3ae4",
+      "generated_sha256": "9e655962e774657523fdd008cfd331e3ad64a1d49dbea299dd434f0ac907b3e1",
+      "final_sha256": "d90a5f979da8b8c3a17fe201d4ff520968f10863558562319b11901399aec69d",
+      "file": "118-wolt-2c190df10296397a5920cb8f-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 119,
+      "id": "wolt-e9a984bc27bf60ef56902f85",
+      "source_urls": [
+        "/catalog-wolt-20261026/e9a984bc27bf60ef56902f85.jpg"
+      ],
+      "product_ids": [
+        "wolt-e9a984bc27bf60ef56902f85"
+      ],
+      "source_sha256": "e07da6e2b748a83c19dbadb1c98d634c2d1584aa1d1b52b3d329998f6529a627",
+      "generated_sha256": "6714890dda2162cada4f1e0df855f002b64573932afbfe226c9a99328924cab3",
+      "final_sha256": "3b9505fb823f0e477139ab886eee83d7fa698bdc33c9192486445c4a31b76454",
+      "file": "119-wolt-e9a984bc27bf60ef56902f85-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 120,
+      "id": "wolt-76650117a6c09af10a9399ea",
+      "source_urls": [
+        "/catalog-wolt-20261026/76650117a6c09af10a9399ea.jpg"
+      ],
+      "product_ids": [
+        "wolt-76650117a6c09af10a9399ea"
+      ],
+      "source_sha256": "18b95c34b49a528227c8a96e89217d185d413df938cfb1c1a59d7079d71b3671",
+      "generated_sha256": "cd184f0ba7e6c7ce612ec36f0f75c45fbd7e196a84db4153ec0d60977af3ec50",
+      "final_sha256": "215ed04c8b58836f2a683e2e157cab6ee785839b6c2bec019f7d2790ef1be318",
+      "file": "120-wolt-76650117a6c09af10a9399ea-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 121,
+      "id": "wolt-c94362db4fb6b465f6ac74b8",
+      "source_urls": [
+        "/catalog-wolt-20261026/c94362db4fb6b465f6ac74b8.jpg"
+      ],
+      "product_ids": [
+        "wolt-c94362db4fb6b465f6ac74b8"
+      ],
+      "source_sha256": "4c6b6ae1b9b3ae4b8602dc623a77f92f3eba1776f9a9e516b8197594f94dc46f",
+      "generated_sha256": "221f59cfd3056b27aaf8a63910de9352b79d328243e0309e8e5fadfcdc2f0cc4",
+      "final_sha256": "fb5b89950158e58113fc86587f29e2c64aedb923495dd592e245975d95e8844c",
+      "file": "121-wolt-c94362db4fb6b465f6ac74b8-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 122,
+      "id": "wolt-9ee28c2c2699adeb1bfb62bc",
+      "source_urls": [
+        "/catalog-wolt-20261026/9ee28c2c2699adeb1bfb62bc.jpg"
+      ],
+      "product_ids": [
+        "wolt-9ee28c2c2699adeb1bfb62bc"
+      ],
+      "source_sha256": "d4c75f8416cadf1d26e4f6db08f20e67ebfe5add9e3acdb9cd7a05c31f1ff3cc",
+      "generated_sha256": "4d2d7431479d710fa2f0cbb83deefec04205000ef91e8dd5285c40aeeba7a396",
+      "final_sha256": "86b2fd09ef45b3362b8ac20b0d75683e9b89b86d8041e1f8651b02332ed91d69",
+      "file": "122-wolt-9ee28c2c2699adeb1bfb62bc-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 123,
+      "id": "wolt-eaa23308ec61acd71ebf0c81",
+      "source_urls": [
+        "/catalog-wolt-20261026/eaa23308ec61acd71ebf0c81.jpg"
+      ],
+      "product_ids": [
+        "wolt-eaa23308ec61acd71ebf0c81"
+      ],
+      "source_sha256": "9e1ec5c26c7674e901ebaed3c5c4d81979aa2ec7ef14005f21807be3b6e33c83",
+      "generated_sha256": "3d694f5c472f895680c56b22c681b2b527b36acdb2aca421c80b4e43e7a8818c",
+      "final_sha256": "f9b1206471fc2af3cabf721ae6299c729809ff3e6b3b63f14d848b5987b4d9f7",
+      "file": "123-wolt-eaa23308ec61acd71ebf0c81-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 124,
+      "id": "wolt-61dbf454e401888c929f6af1",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dbf454e401888c929f6af1.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dbf454e401888c929f6af1"
+      ],
+      "source_sha256": "4d5016638dff1381c1af23c2f1d598b07f5f8506ee647db9e117c63016118a56",
+      "generated_sha256": "2fe406572d5c7c2d8edd624064524c0c47950a3890e0b6a1471083c8acf94423",
+      "final_sha256": "027759d39abe762dcb5c7dba1c7e661c491b8df9a28c97c257fffaac7ca63180",
+      "file": "124-wolt-61dbf454e401888c929f6af1-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 125,
+      "id": "wolt-d1cdffaf5a5f6b2b6e3da8dc",
+      "source_urls": [
+        "/catalog-wolt-20261026/d1cdffaf5a5f6b2b6e3da8dc.jpg"
+      ],
+      "product_ids": [
+        "wolt-d1cdffaf5a5f6b2b6e3da8dc"
+      ],
+      "source_sha256": "0779e21e81fde2f89ca77b71a8429d607670f5ec32e106cc6d86d488b73a0af0",
+      "generated_sha256": "bf1fcbaf3e28a978621d135e445f89934fa2b4c0654c628ec4d47a6bed6f627c",
+      "final_sha256": "62003d3c22a65629f97bb72a584e1193d3881b455fdbc01dd730da7fad3b8e8b",
+      "file": "125-wolt-d1cdffaf5a5f6b2b6e3da8dc-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 126,
+      "id": "wolt-898a6153e0c997f4af095367",
+      "source_urls": [
+        "/catalog-wolt-20261026/898a6153e0c997f4af095367.jpg"
+      ],
+      "product_ids": [
+        "wolt-898a6153e0c997f4af095367"
+      ],
+      "source_sha256": "14cf2512cd36aa8855e11c41349b315d29226c1ab684bb33b5a3fc9a05295125",
+      "generated_sha256": "69523866342cec132d9737b8b11d796fe053ad59212fd3d41c9c35cb7626a601",
+      "final_sha256": "5400def9b155494d48bf660da32c9e6f204da4cf90e32ac39abdb4ab42fd2647",
+      "file": "126-wolt-898a6153e0c997f4af095367-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 127,
+      "id": "wolt-7f8fdd5c88a89b9bfab68d88",
+      "source_urls": [
+        "/catalog-wolt-20261026/7f8fdd5c88a89b9bfab68d88.jpg"
+      ],
+      "product_ids": [
+        "wolt-7f8fdd5c88a89b9bfab68d88"
+      ],
+      "source_sha256": "2fe9075b949491d11fc79b1ec86faa4fb6c0839c371b127c5564b1e2b9c79ac3",
+      "generated_sha256": "b63125a41aabb4b2a7fdfda20724c52a37ac39e7b797c342575b5613b3b0ee95",
+      "final_sha256": "6afb0ed14100a72e89a975793d6d7e9fdd41eb728d01f558ab81712a535618d4",
+      "file": "127-wolt-7f8fdd5c88a89b9bfab68d88-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 128,
+      "id": "wolt-58088efb2564f19bc7eee0e0",
+      "source_urls": [
+        "/catalog-wolt-20261026/58088efb2564f19bc7eee0e0.jpg"
+      ],
+      "product_ids": [
+        "wolt-58088efb2564f19bc7eee0e0"
+      ],
+      "source_sha256": "93ff9e38b52c1316752d3be4bfb1ac3de2032277c4eceb5af12ca8553b10b53b",
+      "generated_sha256": "638ea4f537fc41f481c7f88fc2412360ec242647d85d13ccc3525d22bf14080d",
+      "final_sha256": "7f2c93f00ee530a61295726c07b660073ba3552132b727b4a8c3850b86db3457",
+      "file": "128-wolt-58088efb2564f19bc7eee0e0-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 129,
+      "id": "wolt-cc39377ed8dac14896d5cc0a",
+      "source_urls": [
+        "/catalog-wolt-20261026/cc39377ed8dac14896d5cc0a.jpg"
+      ],
+      "product_ids": [
+        "wolt-cc39377ed8dac14896d5cc0a"
+      ],
+      "source_sha256": "309c42ff3d60015a6c5bb45018c43928f00289fc3335f93239cd992f1a22dcc1",
+      "generated_sha256": "48295edfe8e154f53871a823396292e05f8e51fca8bad3375ae5fd371a69db5f",
+      "final_sha256": "629cdac6a3c0059dffa85267d8c4ce577dc09786b856ad3793fa6946766c2763",
+      "file": "129-wolt-cc39377ed8dac14896d5cc0a-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 130,
+      "id": "wolt-b4c05e161992aa6573c08949",
+      "source_urls": [
+        "/catalog-wolt-20261026/b4c05e161992aa6573c08949.jpg"
+      ],
+      "product_ids": [
+        "wolt-b4c05e161992aa6573c08949"
+      ],
+      "source_sha256": "5e9401a79debb2f1230b6830ab6edcaf8ef5dc80389a07b82716c12f519c8d7f",
+      "generated_sha256": "256aa0d5de607e2efe16fdcbab4169c3bd6c2f5f900bf0d682d2f44a30590ba7",
+      "final_sha256": "2e3495e50ba9dbcf788ee2dfeaee3a51d5a165370dee894ba018796877633291",
+      "file": "130-wolt-b4c05e161992aa6573c08949-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 131,
+      "id": "wolt-4065be87b5a75fa795141383",
+      "source_urls": [
+        "/catalog-wolt-20261026/4065be87b5a75fa795141383.jpg"
+      ],
+      "product_ids": [
+        "wolt-4065be87b5a75fa795141383"
+      ],
+      "source_sha256": "6544ff610c29cc68cc4268dad3942e434e26863fcb17e2f688caec411199b412",
+      "generated_sha256": "c9a37862cc27758923e411cee0e596d26e12398d760153ab32206615d7e4f013",
+      "final_sha256": "5a48c805ec18624c23449c8ba697d5fcf85d2f8a9914f1d8315ab581ac98fde9",
+      "file": "131-wolt-4065be87b5a75fa795141383-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 132,
+      "id": "wolt-18fa86a561f037eee541aa64",
+      "source_urls": [
+        "/catalog-wolt-20261026/18fa86a561f037eee541aa64.jpg"
+      ],
+      "product_ids": [
+        "wolt-18fa86a561f037eee541aa64"
+      ],
+      "source_sha256": "2752b1e876f61af07c171250a31ddc88cc9ebbc7f8d722e4430c1999380c795c",
+      "generated_sha256": "2d3e332dd8ecd2a4b32bcd221526e2cffb90398fb300143a9c10eb2f7f17ffa9",
+      "final_sha256": "5e4b62cd53bc900d61b410882490542fa465c150ce2a72dd5a9f79fda969f32d",
+      "file": "132-wolt-18fa86a561f037eee541aa64-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 133,
+      "id": "wolt-313e1fafe9ac1f26dd608fa2",
+      "source_urls": [
+        "/catalog-wolt-20261026/313e1fafe9ac1f26dd608fa2.jpg"
+      ],
+      "product_ids": [
+        "wolt-313e1fafe9ac1f26dd608fa2"
+      ],
+      "source_sha256": "4762c156c495a087993ae51a7cc5745f7aee2c98bc625afc7e9709f59ada7125",
+      "generated_sha256": "ced9c40025833eba7f5f21c4988ced12afe789a6e65b49eb6df8a4e1ac662f7c",
+      "final_sha256": "e6a3d16d7c40cc2da5062efe9a3656e622e03e5b115db70fae5feb2cab5169ba",
+      "file": "133-wolt-313e1fafe9ac1f26dd608fa2-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 134,
+      "id": "wolt-45b19e4cffdc364dc296cf8d",
+      "source_urls": [
+        "/catalog-wolt-20261026/45b19e4cffdc364dc296cf8d.jpg"
+      ],
+      "product_ids": [
+        "wolt-45b19e4cffdc364dc296cf8d"
+      ],
+      "source_sha256": "72e17bb90d999c698deca5a59634edeb92f6b3ee80ccdc6f36d28d0dfd029b2e",
+      "generated_sha256": "23cfbde9f8ee08738c5bba8b4af142121afe7bac688bebc9423b0120c9847926",
+      "final_sha256": "923726061bcdd2c449735b58d83c42ee865b1cdbc95c457ceca01f0b54746cb4",
+      "file": "134-wolt-45b19e4cffdc364dc296cf8d-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 135,
+      "id": "wolt-4bc2f46b5b6eeb79879624c0",
+      "source_urls": [
+        "/catalog-wolt-20261026/4bc2f46b5b6eeb79879624c0.jpg"
+      ],
+      "product_ids": [
+        "wolt-4bc2f46b5b6eeb79879624c0"
+      ],
+      "source_sha256": "9805b9f92c32570788a959a818ad1cf4357a83d023acccec06413bf1c5df7b1b",
+      "generated_sha256": "f98da5845f65baf8b733c93d2f09d7a4acfdd955a96ec2b8c2aa9f081a10054c",
+      "final_sha256": "bbb63be81424c218a41a6f933a155ece6bebcf1bc08efe0600811d04fec8e658",
+      "file": "135-wolt-4bc2f46b5b6eeb79879624c0-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 136,
+      "id": "wolt-1d31b64fc816dd4223ab1e64",
+      "source_urls": [
+        "/catalog-wolt-20261026/1d31b64fc816dd4223ab1e64.jpg"
+      ],
+      "product_ids": [
+        "wolt-1d31b64fc816dd4223ab1e64"
+      ],
+      "source_sha256": "72292d85c40bda409eaf8279879691ac59a72d67bb8c5328e23864771bae1e20",
+      "generated_sha256": "936e75adf5306f2e899703c424efaaae768b0d0a95f6a27c53a9c4967ddf0cc9",
+      "final_sha256": "c9182928cf75fe219650f072e4fe4d18160745d792fa4211ce39d9e866cdd006",
+      "file": "136-wolt-1d31b64fc816dd4223ab1e64-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 137,
+      "id": "wolt-0fae176bf4db848aa3c684aa",
+      "source_urls": [
+        "/catalog-wolt-20261026/0fae176bf4db848aa3c684aa.jpg"
+      ],
+      "product_ids": [
+        "wolt-0fae176bf4db848aa3c684aa"
+      ],
+      "source_sha256": "2f68c4b206d81e413347202893fba6d7411708fab4da33a3d56810fcfebb1baf",
+      "generated_sha256": "46b76e16a4d6d6fd6b164ca7686fd8159153f65075d1731cb00010736f5ffb0a",
+      "final_sha256": "65c8e2a611277c9393f5ec63e665c9ea8f36395fcb88777b7a05764e523bcbc7",
+      "file": "137-wolt-0fae176bf4db848aa3c684aa-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 138,
+      "id": "wolt-6c64d05e3144e578436113ef",
+      "source_urls": [
+        "/catalog-wolt-20261026/6c64d05e3144e578436113ef.jpg"
+      ],
+      "product_ids": [
+        "wolt-6c64d05e3144e578436113ef"
+      ],
+      "source_sha256": "5b9be3f540d42539971dfb7fe396e01461800f22720aaebddbc52ad9a95209d9",
+      "generated_sha256": "362fb671074aacea4f128b3238e1c077e0c5f798218f1b933bc0d65e3155557e",
+      "final_sha256": "cf1331df4dd0aae491eb867a825a2169cb079467c31078226cf0ef2c9d90d1f3",
+      "file": "138-wolt-6c64d05e3144e578436113ef-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 139,
+      "id": "wolt-b0bd25e57a9cf63b7597c87b",
+      "source_urls": [
+        "/catalog-wolt-20261026/b0bd25e57a9cf63b7597c87b.jpg"
+      ],
+      "product_ids": [
+        "wolt-b0bd25e57a9cf63b7597c87b"
+      ],
+      "source_sha256": "c3ad0a7de0e6d90b3dc8741d1d4e3237f49b6e88f86004552db24c493a19ffe5",
+      "generated_sha256": "2d0f4bb6a218150fb4fb54ef0fa4932a913b974b954d6452b1bad29ce3681447",
+      "final_sha256": "a03aeb346d435ccd2884aebb061fc5c92d430c9caa8206ecadc0b8593bef7825",
+      "file": "139-wolt-b0bd25e57a9cf63b7597c87b-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 140,
+      "id": "wolt-24330c6b7a0e08bf629a61bb",
+      "source_urls": [
+        "/catalog-wolt-20261026/24330c6b7a0e08bf629a61bb.jpg"
+      ],
+      "product_ids": [
+        "wolt-24330c6b7a0e08bf629a61bb"
+      ],
+      "source_sha256": "9365260b6c2c07a8d39c12609b7c040e3913665ea31f5b70d3f4898692d77fbf",
+      "generated_sha256": "b70caed5e9db43a6217ef597c45c3774daf91b3d3cee22eef46543de4286241a",
+      "final_sha256": "0d61a033c59803c1181df7ee4d000cd62dd7e1b1aefcb0c594f3e77c9f3ca943",
+      "file": "140-wolt-24330c6b7a0e08bf629a61bb-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 141,
+      "id": "wolt-192c56cca3cfaba180b43021",
+      "source_urls": [
+        "/catalog-wolt-20261026/192c56cca3cfaba180b43021.jpg"
+      ],
+      "product_ids": [
+        "wolt-192c56cca3cfaba180b43021"
+      ],
+      "source_sha256": "bdab25c2377eded6539e47ee9d0f90b8fa3d3aac502964b0bc76ad4aa10688b7",
+      "generated_sha256": "a08ea2cbf3d572ee794fb46bf69b98015c00c2b213545a1adf1b5d79715aafff",
+      "final_sha256": "1cd65226d29082967289117dd0da5acc662e4521372aa60d3c3ea00f1988bcf2",
+      "file": "141-wolt-192c56cca3cfaba180b43021-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 142,
+      "id": "wolt-a72a7d6033a19cd36fbf06d4",
+      "source_urls": [
+        "/catalog-wolt-20261026/a72a7d6033a19cd36fbf06d4.jpg"
+      ],
+      "product_ids": [
+        "wolt-a72a7d6033a19cd36fbf06d4"
+      ],
+      "source_sha256": "25d11082484cd4aebd0a859887db79e63bd9f013d24f86768e588e30c0cf3ee7",
+      "generated_sha256": "b6d3d4ea4632fb07b11bc46cea3879352861698035c578c957268b13e08b7229",
+      "final_sha256": "d7cb0c043a741201f9c71de1b7dd6ed830467279f764b05077d7c2c9ace95bac",
+      "file": "142-wolt-a72a7d6033a19cd36fbf06d4-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 143,
+      "id": "wolt-bf3fb7ec9794a44d3da4e0be",
+      "source_urls": [
+        "/catalog-wolt-20261026/bf3fb7ec9794a44d3da4e0be.jpg"
+      ],
+      "product_ids": [
+        "wolt-bf3fb7ec9794a44d3da4e0be"
+      ],
+      "source_sha256": "50be4d73ff4cec2412dc3d4d1449458093bde39438ecaf5160d955671422e90d",
+      "generated_sha256": "aa05d185c5fd9a6b842e4628fbb016968a8bb4b4d28aa75d2ad15adb4f0b5a08",
+      "final_sha256": "e5f2f8672e45de1c839f3861abd5039860b4cf75f0e8e032a53f7dd1a5a5eb02",
+      "file": "143-wolt-bf3fb7ec9794a44d3da4e0be-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 144,
+      "id": "wolt-4aadcc8179ac4e02ef3ef0d3",
+      "source_urls": [
+        "/catalog-wolt-20261026/4aadcc8179ac4e02ef3ef0d3.jpg"
+      ],
+      "product_ids": [
+        "wolt-4aadcc8179ac4e02ef3ef0d3"
+      ],
+      "source_sha256": "50c491be3474b5d9a53c9af9ed6710ddceb2ad26770bb035dcb0bf23a6070b05",
+      "generated_sha256": "bb36cab1eb387e9e97bc4d49259c112a4960b9dedde41fea693d743b834c293e",
+      "final_sha256": "3f7f1857666fcc44d93ab9f926b8901a2e3b1cbb7cf53e21d9b01b22473faffe",
+      "file": "144-wolt-4aadcc8179ac4e02ef3ef0d3-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 145,
+      "id": "wolt-73d07ee2af878eea2035018d",
+      "source_urls": [
+        "/catalog-wolt-20261026/73d07ee2af878eea2035018d.jpg"
+      ],
+      "product_ids": [
+        "wolt-73d07ee2af878eea2035018d"
+      ],
+      "source_sha256": "ea58e663adfab85ea759b85575f23058b5c14e490375487c22eff69e45d4218c",
+      "generated_sha256": "11212f43396619c360450941f4ea587a85d30a379ac7880897a9cd7441215f98",
+      "final_sha256": "f3e5639ccb40e9fad93ddc5df48b62012e9b433961a30969e068bfe2a10e7f7f",
+      "file": "145-wolt-73d07ee2af878eea2035018d-studio.webp",
+      "original_label_regions": 5
+    },
+    {
+      "index": 146,
+      "id": "wolt-5c16156da0338e899d19902e",
+      "source_urls": [
+        "/catalog-wolt-20261026/5c16156da0338e899d19902e.jpg"
+      ],
+      "product_ids": [
+        "wolt-5c16156da0338e899d19902e"
+      ],
+      "source_sha256": "ffce415a4a1641cc667e6a3c30e78ef72f16cef54d62d69738c8fdec51e52bd2",
+      "generated_sha256": "702035658d6d7bece912c16be4fc9828fd367f7d2cdd8374be61d3081bf51d77",
+      "final_sha256": "455b8d457e144dc1a7aa86ec940ddde361c4f4752ac17e5e45aacc27dc6cefa0",
+      "file": "146-wolt-5c16156da0338e899d19902e-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 147,
+      "id": "wolt-23feb757d31f667918c57536",
+      "source_urls": [
+        "/catalog-wolt-20261026/23feb757d31f667918c57536.jpg"
+      ],
+      "product_ids": [
+        "wolt-23feb757d31f667918c57536"
+      ],
+      "source_sha256": "0577cacf73eb00cf3e9d237d61c7d432f94f7e7eb8c4804e4c426dc0c570e86d",
+      "generated_sha256": "38e9ee47b6445c514c6449ce57b9173f881881c9ff5d1e06051a75adaf87a839",
+      "final_sha256": "a65d21ef0c4eb1ff3bc103639bde0094fe7aa65f03996a80219a29551c6f7879",
+      "file": "147-wolt-23feb757d31f667918c57536-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 148,
+      "id": "wolt-5d02cb7aaa232d85071866c7",
+      "source_urls": [
+        "/catalog-wolt-20261026/5d02cb7aaa232d85071866c7.jpg"
+      ],
+      "product_ids": [
+        "wolt-5d02cb7aaa232d85071866c7"
+      ],
+      "source_sha256": "e190a0236d507236f0c523ea39861e434d52240cb5c9c7f1a7afbd7073bbcbd9",
+      "generated_sha256": "e8547888158fea46877611111c486f44f68ee80eb4a3d5ef5df248ef93144b83",
+      "final_sha256": "1fe0bde22ec92fc9016fac66435f1d5e8f8228cf1bc1361bf1ad2b4b4d5235fd",
+      "file": "148-wolt-5d02cb7aaa232d85071866c7-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 149,
+      "id": "wolt-96b628f31f69ba140b723b49",
+      "source_urls": [
+        "/catalog-wolt-20261026/96b628f31f69ba140b723b49.jpg"
+      ],
+      "product_ids": [
+        "wolt-96b628f31f69ba140b723b49"
+      ],
+      "source_sha256": "ca35568403474619a4a50dafd8051faa861bef1b11b847225d8cdb7387e1e918",
+      "generated_sha256": "21e817c3b7f317a0453e81b287dfc12333042f0496b41846f8e2450c8a66ea45",
+      "final_sha256": "a4b2f824ec13bf0fc1c37917fec7dbc01d8e1a5b9d0fa62a454c3b825fa94972",
+      "file": "149-wolt-96b628f31f69ba140b723b49-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 150,
+      "id": "wolt-8750c31e580fc306afab504f",
+      "source_urls": [
+        "/catalog-wolt-20261026/8750c31e580fc306afab504f.jpg"
+      ],
+      "product_ids": [
+        "wolt-8750c31e580fc306afab504f"
+      ],
+      "source_sha256": "3e9649e87ab352a9fac781fc7494ac93e0418dbc0da1e662f356ad7e68e2ba7f",
+      "generated_sha256": "08b2563b7ca7ee8f2423f0e5f3a6627a065f9b2540fc3406574e599ece36f3a6",
+      "final_sha256": "8620261a64816af15199f70d889819dbe94fb0938b8c804da8b5f825547982e7",
+      "file": "150-wolt-8750c31e580fc306afab504f-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 151,
+      "id": "wolt-b4146de46598404f8420c926",
+      "source_urls": [
+        "/catalog-wolt-20261026/b4146de46598404f8420c926.jpg"
+      ],
+      "product_ids": [
+        "wolt-b4146de46598404f8420c926"
+      ],
+      "source_sha256": "997a2e5d9009f01aab6921ecf4b4e5558dd57bdb7f6e07eb08a8aeaaa823893e",
+      "generated_sha256": "34785a21cd4c9c4dbf7bee56a2a8d9f12613ce0d187ee083fcd0b64f4e6cc835",
+      "final_sha256": "8364dbed5e354154b41600048e641808e51028a5d910c99f542657df3ee41e5f",
+      "file": "151-wolt-b4146de46598404f8420c926-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 152,
+      "id": "wolt-6402f4497c35be7ab74c9ad6",
+      "source_urls": [
+        "/catalog-wolt-20261026/6402f4497c35be7ab74c9ad6.jpg"
+      ],
+      "product_ids": [
+        "wolt-6402f4497c35be7ab74c9ad6"
+      ],
+      "source_sha256": "5daa2483db09542824cbf5073f8c9ee077247da176fe0ef5c51522cb4fbb9c75",
+      "generated_sha256": "057b3ff60078ba0b7e53b4ebea85f8ae9c66e9aacb38e426468c16a11bd68e62",
+      "final_sha256": "fde231c8139153fa6f9f967b4d189d296b38ebcb17c7c3b433f7bc70dbff6fc0",
+      "file": "152-wolt-6402f4497c35be7ab74c9ad6-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 153,
+      "id": "wolt-b2b21f44d174e039a96241fc",
+      "source_urls": [
+        "/catalog-wolt-20261026/b2b21f44d174e039a96241fc.jpg"
+      ],
+      "product_ids": [
+        "wolt-b2b21f44d174e039a96241fc"
+      ],
+      "source_sha256": "c2230a98d3f553408a3af2f4934974909d770104d8454aec18ea251709be4542",
+      "generated_sha256": "a18b31b13b7aa2f9d55cabd48f12c4378ac1e4931c7ffb63e7e739f6a61652a0",
+      "final_sha256": "8902949ec5ee0a0a916d23ce13016d80561b4035aaf04ddd78879420116463da",
+      "file": "153-wolt-b2b21f44d174e039a96241fc-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 154,
+      "id": "wolt-e75e221064446bb672796e70",
+      "source_urls": [
+        "/catalog-wolt-20261026/e75e221064446bb672796e70.jpg"
+      ],
+      "product_ids": [
+        "wolt-e75e221064446bb672796e70"
+      ],
+      "source_sha256": "6d7ee8384b7207c666ed0ae42bda5042c9a3d9ff89febc17ddde2a12eaf9924a",
+      "generated_sha256": "ff2403066a9bb34377a1f17e4c6e7c910a013593ecc74c84f97cd8404b60bcc1",
+      "final_sha256": "b4082a91c7f6cfd963b6e54d45c1e188a659bc631224c9b7e46fae8b4231c8f2",
+      "file": "154-wolt-e75e221064446bb672796e70-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 155,
+      "id": "wolt-434f44ea24c898d1a75d0a3f",
+      "source_urls": [
+        "/catalog-wolt-20261026/434f44ea24c898d1a75d0a3f.jpg"
+      ],
+      "product_ids": [
+        "wolt-434f44ea24c898d1a75d0a3f"
+      ],
+      "source_sha256": "b65a5642e7e9acd3c721c14845d8e6b083eb8b80bcc6e2fa36c2295de72ffad3",
+      "generated_sha256": "6f9b92f3e2a001ca94fb106fb8d44bb2ad22c44dbe4efd975602e76a72b6b9dd",
+      "final_sha256": "13b8513e4c859e54c7f3340ddfd097422427e0a15ef8b77cb85af1b5b5c16099",
+      "file": "155-wolt-434f44ea24c898d1a75d0a3f-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 156,
+      "id": "wolt-e071865bd7edb0e8f09e89b2",
+      "source_urls": [
+        "/catalog-wolt-20261026/e071865bd7edb0e8f09e89b2.jpg"
+      ],
+      "product_ids": [
+        "wolt-e071865bd7edb0e8f09e89b2"
+      ],
+      "source_sha256": "2b180d37673ce569cc4aa95e22700f3ecd3ea25d39d7da7e8124d6b38a9b39d8",
+      "generated_sha256": "637dfb7be5d5067b0e823c91fcd8c9f763817ae99a925a3fce43c84920aa731c",
+      "final_sha256": "9ce270d53e3d64a16f2de82a3454467f45848ead94570a7e3b72c518a22d2c9c",
+      "file": "156-wolt-e071865bd7edb0e8f09e89b2-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 157,
+      "id": "wolt-3f12b2c5d03f3e3dea826678",
+      "source_urls": [
+        "/catalog-wolt-20261026/3f12b2c5d03f3e3dea826678.jpg"
+      ],
+      "product_ids": [
+        "wolt-3f12b2c5d03f3e3dea826678"
+      ],
+      "source_sha256": "bd614c870f23acb24caec00704824f3c609c9c8376a1c98b34311bcb658b5992",
+      "generated_sha256": "2b5cda9704d55b4f68b052514a7f6817d34f9771d1df906b7f13a61d7c059f3b",
+      "final_sha256": "9ddc93040eea830f8fcf34640ffd62a0ff4972a77adfc72689e3abb4e64cb577",
+      "file": "157-wolt-3f12b2c5d03f3e3dea826678-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 158,
+      "id": "wolt-c01e01a3abe9f054287e6e12",
+      "source_urls": [
+        "/catalog-wolt-20261026/c01e01a3abe9f054287e6e12.jpg"
+      ],
+      "product_ids": [
+        "wolt-c01e01a3abe9f054287e6e12"
+      ],
+      "source_sha256": "7545009e43f1eddb5b69b45f10103230afa90f0d2a3d74371f84e4ac4213ad48",
+      "generated_sha256": "f10021635546077e918104b35d9dc002e97eaf083a0573926f52c2c3c6af009e",
+      "final_sha256": "09238a16425f5cc4469ed2271d85618782ccd5a8b6c6f7b9971074bc1f039d66",
+      "file": "158-wolt-c01e01a3abe9f054287e6e12-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 159,
+      "id": "wolt-4077169076eae94654abaa6c",
+      "source_urls": [
+        "/catalog-wolt-20261026/4077169076eae94654abaa6c.jpg"
+      ],
+      "product_ids": [
+        "wolt-4077169076eae94654abaa6c"
+      ],
+      "source_sha256": "b66a0ad13a835970b4e2750c614a7970d5e0accb7ab034e536586aa52942fd52",
+      "generated_sha256": "0608756b1e84d7cab926cae764215d504413387a4cba6860dff122b49208ab87",
+      "final_sha256": "13547514f0ef7fa5c1baecc47c3dc38c0191ac8b4c37e9132cdb14478246f200",
+      "file": "159-wolt-4077169076eae94654abaa6c-studio.webp",
+      "original_label_regions": 5
+    },
+    {
+      "index": 160,
+      "id": "wolt-c6144db52d0caf7f93265d77",
+      "source_urls": [
+        "/catalog-wolt-20261026/c6144db52d0caf7f93265d77.jpg"
+      ],
+      "product_ids": [
+        "wolt-c6144db52d0caf7f93265d77"
+      ],
+      "source_sha256": "8d318f517baacc2fc1e0505df8aa07eca83404dfb6d232bf1ac99d36136f8948",
+      "generated_sha256": "307bcf7ad971789202a1d27f171bfc65df64cf528b91bb7e2c2bf9a2f129b313",
+      "final_sha256": "df76b142039b5de1510c6a15bc139cd2f0177766afb0853c97e14e4d8311ed8b",
+      "file": "160-wolt-c6144db52d0caf7f93265d77-studio.webp",
+      "original_label_regions": 5
+    },
+    {
+      "index": 161,
+      "id": "wolt-b2c6f38b76b83d326619b16b",
+      "source_urls": [
+        "/catalog-wolt-20261026/b2c6f38b76b83d326619b16b.jpg"
+      ],
+      "product_ids": [
+        "wolt-b2c6f38b76b83d326619b16b"
+      ],
+      "source_sha256": "97162b3c91226751a8b29ff16133bef1a81b8969f90ec515eb06bc27ad13ff3d",
+      "generated_sha256": "5cb8ad7824bbfee122533f7f10c96e445df78e98775ccb4f45d089ba2c3c8c62",
+      "final_sha256": "3b2a45313eec6f7c4055bcd6508ba7b7659828d28adf946b9c50e2ac16b102a3",
+      "file": "161-wolt-b2c6f38b76b83d326619b16b-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 162,
+      "id": "wolt-235570d3ea7caac761f13708",
+      "source_urls": [
+        "/catalog-wolt-20261026/235570d3ea7caac761f13708.jpg"
+      ],
+      "product_ids": [
+        "wolt-235570d3ea7caac761f13708"
+      ],
+      "source_sha256": "de0a57001f039efd3c8a97060a7cdc9411475e733dd2b27938bf2bd9efeae735",
+      "generated_sha256": "b9e7742cfc35c7ac34b0034e8291802f95c10260ae317dac2380c11ef9fbf190",
+      "final_sha256": "0ce03d7bd4b9e839f4b05325bd7156b5fa66d6b144ed12dcc24e950b0710fb2a",
+      "file": "162-wolt-235570d3ea7caac761f13708-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 163,
+      "id": "wolt-d3304b7de80448971149760f",
+      "source_urls": [
+        "/catalog-wolt-20261026/d3304b7de80448971149760f.jpg"
+      ],
+      "product_ids": [
+        "wolt-d3304b7de80448971149760f"
+      ],
+      "source_sha256": "4fe75b472f7ad3ff93d1a1de591d2586ab6ef7cc8ea820f50d4649dcbe7674b6",
+      "generated_sha256": "37f69fb6c79ea584d7c89f4e05b762132eb6cea8247b04b9ed01b40bcb8a9e1a",
+      "final_sha256": "6a2544bcc39365787da2bd1136065d8d7de6fa63c1c820147b5136ad599d2995",
+      "file": "163-wolt-d3304b7de80448971149760f-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 164,
+      "id": "wolt-d44ef7c1ed9ebee5d17eba79",
+      "source_urls": [
+        "/catalog-wolt-20261026/d44ef7c1ed9ebee5d17eba79.jpg"
+      ],
+      "product_ids": [
+        "wolt-d44ef7c1ed9ebee5d17eba79"
+      ],
+      "source_sha256": "74a7a6260a49964fe63dbb96dba0c991616f04c1634f24fa2b21656dcf996a88",
+      "generated_sha256": "b35c3e7d3f8f07ce86b4b39ce879dd3c919c122428378bf22f4acc420501d7b5",
+      "final_sha256": "4df1f606f1ef454d3cb584b1ed0156a247859bd359a8638d45f1aae956396277",
+      "file": "164-wolt-d44ef7c1ed9ebee5d17eba79-studio.webp",
+      "original_label_regions": 6
+    },
+    {
+      "index": 165,
+      "id": "wolt-ea3e21373532a985e3b6cff9",
+      "source_urls": [
+        "/catalog-wolt-20261026/ea3e21373532a985e3b6cff9.jpg"
+      ],
+      "product_ids": [
+        "wolt-ea3e21373532a985e3b6cff9"
+      ],
+      "source_sha256": "b3bd8af830cb75326a0c86d5bbed8ad726c6f945ae6a9c2d6ebebf42c350c019",
+      "generated_sha256": "1f34c2f0ce8c9c7b754f27275575e35fb772809e76161551045628d371925630",
+      "final_sha256": "d7dde52575c2de368d71f7fa0eca859888c39853550b71142f2461032e86d1d5",
+      "file": "165-wolt-ea3e21373532a985e3b6cff9-studio.webp",
+      "original_label_regions": 6
+    },
+    {
+      "index": 166,
+      "id": "wolt-12082d92400bc19cc0b324e7",
+      "source_urls": [
+        "/catalog-wolt-20261026/12082d92400bc19cc0b324e7.jpg"
+      ],
+      "product_ids": [
+        "wolt-12082d92400bc19cc0b324e7"
+      ],
+      "source_sha256": "c862b583b92c2183fc02a02320abeea05f4baf01d1e830b7f4e47daac686738c",
+      "generated_sha256": "74d679a27cfd3b20273ad6eaff7e32e05d0a0e33025f0be8452b874a225dbad8",
+      "final_sha256": "74826d1a466a3c19e226c68b76a3e943ef6cbadc032bfc90d32bc825a0f4d8dd",
+      "file": "166-wolt-12082d92400bc19cc0b324e7-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 167,
+      "id": "wolt-71d16b5aac0ac70efa90ae37",
+      "source_urls": [
+        "/catalog-wolt-20261026/71d16b5aac0ac70efa90ae37.jpg"
+      ],
+      "product_ids": [
+        "wolt-71d16b5aac0ac70efa90ae37"
+      ],
+      "source_sha256": "d9c1a75f3e15e7fddb1a7a56c5441e9c544c279b6e66164e2365b536a34836bd",
+      "generated_sha256": "b5e0502c5ca40aa2c01ccf8e1c64247c0bbe191d4b398f6782f4c2e3857179bb",
+      "final_sha256": "4ae0df49b2ca50b81b44acecd8815089c5f792b504d65c673cedd73bec00fadc",
+      "file": "167-wolt-71d16b5aac0ac70efa90ae37-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 168,
+      "id": "wolt-9fcac23f5dfff4999aaf7d9f",
+      "source_urls": [
+        "/catalog-wolt-20261026/9fcac23f5dfff4999aaf7d9f.jpg"
+      ],
+      "product_ids": [
+        "wolt-9fcac23f5dfff4999aaf7d9f"
+      ],
+      "source_sha256": "97ef35af82dfd0fe54a06a9898b0e08242f115dd738ef434968ed6706ddee99c",
+      "generated_sha256": "b8ecaafb2917d2a31de3b141717a4d528ecf01bd5cc1991aeb06b433a2e8c71e",
+      "final_sha256": "6e93bdd32a365da9dc2b5f153106e94d14083f95baf9d44aa3ff0e38cab2cc3b",
+      "file": "168-wolt-9fcac23f5dfff4999aaf7d9f-studio.webp",
+      "original_label_regions": 2
+    },
+    {
+      "index": 169,
+      "id": "wolt-b689a8905ce245b051448755",
+      "source_urls": [
+        "/catalog-wolt-20261026/b689a8905ce245b051448755.jpg"
+      ],
+      "product_ids": [
+        "wolt-b689a8905ce245b051448755"
+      ],
+      "source_sha256": "cb00ef28b3b63d7ae7020b9b22bf491e4ebead1047ad5c6493d63038df6cd261",
+      "generated_sha256": "86c6911e8716666111ccd0ee6db778cdeb54ff59595432578781bda14436bb0e",
+      "final_sha256": "0651650717ebfd0ad8e48f08972e38a1ece312fa80c81f5149f38ba794bdd4d1",
+      "file": "169-wolt-b689a8905ce245b051448755-studio.webp",
+      "original_label_regions": 4
+    },
+    {
+      "index": 170,
+      "id": "wolt-0be6a7769d294e0fd65c65f2",
+      "source_urls": [
+        "/catalog-wolt-20261026/0be6a7769d294e0fd65c65f2.jpg"
+      ],
+      "product_ids": [
+        "wolt-0be6a7769d294e0fd65c65f2"
+      ],
+      "source_sha256": "1d1a10ec8533dd7291fd1e7427490f7e782de0d29950c8166ce7e9d4514398ff",
+      "generated_sha256": "2f32dda93bd9dba83a00a72b770eea63c761860eb4f95e22947c9087b394aa9e",
+      "final_sha256": "ea35a51cc32dbfbf13c5ec823b7bbc7092eaa981eb3bdd4ccadca9eb408cb460",
+      "file": "170-wolt-0be6a7769d294e0fd65c65f2-studio.webp",
+      "original_label_regions": 6
+    },
+    {
+      "index": 171,
+      "id": "wolt-0bbd1dc61ced79c9c742aa76",
+      "source_urls": [
+        "/catalog-wolt-20261026/0bbd1dc61ced79c9c742aa76.jpg"
+      ],
+      "product_ids": [
+        "wolt-0bbd1dc61ced79c9c742aa76"
+      ],
+      "source_sha256": "446a22fa894b4153af2f51685d9b1c4bbf781b54242ec35407855178af42914f",
+      "generated_sha256": "1885638c72a0dacd584dad42e6c70895546f59dc8d4d380844c2ab599b7ec4d2",
+      "final_sha256": "b14998e5a6c7b01b2f4ec57c5195cfe8cb125e2ea5a22c26edbd45c73e78903c",
+      "file": "171-wolt-0bbd1dc61ced79c9c742aa76-studio.webp",
+      "original_label_regions": 6
+    },
+    {
+      "index": 172,
+      "id": "wolt-2298168112a7d57168cab2b1",
+      "source_urls": [
+        "/catalog-wolt-20261026/2298168112a7d57168cab2b1.jpg"
+      ],
+      "product_ids": [
+        "wolt-2298168112a7d57168cab2b1"
+      ],
+      "source_sha256": "d6eedd325aaa461cae201b83f56706a2f4aee630a97cb89299ab52bb065014d2",
+      "generated_sha256": "928180421f0f580d2d7dc03144de72928389ca8a3a2313ace820d43474dfdba6",
+      "final_sha256": "553a5a99a41bb4795486a37335679f43db19e54a38e06acfcab0449aa063f2c0",
+      "file": "172-wolt-2298168112a7d57168cab2b1-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 173,
+      "id": "wolt-6b01b13224d31eb92df4bd32",
+      "source_urls": [
+        "/catalog-wolt-20261026/6b01b13224d31eb92df4bd32.jpg"
+      ],
+      "product_ids": [
+        "wolt-6b01b13224d31eb92df4bd32"
+      ],
+      "source_sha256": "659458daaf703bd27b8a27658711a834d38afbf01ff5d999e42c45b04594f2e3",
+      "generated_sha256": "7777d2c04fbae4f20803f655ae047516def8e35fb4c69e0e7a6af2a071c814bf",
+      "final_sha256": "44a75f9e43cd7eb15440f1db78679d7e0c43abd3ca7fcd90175387f739ae75bf",
+      "file": "173-wolt-6b01b13224d31eb92df4bd32-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 174,
+      "id": "wolt-726f17e6654aa70d21ede3f7",
+      "source_urls": [
+        "/catalog-wolt-20261026/726f17e6654aa70d21ede3f7.jpg"
+      ],
+      "product_ids": [
+        "wolt-726f17e6654aa70d21ede3f7"
+      ],
+      "source_sha256": "1d9a81ef85ca43643e8f6d94a557f415ac63e1fcab84a36e17bff2b51109df9c",
+      "generated_sha256": "74a5e0d16aaa0e4f0b2bf47ebd893574a632b3e8eeb87d413caf7cca85f447c9",
+      "final_sha256": "8055d17783e4f61fa121c2abdf2772f453e873b50fdb5cc9f9610c6b208da936",
+      "file": "174-wolt-726f17e6654aa70d21ede3f7-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 175,
+      "id": "wolt-fb816b4d71e42b4a4ce0d4d5",
+      "source_urls": [
+        "/catalog-wolt-20261026/fb816b4d71e42b4a4ce0d4d5.jpg"
+      ],
+      "product_ids": [
+        "wolt-fb816b4d71e42b4a4ce0d4d5"
+      ],
+      "source_sha256": "987aba0ee3c489b014506d2043217b4bdd943923e661d42f631733b692e84912",
+      "generated_sha256": "77ed8f383cda8c1ed5829aec2faa3bc991d450b9d8783c21efa9fd14bb693f47",
+      "final_sha256": "d1f9eb237fd5263d82643c2b43c04adc98b82004e3b5355282a3b19f4d6f73ad",
+      "file": "175-wolt-fb816b4d71e42b4a4ce0d4d5-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 176,
+      "id": "wolt-3e79906e0e0c2bd6697f39ec",
+      "source_urls": [
+        "/catalog-wolt-20261026/3e79906e0e0c2bd6697f39ec.jpg"
+      ],
+      "product_ids": [
+        "wolt-3e79906e0e0c2bd6697f39ec"
+      ],
+      "source_sha256": "82d299037fc9fe9e860397652e14a838f8bc4bf25c9ebde01a837421fe678646",
+      "generated_sha256": "752c6eb91ebbb25152fb4010e8320916d81d1ecb81d0c381fba68d98f5054deb",
+      "final_sha256": "e3673da86d92b6e40f6ae7b1518fd114f79599f456507be6f4965bd581e71dc7",
+      "file": "176-wolt-3e79906e0e0c2bd6697f39ec-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 177,
+      "id": "wolt-d58ff1d9a8fde00f2fe7519a",
+      "source_urls": [
+        "/catalog-wolt-20261026/d58ff1d9a8fde00f2fe7519a.jpg"
+      ],
+      "product_ids": [
+        "wolt-d58ff1d9a8fde00f2fe7519a"
+      ],
+      "source_sha256": "4d0ca22bb757e47cbeb0932fc954769b0de105a8fe64c01fc795e6e229a6e6a5",
+      "generated_sha256": "6eb20b5ddb79e16cc400bb1084390161fe35edd8a4280e4c7bc6e67473e77cab",
+      "final_sha256": "5f2923cc359c02aa4d0ab3ddef80faf3a1d1aa16901e4a0df1de933bddede59a",
+      "file": "177-wolt-d58ff1d9a8fde00f2fe7519a-studio.webp",
+      "original_label_regions": 3
+    },
+    {
+      "index": 178,
+      "id": "wolt-5faabbbbe35cdd61013b02bd",
+      "source_urls": [
+        "/catalog-wolt-20261026/5faabbbbe35cdd61013b02bd.jpg"
+      ],
+      "product_ids": [
+        "wolt-5faabbbbe35cdd61013b02bd"
+      ],
+      "source_sha256": "7800e8afec47412607816470c4b9547db0f0cde3e1d3781e57368347f3caee17",
+      "generated_sha256": "7a67669d03ba86098633a6bf556f596b6457f6859b7ad8c256d914c316384d78",
+      "final_sha256": "f6de1f98948b4d69591cf586b06c0037cf020260c161e2f2796f1c459cba88c1",
+      "file": "178-wolt-5faabbbbe35cdd61013b02bd-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 179,
+      "id": "wolt-a94ec32dfdc093a85665d4a6",
+      "source_urls": [
+        "/catalog-wolt-20261026/a94ec32dfdc093a85665d4a6.jpg"
+      ],
+      "product_ids": [
+        "wolt-a94ec32dfdc093a85665d4a6"
+      ],
+      "source_sha256": "7286a41445fa6c2c0516c8b279e373f45c69ac0241eb30fe99485760933a97b9",
+      "generated_sha256": "b1c630c1f7978a98777b9b7c5a005076cb75cf2bc75027a88018f05fa7279aea",
+      "final_sha256": "f0af96f94ce095f7a14ca78bfa874b0e9b19621c99e89d4264dbd33fd8ce4f84",
+      "file": "179-wolt-a94ec32dfdc093a85665d4a6-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 180,
+      "id": "wolt-3fb6963a547a81c5fd3af00d",
+      "source_urls": [
+        "/catalog-wolt-20261026/3fb6963a547a81c5fd3af00d.jpg"
+      ],
+      "product_ids": [
+        "wolt-3fb6963a547a81c5fd3af00d"
+      ],
+      "source_sha256": "568bb3f7c1ae8257d67b5ea0fe2a9adf8336dc352075b5227c35a88fe4234359",
+      "generated_sha256": "c0be433b663b00b6d1149e13975c972e41ec6913c7d84978fee2592c56aecf38",
+      "final_sha256": "0b57d4399833d36a5a7345a1b4c8484788091f45bde34606258b928c87b46607",
+      "file": "180-wolt-3fb6963a547a81c5fd3af00d-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 181,
+      "id": "wolt-ff8f799beaf72eb412c26692",
+      "source_urls": [
+        "/catalog-wolt-20261026/ff8f799beaf72eb412c26692.jpg"
+      ],
+      "product_ids": [
+        "wolt-ff8f799beaf72eb412c26692"
+      ],
+      "source_sha256": "7a0d017661602b85482b3793016db284488076990426b6a6512374abca2f8fa9",
+      "generated_sha256": "39ec858a70feaf26b53121890f6aca03abb6840d5cfb761324e9e1aea16773a8",
+      "final_sha256": "bc70ad4b9b50ce184669758803fa1ac92fa55ffe1c03ee9940295fbe92bc6499",
+      "file": "181-wolt-ff8f799beaf72eb412c26692-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 182,
+      "id": "wolt-b3522124f1dc4172f723be6b",
+      "source_urls": [
+        "/catalog-wolt-20261026/b3522124f1dc4172f723be6b.jpg"
+      ],
+      "product_ids": [
+        "wolt-b3522124f1dc4172f723be6b"
+      ],
+      "source_sha256": "a32f5adb1a481eba04fa1378eb132b3c635345fab45702cca6213ffbf83e41ee",
+      "generated_sha256": "35338ea83313dfc5240da3798eb6cafa51372cdf303bc1e3f5acc45aebcff072",
+      "final_sha256": "c5fbad53430add0f5912dbdfafc482bd2c859dbabfb73a71a983c227fb0e9bc2",
+      "file": "182-wolt-b3522124f1dc4172f723be6b-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 183,
+      "id": "wolt-145133560abdcf80b337a07e",
+      "source_urls": [
+        "/catalog-wolt-20261026/145133560abdcf80b337a07e.jpg"
+      ],
+      "product_ids": [
+        "wolt-145133560abdcf80b337a07e"
+      ],
+      "source_sha256": "cbd51768235d538c7359caa218ceb082af5d8516e0d2ca13d856c67b25ae6069",
+      "generated_sha256": "b6790276cb5220889176c107de28b8c967dd5c28ea735b29f5b56fe2eeda7484",
+      "final_sha256": "bedf9ffc8272141ff0e03d01e3ed62ad2220c8b2a854b14b26667ea5d0b2f739",
+      "file": "183-wolt-145133560abdcf80b337a07e-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 184,
+      "id": "wolt-4d2a335e06f7998e4cd3818c",
+      "source_urls": [
+        "/catalog-wolt-20261026/4d2a335e06f7998e4cd3818c.jpg"
+      ],
+      "product_ids": [
+        "wolt-4d2a335e06f7998e4cd3818c"
+      ],
+      "source_sha256": "1f5d7e6c498f9d2a37df89d43d07e9b1aba31d3e0b11314dd8f44fe00e36b5a9",
+      "generated_sha256": "849aa0179c9adf5a01d5ae6807eda579a9f4b8dd468608d5f3fda1aba752128a",
+      "final_sha256": "184313a8ae1193d293dbcb5ef2dec0ce60a93d2ded5cfaf311b37f1d5c4d1b91",
+      "file": "184-wolt-4d2a335e06f7998e4cd3818c-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 185,
+      "id": "wolt-316b17ff87a232bdcbc6760e",
+      "source_urls": [
+        "/catalog-wolt-20261026/316b17ff87a232bdcbc6760e.jpg"
+      ],
+      "product_ids": [
+        "wolt-316b17ff87a232bdcbc6760e"
+      ],
+      "source_sha256": "1b1cbd22ac8fa9c484fd109b0551f87d4538a6b60350610c01879017741363d1",
+      "generated_sha256": "0ec649cabff0f2349d2269646b4eb2ea20ef3dae78a394e0f4b219d0aecf8f52",
+      "final_sha256": "388e6a90c9a883b31df3b73c3442b52152df471c2402ae1e9073da463ea345a8",
+      "file": "185-wolt-316b17ff87a232bdcbc6760e-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 186,
+      "id": "wolt-616693f393b9ad746e423868",
+      "source_urls": [
+        "/catalog-wolt-20261026/616693f393b9ad746e423868.jpg"
+      ],
+      "product_ids": [
+        "wolt-616693f393b9ad746e423868"
+      ],
+      "source_sha256": "a344e387a559b6368a210f7230ee6ec2a9962e3bc22ed1bdf47a4a22042c4d87",
+      "generated_sha256": "5d811b8f50b7315b66509072fbc8ab4888bd5ed4f6acc219d1156e8263afa6f5",
+      "final_sha256": "ee1e4c79d52aec451df414728e85e0c710a4af417b6bbf37c4af951d857f870b",
+      "file": "186-wolt-616693f393b9ad746e423868-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 187,
+      "id": "wolt-13c91b7813d1209fc16af4de",
+      "source_urls": [
+        "/catalog-wolt-20261026/13c91b7813d1209fc16af4de.jpg"
+      ],
+      "product_ids": [
+        "wolt-13c91b7813d1209fc16af4de"
+      ],
+      "source_sha256": "6702ba4f9ae0df16a65863bc4a70885351eccd591de85adf596c84b480d965f3",
+      "generated_sha256": "0fde8b5fef7559eb2c8e66863be3734431cec62fc6ab788889710cf5b88e5541",
+      "final_sha256": "c65dfabaff6725418555f07671ad29bd907c8550edf6d974fc53b2666d2a152c",
+      "file": "187-wolt-13c91b7813d1209fc16af4de-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 188,
+      "id": "wolt-61dd44c0f1672f607707eae3",
+      "source_urls": [
+        "/catalog-wolt-20261026/61dd44c0f1672f607707eae3.jpg"
+      ],
+      "product_ids": [
+        "wolt-61dd44c0f1672f607707eae3"
+      ],
+      "source_sha256": "98b16a0e53221b31a518a704bf86cf15508778afd06045b21740e6322bfda06f",
+      "generated_sha256": "488dcd37e67904712b630a68cb89841256f17a356d97373d3cf6b2d7bf70705a",
+      "final_sha256": "37f979edeae28a6883f5479066ca57ca08d10a0866910cb0db606b269d7a56a7",
+      "file": "188-wolt-61dd44c0f1672f607707eae3-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 189,
+      "id": "wolt-80be8f1ceca331205a3aebb5",
+      "source_urls": [
+        "/catalog-wolt-20261026/80be8f1ceca331205a3aebb5.jpg"
+      ],
+      "product_ids": [
+        "wolt-80be8f1ceca331205a3aebb5"
+      ],
+      "source_sha256": "b2f2da8292b733b8ac102a2ecbebe46d42f49dfb4590e9fea0182b68f785cd19",
+      "generated_sha256": "cd18eb1fac5264bedf530ed14aa912ff02d13238549926c1b136d8f0bb3b27f1",
+      "final_sha256": "02f9ce62676bc85a3bc0a866e321bbd9ef3462788102b6f101850a8577fb63b7",
+      "file": "189-wolt-80be8f1ceca331205a3aebb5-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 190,
+      "id": "wolt-fef08d823ab840444862f1c9",
+      "source_urls": [
+        "/catalog-wolt-20261026/fef08d823ab840444862f1c9.jpg"
+      ],
+      "product_ids": [
+        "wolt-fef08d823ab840444862f1c9"
+      ],
+      "source_sha256": "0c30d0ffeed031fb84da1719c3b372a3141ca5b133903bcb6af2fd6593db53f9",
+      "generated_sha256": "de4ffd1d9a01973a189ca27aa5b9559cd49fd7f86cb1b8d38d61d8850b3a5d07",
+      "final_sha256": "5a97ecb899df972fec82c28d91a1a64dd4fb3f87a465f4dcfbc063be1848c2c7",
+      "file": "190-wolt-fef08d823ab840444862f1c9-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 191,
+      "id": "wolt-5197c5480a9e74ed8bfedcb4",
+      "source_urls": [
+        "/catalog-wolt-20261026/5197c5480a9e74ed8bfedcb4.jpg"
+      ],
+      "product_ids": [
+        "wolt-5197c5480a9e74ed8bfedcb4"
+      ],
+      "source_sha256": "caf01cec92216d16570c39f70364bf35a974f5953bee04806fa48b546bde4d76",
+      "generated_sha256": "5bc9c072b17952b82dce16b7f5197a38c41b7d3164f662afa72199297c9975db",
+      "final_sha256": "5642ac113eea8cb6d9fa0b262586ebefa8ffc3041df46e09f41d775c376feed5",
+      "file": "191-wolt-5197c5480a9e74ed8bfedcb4-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 192,
+      "id": "wolt-b396a52d039710a8a75d4e6a",
+      "source_urls": [
+        "/catalog-wolt-20261026/b396a52d039710a8a75d4e6a.jpg"
+      ],
+      "product_ids": [
+        "wolt-b396a52d039710a8a75d4e6a"
+      ],
+      "source_sha256": "b8356c0b158cabfa8a15b6e74a126ba8a7671c456632822a2666b49a64884565",
+      "generated_sha256": "e4ca525a6797ff32a71c3bd13bcf9ac0f79fdf021551e12c24924faad558fc2d",
+      "final_sha256": "b6151d49e6b7f8f426b9d5e6bb6349cb3e2c535ecf3207f7fd80ddffd662366a",
+      "file": "192-wolt-b396a52d039710a8a75d4e6a-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 193,
+      "id": "wolt-1dc9a0fe5214d147ea9dc6c1",
+      "source_urls": [
+        "/catalog-wolt-20261026/1dc9a0fe5214d147ea9dc6c1.jpg"
+      ],
+      "product_ids": [
+        "wolt-1dc9a0fe5214d147ea9dc6c1"
+      ],
+      "source_sha256": "a4f3ece703aa0317ca595001e9375e97f5710b002476444847b77c5604ec8d45",
+      "generated_sha256": "fcae119dd5c709241e3740d0c640f77770c996d64764940792ecd5d99bdf17b7",
+      "final_sha256": "01e5fdafa51b225fab966b65291e39dcd8cf7a2979cac929da55d5600137f91e",
+      "file": "193-wolt-1dc9a0fe5214d147ea9dc6c1-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 194,
+      "id": "wolt-eac6c0bb4ddfd81f1cb02b7b",
+      "source_urls": [
+        "/catalog-wolt-20261026/eac6c0bb4ddfd81f1cb02b7b.jpg"
+      ],
+      "product_ids": [
+        "wolt-eac6c0bb4ddfd81f1cb02b7b"
+      ],
+      "source_sha256": "48beb9d6994b1678ed3750e7789d6d03e9e4c808408c6e0ed36cd1d40278122c",
+      "generated_sha256": "01cbb9bb57f268ecd08b44989c84891fc4c206a639be31193c40ea0aa7c8f7b0",
+      "final_sha256": "299ea581be8411c277e79d56d3e630d517607492a6ebb2d994558cd801b35ee4",
+      "file": "194-wolt-eac6c0bb4ddfd81f1cb02b7b-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 195,
+      "id": "wolt-a39a5961d3407afe0a592bb0",
+      "source_urls": [
+        "/catalog-wolt-20261026/a39a5961d3407afe0a592bb0.jpg"
+      ],
+      "product_ids": [
+        "wolt-a39a5961d3407afe0a592bb0"
+      ],
+      "source_sha256": "ad36bb2620b82f14b5e3a95471f78243a5fcfdc3e7719e7e04161afa5f7cc13f",
+      "generated_sha256": "abefa919edd0f8dda647c694686b27b4b9b6ef4b9e8d8ee6e121bdd08ee171de",
+      "final_sha256": "ad0a3614b879b09012a8eb12cdad2f04e37d4818a150cee36a355027810808f1",
+      "file": "195-wolt-a39a5961d3407afe0a592bb0-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 196,
+      "id": "wolt-92b496610cdd562dfb30ceaa",
+      "source_urls": [
+        "/catalog-wolt-20261026/92b496610cdd562dfb30ceaa.jpg"
+      ],
+      "product_ids": [
+        "wolt-92b496610cdd562dfb30ceaa"
+      ],
+      "source_sha256": "89e0e99d49056f707c5d07f78a4b6edc1d8bcc0dd60d7e50b6c43f185554546f",
+      "generated_sha256": "d11e9a4592b77fa8a2a448408385e6298899a24d5d6bc2676abe2caccc3cab9b",
+      "final_sha256": "ceb49888a22ab7d7f92e4d01ae3b380e29af1e7122d961e7c88b8cefd71160f5",
+      "file": "196-wolt-92b496610cdd562dfb30ceaa-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 197,
+      "id": "wolt-52b61712390e35e74aea7fb7",
+      "source_urls": [
+        "/catalog-wolt-20261026/52b61712390e35e74aea7fb7.jpg"
+      ],
+      "product_ids": [
+        "wolt-52b61712390e35e74aea7fb7"
+      ],
+      "source_sha256": "367bb3f082575ec7ecfffcd110e3f2f596bdff18225e34e28011670e8826d331",
+      "generated_sha256": "b578b7cc009c9e573f2141f22cfdfb2d169883a99b8e2e111c465aad30f5ed8b",
+      "final_sha256": "6bc7e5cf63bcbf5162ae40c7c844d5d71a2cf456d21a90c563a7b3922c90b7d3",
+      "file": "197-wolt-52b61712390e35e74aea7fb7-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 198,
+      "id": "wolt-e4780e8e50c2091585092a65",
+      "source_urls": [
+        "/catalog-wolt-20261026/e4780e8e50c2091585092a65.jpg"
+      ],
+      "product_ids": [
+        "wolt-e4780e8e50c2091585092a65"
+      ],
+      "source_sha256": "3ff5ff431705b011bcde383554699ced3190578439c0fe226c2c63aea547794d",
+      "generated_sha256": "e831793633c9182f8842f2de1bcade4183c960dd6c691741aca63d3a9e399439",
+      "final_sha256": "8a1b4acd58823b5aba6635ab55c85b42ad7f53a8689dcfdb1d9ca8ebbdc76444",
+      "file": "198-wolt-e4780e8e50c2091585092a65-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 199,
+      "id": "wolt-57658ae6ad696a006e41a836",
+      "source_urls": [
+        "/catalog-wolt-20261026/57658ae6ad696a006e41a836.jpg"
+      ],
+      "product_ids": [
+        "wolt-57658ae6ad696a006e41a836"
+      ],
+      "source_sha256": "6ed0198e17a687e1e7abd10ae654a14bbbfb9f9a75031b73328b44ed7838ab41",
+      "generated_sha256": "a58e22848b203384e2c741a0e8b26623af0aec07ff59aead1a482f815b7b1ba6",
+      "final_sha256": "c10247fb7c21e958038efbad3366f5dd87a817b146b8135c9499aa9d8195675f",
+      "file": "199-wolt-57658ae6ad696a006e41a836-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 200,
+      "id": "wolt-937b2afd155817bb39518bbd",
+      "source_urls": [
+        "/catalog-wolt-20261026/937b2afd155817bb39518bbd.jpg"
+      ],
+      "product_ids": [
+        "wolt-937b2afd155817bb39518bbd"
+      ],
+      "source_sha256": "bf70a375b332cb33ed747f4e15774e57653799121820920cce80287fce178acd",
+      "generated_sha256": "40f9b3ac4b77610b96b0aec5e3bc8584d457c1ab79d3d9a28ff0a09b4ab18b0b",
+      "final_sha256": "43a2b2a32d91e24b17967772d1acc8f9a2a2d061107dc60f2c2d21089df7b2df",
+      "file": "200-wolt-937b2afd155817bb39518bbd-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 201,
+      "id": "wolt-17828f77088acb1bf2db377b",
+      "source_urls": [
+        "/catalog-wolt-20261026/17828f77088acb1bf2db377b.jpg"
+      ],
+      "product_ids": [
+        "wolt-17828f77088acb1bf2db377b"
+      ],
+      "source_sha256": "8a1a27bd681ab43cc29e3a6ea7000ac8fbf73d2de747186758e6935dc48369ce",
+      "generated_sha256": "ba679578dc0cbcaf709bc64c4cfdd88b3e4518ac908bb5aee7df0ca3e979a3d2",
+      "final_sha256": "bd63e9192ec8a903642c7e5f0047c7f40b7f331195dff90d1252bea2a02b089e",
+      "file": "201-wolt-17828f77088acb1bf2db377b-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 202,
+      "id": "wolt-b2b460323039160157f25dd5",
+      "source_urls": [
+        "/catalog-wolt-20261026/b2b460323039160157f25dd5.jpg"
+      ],
+      "product_ids": [
+        "wolt-b2b460323039160157f25dd5"
+      ],
+      "source_sha256": "c6056fea15e4919075d0fd87c8160e46ccda77a88c9c390118febdf9ddc699c1",
+      "generated_sha256": "3befb5c7fe4ab7f43a0fbbaeda1ca70ed4c94eff49a05aeebf58556b8ab5a6d1",
+      "final_sha256": "e5e62bdcf9a72e6226616c131798c8ecf6cf977ab4c062d6b15b1e781d4ecbcc",
+      "file": "202-wolt-b2b460323039160157f25dd5-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 203,
+      "id": "wolt-c8f8c040d5b9548649df587b",
+      "source_urls": [
+        "/catalog-wolt-20261026/c8f8c040d5b9548649df587b.jpg"
+      ],
+      "product_ids": [
+        "wolt-c8f8c040d5b9548649df587b"
+      ],
+      "source_sha256": "38e749aa80ac42610345a64f0711d20bc89ea854d5e9489bdb65dc04003455c9",
+      "generated_sha256": "3636e7d77766839dfc619b0c8ee3fb86acce3ef2c87d4cf7bf37555c3b7c418e",
+      "final_sha256": "c0fa9eeebe73a04b95b5814351fdf609c15f5894b4ccbbf1ea8977afd9241657",
+      "file": "203-wolt-c8f8c040d5b9548649df587b-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 204,
+      "id": "wolt-64297f1f016c3798cbed912c",
+      "source_urls": [
+        "/catalog-wolt-20261026/64297f1f016c3798cbed912c.jpg"
+      ],
+      "product_ids": [
+        "wolt-64297f1f016c3798cbed912c"
+      ],
+      "source_sha256": "eb3ecd36b622dc550875961e644fc0ed981e1de3c43bfb949c333fc731044592",
+      "generated_sha256": "065fa3ce347f1c409c02823d6e501d0a5817f1463b19b4228c154c0505f45f61",
+      "final_sha256": "492739aff449a253896712312e3d757dcb31cab3bd98546be8cd56835a595429",
+      "file": "204-wolt-64297f1f016c3798cbed912c-studio.webp",
+      "original_label_regions": 1
+    },
+    {
+      "index": 205,
+      "id": "wolt-4d08c74fa7906f34a51d58eb",
+      "source_urls": [
+        "/catalog-wolt-20261026/4d08c74fa7906f34a51d58eb.jpg"
+      ],
+      "product_ids": [
+        "wolt-4d08c74fa7906f34a51d58eb"
+      ],
+      "source_sha256": "e00fe5b0b49936ffd63857130269f378cad96615832efd647bc473b6e35d17d6",
+      "generated_sha256": "087193b80b858d0d6c6f518e1d184ef8dfc0b24f41322877e724c90c69d62a7c",
+      "final_sha256": "085bee264411d2eaa18bf7020fba8d026d85ba5a202d4c3efaffeda8761e985c",
+      "file": "205-wolt-4d08c74fa7906f34a51d58eb-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 206,
+      "id": "wolt-e61ab87fe0bbdccc45ebf7c8",
+      "source_urls": [
+        "/catalog-wolt-20261026/e61ab87fe0bbdccc45ebf7c8.jpg"
+      ],
+      "product_ids": [
+        "wolt-e61ab87fe0bbdccc45ebf7c8"
+      ],
+      "source_sha256": "ce8c34971095096d8dc3aaae44d56c7a17ec4561d09d9c32bf79b1879b095931",
+      "generated_sha256": "8231450e0ff6955c55556f98d7f70e8150797b86cfa20ce9147c0f4e48618553",
+      "final_sha256": "05dcf6e15c4e119965d6f2498bd8e0d3f349d6074dcf0096fe07bef469a72dd2",
+      "file": "206-wolt-e61ab87fe0bbdccc45ebf7c8-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 207,
+      "id": "wolt-e183e7df396a2df78a3e8c71",
+      "source_urls": [
+        "/catalog-wolt-20261026/e183e7df396a2df78a3e8c71.jpg"
+      ],
+      "product_ids": [
+        "wolt-e183e7df396a2df78a3e8c71"
+      ],
+      "source_sha256": "909f5c68e51dddabd1a394f12cf23106f08ff855d7ee6c3757d5a37aa683b25d",
+      "generated_sha256": "d5764c101c3bb81991f6fd60d4b93c7022bc08c18b10f0000480ce370b71ffb0",
+      "final_sha256": "ba931daa65b792a883347c9aa81cd7dcd0a9a040602adfa02f23a819549ae888",
+      "file": "207-wolt-e183e7df396a2df78a3e8c71-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 208,
+      "id": "wolt-888148d18dfb8e1929c1c4f2",
+      "source_urls": [
+        "/catalog-wolt-20261026/888148d18dfb8e1929c1c4f2.jpg"
+      ],
+      "product_ids": [
+        "wolt-888148d18dfb8e1929c1c4f2"
+      ],
+      "source_sha256": "92a1fa0f5033ce50b5fca61f86723d997a3f296bafec7e6899e90965ed47c691",
+      "generated_sha256": "279310912d95545c0a5818bfabdf4d766a52882e729bbf383af282240c180163",
+      "final_sha256": "3b5e573bfc494e82a66eb882a13ea308abbd822bc5ab29a1857c0037e41a7b72",
+      "file": "208-wolt-888148d18dfb8e1929c1c4f2-studio.webp",
+      "original_label_regions": 0
+    },
+    {
+      "index": 209,
+      "id": "catering-mini-sandwiches-12",
+      "source_urls": [
+        "/catalog-owner-20261026/catering-12-mini-rolls-v5.png"
+      ],
+      "product_ids": [
+        "catering-mini-sandwiches-12"
+      ],
+      "source_sha256": "4ded31cdd9e5b2335565a4c94707c404761c48c44cde875d7d815cd65e726c5d",
+      "generated_sha256": "1bdf67a2d51ae527a89a750995d498ca3689b6d3ce02f4ba0efceb8646b2e23d",
+      "final_sha256": "8c42e449c5753c734dd5c86d978b8ae27fd665229e075619d70b1bf52d13b48b",
+      "file": "209-catering-mini-sandwiches-12-studio.webp",
+      "original_label_regions": 0
+    }
+  ]
+}

@@ -63,7 +63,7 @@ export type ShopStoreSettings = {
 };
 
 export type PublicShopSnapshot = {
-  source: 'supabase' | 'fallback';
+  source: 'supabase' | 'fallback' | 'review';
   live: boolean;
   fetchedAt: string;
   categories: ShopCategory[];

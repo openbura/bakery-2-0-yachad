@@ -1,0 +1,25 @@
+{
+  "label": "User-approved latest baseline, 2026-10-27",
+  "tag": "yachad-approved-20261027",
+  "publicDeployment": "dpl_43agxq1NeF76KS4MJgLWnLgjbbQJ",
+  "adminDeployment": "dpl_84mqRLJ1yuiogfn8zEyAU15xPgck",
+  "catalogProducts": 222,
+  "distinctStudioPhotos": 210,
+  "workbookSourceSha256": "ac3e35fee542e67aae8c1b29127a3609c5470af9b255744e16d1bac03862d516",
+  "publicBuildFlags": {
+    "VITE_BAKERY_OWNER_REVIEW": "true",
+    "VITE_BAKERY_WHATSAPP_ORDERS": "true",
+    "VITE_BAKERY_ONLINE_ORDERS_ENABLED": "false"
+  },
+  "adminBuildFlags": {
+    "VITE_BAKERY_OWNER_REVIEW": "false",
+    "VITE_BAKERY_WHATSAPP_ORDERS": "false",
+    "VITE_BAKERY_ONLINE_ORDERS_ENABLED": "false"
+  },
+  "excluded": [
+    "Secrets, .env files, credentials and browser sessions",
+    "node_modules and generated build directories",
+    "Private local databases, password-recovery files and transient logs"
+  ],
+  "database": "Schema/migration source included. No new live database export performed."
+}

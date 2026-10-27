@@ -1,0 +1,72 @@
+{
+  "base": "https://bakery-2-0-yachad-deploy.vercel.app",
+  "errors": [],
+  "viewports": [
+    {
+      "width": 390,
+      "products": 222,
+      "captions": 0,
+      "requiredFields": true,
+      "cityFee20to30": true,
+      "refresh": true,
+      "otherLocality": true,
+      "knownCityAlias": true,
+      "pickup": true,
+      "whatsappPayload": true,
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "products": 222,
+      "captions": 0,
+      "requiredFields": true,
+      "cityFee20to30": true,
+      "refresh": true,
+      "otherLocality": true,
+      "knownCityAlias": true,
+      "pickup": true,
+      "whatsappPayload": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "products": 222,
+      "captions": 0,
+      "requiredFields": true,
+      "cityFee20to30": true,
+      "refresh": true,
+      "otherLocality": true,
+      "knownCityAlias": true,
+      "pickup": true,
+      "whatsappPayload": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "products": 222,
+      "captions": 0,
+      "requiredFields": true,
+      "cityFee20to30": true,
+      "refresh": true,
+      "otherLocality": true,
+      "knownCityAlias": true,
+      "pickup": true,
+      "whatsappPayload": true,
+      "overflow": false
+    },
+    {
+      "width": 1920,
+      "products": 222,
+      "captions": 0,
+      "requiredFields": true,
+      "cityFee20to30": true,
+      "refresh": true,
+      "otherLocality": true,
+      "knownCityAlias": true,
+      "pickup": true,
+      "whatsappPayload": true,
+      "overflow": false
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,6 +1,7 @@
 import catalog from '../data/public-catalog-fallback.json';
 import { getBakerySupabaseClient } from '../lib/bakerySupabaseClient';
 import { polishCatalogText } from '../shop/productPolicy';
+import { ownerReviewEnabled } from '../shop/release';
 import type {
   NoticeType,
   PublicShopSnapshot,
@@ -74,6 +75,7 @@ function assertIntegerMoney(value: number, field: string) {
 }
 
 export async function fetchPublicShopSnapshot(signal: AbortSignal = new AbortController().signal): Promise<PublicShopSnapshot> {
+  if (ownerReviewEnabled) return getOwnerReviewShopSnapshot();
   const client = getBakerySupabaseClient();
   if (!client) {
     throw new Error('Bakery Supabase is not configured');
@@ -214,7 +216,7 @@ export function getFallbackShopSnapshot(): PublicShopSnapshot {
     priceUnitNote: product.price_unit_note || product.small_note || null,
     optionGroups: (product.option_groups ?? []).map((group, groupIndex) => ({
       id: `${product.id}-group-${groupIndex + 1}`,
-      code: `group-${String(groupIndex + 1).padStart(2, '0')}`,
+      code: 'code' in group && typeof group.code === 'string' ? group.code : `group-${String(groupIndex + 1).padStart(2, '0')}`,
       name: group.name,
       required: group.required ?? false,
       minSelect: group.min ?? (group.required ? 1 : 0),
@@ -223,7 +225,7 @@ export function getFallbackShopSnapshot(): PublicShopSnapshot {
       sortOrder: groupIndex + 1,
       options: group.options.map((option, optionIndex) => ({
         id: `${product.id}-group-${groupIndex + 1}-option-${optionIndex + 1}`,
-        code: `option-${String(optionIndex + 1).padStart(2, '0')}`,
+        code: 'code' in option && typeof option.code === 'string' ? option.code : `option-${String(optionIndex + 1).padStart(2, '0')}`,
         name: option.name,
         priceDeltaAgorot: Math.round((option.price_delta ?? 0) * 100),
         active: option.active !== false,
@@ -236,7 +238,7 @@ export function getFallbackShopSnapshot(): PublicShopSnapshot {
     orderingEnabled: false,
     deliveryEnabled: false,
     pickupEnabled: false,
-    deliveryFeeAgorot: 1500,
+    deliveryFeeAgorot: 2000,
     minimumDeliverySubtotalAgorot: 7000,
     pickupFeeAgorot: 0,
     customerNoticeActive: false,
@@ -248,4 +250,21 @@ export function getFallbackShopSnapshot(): PublicShopSnapshot {
   };
 
   return { source: 'fallback', live: false, fetchedAt: new Date().toISOString(), categories, products, settings };
+}
+
+// Owner approval uses the bundled catalog, independently of the older live database.
+// This mode supports product choices and the cart; order submission stays disabled.
+export function getOwnerReviewShopSnapshot(): PublicShopSnapshot {
+  const snapshot = getFallbackShopSnapshot();
+  return {
+    ...snapshot,
+    source: 'review',
+    products: snapshot.products.map(product => ({
+      ...product,
+      availableToday: true,
+      availableForDelivery: true,
+      availableForPickup: true,
+    })),
+    settings: { ...snapshot.settings, orderingEnabled: true, deliveryEnabled: true, pickupEnabled: true },
+  };
 }

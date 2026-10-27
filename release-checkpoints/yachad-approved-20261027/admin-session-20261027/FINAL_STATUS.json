@@ -1,0 +1,79 @@
+{
+  "status": "DEPLOYED_READY_VERIFIED",
+  "target": "https://yachad-bakery-admin.vercel.app/",
+  "publicStorefront": "unchanged",
+  "idleDays": 14,
+  "logoutScope": "local",
+  "build": "PASS",
+  "lint": "PASS",
+  "browserQA": {
+    "status": "PASS",
+    "checks": [
+      "Successful login stores session and timestamp without password",
+      "Browser restart, direct /login and reload restore authorization without password",
+      "Return before 14 days restores and renews inactivity window",
+      "At 14 days requests password before loading protected dashboard",
+      "Background timers do not renew activity; open idle page expires",
+      "Returning interaction after idle timeout cannot revive expired session",
+      "Manual logout stays logged out and uses local scope; other device remains signed in",
+      "Profile network failure preserves stored session without exposing dashboard",
+      "Inactive allowlist entry remains blocked",
+      "Existing sessions migrate without unnecessary password prompt",
+      "Expired session stays blocked on reload even when logout network fails",
+      "Revoked refresh token requires password",
+      "Authorized UI renders at 390 and 1440 without overflow"
+    ],
+    "errors": [],
+    "mockedNetwork": true,
+    "realAuthRequests": 0
+  },
+  "liveAuthVerified": false,
+  "deployed": true,
+  "serverConfigChanged": false,
+  "qaBuildContainsDummyConfig": true,
+  "adminProjectId": "prj_gokUDADiTMYb2Uic3q3uyfOWudaa",
+  "rollbackDeployment": "dpl_Bkra2FyxDypz8DaMtFY6fcMZ7aHW",
+  "liveBaselineState": "READY",
+  "temporaryQAServers": "stopped",
+  "deploymentId": "dpl_84mqRLJ1yuiogfn8zEyAU15xPgck",
+  "deploymentState": "READY",
+  "liveDeployedBrowserQA": {
+    "base": "https://yachad-bakery-admin.vercel.app",
+    "productionAssets": true,
+    "status": "PASS",
+    "checks": [
+      "Successful login stores session and timestamp without password",
+      "Browser restart, direct /login and reload restore authorization without password",
+      "Return before 14 days restores and renews inactivity window",
+      "At 14 days requests password before loading protected dashboard",
+      "Background timers do not renew activity; open idle page expires",
+      "Returning interaction after idle timeout cannot revive expired session",
+      "Manual logout stays logged out and uses local scope; other device remains signed in",
+      "Profile network failure preserves stored session without exposing dashboard",
+      "Inactive allowlist entry remains blocked",
+      "Existing sessions migrate without unnecessary password prompt",
+      "Expired session stays blocked on reload even when logout network fails",
+      "Revoked refresh token requires password",
+      "Authorized UI renders at 390 and 1440 without overflow"
+    ],
+    "errors": [],
+    "mockedNetwork": true,
+    "realAuthRequests": 0
+  },
+  "liveAnonymousQA": {
+    "status": "PASS",
+    "widths": [
+      390,
+      1440
+    ],
+    "passwordPrefill": false,
+    "unauthorizedDashboardAccess": false,
+    "directRouteRedirect": true,
+    "assetHashesMatch": true,
+    "errors": []
+  },
+  "realPasswordLoginPerformed": false,
+  "productionConfig": "preserved from existing published browser config",
+  "productionBuildContainsDummyConfig": false,
+  "publicStorefrontDeploymentUnchanged": "dpl_43agxq1NeF76KS4MJgLWnLgjbbQJ"
+}

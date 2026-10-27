@@ -17,7 +17,7 @@ import {
 import './styles.css';
 import LegalPage, { LegalLinks } from './LegalPage';
 import { bakeryInfo } from './businessInfo';
-import { onlineOrdersEnabled, ordersOpeningMessage } from './shop/release';
+import { onlineOrdersEnabled, ordersOpeningMessage, customerOrdersEnabled } from './shop/release';
 
 import logoImage from './assets/bakery-2/logo.webp';
 import categoryPastries from './assets/bakery-2/cat-pastries.webp';
@@ -1091,9 +1091,9 @@ function HomePage() {
           </nav>
 
           <div className="topbar-actions">
-            <a className="topbar-order-link" href="/shop" aria-label={onlineOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}>
+            <a className="topbar-order-link" href="/shop" aria-label={customerOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}>
               <Storefront size={20} weight="regular" />
-              <span>{onlineOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}</span>
+              <span>{customerOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}</span>
             </a>
             <button
               className="menu-toggle"
@@ -1171,7 +1171,7 @@ function HomePage() {
               טרי מהתנור, בכל בוקר
             </motion.h1>
             <motion.p variants={reveal} transition={transition}>
-              {onlineOrdersEnabled ? 'מאפים, לחמים, עוגות וקפה — במאפייה או בהזמנה אונליין.' : 'מאפים, לחמים, עוגות וקפה — מחכים לכם במאפייה. אפשר לעיין בתפריט ולהרכיב סל באתר.'}
+              {customerOrdersEnabled ? 'מאפים, לחמים, עוגות וקפה — במאפייה או בהזמנה אונליין.' : 'מאפים, לחמים, עוגות וקפה — מחכים לכם במאפייה. אפשר לעיין בתפריט ולהרכיב סל באתר.'}
             </motion.p>
             <motion.div className="welcome-transition__actions" variants={buttonStagger}>
               <motion.a
@@ -1183,7 +1183,7 @@ function HomePage() {
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
               >
                 <Storefront size={20} weight="bold" />
-                {onlineOrdersEnabled ? 'להזמנה אונליין' : 'לתפריט ולסל'}
+                {customerOrdersEnabled ? 'להזמנה אונליין' : 'לתפריט ולסל'}
               </motion.a>
               <motion.a
                 className="btn btn-soft"
@@ -1323,7 +1323,7 @@ function HomePage() {
               אפייה במקום, מאפים, לחמים, עוגות, עוגיות, קפה ומבחר אפשרויות לאירוח. הקו פשוט:
               טעם, איכות וטריות — עם אווירה חמה ושירות בגובה העיניים.
             </p>
-            <p>קפה ומגשי אירוח אפשר לברר ישירות עם המאפייה. {onlineOrdersEnabled ? 'בתפריט המקוון מופיעים המוצרים הזמינים להזמנה באתר.' : 'בתפריט המקוון אפשר לעיין במוצרי המאפייה ולהרכיב סל לצפייה.'}</p>
+            <p>קפה ומגשי אירוח אפשר לברר ישירות עם המאפייה. {customerOrdersEnabled ? 'בתפריט המקוון מופיעים המוצרים הזמינים להזמנה באתר.' : 'בתפריט המקוון אפשר לעיין במוצרי המאפייה ולהרכיב סל לצפייה.'}</p>
           </motion.div>
           <motion.div
             className="about-visual"
@@ -1389,7 +1389,7 @@ function HomePage() {
                     whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
                   >
                     <Storefront size={20} weight="bold" />
-                    {onlineOrdersEnabled ? 'להזמנה אונליין' : 'לתפריט ולסל'}
+                    {customerOrdersEnabled ? 'להזמנה אונליין' : 'לתפריט ולסל'}
                   </motion.a>
                   <motion.a
                     className="btn btn-soft"
@@ -1459,7 +1459,7 @@ function HomePage() {
       >
         <motion.a whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }} href="/shop">
           <Storefront size={22} weight="bold" />
-          {onlineOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}
+          {customerOrdersEnabled ? 'הזמנה אונליין' : 'לתפריט ולסל'}
         </motion.a>
         <motion.a whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }} href={whatsappHref} target="_blank" rel="noreferrer">
           <WhatsappLogo className="whatsapp-icon on-gold" size={22} weight="bold" />
@@ -1479,7 +1479,7 @@ function App() {
   const isShop = path === '/shop';
   useEffect(() => {
     if (!isShop) return;
-    document.title = `${onlineOrdersEnabled ? 'הזמנה אונליין' : 'תפריט וסל לצפייה'} | מאפיית יחד`;
+    document.title = `${customerOrdersEnabled ? 'הזמנה אונליין' : 'תפריט וסל לצפייה'} | מאפיית יחד`;
     const values: Record<string, string> = {
       'meta[name=description]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
       'meta[property="og:title"]': document.title,
@@ -1488,7 +1488,7 @@ function App() {
       'meta[name="twitter:title"]': document.title,
       'meta[name="twitter:description"]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
     };
-    if (!onlineOrdersEnabled) {
+    if (!customerOrdersEnabled) {
       for (const selector of ['meta[name=description]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) values[selector] = 'תפריט מאפיית יחד והרכבת סל לצפייה. הזמנות אונליין ייפתחו בקרוב.';
     }
     Object.entries(values).forEach(([selector, value]) => document.querySelector(selector)?.setAttribute('content', value));

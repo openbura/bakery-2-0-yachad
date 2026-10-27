@@ -12,7 +12,7 @@ import {
   X,
 } from '@phosphor-icons/react';
 
-import { formatPrice, saleUnit, unitPrice, priceProductSelections, lineTotal, orderTotals } from '../admin-dashboard/src/domain/pricing';
+import { formatPrice, saleUnit, unitPrice, priceProductSelections, lineTotal, orderTotals, isBuildYourOwnSalad, isBuildYourOwnToast } from '../admin-dashboard/src/domain/pricing';
 import shopCoverImage from './assets/bakery-2/shop-cover-yachad.jpg';
 import { usePublicShop } from './hooks/usePublicShop';
 import { reconcileCart } from './shop/cartReconciliation';
@@ -35,7 +35,10 @@ import { createOrder, fetchPickupSlots, fetchTrackedOrder, OrderSubmissionError 
 import { clearOrderIntent, persistOrderIntent, readOrderIntent, readOrderReceipt, rememberOrderReceipt } from './shop/orderSubmission';
 import { emptyCheckoutDraft } from './shop/checkoutSession';
 import type { CreateOrderInput, CreatedOrder, PickupSlot } from './shop/orderTypes';
-import { onlineOrdersEnabled, ordersOpeningMessage } from './shop/release';
+import { onlineOrdersEnabled, ordersOpeningMessage, ownerReviewEnabled, whatsappOrdersEnabled, customerOrdersEnabled } from './shop/release';
+import { cateringTrayId, traySelectionError } from './shop/cateringTray';
+import { deliveryAreas, deliveryFeeFor, resolveDeliveryCity } from './shop/deliveryPolicy';
+import { familyPizzaId, familyPizzaGroupActive } from './shop/familyPizza';
 type ResidenceType = '' | 'building' | 'private-house';
 type OrderStep = 'catalog' | 'details';
 type CheckoutField =
@@ -52,44 +55,12 @@ type CheckoutField =
   | 'notes'
   | 'order';
 type CheckoutErrors = Partial<Record<CheckoutField, string>>;
-type DeliveryArea = {
-  id: string;
-  label: string;
-  requiresConfirmation: boolean;
-  notes: string;
-};
+type DeliveryArea = (typeof deliveryAreas)[number];
 
 
 
 const allCategory = 'הכל';
 
-// Demo business rules. Delivery prices can be adjusted later.
-const deliveryAreas: DeliveryArea[] = [
-  {
-    id: 'kfar-saba',
-    label: 'כפר סבא',
-    requiresConfirmation: false,
-    notes: 'כלל דמו: דמי משלוח קבועים; ניתן לעדכן בהמשך.',
-  },
-  {
-    id: 'hod-hasharon',
-    label: 'הוד השרון',
-    requiresConfirmation: false,
-    notes: 'כלל דמו: דמי משלוח קבועים; ניתן לעדכן בהמשך.',
-  },
-  {
-    id: 'raanana',
-    label: 'רעננה',
-    requiresConfirmation: false,
-    notes: 'כלל דמו: דמי משלוח קבועים; ניתן לעדכן בהמשך.',
-  },
-  {
-    id: 'other',
-    label: 'אחר',
-    requiresConfirmation: true,
-    notes: 'אזור המשלוח דורש בדיקה מול המאפייה.',
-  },
-];
 
 
 function isValidIsraeliPhone(value: string) {
@@ -101,7 +72,8 @@ function getProductDisplayPrice(product: ShopProduct) {
 }
 
 function getVisibleProductUnitNote(product: ShopProduct) {
-  return saleUnit(product).comparison;
+  const unit = saleUnit(product);
+  return unit.confirmed ? [unit.label, unit.comparison].filter(Boolean).join(' · ') : unit.comparison;
 }
 
 function getSelectionGroups(selections: CartSelection[] = []) {
@@ -117,6 +89,16 @@ function getCartItemUnitPrice(item: ShopCartItem) {
 
 function formatOptionLabel(selection: CartSelection) {
   return `${selection.optionName}${selection.priceDeltaAgorot > 0 ? ` (+${formatPrice(selection.priceDeltaAgorot)})` : ''}`;
+}
+
+function formatSelectedOptions(selections: CartSelection[]) {
+  const counted = new Map<string, { selection: CartSelection; count: number }>();
+  selections.forEach(selection => {
+    const key = `${selection.optionCode}:${selection.priceDeltaAgorot}`;
+    const entry = counted.get(key);
+    counted.set(key, { selection, count: (entry?.count ?? 0) + 1 });
+  });
+  return [...counted.values()].map(({ selection, count }) => `${formatOptionLabel(selection)}${count > 1 ? ` ×${count}` : ''}`).join(', ');
 }
 
 function makeCartItemId(product: ShopProduct, selections: CartSelection[] = []) {
@@ -175,6 +157,7 @@ function isCustomerNoticeVisible(settings: ShopStoreSettings, now = Date.now()) 
 function buildOrderSummary({
   cartItems,
   fulfillment,
+  pickupTime,
   selectedArea,
   customerName,
   phone,
@@ -192,6 +175,7 @@ function buildOrderSummary({
 }: {
   cartItems: ShopCartItem[];
   fulfillment: FulfillmentType;
+  pickupTime: string;
   selectedArea?: DeliveryArea;
   customerName: string;
   phone: string;
@@ -236,6 +220,9 @@ function buildOrderSummary({
     }
   }
 
+  if (fulfillment === 'pickup' && pickupTime && Number.isFinite(Date.parse(pickupTime))) {
+    lines.push(`מועד איסוף: ${new Intl.DateTimeFormat('he-IL', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Asia/Jerusalem' }).format(new Date(pickupTime))}`);
+  }
   lines.push('', 'פריטים:');
   cartItems.forEach((item) => {
     const { product, quantity } = item;
@@ -247,14 +234,14 @@ function buildOrderSummary({
     if (Object.keys(selectionGroups).length > 0) {
       lines.push('  בחירות:');
       Object.entries(selectionGroups).forEach(([groupName, selections]) => {
-        lines.push(`  - ${groupName}: ${selections.map(formatOptionLabel).join(', ')}`);
+        lines.push(`  - ${groupName}: ${formatSelectedOptions(selections)}`);
       });
     }
   });
 
   lines.push('');
   lines.push(`סיכום ביניים: ${formatPrice(subtotal)}`);
-  lines.push(`דמי משלוח: ${formatPrice(deliveryFee)}`);
+  lines.push(`${fulfillment === 'delivery' ? 'דמי משלוח' : 'דמי איסוף'}: ${formatPrice(deliveryFee)}`);
   lines.push(`סה״כ הזמנה: ${formatPrice(total)}`);
 
   if (notes.trim()) {
@@ -270,7 +257,7 @@ export default function ShopPage() {
   const [initialCheckout] = useState(() => ({ ...readCheckoutSession(), draft: readCheckoutDraft() }));
   const [cart, setCart] = useState<Record<string, ShopCartItem>>(initialCheckout.cart);
   const [cartOpen, setCartOpen] = useState(false);
-  const [orderStep, setOrderStep] = useState<OrderStep>(onlineOrdersEnabled && Object.keys(initialCheckout.cart).length ? initialCheckout.draft.step : 'catalog');
+  const [orderStep, setOrderStep] = useState<OrderStep>(customerOrdersEnabled && Object.keys(initialCheckout.cart).length ? initialCheckout.draft.step : 'catalog');
   const [preferredFulfillment, setFulfillment] = useState<FulfillmentType>(initialCheckout.fulfillment);
   const [customerName, setCustomerName] = useState(initialCheckout.draft.customerName);
   const [phone, setPhone] = useState(initialCheckout.draft.phone);
@@ -291,6 +278,7 @@ export default function ShopPage() {
   const [priceUpdateVisible, setPriceUpdateVisible] = useState(false);
   const [finalValidationPending, setFinalValidationPending] = useState(false);
   const [pickupTime, setPickupTime] = useState(initialCheckout.draft.pickupTime);
+  const [pickupNow, setPickupNow] = useState(Date.now);
   const [pickupSlots, setPickupSlots] = useState<PickupSlot[]>([]);
   const [slotsError, setSlotsError] = useState('');
   const [slotsLoading, setSlotsLoading] = useState(false);
@@ -335,7 +323,7 @@ export default function ShopPage() {
   const displayedCustomizingProduct = customizingProduct
     ? products.find((product) => product.id === customizingProduct.id) ?? customizingProduct
     : null;
-  const isLive = shopStatus === 'live' && snapshot.live;
+  const isLive = ownerReviewEnabled || (shopStatus === 'live' && snapshot.live);
   const categories = useMemo(() => [allCategory, ...snapshot.categories.map((category) => category.name)], [snapshot.categories]);
   const visibleProducts = selectedCategory === allCategory
     ? products
@@ -345,9 +333,10 @@ export default function ShopPage() {
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const cartCountLabel = cartCount === 1 ? 'פריט אחד' : `${cartCount} פריטים`;
   const subtotal = orderTotals(cartItems, 0).subtotal;
-  const selectedArea = deliveryAreas.find((area) => area.id === cityId);
-  const cityLabel = cityId === 'other' ? otherCity.trim() : selectedArea?.label ?? '';
-  const deliveryFee = fulfillment === 'delivery' ? settings.deliveryFeeAgorot : settings.pickupFeeAgorot;
+  const effectiveCityId = resolveDeliveryCity(cityId, otherCity);
+  const selectedArea = deliveryAreas.find((area) => area.id === effectiveCityId);
+  const cityLabel = effectiveCityId === 'other' ? otherCity.trim() : selectedArea?.label ?? '';
+  const deliveryFee = deliveryFeeFor(fulfillment, effectiveCityId, settings.pickupFeeAgorot);
   const total = orderTotals(cartItems, deliveryFee).total;
   const deliveryMinimumNotMet =
     fulfillment === 'delivery' && cartItems.length > 0 && subtotal < settings.minimumDeliverySubtotalAgorot;
@@ -368,7 +357,7 @@ export default function ShopPage() {
   );
   const deliveryAddressReady =
     fulfillment === 'pickup' ||
-    (Boolean(selectedArea) && cityLabel.length > 0 &&
+    (Boolean(selectedArea) && cityLabel.length >= 2 && cityLabel.length <= 100 &&
       street.trim().length > 1 &&
       houseNumber.trim().length > 0 &&
       residenceType.length > 0 &&
@@ -376,6 +365,7 @@ export default function ShopPage() {
   const orderSummary = buildOrderSummary({
     cartItems,
     fulfillment,
+    pickupTime,
     selectedArea,
     customerName,
     phone: normalizeIsraeliPhone(phone),
@@ -396,13 +386,14 @@ export default function ShopPage() {
     customerName.trim().length > 1 &&
     isValidIsraeliPhone(phone) &&
     deliveryAddressReady &&
+    (fulfillment !== 'pickup' || whatsappOrdersEnabled || pickupSlots.some(slot => slot.startsAt === pickupTime && Date.parse(slot.startsAt) >= pickupNow + 60 * 60 * 1000)) &&
     !deliveryMinimumNotMet &&
     orderingAllowed &&
     selectedFulfillmentEnabled &&
     !cartHasInvalidItems &&
     !cartHasFulfillmentConflict;
-  const canAttemptContinue = onlineOrdersEnabled && cartItems.length > 0 && orderingAllowed && selectedFulfillmentEnabled && !cartHasInvalidItems && !cartHasFulfillmentConflict;
-  const cartBlockingMessage = !onlineOrdersEnabled ? ordersOpeningMessage : !isLive ? 'אי אפשר לאמת כרגע את ההזמנה. נסו שוב או פנו למאפייה.' : getOperationalBlock(settings, cartItems, fulfillment);
+  const canAttemptContinue = customerOrdersEnabled && cartItems.length > 0 && orderingAllowed && selectedFulfillmentEnabled && !cartHasInvalidItems && !cartHasFulfillmentConflict;
+  const cartBlockingMessage = ownerReviewEnabled ? '' : !onlineOrdersEnabled ? ordersOpeningMessage : !isLive ? 'אי אפשר לאמת כרגע את ההזמנה. נסו שוב או פנו למאפייה.' : getOperationalBlock(settings, cartItems, fulfillment);
 
   const cancelValidation = useCallback(() => {
     const pending = validationRef.current.pending;
@@ -432,7 +423,7 @@ export default function ShopPage() {
     }
     const onPopState = (event: PopStateEvent) => {
       cancelValidation();
-      setOrderStep(onlineOrdersEnabled && event.state?.yachadCheckoutStep === 'details' ? 'details' : 'catalog');
+      setOrderStep(customerOrdersEnabled && event.state?.yachadCheckoutStep === 'details' ? 'details' : 'catalog');
       setCartOpen(false);
       setCheckoutErrors({});
       };
@@ -504,14 +495,15 @@ export default function ShopPage() {
 
   const reloadPickupSlots = useCallback(async () => {
     setSlotsLoading(true); setSlotsError('');
-    try { setPickupSlots(await fetchPickupSlots()); }
+    try { setPickupSlots(await fetchPickupSlots()); setPickupNow(Date.now()); }
     catch { setSlotsError('לא הצלחנו לטעון מועדי איסוף. נסו שוב.'); }
     finally { setSlotsLoading(false); }
   }, []);
   useEffect(() => {
-    if (fulfillment !== 'pickup' || orderStep !== 'details') return;
+    if (whatsappOrdersEnabled || fulfillment !== 'pickup' || orderStep !== 'details') return;
+    const clock = window.setInterval(() => setPickupNow(Date.now()), 30000);
     const timer = window.setTimeout(() => void reloadPickupSlots(), 0);
-    return () => window.clearTimeout(timer);
+    return () => { window.clearTimeout(timer); window.clearInterval(clock); };
   }, [fulfillment, orderStep, reloadPickupSlots]);
 
   const renderFulfillmentSelector = (variant: 'summary' | 'form') => (
@@ -572,6 +564,17 @@ export default function ShopPage() {
           ? `דמי משלוח ${formatPrice(deliveryFee)} · מינימום הזמנה למשלוח ${minimumDeliverySubtotalText}`
           : 'איסוף עצמי ללא דמי משלוח'}
       </p>
+      {variant === 'summary' && fulfillment === 'delivery' && <div className="shop-delivery-area-fields">
+        <label htmlFor="shop-delivery-area">אזור משלוח
+          <select id="shop-delivery-area" value={cityId} onChange={event => { setCityId(event.target.value); setStreet(''); clearCheckoutError('cityId'); clearCheckoutError('otherCity'); }}>
+            {deliveryAreas.map(area => <option key={area.id} value={area.id}>{area.label} — {formatPrice(area.feeAgorot)}</option>)}
+          </select>
+        </label>
+        {cityId === 'other' && <label htmlFor="shop-delivery-locality">שם היישוב
+          <input id="shop-delivery-locality" value={otherCity} onChange={event => setOtherCity(event.target.value)} placeholder="שם היישוב בסביבת כפר סבא" maxLength={100} />
+          <small>דמי המשלוח מופיעים בסיכום. זמינות המשלוח ליישוב תאושר מול המאפייה.</small>
+        </label>}
+      </div>}
       {fulfillment === 'pickup' && <div className="shop-pickup-info">
         <strong>איסוף מ{bakeryInfo.pickupAddress}</strong>
         <span>{bakeryInfo.hours.map((row, index) => <span key={row.days}>{index > 0 && ' · '}{row.days}: <bdi dir="ltr">{row.time}</bdi></span>)}</span>
@@ -591,7 +594,7 @@ export default function ShopPage() {
   };
 
   const goToOrderDetails = async () => {
-    if (!onlineOrdersEnabled) return;
+    if (!customerOrdersEnabled) return;
     if (validationRef.current.pending) return;
     if (deliveryMinimumNotMet) {
       setMinimumPromptVisible(true);
@@ -614,7 +617,7 @@ export default function ShopPage() {
       if (attempt !== validationRef.current.id) return;
       const reconciled = reconcileCart(cart, freshSnapshot);
       setCart(reconciled.cart);
-      if (reconciled.priceChanged || freshSnapshot.settings.deliveryFeeAgorot !== settings.deliveryFeeAgorot || freshSnapshot.settings.pickupFeeAgorot !== settings.pickupFeeAgorot) {
+      if (reconciled.priceChanged || deliveryFeeFor(fulfillment, effectiveCityId, freshSnapshot.settings.pickupFeeAgorot) !== deliveryFee) {
         setPriceUpdateVisible(true);
         setOperationalMessage('המחירים בהזמנה עודכנו. בדקו את הסכום לפני שממשיכים.');
         return;
@@ -678,7 +681,7 @@ export default function ShopPage() {
   );
 
   const getSelectedProductOptions = (product: ShopProduct, selected: Record<string, string[]>) => (
-    priceProductSelections(product.id, getActiveOptionGroups(product).flatMap((group) => {
+    priceProductSelections(product.id, getActiveOptionGroups(product).filter(group => familyPizzaGroupActive(product.id, group.code, selected['pizza-mode']?.[0])).flatMap((group) => {
       const selectedCodes = selected[group.code] ?? [];
       return selectedCodes
         .map((optionCode) => group.options.find((option) => option.code === optionCode))
@@ -697,7 +700,7 @@ export default function ShopPage() {
 
   const openProductOptions = (product: ShopProduct, item?: ShopCartItem) => {
     setEditingCartItemId(item?.id ?? null);
-    setSelectedOptions(item ? Object.fromEntries(product.optionGroups.map(group => [group.code, item.selections.filter(selection => selection.groupCode === group.code).map(selection => selection.optionCode)])) : {});
+    setSelectedOptions(item ? Object.fromEntries(product.optionGroups.map(group => [group.code, item.selections.filter(selection => selection.groupCode === group.code).map(selection => selection.optionCode)])) : product.id === cateringTrayId ? { 'tray-mode': ['mixed'] } : product.id === familyPizzaId ? { 'pizza-mode': ['plain'] } : {});
     if (item) setCartOpen(false);
     setCustomizationError('');
     setCustomizingProduct(product);
@@ -715,6 +718,12 @@ export default function ShopPage() {
   const toggleProductOption = (group: ShopProductOptionGroup, optionCode: string) => {
     setCustomizationError('');
     setSelectedOptions((current) => {
+      if (customizingProduct?.id === familyPizzaId && group.code === 'pizza-mode') {
+        return { 'pizza-mode': [optionCode] };
+      }
+      if (customizingProduct?.id === cateringTrayId && group.code === 'tray-mode') {
+        return { 'tray-mode': [optionCode], 'tray-mix': [], 'tray-single': [] };
+      }
       const currentGroupOptions = current[group.code] ?? [];
       const isSelected = currentGroupOptions.includes(optionCode);
       const maxSelections = group.maxSelect;
@@ -745,6 +754,32 @@ export default function ShopPage() {
     });
   };
 
+  const setToastSauceCount = (group: ShopProductOptionGroup, optionCode: string, count: number) => {
+    setCustomizationError('');
+    if (!Number.isInteger(count) || count < 0 || count > 2) return;
+    setSelectedOptions(current => {
+      const otherChoices = (current[group.code] ?? []).filter(code => code !== optionCode);
+      if (otherChoices.length + count > 2) {
+        setCustomizationError('אפשר לבחור עד 2 רטבים בסך הכול.');
+        return current;
+      }
+      return { ...current, [group.code]: [...otherChoices, ...Array<string>(count).fill(optionCode)] };
+    });
+  };
+
+  const setTrayFillingCount = (optionCode: string, count: number) => {
+    setCustomizationError('');
+    if (!Number.isInteger(count) || count < 0 || count > 12) return;
+    setSelectedOptions(current => {
+      const otherChoices = (current['tray-mix'] ?? []).filter(code => code !== optionCode);
+      if (otherChoices.length + count > 12) {
+        setCustomizationError('המגש מכיל 12 כריכונים בדיוק. הפחיתו כמות ממילוי אחר כדי לשנות את החלוקה.');
+        return current;
+      }
+      return { ...current, 'tray-mix': [...otherChoices, ...Array<string>(count).fill(optionCode)] };
+    });
+  };
+
   const addConfiguredProductToCart = () => {
     if (!customizingProduct) {
       return;
@@ -756,7 +791,7 @@ export default function ShopPage() {
       return;
     }
 
-    const optionGroups = getActiveOptionGroups(currentProduct);
+    const optionGroups = getActiveOptionGroups(currentProduct).filter(group => familyPizzaGroupActive(currentProduct.id, group.code, selectedOptions['pizza-mode']?.[0]));
     const invalidGroup = optionGroups.find((group) => {
       const selectedCount = selectedOptions[group.code]?.length ?? 0;
       const minSelections = group.minSelect;
@@ -783,6 +818,10 @@ export default function ShopPage() {
     if (selections.length !== requestedSelectionCount) {
       setCustomizationError('אחת האפשרויות השתנתה. בדקו שוב את הבחירות.');
       return;
+    }
+    if (currentProduct.id === cateringTrayId) {
+      const trayError = traySelectionError(selections);
+      if (trayError) { setCustomizationError(trayError); return; }
     }
     const itemId = makeCartItemId(currentProduct, selections);
     const unitPriceAgorot = unitPrice(currentProduct.priceAgorot, selections);
@@ -892,15 +931,15 @@ export default function ShopPage() {
       nextErrors.phone = 'כתבו מספר טלפון ישראלי תקין.';
     }
 
-    if (fulfillment === 'pickup' && !pickupSlots.some(slot => slot.startsAt === pickupTime && Date.parse(slot.startsAt) >= Date.now() + 60 * 60 * 1000)) {
+    if (fulfillment === 'pickup' && !whatsappOrdersEnabled && !pickupSlots.some(slot => slot.startsAt === pickupTime && Date.parse(slot.startsAt) >= Date.now() + 60 * 60 * 1000)) {
       nextErrors.pickupTime = 'בחרו מועד איסוף זמין, לפחות שעה ממועד ההזמנה.';
     }
     if (fulfillment === 'delivery') {
       if (!deliveryAreas.some(area => area.id === cityId)) {
         nextErrors.cityId = 'בחרו עיר מרשימת אזורי המשלוח.';
       }
-      if (cityId === 'other' && !otherCity.trim()) {
-        nextErrors.otherCity = 'כתבו את שם המושב או היישוב.';
+      if (cityId === 'other' && (otherCity.trim().length < 2 || otherCity.trim().length > 100)) {
+        nextErrors.otherCity = 'כתבו שם יישוב באורך 2–100 תווים.';
       }
       if (street.trim().length < 2) {
         nextErrors.street = 'כתבו את שם הרחוב.';
@@ -953,7 +992,10 @@ export default function ShopPage() {
     ];
     const firstInvalidField = fieldOrder.find((field) => nextErrors[field]);
     if (firstInvalidField) {
+      const activeAtValidation = document.activeElement;
       window.requestAnimationFrame(() => {
+        // A user who has already moved to another field must keep their focus.
+        if (document.activeElement !== activeAtValidation) return;
         const target = document.getElementById(`checkout-${firstInvalidField}`);
         target?.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
         target?.focus({ preventScroll: true });
@@ -1000,6 +1042,13 @@ export default function ShopPage() {
     } finally { if (attempt === validationRef.current.id) { validationRef.current.pending = false; setFinalValidationPending(false); } }
   };
 
+  const submitWhatsAppOrder = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!whatsappOrdersEnabled || !validateCheckout()) return;
+    const summary = orderSummary + (fulfillment === 'pickup' ? '\nמועד איסוף: בתיאום עם המאפייה' : '') + '\nהבקשה כפופה לאישור המאפייה. ללא תשלום מקוון.';
+    window.open(`https://wa.me/${bakeryInfo.whatsappNumber}?text=${encodeURIComponent(summary)}`, '_blank', 'noopener,noreferrer');
+  };
+
   const submitOnlineOrder = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validationRef.current.pending) return;
@@ -1019,10 +1068,10 @@ export default function ShopPage() {
       if (fulfillment === 'delivery' && freshSubtotal < fresh.settings.minimumDeliverySubtotalAgorot) {
         setOperationalMessage('הסל אינו מגיע למינימום המשלוח העדכני.'); return;
       }
-      if (reconciled.priceChanged || fresh.settings.deliveryFeeAgorot !== settings.deliveryFeeAgorot || fresh.settings.pickupFeeAgorot !== settings.pickupFeeAgorot) {
+      if (reconciled.priceChanged || deliveryFeeFor(fulfillment, effectiveCityId, fresh.settings.pickupFeeAgorot) !== deliveryFee) {
         setPriceUpdateVisible(true); setOperationalMessage('המחיר או דמי המשלוח עודכנו. בדקו את הסיכום ושלחו שוב.'); return;
       }
-      const fee = fulfillment === 'delivery' ? fresh.settings.deliveryFeeAgorot : fresh.settings.pickupFeeAgorot;
+      const fee = deliveryFeeFor(fulfillment, effectiveCityId, fresh.settings.pickupFeeAgorot);
       const input = persistOrderIntent({
         fulfillmentType: fulfillment, requestedPickupAt: fulfillment === 'pickup' ? pickupTime : null,
         customerName: customerName.trim(), phone: normalizeIsraeliPhone(phone), customerNotes: notes.trim(),
@@ -1067,7 +1116,7 @@ export default function ShopPage() {
 
       {orderStep === 'catalog' && (
         <section className="shop-cover" aria-label="מאפיית יחד - מאפים טריים כל יום">
-          <h1 className="shop-sr-only">{onlineOrdersEnabled ? 'הזמנה אונליין ממאפיית יחד' : 'התפריט והסל של מאפיית יחד'}</h1>
+          <h1 className="shop-sr-only">{customerOrdersEnabled ? 'הזמנה אונליין ממאפיית יחד' : 'התפריט והסל של מאפיית יחד'}</h1>
           <img src={shopCoverImage} alt="מאפיית יחד - טרי, איכותי, מהלב. מאפים טריים, כל יום, באהבה." decoding="async" />
           <a className="shop-cover-link" href="/">
             <ArrowRight size={19} weight="bold" />
@@ -1077,12 +1126,11 @@ export default function ShopPage() {
       )}
 
       {orderStep === 'catalog' && <div className="shop-service-info">
-        <span>משלוחים בכפר סבא, הוד השרון ורעננה · יישובים נוספים בכפוף לאישור</span>
-        <a href={bakeryInfo.phoneHref}>שאלות על ההזמנה? <bdi>{bakeryInfo.phone}</bdi></a>
+        <span>משלוחים לכפר סבא, רעננה, הוד השרון ויישובים באזור</span>
       </div>}
       {orderStep === 'catalog' && cartItems.length === 0 && renderFulfillmentSelector('summary')}
       <div className="shop-live-status" aria-live="polite">
-        {!onlineOrdersEnabled && <div className="shop-status-banner is-info" data-testid="catalog-only"><strong>הזמנות אונליין ייפתחו בקרוב</strong><span>בינתיים אפשר לעיין בתפריט ולהרכיב סל. לא נשלחת הזמנה ולא מתבצע חיוב.</span></div>}
+        {!onlineOrdersEnabled && !ownerReviewEnabled && <div className="shop-status-banner is-info" data-testid="catalog-only"><strong>הזמנות אונליין ייפתחו בקרוב</strong><span>בינתיים אפשר לעיין בתפריט ולהרכיב סל. לא נשלחת הזמנה ולא מתבצע חיוב.</span></div>}
         {shopStatus === 'loading' && (
           <div className="shop-status-banner is-loading" data-testid="shop-loading">
             טוענים את התפריט העדכני…
@@ -1129,11 +1177,12 @@ export default function ShopPage() {
         )}
       </div>
 
-      {unresolvedOrder && <section className="shop-submission-recovery" role="status"><strong>יש בקשת הזמנה שצריך לבדוק</strong><p>ייתכן שכבר נשמרה. בדיקת השליחה תחזור לאותה הזמנה ותמנע כפילות; אין צורך למלא או לשלוח מחדש.</p><button type="button" disabled={finalValidationPending} onClick={() => void recoverOrderSubmission()}>בדיקת מצב השליחה</button></section>}
-      {lastReceipt && <p className="shop-last-order"><a href={'/order/' + lastReceipt.trackingToken}>למעקב אחר הזמנה #{lastReceipt.orderNumber}</a></p>}
+      {onlineOrdersEnabled && unresolvedOrder && <section className="shop-submission-recovery" role="status"><strong>יש בקשת הזמנה שצריך לבדוק</strong><p>ייתכן שכבר נשמרה. בדיקת השליחה תחזור לאותה הזמנה ותמנע כפילות; אין צורך למלא או לשלוח מחדש.</p><button type="button" disabled={finalValidationPending} onClick={() => void recoverOrderSubmission()}>בדיקת מצב השליחה</button></section>}
+      {onlineOrdersEnabled && lastReceipt && <p className="shop-last-order"><a href={'/order/' + lastReceipt.trackingToken}>למעקב אחר הזמנה #{lastReceipt.orderNumber}</a></p>}
       <div className={`shop-layout ${orderStep === 'details' ? 'is-checkout-step' : ''}`}>
         {orderStep === 'catalog' ? (
           <section className="shop-products" aria-label="תפריט מאפיית יחד" inert={finalValidationPending}>
+            <h2 className="shop-sr-only">תפריט המוצרים</h2>
 
             <div className="shop-category-nav">
               <div className="shop-category-tabs" aria-label="סינון קטגוריות">
@@ -1161,7 +1210,7 @@ export default function ShopPage() {
               </button>
             </div>
 
-            <p className="shop-food-notice">מידע על אלרגנים, מרכיבים וכמות עדיין אינו מלא בכל המוצרים. לבירור לפני הזמנה: <a href={bakeryInfo.phoneHref}><bdi>{bakeryInfo.phone}</bdi></a>.</p>
+            <p className="shop-food-notice">למידע על אלרגנים ומרכיבים רגישים התקשרו לפני הזמנה: <a href={bakeryInfo.phoneHref}><bdi>{bakeryInfo.phone}</bdi></a>.</p>
             {visibleProducts.length === 0 && <div className="shop-empty-products" role="status">אין כרגע מוצרים בקטגוריה הזו. {selectedCategory !== allCategory && <button type="button" onClick={() => setSelectedCategory(allCategory)}>לכל המוצרים</button>}</div>}
             <div className="shop-grid">
               {visibleProducts.map((product, index) => {
@@ -1254,7 +1303,7 @@ export default function ShopPage() {
                         {item.quantity > 1 && <span className="shop-checkout-overview-item-note"><bdi>{formatPrice(itemUnitPrice)}</bdi> ליח׳</span>}
                         {Object.entries(selectionGroups).map(([groupName, selections]) => (
                           <span className="shop-checkout-overview-item-note" key={groupName}>
-                            {groupName}: {selections.map(formatOptionLabel).join(', ')}
+                            {groupName}: {formatSelectedOptions(selections)}
                           </span>
                         ))}
                       </li>
@@ -1273,14 +1322,15 @@ export default function ShopPage() {
                 id="shop-checkout-form"
                 noValidate
                 inert={finalValidationPending}
-                onSubmit={submitOnlineOrder}
+                onSubmit={whatsappOrdersEnabled ? submitWhatsAppOrder : submitOnlineOrder}
               >
                 <div className="shop-form-panel shop-form-panel--fulfillment">
                   <div className="shop-form-title">אופן קבלה</div>
                   {renderFulfillmentSelector('form')}
                 </div>
 
-                {fulfillment === 'pickup' && <div className="shop-form-panel shop-form-panel--timing">
+                {fulfillment === 'pickup' && whatsappOrdersEnabled && <p className="shop-fulfillment-note">מועד האיסוף יתואם מול המאפייה בוואטסאפ.</p>}
+                {fulfillment === 'pickup' && !whatsappOrdersEnabled && <div className="shop-form-panel shop-form-panel--timing">
                   <label htmlFor="checkout-pickupTime"><span className="shop-field-label">מועד איסוף <span aria-hidden="true">*</span></span>
                     <select id="checkout-pickupTime" value={pickupTime} onChange={event => { setPickupTime(event.target.value); clearCheckoutError('pickupTime'); }} disabled={slotsLoading} required aria-required="true" aria-invalid={Boolean(checkoutErrors.pickupTime)} aria-describedby="pickup-time-help">
                       <option value="">{slotsLoading ? 'טוענים מועדי איסוף…' : 'בחרו תאריך ושעה'}</option>
@@ -1342,7 +1392,7 @@ export default function ShopPage() {
 
                 {fulfillment === 'delivery' ? (
                   <div className="shop-form-panel shop-form-panel--address">
-                    <div className="shop-form-title">כתובת למשלוח</div>
+                    <div className="shop-form-title">כתובת למשלוח</div><p className="shop-field-help" role="status">דמי המשלוח נקבעים לפי העיר בכתובת ומתעדכנים בסיכום ההזמנה.</p>
                     <div className="shop-form-grid shop-form-grid--address-main">
                         <label htmlFor="checkout-cityId">
                           <span className="shop-field-label">עיר / יישוב <span aria-hidden="true">*</span></span>
@@ -1378,6 +1428,7 @@ export default function ShopPage() {
                             <input
                               id="checkout-otherCity"
                               name="otherCity"
+                              maxLength={100}
                               value={otherCity}
                               onChange={(event) => {
                                 setOtherCity(event.target.value);
@@ -1563,7 +1614,7 @@ export default function ShopPage() {
           </section>
         )}
 
-        <aside
+        <section
           ref={cartPanelRef}
           role={cartIsModal ? 'dialog' : undefined}
           aria-modal={cartIsModal ? true : undefined}
@@ -1603,7 +1654,7 @@ export default function ShopPage() {
                           <div className="shop-cart-options" aria-label="בחירות למוצר">
                             {Object.entries(selectionGroups).map(([groupName, selections]) => (
                               <p key={groupName}>
-                                <b>{groupName}:</b> {selections.map(formatOptionLabel).join(', ')}
+                                <b>{groupName}:</b> {formatSelectedOptions(selections)}
                               </p>
                             ))}
                           </div>
@@ -1613,7 +1664,7 @@ export default function ShopPage() {
                         )}
                       </div>
                       <div className="shop-cart-item-actions">
-                        {hasProductOptions(product) && <button className="shop-remove-item" type="button" onClick={() => openProductOptions(product, item)} aria-label={`עריכת ${product.name}`}>עריכה</button>}
+                        {hasProductOptions(product) && <button className="shop-remove-item" type="button" onClick={() => openProductOptions(product, item)} aria-label={`עריכה: ${product.name}`}>עריכה</button>}
                         <div className="shop-quantity" aria-label={`כמות ${product.name}`}>
                           <button type="button" onClick={() => updateQuantity(id, quantity - 1)} aria-label={`הפחתת ${product.name}`}>
                             <Minus size={16} weight="bold" />
@@ -1627,7 +1678,7 @@ export default function ShopPage() {
                           className="shop-remove-item"
                           type="button"
                           onClick={() => updateQuantity(id, 0)}
-                          aria-label={`הסרת ${product.name}`}
+                          aria-label={`הסרה: ${product.name}`}
                         >
                           הסרה
                         </button>
@@ -1673,14 +1724,14 @@ export default function ShopPage() {
                 </div>
               </div>
 
-              {fulfillment === 'delivery' && cityId === 'other' && <p className="shop-warning">המשלוח ליישוב שבחרתם, מועדו והעלות הסופית דורשים אישור של המאפייה לפני השלמת ההזמנה.</p>}
+              {fulfillment === 'delivery' && effectiveCityId === 'other' && <p className="shop-warning">דמי המשלוח ליישובי הסביבה הם 30 ₪. זמינות המשלוח ומועדו ייבדקו מול המאפייה.</p>}
               {(operationalMessage || cartBlockingMessage || finalValidationPending || priceUpdateVisible || cartReconciliation.priceChanged) && <div className="shop-cart-feedback" data-testid="cart-feedback" role="status" aria-live="polite">
                 <p>{finalValidationPending ? 'מאמתים מחירים וזמינות מול המאפייה…' : operationalMessage || cartBlockingMessage || 'המחירים בהזמנה עודכנו. בדקו את הסכום לפני שממשיכים.'}</p>
                 {finalValidationPending && <button type="button" onClick={cancelValidation}>ביטול הבדיקה</button>}
                 {!finalValidationPending && shopStatus === 'degraded' && <button type="button" onClick={() => void refresh(true).catch(() => undefined)} disabled={isRefreshing}>ניסיון חוזר</button>}
               </div>}
 
-              {orderStep === 'catalog' ? (
+              {ownerReviewEnabled && !whatsappOrdersEnabled ? <p className="shop-fulfillment-note">אפשר לבדוק מוצרים, בחירות וכמויות בסל.</p> : orderStep === 'catalog' ? (
                 <div className="shop-summary-actions">
                   <button
                     className={`shop-continue-button ${deliveryMinimumNotMet ? 'is-blocked-by-minimum' : ''}`}
@@ -1690,7 +1741,7 @@ export default function ShopPage() {
                     aria-disabled={deliveryMinimumNotMet || !canAttemptContinue}
                     aria-describedby={deliveryMinimumNotMet ? 'shop-minimum-hint' : undefined}
                   >
-                    {onlineOrdersEnabled ? 'המשך לפרטי הזמנה' : 'הזמנות אונליין בקרוב'}
+                    {customerOrdersEnabled ? 'המשך לפרטי הזמנה' : 'הזמנות אונליין בקרוב'}
                   </button>
                 </div>
               ) : (
@@ -1708,10 +1759,10 @@ export default function ShopPage() {
                     disabled={finalValidationPending || !canAttemptContinue}
                   >
                     <CheckCircle size={21} weight="bold" />
-                    {finalValidationPending ? 'שומרים את ההזמנה…' : 'שליחת הזמנה לאישור'}
+                    {whatsappOrdersEnabled ? 'המשך לשליחת ההזמנה בוואטסאפ' : finalValidationPending ? 'שומרים את ההזמנה…' : 'שליחת הזמנה לאישור'}
                   </button>
                   <p className="shop-whatsapp-helper" id="checkout-whatsapp-helper">
-                    ההזמנה תישמר ותמתין לאישור המאפייה. אין כאן תשלום מקוון ולא מתבצע חיוב.
+                    {whatsappOrdersEnabled ? 'ייפתח WhatsApp עם סיכום ההזמנה. יש לשלוח את ההודעה ולהמתין לאישור המאפייה. אין תשלום מקוון.' : 'ההזמנה תישמר ותמתין לאישור המאפייה. אין כאן תשלום מקוון ולא מתבצע חיוב.'}
                   </p>
                   {checkoutErrors.order && (
                     <p className="shop-field-error shop-order-error" id="checkout-order" role="alert" tabIndex={-1}>
@@ -1728,12 +1779,12 @@ export default function ShopPage() {
               )}
             </div>
           )}
-        </aside>
+        </section>
       </div>
 
       <footer className="shop-footer">
         <p>{bakeryInfo.name} · {bakeryInfo.pickupAddress} · <a href={bakeryInfo.phoneHref}><bdi>{bakeryInfo.phone}</bdi></a></p>
-        <p>הטיוטה נשמרת זמנית בלשונית הזו. הזמנה שנשלחה נשמרת במערכת וממתינה לאישור המאפייה. אין כאן תשלום מקוון.</p>
+        <p>{whatsappOrdersEnabled ? 'הזמנות נשלחות בוואטסאפ וכפופות לאישור המאפייה. אין תשלום מקוון.' : ownerReviewEnabled ? 'אפשר לעיין במוצרים, לבחור אפשרויות ולהרכיב סל.' : 'הטיוטה נשמרת זמנית בלשונית הזו. הזמנה שנשלחה נשמרת במערכת וממתינה לאישור המאפייה. אין כאן תשלום מקוון.'}</p>
         <LegalLinks />
       </footer>
 
@@ -1814,20 +1865,30 @@ export default function ShopPage() {
                 <X size={20} weight="bold" />
               </button>
             </div>
-
+            {displayedCustomizingProduct.id === cateringTrayId && <p className="shop-tray-status" aria-live="polite">
+              {selectedOptions['tray-mode']?.[0] === 'mixed'
+                ? `בחרתם ${(selectedOptions['tray-mix'] ?? []).length} מתוך 12 כריכונים. חלקו את הכמות בין המילויים.`
+                : `יתקבלו 12 כריכונים ${getActiveOptionGroups(displayedCustomizingProduct).find(group => group.code === 'tray-single')?.options.find(option => option.code === selectedOptions['tray-single']?.[0])?.name ?? 'מהמילוי שתבחרו'} בלבד.`}
+            </p>}
             <div className="shop-option-groups">
-              {getActiveOptionGroups(displayedCustomizingProduct).map((group) => {
+              {getActiveOptionGroups(displayedCustomizingProduct).filter(group => familyPizzaGroupActive(displayedCustomizingProduct.id, group.code, selectedOptions['pizza-mode']?.[0])).filter(group => displayedCustomizingProduct.id !== cateringTrayId || group.code === 'tray-mode' || group.code === (selectedOptions['tray-mode']?.[0] === 'single' ? 'tray-single' : 'tray-mix')).map((group) => {
                 const selectedInGroup = selectedOptions[group.code] ?? [];
                 const minSelections = group.minSelect;
                 const maxSelections = group.maxSelect;
+                const includedSaladDressings = isBuildYourOwnSalad(displayedCustomizingProduct.id) && group.code === 'group-02';
+                const includedSaladSpecials = isBuildYourOwnSalad(displayedCustomizingProduct.id) && group.code === 'group-03';
+                const toastSpecials = isBuildYourOwnToast(displayedCustomizingProduct.id) && group.code === 'group-04';
+                const toastSauces = isBuildYourOwnToast(displayedCustomizingProduct.id) && group.code === 'group-05';
+                const trayMixed = displayedCustomizingProduct.id === cateringTrayId && group.code === 'tray-mix';
+                const traySingleChoice = displayedCustomizingProduct.id === cateringTrayId && ['tray-mode', 'tray-single'].includes(group.code);
 
                 return (
                   <section className="shop-option-group" key={group.name}>
                     <div className="shop-option-group-title">
-                      <h3>{group.name}</h3>
+                      <h3>{includedSaladDressings ? 'רטבים' : group.name}</h3>
                       <span>
-                        {minSelections > 0 ? `חובה לבחור לפחות ${minSelections}` : 'בחירה חופשית'}
-                        {maxSelections ? ` · עד ${maxSelections}` : ''}
+                        {trayMixed ? 'בחרו כמה כריכונים מכל מילוי, 12 בסך הכול' : traySingleChoice ? 'בחרו אפשרות אחת בלבד' : includedSaladDressings ? '2 רטבים כלולים · כל רוטב נוסף 2 ₪' : includedSaladSpecials ? 'מרכיב מיוחד אחד כלול · כל נוסף 7 ₪' : toastSpecials ? 'היקרה מביניהן כלולה · כל נוספת לפי המחיר המוצג' : toastSauces ? 'עד 2 רטבים, אפשר גם פעמיים מאותו רוטב' : minSelections > 0 ? `חובה לבחור לפחות ${minSelections}` : 'בחירה חופשית'}
+                        {maxSelections && displayedCustomizingProduct.id !== cateringTrayId ? ` · עד ${maxSelections}` : ''}
                       </span>
                     </div>
                     <div className="shop-option-choices">
@@ -1836,13 +1897,24 @@ export default function ShopPage() {
 
                         return (
                           <label className={checked ? 'is-selected' : undefined} key={option.name}>
-                            <input
-                              type="checkbox"
+                            {trayMixed ? <>
+                              <span>{option.name}</span>
+                              <select aria-label={`כמות כריכוני ${option.name}`} value={selectedInGroup.filter(code => code === option.code).length} onChange={event => setTrayFillingCount(option.code, Number(event.target.value))}>
+                                {Array.from({ length: 13 }, (_, count) => <option key={count} value={count}>{count}</option>)}
+                              </select>
+                            </> : toastSauces ? <>
+                              <span>{option.name}</span>
+                              <select aria-label={`כמות ${option.name}`} value={selectedInGroup.filter(code => code === option.code).length} onChange={event => setToastSauceCount(group, option.code, Number(event.target.value))}>
+                                <option value="0">ללא</option><option value="1">1</option><option value="2">2</option>
+                              </select>
+                            </> : <><input
+                              type={traySingleChoice ? 'radio' : 'checkbox'}
+                              name={traySingleChoice ? group.code : undefined}
                               checked={checked}
                               onChange={() => toggleProductOption(group, option.code)}
                             />
-                            <span>{option.name}</span>
-                            {!hasIncludedPizzaChoice(displayedCustomizingProduct) && option.priceDeltaAgorot > 0 && <bdi>+{formatPrice(option.priceDeltaAgorot)}</bdi>}
+                            <span>{option.name}</span></>}
+                            {!hasIncludedPizzaChoice(displayedCustomizingProduct) && !includedSaladDressings && !includedSaladSpecials && option.priceDeltaAgorot > 0 && <bdi>+{formatPrice(option.priceDeltaAgorot)}</bdi>}
                           </label>
                         );
                       })}
@@ -1862,7 +1934,7 @@ export default function ShopPage() {
               <strong>
                 סה״כ <bdi>{formatPrice(unitPrice(displayedCustomizingProduct.priceAgorot, getSelectedProductOptions(displayedCustomizingProduct, selectedOptions)))}</bdi>
               </strong>
-              <button type="button" onClick={addConfiguredProductToCart}>
+              <button type="button" onClick={addConfiguredProductToCart} disabled={displayedCustomizingProduct.id === cateringTrayId && Boolean(traySelectionError(getSelectedProductOptions(displayedCustomizingProduct, selectedOptions)))}>
                 <Plus size={18} weight="bold" />
                 {editingCartItemId ? 'שמירת שינויים' : 'הוספה להזמנה'}
               </button>

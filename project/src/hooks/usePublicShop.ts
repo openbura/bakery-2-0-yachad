@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getBakerySupabaseClient } from '../lib/bakerySupabaseClient';
-import { fetchPublicShopSnapshot, getFallbackShopSnapshot } from '../services/publicShopRepository';
+import { fetchPublicShopSnapshot, getFallbackShopSnapshot, getOwnerReviewShopSnapshot } from '../services/publicShopRepository';
+import { ownerReviewEnabled } from '../shop/release';
 import type { PublicShopSnapshot } from '../shop/publicShopTypes';
 
 export type PublicShopStatus = 'loading' | 'live' | 'degraded';
 
 export function usePublicShop() {
-  const [snapshot, setSnapshot] = useState<PublicShopSnapshot>(() => getFallbackShopSnapshot());
-  const [status, setStatus] = useState<PublicShopStatus>('loading');
+  const [snapshot, setSnapshot] = useState<PublicShopSnapshot>(() => ownerReviewEnabled ? getOwnerReviewShopSnapshot() : getFallbackShopSnapshot());
+  const [status, setStatus] = useState<PublicShopStatus>(ownerReviewEnabled ? 'live' : 'loading');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [realtimeConnected, setRealtimeConnected] = useState(false);
   const requestRef = useRef<{ promise: Promise<PublicShopSnapshot>; controller: AbortController } | null>(null);
@@ -77,6 +78,7 @@ export function usePublicShop() {
   }, [refresh]);
 
   useEffect(() => {
+    if (ownerReviewEnabled) return undefined;
     const client = getBakerySupabaseClient();
     if (!client) {
       return undefined;

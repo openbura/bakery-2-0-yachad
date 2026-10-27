@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './styles.css';
 import { bakeryInfo } from './businessInfo';
-import { onlineOrdersEnabled, ordersOpeningMessage } from './shop/release';
+import { onlineOrdersEnabled, ordersOpeningMessage, whatsappOrdersEnabled } from './shop/release';
 
 const legalLinks = [
   { href: '/terms', label: 'תקנון ותנאי שימוש' },
@@ -113,7 +113,20 @@ const catalogDocuments: Record<string, LegalDocument> = {
 };
 
 export default function LegalPage({ path }: { path: string }) {
-  const legalDocument = (!onlineOrdersEnabled && catalogDocuments[path]) || documents[path];
+  const whatsappDocuments: Record<string, LegalDocument> = {
+    '/terms': { ...documents['/terms'], sections: [documents['/terms'].sections[0],
+      { title: 'הזמנה בוואטסאפ', body: ['לאחר הרכבת הסל ומילוי הפרטים, כפתור השליחה פותח WhatsApp עם סיכום ההזמנה. יש לשלוח את ההודעה למאפייה ולהמתין לאישורה. פתיחת ההודעה אינה שליחת הזמנה או אישור שלה. אין באתר תשלום מקוון, מספר הזמנה או מעקב. המחיר כולל את הפריטים, הבחירות ודמי המשלוח המוצגים בסיכום.'] },
+      ...documents['/terms'].sections.filter(section => ['זכויות בתוכן ואחריות', 'דין חל'].includes(section.title))] },
+    '/privacy': { ...documents['/privacy'], intro: 'הפרטיות במסלול הזמנה בוואטסאפ.', sections: [
+      { title: 'הפרטים והסל', body: ['הסל וטיוטת פרטי הקשר והכתובת נשמרים זמנית ב־sessionStorage בלשונית הדפדפן. כפתור ההמשך לוואטסאפ מעביר ל־WhatsApp את סיכום הסל, השם, הטלפון, הכתובת וההערות שמילאתם. שליחת ההודעה למאפייה נעשית ב־WhatsApp וכפופה למדיניות השירות. אין שמירת הזמנה במסד האתר או סליקה במסלול זה.'] },
+      { title: 'אירוח', body: ['האתר מתארח ב־Vercel. ספק האירוח עשוי לקבל נתוני שימוש טכניים, כגון כתובת IP ולוגי בקשות.'] },
+      ...documents['/privacy'].sections.filter(section => ['עוגיות ומדידה', 'זכויות ופנייה'].includes(section.title))] },
+    '/shipping': { ...documents['/shipping'], sections: [
+      { title: 'משלוח', body: ['משלוח לכפר סבא עולה 20 ₪. להוד השרון, רעננה ויישובים בסביבה — 30 ₪. העיר בכתובת ההזמנה קובעת את דמי המשלוח. מינימום ההזמנה מוצג בסל. משלוח ליישוב בסביבה ומועד האספקה דורשים אישור מהמאפייה בוואטסאפ.'] },
+      { title: 'איסוף עצמי', body: ['איסוף עצמי מהיוצרים 3, כפר סבא, ללא דמי משלוח. מועד האיסוף יתואם מול המאפייה בוואטסאפ.'] }] },
+    '/cancellations': { ...documents['/cancellations'], intro: 'לשינוי או ביטול בקשת הזמנה, פנו למאפייה בשיחת הוואטסאפ שבה שלחתם אותה.', sections: documents['/cancellations'].sections.filter(section => section.title !== 'איך פונים') },
+  };
+  const legalDocument = (whatsappOrdersEnabled && whatsappDocuments[path]) || (!onlineOrdersEnabled && !whatsappOrdersEnabled && catalogDocuments[path]) || documents[path];
   useEffect(() => {
     document.title = `${legalDocument.title} | מאפיית יחד`;
     document.querySelector('meta[name=description]')?.setAttribute('content', `${legalDocument.title} של מאפיית יחד.`);
@@ -125,7 +138,7 @@ export default function LegalPage({ path }: { path: string }) {
     <main id="legal-content" className="legal-content">
       <h1>{legalDocument.title}</h1>
       <p className="legal-intro">{legalDocument.intro}</p>
-      {!onlineOrdersEnabled && <p className="shop-status-banner is-info">{ordersOpeningMessage}</p>}
+      {!onlineOrdersEnabled && !whatsappOrdersEnabled && <p className="shop-status-banner is-info">{ordersOpeningMessage}</p>}
       {path === '/accessibility' && <p>לפנייה למאפייה ולבירור נגישות עם עידו: <a href={bakeryInfo.phoneHref}><bdi>{bakeryInfo.phone}</bdi></a>.</p>}
       {path !== '/terms' && <p className="legal-business-details"><LegalBusinessDetails /></p>}
       {legalDocument.sections.map((section, index) => <section key={section.title} aria-labelledby={`section-${index}`}>

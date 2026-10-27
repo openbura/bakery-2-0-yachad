@@ -11,7 +11,8 @@ import { SettingsPage } from './pages/SettingsPage';
 import { OrdersPage } from './pages/OrdersPage';
 import { OrderAttentionProvider } from './components/OrderAttentionProvider';
 import { onlineOrdersEnabled } from '../../src/shop/release';
-import { getLoginPrefill, restoreAuthorizedSession, signInSharedAdmin, signOutAdmin, subscribeToAuthChanges } from './services/authService';
+import { expireInactiveAdminSession, getLoginPrefill, restoreAuthorizedSession, signInSharedAdmin, signOutAdmin, subscribeToAuthChanges } from './services/authService';
+import { watchAdminActivity } from './services/adminSessionActivity';
 import { fetchDashboardData, type DashboardData } from './services/dashboardRepository';
 import { updateProductAvailability, updateProductPrice } from './services/productsRepository';
 import { ownerMessage } from './services/serviceErrors';
@@ -131,6 +132,18 @@ export default function App() {
       unsubscribe();
     };
   }, [navigate, refreshDashboard]);
+
+  useEffect(() => {
+    if (authStatus !== 'authorized' || !profile) return;
+    return watchAdminActivity(profile.userId, () => {
+      setProfile(null);
+      setDashboardData(null);
+      setDataStatus('idle');
+      setAuthStatus('signedOut');
+      navigate('/login', true);
+      void expireInactiveAdminSession();
+    });
+  }, [authStatus, profile, navigate]);
 
   useEffect(() => {
     const handlePopState = () => {

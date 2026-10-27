@@ -1,0 +1,25 @@
+{
+  "base": "https://bakery-2-0-yachad-deploy.vercel.app",
+  "errors": [],
+  "viewports": [
+    {
+      "width": 390,
+      "products": 222,
+      "loadedPhotos": 222,
+      "captionElements": 0,
+      "frame": "128.0x148.0",
+      "framingUnchanged": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "products": 222,
+      "loadedPhotos": 222,
+      "captionElements": 0,
+      "frame": "336.4x269.1",
+      "framingUnchanged": true,
+      "overflow": false
+    }
+  ],
+  "status": "PASS"
+}
