@@ -6,6 +6,18 @@ import { normalizeIsraeliPhone } from '../src/shop/phone.ts';
 import { persistOrderIntent, readOrderIntent, rememberOrderReceipt, clearOrderIntent, readOrderReceipt, orderIntentKey, orderReceiptKey } from '../src/shop/orderSubmission.ts';
 import { traySelectionError, trayFillings } from '../src/shop/cateringTray.ts';
 import { deliveryFeeFor, deliveryAreas } from '../src/shop/deliveryPolicy.ts';
+import { isBakeryOpen } from '../src/shop/openingHours.ts';
+
+test('orders follow published Israel hours including night, Friday boundary and Saturday', () => {
+  assert.equal(isBakeryOpen(new Date('2026-10-28T04:00:00+02:00')), false);
+  assert.equal(isBakeryOpen(new Date('2026-10-28T04:59:59+02:00')), false);
+  assert.equal(isBakeryOpen(new Date('2026-10-28T05:00:00+02:00')), true);
+  assert.equal(isBakeryOpen(new Date('2026-10-28T20:59:59+02:00')), true);
+  assert.equal(isBakeryOpen(new Date('2026-10-28T21:00:00+02:00')), false);
+  assert.equal(isBakeryOpen(new Date('2026-10-30T15:59:59+02:00')), true);
+  assert.equal(isBakeryOpen(new Date('2026-10-30T16:00:00+02:00')), false);
+  assert.equal(isBakeryOpen(new Date('2026-10-31T12:00:00+02:00')), false);
+});
 
 test('catering mix must allocate exactly twelve sandwiches from the five owner fillings', () => {
   const mode={groupCode:'tray-mode',optionCode:'mixed'};

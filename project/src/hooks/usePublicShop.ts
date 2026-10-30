@@ -68,12 +68,17 @@ export function usePublicShop() {
 
   useEffect(() => {
     const handleFocus = () => void refresh().catch(() => undefined);
+    const visibleRefresh = () => { if (document.visibilityState === 'visible') handleFocus(); };
+    const poll = window.setInterval(visibleRefresh, 10_000);
     const handleOnline = () => void refresh().catch(() => undefined);
     window.addEventListener('focus', handleFocus);
     window.addEventListener('online', handleOnline);
+    document.addEventListener('visibilitychange', visibleRefresh);
     return () => {
+      window.clearInterval(poll);
       window.removeEventListener('focus', handleFocus);
       window.removeEventListener('online', handleOnline);
+      document.removeEventListener('visibilitychange', visibleRefresh);
     };
   }, [refresh]);
 

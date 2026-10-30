@@ -39,6 +39,7 @@ import { onlineOrdersEnabled, ordersOpeningMessage, ownerReviewEnabled, whatsapp
 import { cateringTrayId, traySelectionError } from './shop/cateringTray';
 import { deliveryAreas, deliveryFeeFor, resolveDeliveryCity } from './shop/deliveryPolicy';
 import { familyPizzaId, familyPizzaGroupActive } from './shop/familyPizza';
+import { isBakeryOpen, outsideOpeningHoursMessage } from './shop/openingHours';
 type ResidenceType = '' | 'building' | 'private-house';
 type OrderStep = 'catalog' | 'details';
 type CheckoutField =
@@ -123,6 +124,7 @@ function hasProductOptions(product: ShopProduct) {
 }
 
 function getOperationalBlock(settings: ShopStoreSettings, items: ShopCartItem[], fulfillment: FulfillmentType) {
+  if (whatsappOrdersEnabled && !isBakeryOpen()) return outsideOpeningHoursMessage;
   if (!settings.orderingEnabled) {
     return 'ההזמנות סגורות כרגע.';
   }
@@ -252,6 +254,11 @@ function buildOrderSummary({
 }
 
 export default function ShopPage() {
+  const [shopNow, setShopNow] = useState(() => new Date());
+  useEffect(() => {
+    const timer = window.setInterval(() => setShopNow(new Date()), 30_000);
+    return () => window.clearInterval(timer);
+  }, []);
   const { snapshot, status: shopStatus, isRefreshing, refresh, cancelRefresh } = usePublicShop();
   const [selectedCategory, setSelectedCategory] = useState(allCategory);
   const [initialCheckout] = useState(() => ({ ...readCheckoutSession(), draft: readCheckoutDraft() }));
@@ -347,7 +354,8 @@ export default function ShopPage() {
   const cartHasFulfillmentConflict = cartItems.some((item) => (
     fulfillment === 'delivery' ? !item.product.availableForDelivery : !item.product.availableForPickup
   ));
-  const orderingAllowed = isLive && settings.orderingEnabled && (settings.deliveryEnabled || settings.pickupEnabled);
+  const outsideOpeningHours = whatsappOrdersEnabled && !isBakeryOpen(shopNow);
+  const orderingAllowed = isLive && !outsideOpeningHours && settings.orderingEnabled && (settings.deliveryEnabled || settings.pickupEnabled);
   const isProductOrderable = (product: ShopProduct) => (
     orderingAllowed &&
     product.availableToday &&
@@ -393,7 +401,7 @@ export default function ShopPage() {
     !cartHasInvalidItems &&
     !cartHasFulfillmentConflict;
   const canAttemptContinue = customerOrdersEnabled && cartItems.length > 0 && orderingAllowed && selectedFulfillmentEnabled && !cartHasInvalidItems && !cartHasFulfillmentConflict;
-  const cartBlockingMessage = ownerReviewEnabled ? '' : !onlineOrdersEnabled ? ordersOpeningMessage : !isLive ? 'אי אפשר לאמת כרגע את ההזמנה. נסו שוב או פנו למאפייה.' : getOperationalBlock(settings, cartItems, fulfillment);
+  const cartBlockingMessage = ownerReviewEnabled ? '' : !customerOrdersEnabled ? ordersOpeningMessage : !isLive ? 'אי אפשר לאמת כרגע את ההזמנה. נסו שוב או פנו למאפייה.' : getOperationalBlock(settings, cartItems, fulfillment);
 
   const cancelValidation = useCallback(() => {
     const pending = validationRef.current.pending;
@@ -1042,11 +1050,47 @@ export default function ShopPage() {
     } finally { if (attempt === validationRef.current.id) { validationRef.current.pending = false; setFinalValidationPending(false); } }
   };
 
-  const submitWhatsAppOrder = (event: FormEvent<HTMLFormElement>) => {
+  const submitWhatsAppOrder = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!whatsappOrdersEnabled || !validateCheckout()) return;
-    const summary = orderSummary + (fulfillment === 'pickup' ? '\nמועד איסוף: בתיאום עם המאפייה' : '') + '\nהבקשה כפופה לאישור המאפייה. ללא תשלום מקוון.';
-    window.open(`https://wa.me/${bakeryInfo.whatsappNumber}?text=${encodeURIComponent(summary)}`, '_blank', 'noopener,noreferrer');
+    if (!whatsappOrdersEnabled || validationRef.current.pending || !validateCheckout()) return;
+    const attempt = ++validationRef.current.id;
+    validationRef.current.pending = true;
+    setFinalValidationPending(true);
+    setOperationalMessage('בודקים את ההזמנה…');
+    try {
+      const fresh = await refresh(true);
+      if (attempt !== validationRef.current.id) return;
+      const reconciled = reconcileCart(cart, fresh);
+      setCart(reconciled.cart);
+      const block = getOperationalBlock(fresh.settings, Object.values(reconciled.cart), fulfillment);
+      if (!fresh.live || block) {
+        setCheckoutErrors(current => ({ ...current, order: block || 'לא ניתן לאמת את ההזמנה כרגע.' }));
+        setOperationalMessage(block || 'לא ניתן לאמת את ההזמנה כרגע.');
+        return;
+      }
+      const freshSubtotal = orderTotals(Object.values(reconciled.cart), 0).subtotal;
+      const fee = deliveryFeeFor(fulfillment, effectiveCityId, fresh.settings.pickupFeeAgorot);
+      if (fulfillment === 'delivery' && freshSubtotal < fresh.settings.minimumDeliverySubtotalAgorot) {
+        setCheckoutErrors(current => ({ ...current, order: 'הסל אינו מגיע למינימום המשלוח.' }));
+        return;
+      }
+      if (reconciled.priceChanged || fee !== deliveryFee) {
+        setPriceUpdateVisible(true);
+        setOperationalMessage('המחיר עודכן. בדקו את הסכום החדש לפני השליחה.');
+        return;
+      }
+      setOperationalMessage('');
+      const summary = orderSummary + (fulfillment === 'pickup' ? '\nמועד איסוף: בתיאום עם המאפייה' : '') + '\nהבקשה כפופה לאישור המאפייה. ללא תשלום מקוון.';
+      window.location.assign(`https://wa.me/${bakeryInfo.whatsappNumber}?text=${encodeURIComponent(summary)}`);
+    } catch {
+      setCheckoutErrors(current => ({ ...current, order: 'לא ניתן לאמת את ההזמנה כרגע. נסו שוב כשיש חיבור.' }));
+      setOperationalMessage('לא ניתן לאמת את ההזמנה כרגע.');
+    } finally {
+      if (attempt === validationRef.current.id) {
+        validationRef.current.pending = false;
+        setFinalValidationPending(false);
+      }
+    }
   };
 
   const submitOnlineOrder = async (event: FormEvent<HTMLFormElement>) => {
@@ -1130,7 +1174,7 @@ export default function ShopPage() {
       </div>}
       {orderStep === 'catalog' && cartItems.length === 0 && renderFulfillmentSelector('summary')}
       <div className="shop-live-status" aria-live="polite">
-        {!onlineOrdersEnabled && !ownerReviewEnabled && <div className="shop-status-banner is-info" data-testid="catalog-only"><strong>הזמנות אונליין ייפתחו בקרוב</strong><span>בינתיים אפשר לעיין בתפריט ולהרכיב סל. לא נשלחת הזמנה ולא מתבצע חיוב.</span></div>}
+        {!customerOrdersEnabled && !ownerReviewEnabled && <div className="shop-status-banner is-info" data-testid="catalog-only"><strong>הזמנות אונליין ייפתחו בקרוב</strong><span>בינתיים אפשר לעיין בתפריט ולהרכיב סל. לא נשלחת הזמנה ולא מתבצע חיוב.</span></div>}
         {shopStatus === 'loading' && (
           <div className="shop-status-banner is-loading" data-testid="shop-loading">
             טוענים את התפריט העדכני…
@@ -1147,10 +1191,10 @@ export default function ShopPage() {
             </button>
           </div>
         )}
-        {isLive && !settings.orderingEnabled && (
+        {isLive && (!settings.orderingEnabled || outsideOpeningHours) && (
           <div className="shop-status-banner is-closed" data-testid="ordering-closed">
             <strong>ההזמנות סגורות כרגע</strong>
-            <span>התפריט נשאר פתוח לעיון.</span>
+            <span>{outsideOpeningHours ? outsideOpeningHoursMessage : 'התפריט נשאר פתוח לעיון.'}</span>
           </div>
         )}
         {isLive && settings.orderingEnabled && (!settings.deliveryEnabled || !settings.pickupEnabled) && (
@@ -1185,7 +1229,7 @@ export default function ShopPage() {
             <h2 className="shop-sr-only">תפריט המוצרים</h2>
 
             <div className="shop-category-nav">
-              <div className="shop-category-tabs" aria-label="סינון קטגוריות">
+              <div className="shop-category-tabs" role="group" aria-label="סינון קטגוריות">
                 {categories.map((category) => (
                   <button
                     key={category}
@@ -1235,9 +1279,10 @@ export default function ShopPage() {
                           {needsBusinessChoices(product) && <small>ההרכבה מתבצעת בתיאום עם המאפייה. לא ניתן להוסיף בלי בחירת מרכיבים.</small>}
                           {product.unavailableReason && <small>{product.unavailableReason}</small>}
                           {hasIncludedPizzaChoice(product) && <small>לבחירה: עד 3 תוספות: הראשונה כלולה במחיר, כל תוספת נוספת ב־5 ₪.</small>}
-                          <strong dir="ltr" aria-label={displayPrice}>
+                          <strong dir="ltr">
+                            <span className="shop-sr-only">{displayPrice.replace('₪', '').trim()} שקלים</span>
                             <span className="shop-price-currency" aria-hidden="true">₪</span>
-                            <bdi className="shop-price-amount" dir="ltr">{displayPrice.replace('₪', '').trim()}</bdi>
+                            <bdi className="shop-price-amount" dir="ltr" aria-hidden="true">{displayPrice.replace('₪', '').trim()}</bdi>
                           </strong>
                           {getVisibleProductUnitNote(product) && <span><bdi>{getVisibleProductUnitNote(product)}</bdi></span>}
                         </div>
@@ -1759,7 +1804,7 @@ export default function ShopPage() {
                     disabled={finalValidationPending || !canAttemptContinue}
                   >
                     <CheckCircle size={21} weight="bold" />
-                    {whatsappOrdersEnabled ? 'המשך לשליחת ההזמנה בוואטסאפ' : finalValidationPending ? 'שומרים את ההזמנה…' : 'שליחת הזמנה לאישור'}
+                    {finalValidationPending ? 'בודקים את ההזמנה…' : whatsappOrdersEnabled ? 'המשך לשליחת ההזמנה בוואטסאפ' : 'שליחת הזמנה לאישור'}
                   </button>
                   <p className="shop-whatsapp-helper" id="checkout-whatsapp-helper">
                     {whatsappOrdersEnabled ? 'ייפתח WhatsApp עם סיכום ההזמנה. יש לשלוח את ההודעה ולהמתין לאישור המאפייה. אין תשלום מקוון.' : 'ההזמנה תישמר ותמתין לאישור המאפייה. אין כאן תשלום מקוון ולא מתבצע חיוב.'}

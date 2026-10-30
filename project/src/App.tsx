@@ -1479,18 +1479,16 @@ function App() {
   const isShop = path === '/shop';
   useEffect(() => {
     if (!isShop) return;
-    document.title = `${customerOrdersEnabled ? 'הזמנה אונליין' : 'תפריט וסל לצפייה'} | מאפיית יחד`;
+    document.title = 'מאפיית יחד | הזמנות אונליין';
     const values: Record<string, string> = {
-      'meta[name=description]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
+      'meta[name=description]': 'מאפים, לחמים, כריכים ועוד — למשלוח או לאיסוף עצמי.',
       'meta[property="og:title"]': document.title,
-      'meta[property="og:description"]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
+      'meta[property="og:description"]': 'מאפים, לחמים, כריכים ועוד — למשלוח או לאיסוף עצמי.',
       'meta[property="og:url"]': 'https://bakery-2-0-yachad-deploy.vercel.app/shop',
       'meta[name="twitter:title"]': document.title,
-      'meta[name="twitter:description"]': 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.',
+      'meta[name="twitter:description"]': 'מאפים, לחמים, כריכים ועוד — למשלוח או לאיסוף עצמי.',
     };
-    if (!customerOrdersEnabled) {
-      for (const selector of ['meta[name=description]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) values[selector] = 'תפריט מאפיית יחד והרכבת סל לצפייה. הזמנות אונליין ייפתחו בקרוב.';
-    }
+
     Object.entries(values).forEach(([selector, value]) => document.querySelector(selector)?.setAttribute('content', value));
     document.querySelector('link[rel=canonical]')?.setAttribute('href', 'https://bakery-2-0-yachad-deploy.vercel.app/shop');
   }, [isShop]);

@@ -9,7 +9,7 @@ export default defineConfig({
       const home = bundle['index.html'];
       if (!home || home.type !== 'asset' || typeof home.source !== 'string') return;
       const routes = [
-        ['shop', process.env.VITE_BAKERY_ONLINE_ORDERS_ENABLED === 'true' ? 'הזמנה אונליין' : 'תפריט וסל לצפייה', process.env.VITE_BAKERY_ONLINE_ORDERS_ENABLED === 'true' ? 'תפריט מאפיית יחד והזמנה לאיסוף עצמי או משלוח בערי השירות.' : 'תפריט מאפיית יחד והרכבת סל לצפייה. הזמנות אונליין ייפתחו בקרוב.'],
+        ['shop', 'הזמנות אונליין', 'מאפים, לחמים, כריכים ועוד — למשלוח או לאיסוף עצמי.'],
         ['notifications', 'מעקב ועדכונים', 'פתיחת קישור המעקב והגדרת התראות להזמנה.'],
         ['terms', 'תקנון ותנאי שימוש', 'מידע על השימוש באתר והזמנות ממאפיית יחד.'],
         ['privacy', 'מדיניות פרטיות', 'מידע על פרטיות ופרטי הזמנה במאפיית יחד.'],
@@ -18,7 +18,7 @@ export default defineConfig({
         ['accessibility', 'הצהרת נגישות', 'מידע על נגישות אתר וסניף מאפיית יחד.'],
       ];
       for (const [route, label, description] of routes) {
-        const title = `${label} | מאפיית יחד`;
+        const title = route === 'shop' ? 'מאפיית יחד | הזמנות אונליין' : `${label} | מאפיית יחד`;
         const url = `https://bakery-2-0-yachad-deploy.vercel.app/${route}`;
         const values: Record<string, string> = { description, 'og:title': title, 'twitter:title': title, 'og:description': description, 'twitter:description': description, 'og:url': url };
         const source = home.source.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)

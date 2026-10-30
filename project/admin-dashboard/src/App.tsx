@@ -288,7 +288,7 @@ export default function App() {
   const protectedRoute = route === '/login' ? '/' : route;
   let page;
   if (protectedRoute === '/orders') {
-    page = onlineOrdersEnabled ? <OrdersPage key={ordersVisit} /> : <section className="page-card" dir="rtl"><h1>הזמנות אונליין ייפתחו בקרוב</h1><p>האתר הציבורי מציג כרגע קטלוג וסל לצפייה. עדיין אין קבלת הזמנות, סליקה או התראות להזמנות חדשות.</p></section>;
+    page = onlineOrdersEnabled ? <OrdersPage key={ordersVisit} /> : <section className="page-card" dir="rtl"><h1>הזמנות בוואטסאפ</h1><p>הלקוחות שולחים את ההזמנות מהחנות לוואטסאפ של המאפייה. הטיפול בהזמנה והאישור נעשים בשיחה.</p><p>ההזמנות עצמן אינן נשמרות באדמין, ואין כרגע סליקה מקוונת.</p></section>;
   } else if (dataStatus === 'loading' || dataStatus === 'idle') {
     page = <WorkspaceState title="טוענים את נתוני המאפייה" message="המוצרים והגדרות החנות נטענים מהמסד…" />;
   } else if (dataStatus === 'error' || !dashboardData) {

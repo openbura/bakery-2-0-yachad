@@ -17,8 +17,11 @@ export async function fetchDashboardData(): Promise<DashboardData> {
     fetchStoreSettings(),
   ]);
 
-  if (categories.length !== 10 || products.length !== 78) {
-    throw new OwnerFacingError('הדשבורד נעצר: מספר המוצרים או הקטגוריות אינו תואם לקטלוג המאושר.');
+  const categoryIds = new Set(categories.map(category => category.id));
+  if (!categories.length || !products.length || categoryIds.size !== categories.length ||
+    new Set(products.map(product => product.id)).size !== products.length ||
+    products.some(product => !categoryIds.has(product.categoryId) || !Number.isSafeInteger(product.priceAgorot) || product.priceAgorot < 0)) {
+    throw new OwnerFacingError('הדשבורד נעצר: נתוני הקטלוג אינם תקינים. נסו לרענן.');
   }
 
   return { categories, products, settings };

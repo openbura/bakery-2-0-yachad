@@ -5004,7 +5004,7 @@
       "sort_order": 74,
       "product_name": "פחית קולה",
       "description": "",
-      "price_ils": 12,
+      "price_ils": 10,
       "image_url": "/catalog-studio-20261026/060-drinks-02-studio.webp",
       "image_filename": "060-drinks-02-studio.webp",
       "active": true,
@@ -5026,8 +5026,8 @@
         "₪3.64",
         "/ 100 מל׳"
       ],
-      "display_price_text": "₪12",
-      "price_unit_note": "₪3.64 / 100 מל׳",
+      "display_price_text": "₪10",
+      "price_unit_note": "מחיר לפריט",
       "small_note": "",
       "source_10bis_description": "",
       "image_status": "available",
@@ -5037,6 +5037,14 @@
       "image_origin": {
         "kind": "original_drink_restored",
         "original_url": "/product-images/drinks-02.jpg"
+      },
+      "wolt_import": {
+        "wolt_id": "5fabc81e5e10091d368bb1de",
+        "source_url": "https://wolt.com/he/isr/hasharon/venue/maafiyat-hamishpaha/itemid-5fabc81e5e10091d368bb1de",
+        "source_name": "פחית קוקה קולה",
+        "source_price_agorot": 1000,
+        "captured_date": "2026-10-30",
+        "reason": "price_only_original_drink_preserved"
       }
     },
     {
@@ -5045,7 +5053,7 @@
       "sort_order": 75,
       "product_name": "פחית קולה זירו",
       "description": "",
-      "price_ils": 12,
+      "price_ils": 10,
       "image_url": "/catalog-studio-20261026/061-drinks-03-studio.webp",
       "image_filename": "061-drinks-03-studio.webp",
       "active": true,
@@ -5067,8 +5075,8 @@
         "₪3.64",
         "/ 100 מל׳"
       ],
-      "display_price_text": "₪12",
-      "price_unit_note": "₪3.64 / 100 מל׳",
+      "display_price_text": "₪10",
+      "price_unit_note": "מחיר לפריט",
       "small_note": "",
       "source_10bis_description": "",
       "image_status": "available",
@@ -5078,6 +5086,14 @@
       "image_origin": {
         "kind": "original_drink_restored",
         "original_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/812ea80a-a33b-49e5-b20e-597d8c564091.jpg"
+      },
+      "wolt_import": {
+        "wolt_id": "5fabc8273d43c96186b99118",
+        "source_url": "https://wolt.com/he/isr/hasharon/venue/maafiyat-hamishpaha/itemid-5fabc8273d43c96186b99118",
+        "source_name": "פחית קולה זירו",
+        "source_price_agorot": 1000,
+        "captured_date": "2026-10-30",
+        "reason": "price_only_original_drink_preserved"
       }
     },
     {
@@ -5086,7 +5102,7 @@
       "sort_order": 76,
       "product_name": "פחית ספרייט",
       "description": "",
-      "price_ils": 12,
+      "price_ils": 10,
       "image_url": "/catalog-studio-20261026/062-drinks-04-studio.webp",
       "image_filename": "062-drinks-04-studio.webp",
       "active": true,
@@ -5108,8 +5124,8 @@
         "₪3.64",
         "/ 100 מל׳"
       ],
-      "display_price_text": "₪12",
-      "price_unit_note": "₪3.64 / 100 מל׳",
+      "display_price_text": "₪10",
+      "price_unit_note": "מחיר לפריט",
       "small_note": "",
       "source_10bis_description": "",
       "image_status": "available",
@@ -5119,6 +5135,14 @@
       "image_origin": {
         "kind": "original_drink_restored",
         "original_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/d7178b50-b563-45a0-828e-6e69025adbe5.jpg"
+      },
+      "wolt_import": {
+        "wolt_id": "5fabc83a7607ba182113b63f",
+        "source_url": "https://wolt.com/he/isr/hasharon/venue/maafiyat-hamishpaha/itemid-5fabc83a7607ba182113b63f",
+        "source_name": "פחית ספרייט",
+        "source_price_agorot": 1000,
+        "captured_date": "2026-10-30",
+        "reason": "price_only_original_drink_preserved"
       }
     },
     {
@@ -5127,7 +5151,7 @@
       "sort_order": 77,
       "product_name": "פחית ספרייט זירו",
       "description": "",
-      "price_ils": 12,
+      "price_ils": 10,
       "image_url": "/catalog-studio-20261026/063-drinks-05-studio.webp",
       "image_filename": "063-drinks-05-studio.webp",
       "active": true,
@@ -5149,8 +5173,8 @@
         "₪3.64",
         "/ 100 מל׳"
       ],
-      "display_price_text": "₪12",
-      "price_unit_note": "₪3.64 / 100 מל׳",
+      "display_price_text": "₪10",
+      "price_unit_note": "מחיר לפריט",
       "small_note": "",
       "source_10bis_description": "",
       "image_status": "available",
@@ -5160,6 +5184,14 @@
       "image_origin": {
         "kind": "original_drink_restored",
         "original_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/aa561154-64f2-4be0-8778-2e1a12819648.jpg"
+      },
+      "wolt_import": {
+        "wolt_id": "5fabc840150991db4c2f64c3",
+        "source_url": "https://wolt.com/he/isr/hasharon/venue/maafiyat-hamishpaha/itemid-5fabc840150991db4c2f64c3",
+        "source_name": "פחית ספרייט זירו",
+        "source_price_agorot": 1000,
+        "captured_date": "2026-10-30",
+        "reason": "price_only_original_drink_preserved"
       }
     },
     {
@@ -5168,7 +5200,7 @@
       "sort_order": 78,
       "product_name": "פחית פאנטה",
       "description": "",
-      "price_ils": 12,
+      "price_ils": 10,
       "image_url": "/catalog-studio-20261026/064-drinks-06-studio.webp",
       "image_filename": "064-drinks-06-studio.webp",
       "active": true,
@@ -5190,8 +5222,8 @@
         "₪3.64",
         "/ 100 מל׳"
       ],
-      "display_price_text": "₪12",
-      "price_unit_note": "₪3.64 / 100 מל׳",
+      "display_price_text": "₪10",
+      "price_unit_note": "מחיר לפריט",
       "small_note": "",
       "source_10bis_description": "",
       "image_status": "available",
@@ -5201,6 +5233,14 @@
       "image_origin": {
         "kind": "original_drink_restored",
         "original_url": "https://d25t2285lxl5rf.cloudfront.net/images/dishes/e878aab1-1290-49d6-aa55-288252bc886e.jpg"
+      },
+      "wolt_import": {
+        "wolt_id": "5fabc831fbb8768e9370dced",
+        "source_url": "https://wolt.com/he/isr/hasharon/venue/maafiyat-hamishpaha/itemid-5fabc831fbb8768e9370dced",
+        "source_name": "פחית פאנטה",
+        "source_price_agorot": 1000,
+        "captured_date": "2026-10-30",
+        "reason": "price_only_original_drink_preserved"
       }
     },
     {
