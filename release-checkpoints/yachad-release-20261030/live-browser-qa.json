@@ -1,0 +1,175 @@
+{
+  "status": "PASS",
+  "public": [
+    {
+      "width": 390,
+      "path": "privacy",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "path": "cancellations",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "path": "accessibility",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "path": "terms",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "path": "privacy",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "path": "cancellations",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "path": "accessibility",
+      "status": "PASS"
+    },
+    {
+      "width": 430,
+      "path": "terms",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "path": "privacy",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "path": "cancellations",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "path": "accessibility",
+      "status": "PASS"
+    },
+    {
+      "width": 768,
+      "path": "terms",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "path": "privacy",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "path": "cancellations",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "path": "accessibility",
+      "status": "PASS"
+    },
+    {
+      "width": 1440,
+      "path": "terms",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "path": "privacy",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "path": "cancellations",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "path": "accessibility",
+      "status": "PASS"
+    },
+    {
+      "width": 1920,
+      "path": "terms",
+      "status": "PASS"
+    }
+  ],
+  "admin": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "authMocked": true,
+      "realPasswordUsed": false,
+      "catalogReadsLive": true
+    },
+    {
+      "width": 430,
+      "status": "PASS",
+      "authMocked": true,
+      "realPasswordUsed": false,
+      "catalogReadsLive": true
+    },
+    {
+      "width": 768,
+      "status": "PASS",
+      "authMocked": true,
+      "realPasswordUsed": false,
+      "catalogReadsLive": true
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "authMocked": true,
+      "realPasswordUsed": false,
+      "catalogReadsLive": true
+    },
+    {
+      "width": 1920,
+      "status": "PASS",
+      "authMocked": true,
+      "realPasswordUsed": false,
+      "catalogReadsLive": true
+    }
+  ],
+  "errors": [],
+  "writes": 0,
+  "realMessagesSent": 0,
+  "assetHashes": [
+    {
+      "name": "public",
+      "asset": "/assets/index-CF3uZtwy.js",
+      "sha256": "37c1301a48d13757e40478483c589561e706c44ec4a090c677096f2cedb187ed"
+    },
+    {
+      "name": "public",
+      "asset": "/assets/index-nXxftSiW.css",
+      "sha256": "d690b1be1f0a70c9a3e7fa97c283c362c16f8ca14c81162303cc7c462bfdbbe2"
+    },
+    {
+      "name": "admin",
+      "asset": "/assets/index-j7HA4qbf.js",
+      "sha256": "21dc298c6ec0e8c171e855492ce562444c651ce62430cd70f03c25d573c649bd"
+    },
+    {
+      "name": "admin",
+      "asset": "/assets/index-BPkHnGHZ.css",
+      "sha256": "f3121b39fb19cc32c935cd0c6aa0c72f7de5346c6a097a1bfac3eeeab8465a6b"
+    }
+  ],
+  "checkout": {
+    "fiveDrinkPrices10": true,
+    "kfarSabaTotal140": true,
+    "raananaTotal150": true,
+    "requiredFields": true,
+    "whatsappContentIntercepted": true,
+    "nightBlocks": true
+  }
+}

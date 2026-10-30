@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "localOnly": true,
+  "results": [
+    {
+      "scenario": "rollback_success",
+      "status": "PASS"
+    },
+    {
+      "scenario": "new_change_blocks_rollback",
+      "status": "PASS"
+    }
+  ]
+}

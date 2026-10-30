@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "onlyFiveDrinksChanged": true,
+  "settingsAndOtherProductsPreserved": true,
+  "changed": [
+    {
+      "id": "drinks-02",
+      "fields": [
+        "price_agorot",
+        "updated_at",
+        "display_price_text",
+        "price_unit_note"
+      ],
+      "price": 1000
+    },
+    {
+      "id": "drinks-03",
+      "fields": [
+        "price_agorot",
+        "updated_at",
+        "display_price_text",
+        "price_unit_note"
+      ],
+      "price": 1000
+    },
+    {
+      "id": "drinks-04",
+      "fields": [
+        "price_agorot",
+        "updated_at",
+        "display_price_text",
+        "price_unit_note"
+      ],
+      "price": 1000
+    },
+    {
+      "id": "drinks-05",
+      "fields": [
+        "price_agorot",
+        "updated_at",
+        "display_price_text",
+        "price_unit_note"
+      ],
+      "price": 1000
+    },
+    {
+      "id": "drinks-06",
+      "fields": [
+        "price_agorot",
+        "updated_at",
+        "display_price_text",
+        "price_unit_note"
+      ],
+      "price": 1000
+    }
+  ]
+}
